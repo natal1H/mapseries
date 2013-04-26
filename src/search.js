@@ -4,10 +4,10 @@ goog.require('goog.array');
 goog.require('goog.dom');
 goog.require('goog.events');
 goog.require('goog.net.XhrIo');
-goog.require('goog.ui.Dialog');
 goog.require('latlng');
 goog.require('ms.Loader');
 goog.require('ms.Series');
+goog.require('ms.Template');
 
 
 
@@ -62,16 +62,10 @@ ms.Search = function() {
   });
 
   /**
-   * Dialog.
-   * @type {goog.ui.Dialog}
+   * Template dialog.
+   * @type {ms.Template}
    */
-  this.dialog = null;
-
-  /**
-   * Clipboard.
-   * @type {ZeroClipboard.Client}
-   */
-  this.clipboard = null;
+  this.template = null;
 
 };
 
@@ -86,11 +80,7 @@ ms.Search.prototype.init = function(config) {
     'controls': [
       new OpenLayers.Control.Navigation(),
       new OpenLayers.Control.Zoom(),
-      new OpenLayers.Control.ArgParser(),
-      new OpenLayers.Control.Attribution(),
-      new OpenLayers.Control.Permalink({
-        'anchor': true
-      })
+      new OpenLayers.Control.Attribution()
     ],
     'displayProjection': new OpenLayers.Projection('EPSG:4326')
   });
@@ -234,13 +224,11 @@ ms.Search.prototype.init = function(config) {
       });
 
 
-  // dialog
-  this.dialog = new goog.ui.Dialog();
+  // template dialog
+  this.template = new ms.Template();
 
   this.setActiveSheet(null);
 
-  ZeroClipboard.setMoviePath(
-      'http://mapseries.georeferencer.org/zeroclipboard/ZeroClipboard.swf');
 
 };
 
@@ -269,22 +257,16 @@ ms.Search.prototype.setActiveSheet = function(sheet) {
   }
 
   var html;
-  var _this = this;
   if (!sheet) {
     html = goog.dom.createDom('i', null, 'Click on a sheet');
-    _this.dialog.setVisible(false);
+    this.template.setVisible(false);
   } else {
     var label = sheet.attributes['SHEET'] + ' - ' + sheet.attributes['TITLE'];
     html = goog.dom.createDom('a', {'href': '#'}, label);
     goog.events.listen(html, 'click', function(e) {
-      _this.dialog.setTitle(label);
-      var templ = _this.autofillTemplate(sheet);
-      templ = this.decorateTemplate(templ);
-      _this.dialog.setContent(templ);
-      _this.dialog.setVisible(true);
-      _this.addTemplateListeners(_this.dialog);
+      this.template.showSheet(sheet, this.series, this.map);
       e.preventDefault();
-    });
+    }, false, this);
   }
   var container = /** @type {!Element} */(goog.dom.getElement('results'));
   goog.dom.removeChildren(container);
@@ -292,124 +274,3 @@ ms.Search.prototype.setActiveSheet = function(sheet) {
 };
 
 
-/**
- * Fill template with values for given sheet.
- * @param {OpenLayers.Feature.Vector} sheet sheet.
- * @return {string} filled template.
- */
-ms.Search.prototype.autofillTemplate = function(sheet) {
-  var template = this.series.template;
-  if (!template) {
-    return '';
-  }
-
-  // read template tokens
-  var tokens = template.match(/\{[^}]+\}/gm);
-  goog.array.removeDuplicates(tokens);
-
-  // prepare variables
-  var filled = template;
-  var token;
-  var value;
-  var latLngBbox;
-  var map = this.map;
-  var fillBbox = function() {
-    var bbox = sheet.geometry.getBounds();
-    var proj = new OpenLayers.Projection('EPSG:4326');
-    bbox.transform(map.getProjectionObject(), proj);
-    return bbox;
-  };
-
-  // replace every token
-  for (var i = 0; i < tokens.length; i++) {
-    token = tokens[i].substr(1, tokens[i].length - 2);
-    value = null;
-
-    switch (token) {
-      case 'marc21_0341_scale':
-        value = '$$b' + sheet.attributes['SCALE'];
-        break;
-      case 'marc21_0341_bbox':
-        latLngBbox = latLngBbox || fillBbox();
-        value = latlng.bboxToMarc21_034(latLngBbox);
-        break;
-      case 'marc21_255_bbox_czech':
-        latLngBbox = latLngBbox || fillBbox();
-        value = latlng.bboxToMarc21_255InCzech(latLngBbox);
-        break;
-      default:
-        if (token.substr(0, 5) == 'attr_') {
-          value = sheet.attributes[token.substr(5)];
-        }
-        break;
-    }
-    if (value) {
-      //deal with dollar signs
-      //http://stackoverflow.com/questions/9423722/string-replace-weird-behavior-when-using-dollar-sign-as-replacement
-      value = value.replace(/\$\$/g, '$$$$$$$$');
-      var pat = new RegExp('\\{' + token + '\\}', 'gm');
-      filled = filled.replace(pat, value);
-    }
-  }
-  return filled;
-};
-
-
-/**
- * Decorate template to HTML string.
- * @param {string} template string.
- * @return {string} HTML string.
- */
-ms.Search.prototype.decorateTemplate = function(template) {
-  var decorated = template.replace(/\{input_([^:}])+:(\d+):([^}]+)\}/gm,
-      '<input class="input_$1" style="width:$2em;" title="$3" />'
-      );
-  decorated = '<pre>' + decorated + '</pre>';
-
-  decorated += '<div id="clipboard_container" style="position:relative">';
-  decorated += '<button id="clipboard_button">Copy to Clipboard</button>';
-  decorated += '</div>';
-  return decorated;
-
-};
-
-
-/**
- * Add listeners to dialog with decorated template content.
- * @param {goog.ui.Dialog} dialog dialod.
- */
-ms.Search.prototype.addTemplateListeners = function(dialog) {
-  var container = dialog.getContentElement();
-  var pre = goog.dom.getElementsByTagNameAndClass('pre', null, container)[0];
-
-  /*var inputs = goog.dom.getElementsByTagNameAndClass('input', null, pre);
-  var input;
-  for (var i = 0; i < inputs.length; i++) {
-    input = inputs[i];
-    goog.events.listen(input, 'input', function(e) {
-      updateTextArea();
-    });
-  }*/
-
-  var _this = this;
-  this.clipboard = new ZeroClipboard.Client();
-  this.clipboard.glue('clipboard_button', 'clipboard_container');
-  this.clipboard.addEventListener('mouseDown', function(client) {
-    var textToCopy = '';
-    var node;
-    for (var i = 0; i < pre.childNodes.length; i++) {
-      node = pre.childNodes[i];
-      switch (node.nodeType) {
-        case goog.dom.NodeType.TEXT:
-          textToCopy += node.nodeValue;
-          break;
-        case goog.dom.NodeType.ELEMENT:
-          if (node.tagName == 'INPUT') {
-            textToCopy += node.value;
-          }
-          break;
-      }
-    }
-    _this.clipboard.setText(textToCopy);
-  });
-};

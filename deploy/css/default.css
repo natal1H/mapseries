@@ -124,7 +124,30 @@ body { background: #f4f4f4;}
   font-weight: bold;
 }
 
-.modal-dialog-content pre input {
-  margin:0;
-  background-color:yellow;
+.modal-dialog-content pre .combo {
+  display: inline;
+}
+
+/*.modal-dialog-content pre,
+.modal-dialog-content pre .combo input {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 100%;
+  line-height: 1.2em;
+}*/
+
+::-webkit-input-placeholder {
+   color: red;
+   font-style: italic;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: red;  
+   font-style: italic;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: red;  
+   font-style: italic;
+}
+:-ms-input-placeholder { 
+  color: red;
+  font-style: italic;
 }

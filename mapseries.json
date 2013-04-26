@@ -2,11 +2,12 @@
   "id": "mapseries",
 
   "inputs": [
+    "src/latlng.js",
+    "src/loader.js",
     "src/search.js",
     "src/series.js",
-    "src/loader.js",
-    "src/main-mapseries.js",
-    "src/latlng.js"
+    "src/template.js",
+    "src/main-mapseries.js"
   ],
 
   "externs": [
