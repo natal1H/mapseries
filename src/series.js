@@ -21,6 +21,12 @@ ms.Series = function() {
   this.template;
 
   /**
+   * Format functions.
+   * @type {Object.<string, (function(*): string)>}
+   */
+  this.formatFunctions;
+
+  /**
    * Overlay.
    * @type {OpenLayers.Layer.OSM}
    */

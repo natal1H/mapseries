@@ -1,8 +1,8 @@
 FMT   L MP
 LDR   L -----nem-a22--------4500
 007   L aj|ca|||
-008   L  ----s{input_year:5:Rok vydání}----xr--------z-----|||-cze-d
-0341  L {marc21_0341_scale}{marc21_0341_bbox}
+008   L  ----s{gid:'year', width:5, title:'Rok vydání', values: [1895, 1897]}----xr--------z-----|||-cze-d
+0341  L $$b{attr:'SCALE'}{ff:'ms:marc21_0341_bbox'}
 0410  L $$acze$$a
 043   L $$ae-xr---$$be-xr-kr$$a$$2czenas
 072 7 L $$a623$$xVojenská technika$$2Konspekt$$97
@@ -12,15 +12,15 @@ LDR   L -----nem-a22--------4500
 080   L $$a(084.3)528.42 $$2MRF
 080   L $$a(084.3)355/359 $$2MRF
 1101  L $$a Vojenský zeměpisný ústav $$7 ko2005263855
-24510 L $$a{attr_TITLE}.$$p{attr_SHEET}$$h[kartografický dokument] /$$c[Militärgeographisches Institut] ; 
-2463  L $$a{attr_SHEET}
-24630 L $$a{attr_SHEET}
-255   L $$aMěřítko 1:200 000 ;{marc21_255_bbox_czech}
-260   L $$a Praha:$$bMilitärgeographisches Institut$$c{input_year:5:Rok vydání}
+24510 L $$a{attr:'TITLE'}.$$p{gid:'sheet', attr:'SHEET'}$$h[kartografický dokument] /$$c[Militärgeographisches Institut] ; 
+2463  L $$a{gid:'sheet'}
+24630 L $$a{gid:'sheet', ff:'addDegrees'}
+255   L $$aMěřítko 1:200 000 ;{ff:'ms:marc21_255_bbox_czech'}
+260   L $$a Praha:$$bMilitärgeographisches Institut$$c{gid:'year'}
 300   L $$a1 mapa :$$bbarev. ;$$c 55 x 37 cm
-4901  L $$a[Die Franzisco-Josephinische Landesaufnahme]; $$v{attr_SHEET}, {input_year:5:Rok vydání}
-651 7 L $$a{input_region:14:Název oblasti}$$7{input_geoId:7:Identifikátor geografické autority AUT NK}
+4901  L $$a[Die Franzisco-Josephinische Landesaufnahme]; $$v{gid:'sheet'}, {gid:'year'}
+651 7 L $$a{gid:'region', width:14, title:'Název oblasti'}$$7{gid:'geoId', width:7, title:'Identifikátor geografické autority AUT NK'}
 655 7 L $$atopografická mapová díla$$7fd688544 
 655 7 L $$avojenské mapy$$7fd133817
 7101  L $$aRakousko-Uhersko.$$bMilitärgeographisches Institut$$7kn20060405003
-830 0 L $$aTřetí vojenské mapování 1:200 000 ;$$v{attr_SHEET}, {input_year:5:Rok vydání}
+830 0 L $$aTřetí vojenské mapování 1:200 000 ;$$v{gid:'sheet'}, {gid:'year'}

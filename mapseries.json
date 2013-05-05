@@ -6,7 +6,8 @@
     "src/loader.js",
     "src/search.js",
     "src/series.js",
-    "src/template.js",
+    "src/template/template.js",
+    "src/template/combobox.js",
     "src/main-mapseries.js"
   ],
 

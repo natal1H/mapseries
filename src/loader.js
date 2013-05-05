@@ -34,6 +34,8 @@ ms.Loader.prototype.loadSeries = function(series) {
         'visibility': false
       });
 
+  ser.formatFunctions = series['formatFunctions'] || [];
+
   //read template
   var tempreq = new goog.net.XhrIo();
   goog.events.listen(tempreq, 'complete', function() {
