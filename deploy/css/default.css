@@ -128,12 +128,29 @@ body { background: #f4f4f4;}
   display: inline;
 }
 
-/*.modal-dialog-content pre,
-.modal-dialog-content pre .combo input {
-  font-family: "Lucida Console", Monaco, monospace;
-  font-size: 100%;
-  line-height: 1.2em;
-}*/
+.modal-dialog-content pre .combo.disabled .goog-combobox-button {
+  display: none;
+}
+
+.modal-dialog-content pre .combo.disabled input {
+  border: 0;
+  background-color: #e7e7e7;
+}
+
+.modal-dialog-content pre .combo.disabled .goog-combobox {
+  border: 0;
+}
+
+.modal-dialog-content pre .combo .active input {
+  background-color: #cfc;
+}
+
+.modal-dialog-content pre .no-arrow .goog-combobox-button {
+  display: none;
+}
+.modal-dialog-content pre .no-arrow input {
+  border-right: 0;
+}
 
 ::-webkit-input-placeholder {
    color: red;
@@ -150,4 +167,19 @@ body { background: #f4f4f4;}
 :-ms-input-placeholder { 
   color: red;
   font-style: italic;
+}
+
+select {
+  display: block;
+}
+
+#sidebar .block {
+  margin-bottom: 1em;
+}
+#sidebar h4 {
+  margin: 5px 0;
+}
+
+#sidebar select {
+  width: 100%;
 }

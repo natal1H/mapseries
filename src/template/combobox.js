@@ -20,10 +20,16 @@ ms.ComboBox = function(configObj) {
   this.configObj;
 
   /**
-   * Group ID.
+   * ID.
    * @type {string}
    */
-  this.gid;
+  this.id;
+
+  /**
+   * Combobox which is leading for this combobox.
+   * @type {ms.ComboBox}
+   */
+  this.base;
 
   /**
    * Source attribute.
@@ -37,6 +43,12 @@ ms.ComboBox = function(configObj) {
    */
   this.formatFunction;
 
+  /**
+   * Array values indexed as values of base combo box.
+   * @type {string}
+   */
+  this.valuesByBaseIndex;
+
   this.configurate_(configObj);
 
 };
@@ -49,9 +61,9 @@ goog.inherits(ms.ComboBox, goog.ui.ComboBox);
  */
 ms.ComboBox.prototype.configurate_ = function(configObj) {
   this.configObj = configObj;
-  this.gid = this.configObj['gid'];
+  this.id = this.configObj['id'];
   this.attr = this.configObj['attr'];
-  this.formatFunction = this.configObj['ff'];
+  this.formatFunction = this.configObj['formatFunction'];
 };
 
 
@@ -63,6 +75,14 @@ ms.ComboBox.prototype.configurate_ = function(configObj) {
  */
 ms.ComboBox.prototype.formatValue = function(value, formatFunctions) {
   var ff;
+  if(this.valuesByBaseIndex && this.base) {
+    var bid = this.base.getMenu().getHighlightedIndex();
+    if(bid>0) {
+      value = this.valuesByBaseIndex[bid-1] || '';
+    } else {
+      value = '';
+    }
+  }
   if (this.formatFunction && formatFunctions &&
       (ff = formatFunctions[this.formatFunction])) {
     value = ff(value);

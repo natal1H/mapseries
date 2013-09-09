@@ -1,9 +1,36 @@
 FMT   L MP
 LDR   L -----nem-a22--------4500
 007   L aj|ca|||
-008   L  ----s{gid:'year', width:5, title:'Rok vydání', values: [1895, 1897]}----xr--------z-----|||-cze-d
-0341  L $$b{attr:'SCALE'}{ff:'ms:marc21_0341_bbox'}
-0410  L $$acze$$a
+008   L  ----s{
+  id:'year',
+  width:5,
+  title:'Rok vydání'
+}----{
+  id:'misto_vydani',
+  width:2,
+  title:'Místo vydání',
+  values: ['xr', 'au', 'hu']
+}--------z-----|||-{
+  id:'lang',
+  width:3,
+  title:'Jazyk',
+  values: ['cze', 'ger', 'hun']
+}-d
+0341  L $$b200000{
+  formatFunction:'ms:marc21_0341_bbox',
+  enabled: false
+}
+0410  L $$a{
+  id:'multilang',
+  width:3,
+  title:'Vícejazyčnost',
+  values: ['cze', 'ger', 'hun']
+}$$a{
+  id:'multilang2',
+  width:3,
+  title:'Vícejazyčnost',
+  values: ['cze', 'ger', 'hun']
+}
 043   L $$ae-xr---$$be-xr-kr$$a$$2czenas
 072 7 L $$a623$$xVojenská technika$$2Konspekt$$97
 072 7 L $$a912$$xMapy. Atlasy. Glóby$$2Konspekt$$97
@@ -11,16 +38,55 @@ LDR   L -----nem-a22--------4500
 080   L $$a(438) $$2MRF
 080   L $$a(084.3)528.42 $$2MRF
 080   L $$a(084.3)355/359 $$2MRF
-1101  L $$a Vojenský zeměpisný ústav $$7 ko2005263855
-24510 L $$a{attr:'TITLE'}.$$p{gid:'sheet', attr:'SHEET'}$$h[kartografický dokument] /$$c[Militärgeographisches Institut] ; 
-2463  L $$a{gid:'sheet'}
-24630 L $$a{gid:'sheet', ff:'addDegrees'}
-255   L $$aMěřítko 1:200 000 ;{ff:'ms:marc21_255_bbox_czech'}
-260   L $$a Praha:$$bMilitärgeographisches Institut$$c{gid:'year'}
-300   L $$a1 mapa :$$bbarev. ;$$c 55 x 37 cm
-4901  L $$a[Die Franzisco-Josephinische Landesaufnahme]; $$v{gid:'sheet'}, {gid:'year'}
-651 7 L $$a{gid:'region', width:14, title:'Název oblasti'}$$7{gid:'geoId', width:7, title:'Identifikátor geografické autority AUT NK'}
+110{ base:'corporation', width: 1, valuesByBaseIndex: ['1', '2']}  L $$a{
+  id:'corporation',
+  width:52,
+  title:'Korporace',
+  values: [
+    'Rakousko-Uhersko.$$bMilitärgeographisches Institut',
+    'Vojenský zeměpisný ústav']
+}$$4ctg$$4pbl$$7{
+  base:'corporation',
+  width: 13,
+  valuesByBaseIndex: ['ko20060405003', 'ko2005263855']
+}
+24510 L $$a{attr:'TITLE'}.$$p{id:'sheet', attr:'SHEET'}$$h[kartografický dokument] /$$c{
+  base:'corporation',
+  width: 60,
+  valuesByBaseIndex: [
+    'Militärgeographisches Institut',
+    '[Militärgeographisches Institut] ; Vojenský zeměpisný ústav'
+  ]
+}
+2463  L $$a{base:'sheet'}
+24630 L $$a{
+  base:'sheet',
+  formatFunction:'addDegrees'
+}
+250   L $$a{id:'poradi_vydani', width:5, title:'Pořadí vydání'}
+255   L $$aMěřítko 1:200 000 ;{
+  formatFunction:'ms:marc21_255_bbox_czech',
+  enabled: false
+}
+260   L $$a{
+  base:'corporation',
+  width: 40,
+  valuesByBaseIndex: [
+    'Wien:$$bMilitärgeographisches Institut',
+    'Praha:$$bVojenský zeměpisný ústav'
+  ]
+}$$c{base:'year'}
+300   L $$a1 mapa :$$bbarev. ;$$c 55 x 37 cm, na listu {id:'height', width:2} x {id:'width', width:2} cm
+4901  L $$a[Die Franzisco-Josephinische Landesaufnahme]; $$v{base:'sheet'}, {base:'year'}
+651 7 L $$a{id:'region', width:14, title:'Název oblasti'}$$7{id:'geoId', width:7, title:'Identifikátor geografické autority AUT NK'}
 655 7 L $$atopografická mapová díla$$7fd688544 
 655 7 L $$avojenské mapy$$7fd133817
-7101  L $$aRakousko-Uhersko.$$bMilitärgeographisches Institut$$7kn20060405003
-830 0 L $$aTřetí vojenské mapování 1:200 000 ;$$v{gid:'sheet'}, {gid:'year'}
+{
+  base:'corporation',
+  width: 100,
+  valuesByBaseIndex: [
+    '7101  L $$aRakousko-Uhersko.$$bMilitärgeographisches Institut$$4ant$$7kn20060405003',
+    ''
+  ]
+}
+830 0 L $$aTřetí vojenské mapování 1:200 000 ;$$v{base:'sheet'}, {base:'year'}

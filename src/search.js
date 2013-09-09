@@ -4,6 +4,7 @@ goog.require('goog.array');
 goog.require('goog.dom');
 goog.require('goog.events');
 goog.require('goog.net.XhrIo');
+goog.require('goog.string');
 goog.require('latlng');
 goog.require('ms.Loader');
 goog.require('ms.Series');
@@ -160,32 +161,10 @@ ms.Search.prototype.init = function(config) {
     }
   }
 
-  // initialize overlay switcher
-  var overlaySelect = goog.dom.getElement('overlaySelect');
-  var ol;
-  for (i = 0; i < this.seriess.length; i++) {
-    var ser = this.seriess[i];
-    ol = ser.overlay;
-    var input = goog.dom.createDom('input', {
-      'type': 'radio',
-      'name': 'overlay',
-      'id': 'overlayRadio' + ol.name,
-      'value': i,
-      'checked': ol.getVisibility()
-    });
-    var div = goog.dom.createDom('div', null, input);
-    goog.dom.append(div, ol.name);
-    goog.dom.appendChild(overlaySelect, div);
-
-    goog.events.listen(input, 'change', function(ser) {
-      return function(e) {
-        this.setSeries(ser);
-      }
-    }(ser), false, this);
-  }
-
-  this.series = this.seriess[0];
-
+  // initialize region switcher
+  var regions = ms.Series.getRegions(this.seriess);
+  this.updateRegions(regions);
+  this.setRegion('');
 
   // Click handler for the map
   this.map.events.register('click', this.map,
@@ -238,10 +217,13 @@ ms.Search.prototype.init = function(config) {
  * @param {ms.Series} series active series.
  */
 ms.Search.prototype.setSeries = function(series) {
-  this.series.overlay.setVisibility(false);
+  if(this.series) {
+    this.series.overlay.setVisibility(false);
+  }
   this.sheetLayer.removeAllFeatures();
   this.series = series;
   this.series.overlay.setVisibility(true);
+  this.series.overlay.redraw();
 
 };
 
@@ -274,3 +256,140 @@ ms.Search.prototype.setActiveSheet = function(sheet) {
 };
 
 
+/**
+ * @param {string} region region title.
+ */
+ms.Search.prototype.setRegion = function(region) {
+  if(region) {
+    var seriess = goog.array.filter(this.seriess, function(series) {
+      return goog.string.startsWith(series.title, region);
+    });
+  } else {
+    seriess = this.seriess;
+  }
+  
+  // update grid switcher
+  var grids = ms.Series.getGrids(seriess);
+  this.updateGrids(grids, region);
+  
+  this.setGrid(null, region);
+
+};
+
+
+/**
+ * @param {ms.Grid} grid grid.
+ * @param {string} region region title.
+ */
+ms.Search.prototype.setGrid = function(grid, region) {
+  if(grid || region) {
+    var seriess = goog.array.filter(this.seriess, function(series) {
+      return (!grid || series.grid == grid) &&
+        (!region || goog.string.startsWith(series.title, region));
+    });
+  } else {
+    seriess = this.seriess;
+  }
+  //console.log(seriess.length);
+  // update seriess switcher
+  this.updateSeriess(seriess, region);
+  this.setSeries(seriess[0]);
+};
+
+
+/**
+ * @param {Array.<string>} regions region titles.
+ */
+ms.Search.prototype.updateRegions = function(regions) {
+  var select = goog.dom.getElement('regionSelect');
+  goog.events.removeAll(select);
+  var firstOpt = goog.dom.getFirstElementChild(select);
+  var sibl;
+  while((sibl = goog.dom.getNextElementSibling(firstOpt))) {
+    goog.dom.removeNode(sibl);
+  }
+  
+  goog.array.forEach(regions, function(region) {
+    var option = goog.dom.createDom('option', {
+      'value': region
+    }, region);
+    goog.dom.appendChild(select, option);
+    
+  });
+  
+  goog.events.listen(select, 'change', function(e) {
+    var region = select.options[select.selectedIndex].value;
+    this.setRegion(region);
+  }, false, this);
+
+}
+
+/**
+ * @param {Array.<ms.Grid>} grids grids.
+ * @param {string} region region.
+ */
+ms.Search.prototype.updateGrids = function(grids, region) {
+  var select = goog.dom.getElement('gridSelect');
+  goog.events.removeAll(select);
+  var firstOpt = goog.dom.getFirstElementChild(select);
+  var sibl;
+  while((sibl = goog.dom.getNextElementSibling(firstOpt))) {
+    goog.dom.removeNode(sibl);
+  }
+
+  goog.array.forEach(grids, function(grid) {
+    var visTitle = region ? grid.getShortTitle() : grid.title;
+    var option = goog.dom.createDom('option', {
+      'value': grid.title
+    }, visTitle);
+    goog.dom.appendChild(select, option);
+    
+  });
+  var value = region ? grids[0].title : '';
+  select.value = value;
+
+  goog.events.listen(select, 'change', function(e) {
+    var gridTitle = select.options[select.selectedIndex].value;
+    var grid = goog.array.find(grids, function(grid) {
+      return grid.title == gridTitle;
+    });
+    var regSelect = goog.dom.getElement('regionSelect');
+    var region = regSelect.options[regSelect.selectedIndex].value;
+    this.setGrid(grid, region);
+  }, false, this);
+
+};
+
+
+/**
+ * @param {Array.<ms.Series>} seriess seriess.
+ * @param {string} region region.
+ */
+ms.Search.prototype.updateSeriess = function(seriess, region) {
+  var select = goog.dom.getElement('seriesSelect');
+  goog.events.removeAll(select);
+  goog.dom.removeChildren(select);
+  
+  var value;
+  goog.array.forEach(seriess, function(series, idx) {
+    var visTitle = region ? series.getShortTitle() : series.title;
+    var globalIdx = goog.array.indexOf(this.seriess, series);
+    if(!idx) {
+      value = globalIdx;
+    }
+    var option = goog.dom.createDom('option', {
+      'value': globalIdx
+    }, visTitle);
+    if(series)
+    
+    goog.dom.appendChild(select, option);
+    
+  }, this);
+  select.value = value;
+
+  goog.events.listen(select, 'change', function(e) {
+    var value = select.options[select.selectedIndex].value;
+    this.setSeries(this.seriess[value]);
+  }, false, this);
+
+};

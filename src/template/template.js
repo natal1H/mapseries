@@ -3,6 +3,7 @@ goog.provide('ms.Template');
 goog.require('goog.json');
 goog.require('goog.ui.ComboBox');
 goog.require('goog.ui.Dialog');
+goog.require('ms.ComboBox');
 
 
 
@@ -83,48 +84,24 @@ ms.Template.prototype.createHtmlAndComboBoxes_ = function(template) {
   this.fields = [];
   var _this = this;
 
+  //create base combo boxes
   var html = template.replace(/\{[^}]+\}/gm,
       function(match, offset, template) {
         var json = goog.json.unsafeParse(match);
+        var baseId = json['base'];
+        if (baseId) {
+          return match;
+        } else {
+          return _this.createComboBox_(json);
+        }
+      });
+  
+  html = html.replace(/\{[^}]+\}/gm,
+      function(match, offset, template) {
+        var json = goog.json.unsafeParse(match);
 
-        var gid = json['gid'];
-        if (gid) {
-          var groupMember = goog.array.find(_this.fields, function(cb) {
-            return cb.gid === gid;
-          });
-          if (groupMember) {
-            goog.object.forEach(groupMember.configObj, function(val, key) {
-              goog.object.setIfUndefined(json, key, val);
-            });
-          }
-        }
-
-        var cb = new ms.ComboBox(json);
-        cb.setUseDropdownArrow(true);
-        var values = json['values'];
-        if (values) {
-          goog.array.forEach(values, function(value) {
-            cb.addItem(new goog.ui.ComboBoxItem(value + ''));
-          });
-        }
-        _this.fields.push(cb);
-
-        var divAttrs = {
-          'id': 'templateComboBox' + _this.fields.length,
-          'class': 'combo'
-        };
-        var w = json['width'];
-        if (w) {
-          w = w * 8 + 16;
-          divAttrs['style'] = 'width:' + w + 'px;';
-        }
-        var title = json['title'];
-        if (title) {
-          divAttrs['title'] = title;
-        }
-        var el = goog.dom.createDom('div', divAttrs);
-        var result = goog.dom.getOuterHtml(el);
-        return result;
+        return _this.createComboBox_(json);
+        
       });
 
   html = '<pre>' + html + '</pre>';
@@ -138,6 +115,63 @@ ms.Template.prototype.createHtmlAndComboBoxes_ = function(template) {
 
 
 /**
+ * Create ComboBoxes.
+ * @param {Object} json config JSON.
+ * @private
+ */
+ms.Template.prototype.createComboBox_ = function(json) {
+  var baseId = json['base'];
+  
+  if(baseId) {
+    var base = goog.array.find(this.fields, function(cb) {
+      return cb.id === baseId;
+    });
+    if (base) {
+      goog.object.forEach(base.configObj, function(val, key) {
+        if(key!='id') {
+          goog.object.setIfUndefined(json, key, val);
+        }
+      });
+    }
+  }
+
+  
+  var cb = new ms.ComboBox(json);
+  cb.base = base||null;
+  cb.setUseDropdownArrow(true);
+  var values = json['values'];
+  if (values) {
+    goog.array.forEach(values, function(value) {
+      cb.addItem(new goog.ui.ComboBoxItem(value + ''));
+    });
+  }
+  cb.valuesByBaseIndex = json['valuesByBaseIndex'];
+  this.fields.push(cb);
+
+  var cls = ['combo'];
+  if(base || cb.configObj['enabled']===false) {
+    cls.push('disabled');
+  }
+  cls = cls.join(' ');
+  var divAttrs = {
+    'id': 'templateComboBox' + (this.fields.length-1),
+    'class': cls
+  };
+  var w = json['width'];
+  if (w) {
+    w = w * 8 + 16;
+    divAttrs['style'] = 'width:' + w + 'px;';
+  }
+  var title = json['title'];
+  if (title) {
+    divAttrs['title'] = title;
+  }
+  var el = goog.dom.createDom('div', divAttrs);
+  var result = goog.dom.getOuterHtml(el);
+  return result;
+};
+
+/**
  * Initialize combo boxes.
  * @param {Object.<string, (function(*): string)>} formatFunctions format
  * functions.
@@ -146,8 +180,9 @@ ms.Template.prototype.createHtmlAndComboBoxes_ = function(template) {
 ms.Template.prototype.initComboBoxes_ = function(formatFunctions) {
   var divs = goog.dom.getElementsByTagNameAndClass('div', 'combo',
       this.getContentElement());
-  goog.array.forEach(divs, function(div, id) {
-    var cb = this.fields[id];
+  goog.array.forEach(divs, function(div) {
+    var idx = parseInt(div.id.substr(16), 10);
+    var cb = this.fields[idx];
 
     var caption = new goog.ui.ComboBoxItem('Select or type another value...');
     caption.setSticky(true);
@@ -158,20 +193,48 @@ ms.Template.prototype.initComboBoxes_ = function(formatFunctions) {
     var inputEl = cb.getInputElement();
     inputEl.style.width = div.style.width;
 
+    var menuEl = cb.getMenu().getElement();
+    var w = inputEl.style.width;
+    w = parseInt(w.replace(/[^-\d\.]/g, ''), 10);
+    if(w>219) {
+      menuEl.style.width = inputEl.style.width;
+    }
+
     //synchronize values within group
     var container = this.getContentElement();
     var pre = goog.dom.getElementsByTagNameAndClass('pre', null, container)[0];
-    goog.events.listen(cb, 'change', function(evt) {
-      var cbs = this.getCbGroup_(cb.gid);
-
-      goog.array.forEach(cbs, function(groupMember) {
-        var memberInput = groupMember.getInputElement();
-        if (groupMember !== cb) {
-          memberInput.value = groupMember.formatValue(cb.getValue(),
-              formatFunctions);
-        }
-      }, this);
-    }, false, this);
+    if(cb.id) {
+      goog.events.listen(cb, 'change', function(evt) {
+        var cbs = this.getDependent_(cb);
+        goog.array.forEach(cbs, function(groupMember) {
+          var memberInput = groupMember.getInputElement();
+          if (groupMember !== cb) {
+            memberInput.value = groupMember.formatValue(cb.getValue(),
+                formatFunctions);
+          }
+        }, this);
+      }, false, this);
+    }
+    if(cb.base || cb.configObj['enabled']===false) {
+      cb.setEnabled(false);
+    } else {
+      goog.events.listen(cb.getInputElement(), 'focus', function(evt) {
+        var cbs = this.getDependent_(cb);
+        cbs.push(cb);
+        goog.array.forEach(cbs, function(depCombo) {
+          var el = depCombo.getElement();
+          goog.dom.classes.add(el, 'active');
+        });
+      }, false, this);
+      goog.events.listen(cb.getInputElement(), 'blur', function(evt) {
+        var cbs = this.getDependent_(cb);
+        cbs.push(cb);
+        goog.array.forEach(cbs, function(depCombo) {
+          var el = depCombo.getElement();
+          goog.dom.classes.remove(el, 'active');
+        });
+      }, false, this);
+    }
     if (cb.formatFunction) {
       var selfInput = cb.getInputElement();
       goog.events.listen(selfInput, 'blur', function() {
@@ -207,7 +270,7 @@ ms.Template.prototype.autofill_ = function(sheet, series, map) {
   goog.array.forEach(this.fields, function(cb) {
     var div = cb.getElement().parentNode;
     var value = null;
-
+    
     if (cb.attr) {
       value = sheet.attributes[cb.attr];
     }
@@ -236,8 +299,14 @@ ms.Template.prototype.autofill_ = function(sheet, series, map) {
       var menuEl = goog.dom.getLastElementChild(cb.getElement());
       menuEl.style.width = Math.max(219, width) + 'px';
       cb.setValue(value);
-    } else if (div.title) {
-      cb.setDefaultText(div.title + '...');
+    } else {
+      if(cb.getItemCount()==1) {
+        cb.removeItemAt(0);
+        goog.dom.classes.add(cb.getElement(), 'no-arrow');
+      }
+      if (div.title) {
+        cb.setDefaultText(div.title + '...');
+      }
     }
   }, this);
 };
@@ -271,18 +340,14 @@ ms.Template.prototype.showSheet = function(sheet, series, map) {
 
 
 /**
- * Get array of combo boxes by GID.
- * @param {string} gid group ID.
+ * Get dependent combo boxes.
+ * @param {ms.ComboBox} mainCb combo box.
  * @return {Array.<ms.ComboBox>} comboboxes.
  * @private
  *
  */
-ms.Template.prototype.getCbGroup_ = function(gid) {
-  if (gid) {
-    return goog.array.filter(this.fields, function(cb) {
-      return cb.gid == gid;
-    });
-  } else {
-    return [];
-  }
+ms.Template.prototype.getDependent_ = function(mainCb) {
+  return goog.array.filter(this.fields, function(cb) {
+    return cb.base === mainCb;
+  });
 };

@@ -29,13 +29,25 @@
       </form>
     </div>
     <div id="sidebar">
-      <h4>1. Choose a serie:</h4>
-      <div id="overlaySelect">
-        <!-- <input type="radio" name="overlay" value="1">Overlay<br></input> -->
+      <div class="block">
+        <h4>1. Choose a serie:</h4>
+        Filter by region
+        <select id="regionSelect">
+          <option value="">Filter by region</option>
+        </select>
+        Filter by grid:
+        <select id="gridSelect">
+          <option value="">Filter by grid</option>
+        </select>
+        Choose a serie:
+        <select id="seriesSelect">
+        </select>
       </div>
-      <h4>2. Select sheet:</h4>
-      <div id="results">
-        <!-- here comes the results -->
+      <div class="block">
+        <h4>2. Select sheet:</h4>
+        <div id="results">
+          <!-- here comes the results -->
+        </div>
       </div>
     </div>
     <select id="layerSelect">
