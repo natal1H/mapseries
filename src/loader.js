@@ -2,8 +2,8 @@ goog.provide('ms.Loader');
 
 goog.require('goog.events');
 goog.require('goog.net.XhrIo');
-goog.require('ms.Series');
 goog.require('ms.Grid');
+goog.require('ms.Series');
 
 
 
@@ -61,12 +61,12 @@ ms.Loader.prototype.loadSeries = function(objSeries) {
  */
 ms.Loader.prototype.loadSeriess = function(objSeriess) {
   var seriess = goog.array.map(objSeriess, this.loadSeries, this);
-  
+
   //map series that are base grids
   var baseSeriess = goog.array.filter(seriess, function(series) {
     return !(series.grid);
   });
-  
+
   //create grids
   var grids = [];
   goog.array.forEach(baseSeriess, function(series) {
@@ -87,12 +87,12 @@ ms.Loader.prototype.loadSeriess = function(objSeriess) {
     var grid = goog.array.find(grids, function(grid) {
       return grid.title === gridTitle;
     });
-    if(!grid) {
-      throw Error('Grid '+gridTitle+' not found!');
+    if (!grid) {
+      throw Error('Grid ' + gridTitle + ' not found!');
     } else {
       series.grid = grid;
       grid.series.push(series);
-    };
+    }
   });
 
 

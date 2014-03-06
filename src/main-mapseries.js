@@ -2,6 +2,7 @@ goog.provide('ms');
 
 goog.require('ms.Search');
 
+
 /**
  * Main function.
  */

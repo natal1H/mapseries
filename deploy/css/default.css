@@ -142,7 +142,7 @@ body { background: #f4f4f4;}
 }
 
 .modal-dialog-content pre .combo .active input {
-  background-color: #cfc;
+  background-color: #fe0;
 }
 
 .modal-dialog-content pre .no-arrow .goog-combobox-button {
@@ -151,21 +151,24 @@ body { background: #f4f4f4;}
 .modal-dialog-content pre .no-arrow input {
   border-right: 0;
 }
+.modal-dialog-content pre .multipleValues {
+  background-color: #e7e7e7;
+}
 
 ::-webkit-input-placeholder {
-   color: red;
+   color: blue;
    font-style: italic;
 }
 :-moz-placeholder { /* Firefox 18- */
-   color: red;  
+   color: blue;  
    font-style: italic;
 }
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: red;  
+   color: blue;  
    font-style: italic;
 }
 :-ms-input-placeholder { 
-  color: red;
+  color: blue;
   font-style: italic;
 }
 
@@ -182,4 +185,12 @@ select {
 
 #sidebar select {
   width: 100%;
+}
+
+.clipboard-container {
+  display: inline-block;
+}
+
+.clipboard-container > div:last-child {
+  line-height: 12px;
 }

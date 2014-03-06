@@ -217,7 +217,7 @@ ms.Search.prototype.init = function(config) {
  * @param {ms.Series} series active series.
  */
 ms.Search.prototype.setSeries = function(series) {
-  if(this.series) {
+  if (this.series) {
     this.series.overlay.setVisibility(false);
   }
   this.sheetLayer.removeAllFeatures();
@@ -260,18 +260,18 @@ ms.Search.prototype.setActiveSheet = function(sheet) {
  * @param {string} region region title.
  */
 ms.Search.prototype.setRegion = function(region) {
-  if(region) {
+  if (region) {
     var seriess = goog.array.filter(this.seriess, function(series) {
       return goog.string.startsWith(series.title, region);
     });
   } else {
     seriess = this.seriess;
   }
-  
+
   // update grid switcher
   var grids = ms.Series.getGrids(seriess);
   this.updateGrids(grids, region);
-  
+
   this.setGrid(null, region);
 
 };
@@ -282,10 +282,10 @@ ms.Search.prototype.setRegion = function(region) {
  * @param {string} region region title.
  */
 ms.Search.prototype.setGrid = function(grid, region) {
-  if(grid || region) {
+  if (grid || region) {
     var seriess = goog.array.filter(this.seriess, function(series) {
       return (!grid || series.grid == grid) &&
-        (!region || goog.string.startsWith(series.title, region));
+          (!region || goog.string.startsWith(series.title, region));
     });
   } else {
     seriess = this.seriess;
@@ -305,24 +305,25 @@ ms.Search.prototype.updateRegions = function(regions) {
   goog.events.removeAll(select);
   var firstOpt = goog.dom.getFirstElementChild(select);
   var sibl;
-  while((sibl = goog.dom.getNextElementSibling(firstOpt))) {
+  while ((sibl = goog.dom.getNextElementSibling(firstOpt))) {
     goog.dom.removeNode(sibl);
   }
-  
+
   goog.array.forEach(regions, function(region) {
     var option = goog.dom.createDom('option', {
       'value': region
     }, region);
     goog.dom.appendChild(select, option);
-    
+
   });
-  
+
   goog.events.listen(select, 'change', function(e) {
     var region = select.options[select.selectedIndex].value;
     this.setRegion(region);
   }, false, this);
 
-}
+};
+
 
 /**
  * @param {Array.<ms.Grid>} grids grids.
@@ -333,7 +334,7 @@ ms.Search.prototype.updateGrids = function(grids, region) {
   goog.events.removeAll(select);
   var firstOpt = goog.dom.getFirstElementChild(select);
   var sibl;
-  while((sibl = goog.dom.getNextElementSibling(firstOpt))) {
+  while ((sibl = goog.dom.getNextElementSibling(firstOpt))) {
     goog.dom.removeNode(sibl);
   }
 
@@ -343,7 +344,7 @@ ms.Search.prototype.updateGrids = function(grids, region) {
       'value': grid.title
     }, visTitle);
     goog.dom.appendChild(select, option);
-    
+
   });
   var value = region ? grids[0].title : '';
   select.value = value;
@@ -369,21 +370,21 @@ ms.Search.prototype.updateSeriess = function(seriess, region) {
   var select = goog.dom.getElement('seriesSelect');
   goog.events.removeAll(select);
   goog.dom.removeChildren(select);
-  
+
   var value;
   goog.array.forEach(seriess, function(series, idx) {
     var visTitle = region ? series.getShortTitle() : series.title;
     var globalIdx = goog.array.indexOf(this.seriess, series);
-    if(!idx) {
+    if (!idx) {
       value = globalIdx;
     }
     var option = goog.dom.createDom('option', {
       'value': globalIdx
     }, visTitle);
-    if(series)
-    
-    goog.dom.appendChild(select, option);
-    
+    if (series)
+
+      goog.dom.appendChild(select, option);
+
   }, this);
   select.value = value;
 

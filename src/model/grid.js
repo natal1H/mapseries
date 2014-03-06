@@ -28,11 +28,12 @@ ms.Grid = function() {
 
 };
 
+
 /**
  * @return {string} title without region part.
  */
 ms.Grid.prototype.getShortTitle = function() {
-  return this.title.substr(this.title.indexOf(':')+1);
+  return this.title.substr(this.title.indexOf(':') + 1);
 };
 
 
