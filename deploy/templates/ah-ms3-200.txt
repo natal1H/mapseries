@@ -45,6 +45,7 @@ LDR   L -----nem-a22--------4500
   }
 072 7 L $$a623$$xVojenská technika$$2Konspekt$$97
 072 7 L $$a912$$xMapy. Atlasy. Glóby$$2Konspekt$$97
+080   L $$a623.64$$2MRF
 080   L {
     "title": "Pole 080",
     "enabled": false,
@@ -106,11 +107,7 @@ LDR   L -----nem-a22--------4500
   }
 24630 L $$a{
     "base": "sheet",
-    "title": "Název části",
-    "valuesByBaseIndex": [
-      {},
-      {}
-    ]
+    "title": "Název části"
   }
 250   L $$a{
     "id":"poradi_vydani",
@@ -156,6 +153,7 @@ LDR   L -----nem-a22--------4500
     "base":"year",
     "title": "Označení svazku/pořadí"
   }
+650 7 L $$avojenská topografie$$7ph316247$$2czenas
 651 7 L {
     "title": "Název oblasti a kód autority",
     "enabled": false,

@@ -28,7 +28,7 @@ Development
 =====================
 1. Download Plovr: http://plovr.com/
 2. Download OpenLayers 2 externs:
-    https://github.com/jirik/ol2-externs/blob/master/src/openlayers.js
+    https://github.com/jirik/closure-externs
 3. Update path to OpenLayers 2 externs in mapseries.json
 4. Run
   java -jar plovr.jar serve path/to/debug-mapseries.json
