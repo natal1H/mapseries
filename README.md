@@ -24,8 +24,8 @@ This repository is not officially supported by Google, ol3, or individual module
 
 ## Installation
 ```
-git clone https://github.com/jirik/ol3ds.git
-cd ol3ds
+git clone https://github.com/klokan/mapseries-temap.git mapseries
+cd mapseries
 npm install
 bower install
 sudo grunt install (Linux) / grunt install (Windows)
