@@ -1,9 +1,9 @@
 {
-  "name": "ol3ds",
+  "name": "mapseries",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jirik/ol3ds.git"
+    "url": "https://github.com/klokan/mapseries-temap.git"
   },
   "engines": {
     "node": ">= 0.6.0"
