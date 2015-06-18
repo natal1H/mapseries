@@ -1,15 +1,7 @@
-# ol3 devstack
+# Mapseries
 
-* [OpenLayers 3](ol3js.org) & [Google Closure](https://developers.google.com/closure/) devstack ready for [advanced optimizations](https://developers.google.com/closure/compiler/docs/compilation_levels) using [plovr](https://github.com/bolinfest/plovr)
-* [fixjsstyle and gjslint](https://developers.google.com/closure/utilities/docs/linter_howto) included
-* both Linux and Windows friendly
-
-Current versions:
-* [OpenLayers](http://openlayers.org) v3.5.0
-* [Closure Library](https://github.com/google/closure-library) [v2015-02-18] (https://github.com/google/closure-library/tree/567c440d2c7f2601c970ce40bc650ad2044a77d2)
-* [plovr](https://github.com/bolinfest/plovr) 2.0.0
-
-This repository is not officially supported by Google, ol3, or individual module authors.
+* Web application for cataloguing mapseries
+* Able to automatically fill map sheet metadata and copy it to clipboard for another cataloguing software, e.g. Aleph.
 
 ## Requirements
 * [Java 7 or higher](http://www.java.com/)
@@ -43,3 +35,4 @@ Windows users: If you have some errors during `npm install` related to [node-gyp
 * `grunt build` to compile the code and copy files to `client/public`
 * `grunt build --map` to include also [source maps](https://developer.chrome.com/devtools/docs/javascript-debugging#source-maps)
 
+Based on [ol3ds](https://github.com/jirik/ol3ds).
