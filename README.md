@@ -5,6 +5,7 @@
 
 ## Add new map series
 Read [manual](client/src/doc/navod.docx). Or briefly:
+
 1. Prepare ShapeFile with map sheets.
   - Each map sheet should be one polygon.
   - Table must have at least SHEET and TITLE columns.
@@ -24,6 +25,7 @@ Read [manual](client/src/doc/navod.docx). Or briefly:
 5. Get beer
 
 ## Development
+Repository structure based on [ol3ds](https://github.com/jirik/ol3ds).
 
 ### Requirements
 * [Java 7 or higher](http://www.java.com/)
@@ -56,5 +58,3 @@ Windows users: If you have some errors during `npm install` related to [node-gyp
 ### Build
 * `grunt build` to compile the code and copy files to `client/public`
 * `grunt build --map` to include also [source maps](https://developer.chrome.com/devtools/docs/javascript-debugging#source-maps)
-
-Based on [ol3ds](https://github.com/jirik/ol3ds).
