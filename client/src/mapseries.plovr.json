@@ -1,41 +1,126 @@
 {
+
   "id": "mapseries",
 
-  "paths": [
-    "src"
+  "ambiguate-properties": false,
+
+  "checks": {
+    "nonStandardJsDocs": "OFF",
+    "checkDebuggerStatement": "WARNING",
+    "accessControls": "ERROR",
+    "ambiguousFunctionDecl": "ERROR",
+    "checkRegExp": "ERROR",
+    "checkTypes": "ERROR",
+    "checkVars": "ERROR",
+    "const": "ERROR",
+    "constantProperty": "ERROR",
+    "deprecated": "ERROR",
+    "duplicate": "ERROR",
+    "duplicateMessage": "ERROR",
+    "es5Strict": "ERROR",
+    "externsValidation": "ERROR",
+    "fileoverviewTags": "ERROR",
+    "globalThis": "ERROR",
+    "internetExplorerChecks": "ERROR",
+    "invalidCasts": "ERROR",
+    "missingProperties": "ERROR",
+    "strictModuleDepCheck": "ERROR",
+    "typeInvalidation": "ERROR",
+    "undefinedNames": "ERROR",
+    "undefinedVars": "ERROR",
+    "unknownDefines": "ERROR",
+    "uselessCode": "ERROR",
+    "visibility": "ERROR"
+  },
+  
+  "closure-library": "../../bower_components/closure-library/closure/goog",
+  
+  "css-allowed-unrecognized-properties": [
+    "user-select"
   ],
 
-  "inputs": [
-    "src/main-mapseries.js"
+  "css-inputs": [
   ],
+
+  "css-output-file": "../public/mapseries.css",
+  
+
+  "define": {
+    "goog.DEBUG": false,
+    "goog.LOCALE": "cs",
+    "goog.asserts.ENABLE_ASSERTS": false,
+    "goog.dom.ASSUME_STANDARDS_MODE": true
+  },
+
+  "disambiguate-properties": true,
+
+  "experimental-compiler-options": {
+    "languageIn": "ECMASCRIPT5"
+  },
+
 
   "externs": [
     "//google_maps_api_v3.js",
     "externs/mapseries.js",
-    "../closure-externs/src/openlayers2.js",
-    "externs/zeroclipboard.js"
+    "../../bower_components/closure-externs/src/openlayers2.js",
+    "../../bower_components/closure-externs/src/zeroclipboard.js"
   ],
 
-  "define": {
-    "goog.DEBUG": false
-  },
+  "inputs": [
+    "js/webpages/mapseries.js"
+  ],
+
+  "level": "VERBOSE",
 
   "mode": "ADVANCED",
-  "level": "VERBOSE",
   
+  "name-suffixes-to-strip": [
+    "logger",
+    "logger_"
+  ],
+
+  "paths": [
+    "js"
+  ],
   
-  "checks": {
+  "treat-warnings-as-errors": true,
 
-    "checkTypes": "ERROR",
-    "checkRegExp": "ERROR",
-    "checkVars": "ERROR",
-    "deprecated": "ERROR",
-    "fileoverviewTags": "ERROR",
-    "invalidCasts": "ERROR",
-    "missingProperties": "ERROR",
-    "nonStandardJsDocs": "ERROR",
-    "undefinedVars": "ERROR"
-  },
+  "type-prefixes-to-strip": [
+    "goog.debug.Console",
+    "goog.debug.DebugWindow",
+    "goog.debug.DevCss",
+    "goog.debug.DivConsole",
+    "goog.debug.EntryPointMonitor",
+    "goog.debug.ErrorHandler",
+    "goog.debug.ErrorReporter",
+    "goog.debug.FancyWindow",
+    "goog.debug.Formatter",
+    "goog.debug.FpsDisplay",
+    "goog.debug.GcDiagnostics",
+    "goog.debug.HtmlFormatter",
+    "goog.debug.LogBuffer",
+    "goog.debug.LogManager",
+    "goog.debug.LogRecord",
+    "goog.debug.Logger",
+    "goog.debug.RelativeTimeProvider",
+    "goog.debug.TextFormatter",
+    "goog.debug.Trace",
+    "goog.debug.catchErrors",
+    "goog.debug.deepExpose",
+    "goog.debug.enhanceError",
+    "goog.debug.entryPointRegistry",
+    "goog.debug.errorHandlerWeakDep",
+    "goog.debug.expose",
+    "goog.debug.exposeArray",
+    "goog.debug.exposeException",
+    "goog.debug.getFunctionName",
+    "goog.debug.getStacktrace",
+    "goog.debug.getStacktraceSimple",
+    "goog.debug.logRecordSerializer",
+    "goog.debug.makeWhitespaceVisible",
+    "goog.debug.normalizeErrorObject",
+    "goog.debug.reflect",
+    "goog.log"
+  ]
 
-  "jsdoc-html-output-path": "."
 }

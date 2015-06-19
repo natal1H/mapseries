@@ -47,7 +47,7 @@ ms.Loader.prototype.loadSeries = function(objSeries) {
       ser.template = tempreq.getResponseText();
     }
   });
-  tempreq.send((goog.DEBUG ? '../deploy/' : '') + 'templates/' +
+  tempreq.send('templates/' +
       objSeries['template'], 'GET');
 
   return ser;
