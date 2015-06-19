@@ -1,0 +1,41 @@
+{
+  "id": "mapseries",
+
+  "paths": [
+    "src"
+  ],
+
+  "inputs": [
+    "src/main-mapseries.js"
+  ],
+
+  "externs": [
+    "//google_maps_api_v3.js",
+    "externs/mapseries.js",
+    "../closure-externs/src/openlayers2.js",
+    "externs/zeroclipboard.js"
+  ],
+
+  "define": {
+    "goog.DEBUG": false
+  },
+
+  "mode": "ADVANCED",
+  "level": "VERBOSE",
+  
+  
+  "checks": {
+
+    "checkTypes": "ERROR",
+    "checkRegExp": "ERROR",
+    "checkVars": "ERROR",
+    "deprecated": "ERROR",
+    "fileoverviewTags": "ERROR",
+    "invalidCasts": "ERROR",
+    "missingProperties": "ERROR",
+    "nonStandardJsDocs": "ERROR",
+    "undefinedVars": "ERROR"
+  },
+
+  "jsdoc-html-output-path": "."
+}
