@@ -119,7 +119,7 @@ LDR   L -----nem-a22------i-4500
     "enabled": false,
     "width": 70,
     "value": {
-      "formatFunction":"ms:marc21_255_bbox_czech"
+      "formatFunction":"ms:marc21_255_bbox_english"
     }
   }
 264 1 L $$a{

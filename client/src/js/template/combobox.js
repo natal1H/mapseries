@@ -99,6 +99,11 @@ ms.ComboBox.prototype.configurate = function(configObj, series, map) {
               return latlng.bboxToMarc21_255InCzech(fillBbox(sh));
             };
             break;
+          case 'ms:marc21_255_bbox_english':
+            ff = function(val, sh) {
+              return latlng.bboxToMarc21_255InEnglish(fillBbox(sh));
+            };
+            break;
           default:
             ff = series.formatFunctions[ffname];
             break;

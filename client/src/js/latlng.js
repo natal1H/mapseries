@@ -199,3 +199,31 @@ latlng.bboxToMarc21_255InCzech = function(bbox) {
 
   return result;
 };
+
+
+/**
+ * Convert bounding box to MARC 21 255 Czech string.
+ * @param {OpenLayers.Bounds} bbox latitude/longitude bounding box.
+ * @return {string} string for 255 in Czech.
+ */
+latlng.bboxToMarc21_255InEnglish = function(bbox) {
+  var north = latlng.decToDMS(bbox.top, true);
+  var south = latlng.decToDMS(bbox.bottom, true);
+  var west = latlng.decToDMS(bbox.left, true);
+  var east = latlng.decToDMS(bbox.right, true);
+
+  var north_str = 'N';
+  var south_str = 'S';
+  var east_str = 'E';
+  var west_str = 'W';
+  var pattern = 'h d°mm\'ss"';
+
+  var result = '$$c';
+  result += '(' + west.format(pattern, east_str, west_str);
+  result += '--' + east.format(pattern, east_str, west_str);
+  result += '/' + north.format(pattern, north_str, south_str);
+  result += '--' + south.format(pattern, north_str, south_str);
+  result += ')';
+
+  return result;
+};
