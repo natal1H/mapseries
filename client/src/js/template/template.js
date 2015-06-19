@@ -60,7 +60,7 @@ ms.Template.prototype.addTemplateListeners_ = function() {
           textToCopy += node.nodeValue;
           break;
         case goog.dom.NodeType.ELEMENT:
-          if(goog.dom.classlist.contains(node, 'combo')) {
+          if (goog.dom.classlist.contains(node, 'combo')) {
             var field = goog.array.find(_this.fields, function(field) {
               return node === field.getElement().parentNode;
             });
@@ -80,14 +80,14 @@ ms.Template.prototype.addTemplateListeners_ = function() {
     var textToCopy = getTextToCopy();
     _this.clipboard.setText(textToCopy);
   });
-  
+
   this.clipboard008 = new ZeroClipboard.Client();
   this.clipboard008.glue('clipboard_button_008', 'clipboard_container_008');
   this.clipboard008.addEventListener('mouseDown', function(client) {
     var line008 = '';
     var allText = getTextToCopy();
     var res = allText.match(/^008.*$/gm);
-    if(goog.isArray(res) && res.length) {
+    if (goog.isArray(res) && res.length) {
       line008 = res[0];
     }
     _this.clipboard008.setText(line008);
@@ -124,10 +124,12 @@ ms.Template.prototype.createHtmlAndComboBoxes_ =
 
   html = '<pre>' + html + '</pre>';
 
-  html += '<div id="clipboard_container" style="position:relative" class="clipboard-container">';
+  html += '<div id="clipboard_container" style="position:relative" ' +
+      'class="clipboard-container">';
   html += '<button id="clipboard_button">Copy to Clipboard</button>';
   html += '</div>';
-  html += '<div id="clipboard_container_008" style="position:relative" class="clipboard-container">';
+  html += '<div id="clipboard_container_008" style="position:relative" ' +
+      'class="clipboard-container">';
   html += '<button id="clipboard_button_008">Copy 008 to Clipboard</button>';
   html += '</div>';
   this.setContent(html);
@@ -448,10 +450,10 @@ ms.Template.prototype.replaceEveryJson_ = function(template, f) {
 };
 
 
-
 /**
- * @suppress {visibility}
+ * @private
  * @inheritDoc
+ * @suppress {accessControls}
  */
 ms.Template.prototype.onKey_ = function(e) {
   var close = false;
