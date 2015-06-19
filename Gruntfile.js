@@ -6,31 +6,21 @@ module.exports = function(grunt) {
     
     // bower_components files that should be copied to public folder
     publBowerFiles: [
-      {
-        src: 'bower_components/proj4js/lib/proj4js-combined.js',
-        dest: 'client/public/lib/proj4js/proj4js-combined.js'
-      },
-      {
-        cwd: 'bower_components/ol3/css',
-        src: '**/*',
-        dest: 'client/public/lib/ol3/css/',
-        expand: true
-      },
-      {
-        cwd: 'bower_components/ol3/resources',
-        src: '**/*',
-        dest: 'client/public/lib/ol3/resources/',
-        expand: true
-      }
     ],
     
     
     // source files that should be copied to public folder
     publSrcFiles: [
       {
-        cwd: 'client/src/css/',
-        src: ['**/*', '!plovr.css'],
-        dest: 'client/public/css/',
+        cwd: 'client/src/',
+        src: [
+          'css/**/*',
+          '!css/plovr.css',
+          'doc/**/*',
+          'templates/**/*',
+          'config.js'
+        ],
+        dest: 'client/public/',
         expand: true
       }
     ]
