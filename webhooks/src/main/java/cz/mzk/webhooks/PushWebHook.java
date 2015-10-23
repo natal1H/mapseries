@@ -2,9 +2,7 @@ package cz.mzk.webhooks;
 
 import cz.mzk.Settings;
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.InvalidRemoteException;
-import org.eclipse.jgit.api.errors.TransportException;
+import org.eclipse.jgit.api.errors.*;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
 
 import javax.ws.rs.POST;
@@ -69,8 +67,26 @@ public class PushWebHook {
         try {
             repository = new FileRepository(repo);
             Git git = new Git(repository);
-            git.pull();
+            git.pull().call();
         } catch (IOException e) {
+            logger.severe(e.getMessage());
+        } catch (DetachedHeadException e) {
+            logger.severe(e.getMessage());
+        } catch (NoHeadException e) {
+            logger.severe(e.getMessage());
+        } catch (TransportException e) {
+            logger.severe(e.getMessage());
+        } catch (InvalidConfigurationException e) {
+            logger.severe(e.getMessage());
+        } catch (InvalidRemoteException e) {
+            logger.severe(e.getMessage());
+        } catch (CanceledException e) {
+            logger.severe(e.getMessage());
+        } catch (WrongRepositoryStateException e) {
+            logger.severe(e.getMessage());
+        } catch (RefNotFoundException e) {
+            logger.severe(e.getMessage());
+        } catch (GitAPIException e) {
             logger.severe(e.getMessage());
         } finally {
             if (repository != null) {
