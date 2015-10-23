@@ -3,7 +3,6 @@ package cz.mzk.webhooks;
 import cz.mzk.Settings;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.*;
-import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
@@ -19,7 +18,7 @@ public class PushWebHook {
     public static final Logger logger = Logger.getLogger(PushWebHook.class.getName());
 
     @POST
-    public void onPush() {
+    public synchronized void onPush() {
         Settings settings = Settings.getInstance();
         String remoteRepo = settings.get("remote.repo", "https://github.com/moravianlibrary/mapseries.git");
         String localRepo = settings.get("local.repo", "/tmp/mapseries");
