@@ -67,7 +67,7 @@ public class PushWebHook {
         try {
             repository = new FileRepository(repo);
             Git git = new Git(repository);
-            git.pull().call();
+            git.pull().setRemoteBranchName("master").call();
         } catch (IOException e) {
             logger.severe(e.getMessage());
         } catch (DetachedHeadException e) {
