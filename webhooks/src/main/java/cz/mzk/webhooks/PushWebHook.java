@@ -68,7 +68,7 @@ public class PushWebHook {
         FileRepositoryBuilder builder = new FileRepositoryBuilder();
         Repository repository = null;
         try {
-            repository = builder.setGitDir(new File(repo + ".git")).readEnvironment().findGitDir().build();
+            repository = builder.setGitDir(new File(repo + "/.git")).readEnvironment().findGitDir().build();
             Git git = new Git(repository);
             git.pull().call();
             logger.info("Pulling succesffuly done.");
