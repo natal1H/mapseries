@@ -4,6 +4,8 @@ import cz.mzk.Settings;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.*;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -63,11 +65,13 @@ public class PushWebHook {
 
     private void pullRepo(String repo) {
         logger.info(String.format("Pulling repository %s", repo));
-        FileRepository repository = null;
+        FileRepositoryBuilder builder = new FileRepositoryBuilder();
+        Repository repository = null;
         try {
-            repository = new FileRepository(repo);
+            repository = builder.setGitDir(new File(repo)).readEnvironment().findGitDir().build();
             Git git = new Git(repository);
-            git.pull().setRemoteBranchName("master").call();
+            git.pull().call();
+            logger.info("Pulling succesffuly done.");
         } catch (IOException e) {
             logger.severe(e.getMessage());
         } catch (DetachedHeadException e) {
@@ -93,5 +97,7 @@ public class PushWebHook {
                 repository.close();
             }
         }
+
+
     }
 }
