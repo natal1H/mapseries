@@ -11,9 +11,9 @@ mapseries.config = {
   },
   series: [
     {
-      title: "Austria-Hungary: Austria-Hungary: 3rd Military Survey, 1:200 K",
-      layer: "austria-hungary-austria-hungary-3rd-military-survey-1200-k",
-      template: "austria-hungary-austria-hungary-3rd-military-survey-1200-k.txt",
+      title: "Austria-Hungary: 3rd Military Survey, 1:200 K",
+      layer: "austria-hungary-3rd-military-survey-1200-k",
+      template: "austria-hungary-3rd-military-survey-1200-k.txt",
       formatFunctions: {
         addDegrees: function (stringValue, sheet) {
           stringValue += '';
