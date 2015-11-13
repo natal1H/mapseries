@@ -13,7 +13,6 @@ import org.geotools.data.simple.SimpleFeatureStore;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.geojson.feature.FeatureJSON;
 import org.geotools.geojson.geom.GeometryJSON;
-import org.geotools.referencing.crs.DefaultGeocentricCRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.opengis.feature.simple.SimpleFeatureType;
 
