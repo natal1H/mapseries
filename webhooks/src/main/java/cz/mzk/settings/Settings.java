@@ -1,4 +1,4 @@
-package cz.mzk;
+package cz.mzk.settings;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -36,8 +36,20 @@ public class Settings {
         }
     }
 
-    public String get(String key, String defaultValue) {
+    private String get(String key, String defaultValue) {
         return properties.getProperty(key, defaultValue);
+    }
+
+    public String getLocalRepo() {
+        return get("local.repo", "/tmp/mapseries");
+    }
+
+    public String getRemoteRepo() {
+        return get("remote.repo", "https://github.com/moravianlibrary/mapseries.git");
+    }
+
+    public String getShapeFileDir() {
+        return get("shapefile.dir", "/tmp/shapefile");
     }
 
 }
