@@ -37,8 +37,8 @@ public class GeoServer {
 
             GeoServerRESTManager manager = new GeoServerRESTManager(url, username, password);
 
+            clear(manager, workspace);
             for (String shapeFile : getListOfShapeFiles()) {
-                clear(manager, workspace);
                 createStore(shapeFile, manager, workspace);
                 createLayer(shapeFile, manager, workspace);
             }
