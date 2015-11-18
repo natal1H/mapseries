@@ -38,8 +38,7 @@
         "N43": "$$ae-pl---", 
         "N245A": "\u0141\u00f3d\u017a, Lodz", 
         "POZNAMKA": "", 
-        "N651": "$$aLod\u017e (Polsko : oblast)$$7ge292514", 
-        "ID": "0"
+        "N651": "$$aLod\u017e (Polsko : oblast)$$7ge292514"
       }
     }, 
     {
@@ -79,8 +78,7 @@
         "N43": "$$ae-hu---", 
         "N245A": "Budapest, Kecskem\u00e9t|Budapest Kecskem\u00e9t", 
         "POZNAMKA": "Budape\u0161\u0165-Kecskem\u00e9t", 
-        "N651": "$$aBudape\u0161\u0165 (Ma\u010farsko : oblast)$$7ge251149|$$aKecskem\u00e9t (Ma\u010farsko : oblast)$$7ge856394", 
-        "ID": "0"
+        "N651": "$$aBudape\u0161\u0165 (Ma\u010farsko : oblast)$$7ge251149|$$aKecskem\u00e9t (Ma\u010farsko : oblast)$$7ge856394"
       }
     }, 
     {
@@ -120,8 +118,7 @@
         "N43": "$$ae-aa---", 
         "N245A": "Durazzo (Durz), Durazzo", 
         "POZNAMKA": "", 
-        "N651": "$$aD\u00fcrres (Alb\u00e1nie : oblast)$$7ge856385", 
-        "ID": "0"
+        "N651": "$$aD\u00fcrres (Alb\u00e1nie : oblast)$$7ge856385"
       }
     }, 
     {
@@ -161,8 +158,7 @@
         "N43": "$$ae-xo---$$ae-pl---", 
         "N245A": "Bansk\u00e1 Bystrica|Neusohl|Ba\u0148sk\u00e1 Bystrica|Ba\u0148sk\u00e1 Bystrica (Neusohl - Beszterczeb\u00e1nya), Beszterceb\u00e1nya", 
         "POZNAMKA": "B\u00e1\u0148sk\u00e1 Byst\u0159ice|Ba\u0148. Bystrica", 
-        "N651": "$$aBansk\u00e1 Bystrica (Slovensko : oblast)$$7ge250429", 
-        "ID": "0"
+        "N651": "$$aBansk\u00e1 Bystrica (Slovensko : oblast)$$7ge250429"
       }
     }, 
     {
@@ -202,8 +198,7 @@
         "N43": "", 
         "N245A": "Scutari", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -243,8 +238,7 @@
         "N43": "$$ae-rb---$$ae-bn---$$ae-ci---", 
         "N245A": "Mitrovice|Mitrowitz, Mitrovica", 
         "POZNAMKA": "", 
-        "N651": "$$aSremska Mitrovica (Srbsko : oblast)$$7ge856389", 
-        "ID": "0"
+        "N651": "$$aSremska Mitrovica (Srbsko : oblast)$$7ge856389"
       }
     }, 
     {
@@ -284,8 +278,7 @@
         "N43": "$$ae-rb---$$ae-hu---$$ae-ci---", 
         "N245A": "Maria-Theresiopel, Szabadka", 
         "POZNAMKA": "", 
-        "N651": "$$aSubotica (Srbsko : oblast)$$7ge856392", 
-        "ID": "0"
+        "N651": "$$aSubotica (Srbsko : oblast)$$7ge856392"
       }
     }, 
     {
@@ -325,8 +318,7 @@
         "N43": "", 
         "N245A": "Valona", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -366,8 +358,7 @@
         "N43": "$$ae-hu---$$ae-xo---", 
         "N245A": "Budapest, Losoncz|Lu\u010denec|Budape\u0161\u0165, Lu\u010denec|Lu\u010denec, Budapest, Losonc", 
         "POZNAMKA": "Budape\u0161\u0165-Lu\u010denec", 
-        "N651": "$$aBudape\u0161\u0165 (Ma\u010farsko : oblast)$$7ge251149|$$aLu\u010denec (Slovensko : oblast)$$7ge128638", 
-        "ID": "0"
+        "N651": "$$aBudape\u0161\u0165 (Ma\u010farsko : oblast)$$7ge251149|$$aLu\u010denec (Slovensko : oblast)$$7ge128638"
       }
     }, 
     {
@@ -407,8 +398,7 @@
         "N43": "", 
         "N245A": "Plevlje", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -448,8 +438,7 @@
         "N43": "$$ae-pl---$$ae-xo---$$ae-xr---", 
         "N245A": "O\u015bwi\u0119cim|Polhora, Oswiecim", 
         "POZNAMKA": "Oswiecim", 
-        "N651": "$$aOsv\u011btim (Polsko : oblast)$$7ge784116|$$aOravsk\u00e1 Polhora (Slovensko : oblast)$$7ge516122", 
-        "ID": "0"
+        "N651": "$$aOsv\u011btim (Polsko : oblast)$$7ge784116|$$aOravsk\u00e1 Polhora (Slovensko : oblast)$$7ge516122"
       }
     }, 
     {
@@ -489,8 +478,7 @@
         "N43": "$$ae-pl---", 
         "N245A": "Cz\u0119nstochowa, Czestochowa", 
         "POZNAMKA": "", 
-        "N651": "$$a\u010censtochov\u00e1 (Polsko : oblast)$$7ge193138", 
-        "ID": "0"
+        "N651": "$$a\u010censtochov\u00e1 (Polsko : oblast)$$7ge193138"
       }
     }, 
     {
@@ -530,8 +518,7 @@
         "N43": "", 
         "N245A": "Zvornik", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -571,8 +558,7 @@
         "N43": "$$ae-pl---", 
         "N245A": "P\u0142ock, Plock", 
         "POZNAMKA": "", 
-        "N651": "$$aP\u0142ock (Polsko : oblast)$$7ge856398", 
-        "ID": "0"
+        "N651": "$$aP\u0142ock (Polsko : oblast)$$7ge856398"
       }
     }, 
     {
@@ -612,8 +598,7 @@
         "N43": "", 
         "N245A": "Z\u00fcrich", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -653,8 +638,7 @@
         "N43": "", 
         "N245A": "Karlsruhe", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -694,8 +678,7 @@
         "N43": "", 
         "N245A": "Alessandria", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -735,8 +718,7 @@
         "N43": "", 
         "N245A": "Varese", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -776,8 +758,7 @@
         "N43": "", 
         "N245A": "Schaffhausen", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -817,8 +798,7 @@
         "N43": "", 
         "N245A": "Mainz", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -858,8 +838,7 @@
         "N43": "", 
         "N245A": "Geissen", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -899,8 +878,7 @@
         "N43": "", 
         "N245A": "Savona", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -940,8 +918,7 @@
         "N43": "", 
         "N245A": "Drogiczyn", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -981,8 +958,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "Gyergy\u00f3-Szt.-Mikl\u00f3s, Gyergy\u00f3szentmikl\u00f3s", 
         "POZNAMKA": "Gyergy\u00f3szentmikl\u00f3s", 
-        "N651": "$$aGheorgheni (Harghita, Rumunsko : oblast)$$7ge856666", 
-        "ID": "0"
+        "N651": "$$aGheorgheni (Harghita, Rumunsko : oblast)$$7ge856666"
       }
     }, 
     {
@@ -1022,8 +998,7 @@
         "N43": "", 
         "N245A": "Xanthi", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -1063,8 +1038,7 @@
         "N43": "$$ae-un---", 
         "N245A": "Kolomea, Kolomija", 
         "POZNAMKA": "Ko\u0142omea", 
-        "N651": "$$aKolomyja (Ukrajina : oblast)$$7ge828863", 
-        "ID": "0"
+        "N651": "$$aKolomyja (Ukrajina : oblast)$$7ge828863"
       }
     }, 
     {
@@ -1104,8 +1078,7 @@
         "N43": "$$ae-bu---", 
         "N245A": "Stara Zagora (Eski Zagra), Eski Zagra", 
         "POZNAMKA": "", 
-        "N651": "$$aStara Zagora (Bulharsko : oblast)$$7ge856658", 
-        "ID": "0"
+        "N651": "$$aStara Zagora (Bulharsko : oblast)$$7ge856658"
       }
     }, 
     {
@@ -1145,8 +1118,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "T\u01cergovi\u0219te, Targoviste", 
         "POZNAMKA": "", 
-        "N651": "$$aT\u0103rgovi\u015fte (Rumunsko : oblast)$$7ge856662", 
-        "ID": "0"
+        "N651": "$$aT\u0103rgovi\u015fte (Rumunsko : oblast)$$7ge856662"
       }
     }, 
     {
@@ -1186,8 +1158,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "Brass\u00f3 (Kronstadt), Brass\u00f3", 
         "POZNAMKA": "", 
-        "N651": "$$aBra\u0161ov-oblast (Rumunsko)$$7ge385110", 
-        "ID": "0"
+        "N651": "$$aBra\u0161ov-oblast (Rumunsko)$$7ge385110"
       }
     }, 
     {
@@ -1227,8 +1198,7 @@
         "N43": "", 
         "N245A": "Lemni", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -1268,8 +1238,7 @@
         "N43": "$$ae-un---$$ae-rm---", 
         "N245A": "\u015aniatyn, Sznyatin", 
         "POZNAMKA": "", 
-        "N651": "$$aSnjatyn (Ukrajina : oblast)$$7ge828860", 
-        "ID": "0"
+        "N651": "$$aSnjatyn (Ukrajina : oblast)$$7ge828860"
       }
     }, 
     {
@@ -1309,8 +1278,7 @@
         "N43": "", 
         "N245A": "Trinovo", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -1350,8 +1318,7 @@
         "N43": "$$ae-un---", 
         "N245A": "Brody", 
         "POZNAMKA": "", 
-        "N651": "$$aBrody (Ukrajina : oblast)$$7ge828841", 
-        "ID": "0"
+        "N651": "$$aBrody (Ukrajina : oblast)$$7ge828841"
       }
     }, 
     {
@@ -1391,8 +1358,7 @@
         "N43": "$$ae-un---", 
         "N245A": "\u0141uck, Luck", 
         "POZNAMKA": "", 
-        "N651": "$$aLuck (Ukrajina : oblast)$$7ge251175", 
-        "ID": "0"
+        "N651": "$$aLuck (Ukrajina : oblast)$$7ge251175"
       }
     }, 
     {
@@ -1432,8 +1398,7 @@
         "N43": "$$ae-rm---$$ae-bu---", 
         "N245A": "Svi\u0161tov, Svistov", 
         "POZNAMKA": "", 
-        "N651": "$$aSvi\u0161tov (Bulharsko : oblast)$$7ge856660", 
-        "ID": "0"
+        "N651": "$$aSvi\u0161tov (Bulharsko : oblast)$$7ge856660"
       }
     }, 
     {
@@ -1473,8 +1438,7 @@
         "N43": "", 
         "N245A": "Slonim", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -1514,8 +1478,7 @@
         "N43": "", 
         "N245A": "Siedlec", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -1555,8 +1518,7 @@
         "N43": "$$ae-rm---$$ae-hu---", 
         "N245A": "Oradea-Mare|Groszwardein, Nagyv\u00e1rad", 
         "POZNAMKA": "Grosswardein|Vel. Varadin", 
-        "N651": "$$aOradea (Rumunsko : oblast)$$7ge856419", 
-        "ID": "0"
+        "N651": "$$aOradea (Rumunsko : oblast)$$7ge856419"
       }
     }, 
     {
@@ -1596,8 +1558,7 @@
         "N43": "", 
         "N245A": "Vodena", 
         "POZNAMKA": "Vodena", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -1637,8 +1598,7 @@
         "N43": "$$ae-xo---$$ae-un---$$ae-pl---", 
         "N245A": "Humenn\u00e9|Ungv\u00e1r|U\u017ehorod|U\u017ehorod (Ungv\u00e1r), Ungv\u00e1r", 
         "POZNAMKA": "", 
-        "N651": "$$aHumenn\u00e9 (Slovensko : oblast)$$7ge406272|$$aU\u017ehorod (Ukrajina : oblast)$$7ge784174", 
-        "ID": "0"
+        "N651": "$$aHumenn\u00e9 (Slovensko : oblast)$$7ge406272|$$aU\u017ehorod (Ukrajina : oblast)$$7ge784174"
       }
     }, 
     {
@@ -1678,8 +1638,7 @@
         "N43": "$$ae-xn---$$ae-rb---$$ae-bu---", 
         "N245A": "Kriva Palanka, Egri Palanka", 
         "POZNAMKA": "", 
-        "N651": "$$aKriva Palanka (Makedonie : oblast)$$7ge828829", 
-        "ID": "0"
+        "N651": "$$aKriva Palanka (Makedonie : oblast)$$7ge828829"
       }
     }, 
     {
@@ -1719,8 +1678,7 @@
         "N43": "", 
         "N245A": "Orsova", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -1760,8 +1718,7 @@
         "N43": "", 
         "N245A": "Lugos", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -1801,8 +1758,7 @@
         "N43": "", 
         "N245A": "Larisa", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -1842,8 +1798,7 @@
         "N43": "$$ae-hu---$$ae-un---$$ae-rm---$$ae-xo---", 
         "N245A": "Munk\u00e1cs|Munka\u010devo|Muka\u010devo|Muka\u010devo, Car\u0103ii Mari|Kr\u00e1l. Chlumec, Munk\u00e1cs", 
         "POZNAMKA": "", 
-        "N651": "$$aMuka\u010devo (Ukrajina : oblast)$$7ge784149|$$aCarei (Rumunsko : oblast)$$7ge828883|$$aKr\u00e1\u013eovsk\u00fd Chlmec (Slovensko : oblast)$$7ge856420", 
-        "ID": "0"
+        "N651": "$$aMuka\u010devo (Ukrajina : oblast)$$7ge784149|$$aCarei (Rumunsko : oblast)$$7ge828883|$$aKr\u00e1\u013eovsk\u00fd Chlmec (Slovensko : oblast)$$7ge856420"
       }
     }, 
     {
@@ -1883,8 +1838,7 @@
         "N43": "", 
         "N245A": "Lam\u00eda", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -1924,8 +1878,7 @@
         "N43": "$$ae-rb---$$ae-bu---", 
         "N245A": "Ni\u0161, Nis", 
         "POZNAMKA": "", 
-        "N651": "$$aNi\u0161 (Srbsko : oblast)$$7ge586329", 
-        "ID": "0"
+        "N651": "$$aNi\u0161 (Srbsko : oblast)$$7ge586329"
       }
     }, 
     {
@@ -1965,8 +1918,7 @@
         "N43": "$$ae-pl---$$ae-un---", 
         "N245A": "Przemy\u015bl, Przemysl", 
         "POZNAMKA": "P\u0159emy\u0161l", 
-        "N651": "$$aPrzemy\u015bl (Polsko : oblast)$$7ge130543", 
-        "ID": "0"
+        "N651": "$$aPrzemy\u015bl (Polsko : oblast)$$7ge130543"
       }
     }, 
     {
@@ -2006,8 +1958,7 @@
         "N43": "", 
         "N245A": "Lublin", 
         "POZNAMKA": "Lublin", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2047,8 +1998,7 @@
         "N43": "$$ae-rb---$$ae-bu---$$ae-rm---", 
         "N245A": "Zaje\u010dar, Zajecar", 
         "POZNAMKA": "", 
-        "N651": "$$aZaje\u010dar (Srbsko : oblast)$$7ge856418", 
-        "ID": "0"
+        "N651": "$$aZaje\u010dar (Srbsko : oblast)$$7ge856418"
       }
     }, 
     {
@@ -2088,8 +2038,7 @@
         "N43": "$$ae-pl---", 
         "N245A": "\u0141om\u017aa, Lomza", 
         "POZNAMKA": "", 
-        "N651": "$$a\u0141om\u017ca (Polsko : oblast)$$7ge191172", 
-        "ID": "0"
+        "N651": "$$a\u0141om\u017ca (Polsko : oblast)$$7ge191172"
       }
     }, 
     {
@@ -2129,8 +2078,7 @@
         "N43": "", 
         "N245A": "Magdeburg", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2170,8 +2118,7 @@
         "N43": "", 
         "N245A": "Innsbruck", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2211,8 +2158,7 @@
         "N43": "", 
         "N245A": "Ingolstadt", 
         "POZNAMKA": "Innsbruck", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2252,8 +2198,7 @@
         "N43": "", 
         "N245A": "Civitavecchia", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2293,8 +2238,7 @@
         "N43": "$$ae-it---", 
         "N245A": "Verona", 
         "POZNAMKA": "", 
-        "N651": "$$aVerona (It\u00e1lie : oblast)$$7ge392323", 
-        "ID": "0"
+        "N651": "$$aVerona (It\u00e1lie : oblast)$$7ge392323"
       }
     }, 
     {
@@ -2334,8 +2278,7 @@
         "N43": "$$ae-it---", 
         "N245A": "Trient, Trento", 
         "POZNAMKA": "", 
-        "N651": "$$Trident (It\u00e1lie : oblast)$$7ge856350", 
-        "ID": "0"
+        "N651": "$$Trident (It\u00e1lie : oblast)$$7ge856350"
       }
     }, 
     {
@@ -2375,8 +2318,7 @@
         "N43": "", 
         "N245A": "M\u00fcnchen", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2416,8 +2358,7 @@
         "N43": "", 
         "N245A": "Siena", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2457,8 +2398,7 @@
         "N43": "", 
         "N245A": "Bamberg", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2498,8 +2438,7 @@
         "N43": "", 
         "N245A": "Erfurt", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2539,8 +2478,7 @@
         "N43": "", 
         "N245A": "Firenze", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2580,8 +2518,7 @@
         "N43": "", 
         "N245A": "Petrikowo", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2621,8 +2558,7 @@
         "N43": "", 
         "N245A": "Kiszyniew", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2662,8 +2598,7 @@
         "N43": "", 
         "N245A": "Catalza", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2703,8 +2638,7 @@
         "N43": "", 
         "N245A": "Winnica", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2744,8 +2678,7 @@
         "N43": "", 
         "N245A": "Midia", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2785,8 +2718,7 @@
         "N43": "$$ae-rm---$$ae-un---$$ae-mv---", 
         "N245A": "Gala\u01ab\u01d0 (Galaz), Galaz", 
         "POZNAMKA": "", 
-        "N651": "$$aGala\u0163i (Rumunsko : oblast)$$7ge746638", 
-        "ID": "0"
+        "N651": "$$aGala\u0163i (Rumunsko : oblast)$$7ge746638"
       }
     }, 
     {
@@ -2826,8 +2758,7 @@
         "N43": "", 
         "N245A": "Bolgrad", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2867,8 +2798,7 @@
         "N43": "", 
         "N245A": "Soroki", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2908,8 +2838,7 @@
         "N43": "", 
         "N245A": "Varna", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -2949,8 +2878,7 @@
         "N43": "$$ae-un---", 
         "N245A": "\u017bytomir, Zytomir", 
         "POZNAMKA": "", 
-        "N651": "$$a\u017dytomyr (Ukrajina : oblast)$$7ge413901", 
-        "ID": "0"
+        "N651": "$$a\u017dytomyr (Ukrajina : oblast)$$7ge413901"
       }
     }, 
     {
@@ -2990,8 +2918,7 @@
         "N43": "", 
         "N245A": "Owrucz", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3031,8 +2958,7 @@
         "N43": "$$ae-rm---$$ae-bu---", 
         "N245A": "Constanta (K\u00fcstend\u017ee), Kustendze", 
         "POZNAMKA": "", 
-        "N651": "$$aConstan\u0163a (Rumunsko : oblast)$$7ge749574", 
-        "ID": "0"
+        "N651": "$$aConstan\u0163a (Rumunsko : oblast)$$7ge749574"
       }
     }, 
     {
@@ -3072,8 +2998,7 @@
         "N43": "", 
         "N245A": "Glusk", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3113,8 +3038,7 @@
         "N43": "", 
         "N245A": "Posen", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3154,8 +3078,7 @@
         "N43": "$$ae-hu---", 
         "N245A": "P\u00e1pa|Papa, P\u00e1pa", 
         "POZNAMKA": "", 
-        "N651": "$$aP\u00e1pa (Ma\u010farsko : oblast)$$7ge828935\n", 
-        "ID": "0"
+        "N651": "$$aP\u00e1pa (Ma\u010farsko : oblast)$$7ge828935\n"
       }
     }, 
     {
@@ -3195,8 +3118,7 @@
         "N43": "$$ae-xr---$$ae-xo---$$ae-au---", 
         "N245A": "G\u00f6ding (Hodon\u00edn)|Hodon\u00edn|B\u0159eclav|Lundenburg|P\u0159erov, Hodon\u00edn| P\u0159erov a Hodon\u00edn|Gottwaldov, Breclav", 
         "POZNAMKA": "", 
-        "N651": "$$aHodon\u00edn (\u010cesko : oblast)$$7ge134218|$$aB\u0159eclav (\u010cesko : oblast)$$7ge128421|$$aP\u0159erov (\u010cesko : oblast)$$7ge130578|$$aZl\u00edn (\u010cesko : oblast)$$7ge131454", 
-        "ID": "0"
+        "N651": "$$aHodon\u00edn (\u010cesko : oblast)$$7ge134218|$$aB\u0159eclav (\u010cesko : oblast)$$7ge128421|$$aP\u0159erov (\u010cesko : oblast)$$7ge130578|$$aZl\u00edn (\u010cesko : oblast)$$7ge131454"
       }
     }, 
     {
@@ -3236,8 +3158,7 @@
         "N43": "$$ae-bn---$$ae-ci---", 
         "N245A": "Banjaluka, Banja Luka", 
         "POZNAMKA": "", 
-        "N651": "$$aBanja Luka (Bosna a Hercegovina : oblast)$$7ge856370\n", 
-        "ID": "0"
+        "N651": "$$aBanja Luka (Bosna a Hercegovina : oblast)$$7ge856370\n"
       }
     }, 
     {
@@ -3277,8 +3198,7 @@
         "N43": "$$ae-ci---$$ae-hu---", 
         "N245A": "Belovar|Bjelovar, Nagykanizsa", 
         "POZNAMKA": "", 
-        "N651": "$$aBjelovar (Chorvatsko : oblast)$$7ge212770\n", 
-        "ID": "0"
+        "N651": "$$aBjelovar (Chorvatsko : oblast)$$7ge212770\n"
       }
     }, 
     {
@@ -3318,8 +3238,7 @@
         "N43": "$$ae-xo---$$ae-hu---$$ae-au---", 
         "N245A": "Bratislava|Pre\u00dfburg|Pressburg|Pre\u0161purk, Pozsony", 
         "POZNAMKA": "", 
-        "N651": "$$aBratislava (Slovensko : oblast)$$7ge225358\n", 
-        "ID": "0"
+        "N651": "$$aBratislava (Slovensko : oblast)$$7ge225358\n"
       }
     }, 
     {
@@ -3359,8 +3278,7 @@
         "N43": "", 
         "N245A": "Mostar", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3400,8 +3318,7 @@
         "N43": "$$ae-xr---$$ae-pl---", 
         "N245A": "Olm\u00fctz|Olm\u00fctz (Olomouc)|Olomouc, Olomouc", 
         "POZNAMKA": "", 
-        "N651": "$$aOlomouc (\u010cesko : oblast)$$7ge128534", 
-        "ID": "0"
+        "N651": "$$aOlomouc (\u010cesko : oblast)$$7ge128534"
       }
     }, 
     {
@@ -3441,8 +3358,7 @@
         "N43": "", 
         "N245A": "Breslau", 
         "POZNAMKA": "Breslau|Vratislav", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3482,8 +3398,7 @@
         "N43": "", 
         "N245A": "Travnik", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3523,8 +3438,7 @@
         "N43": "", 
         "N245A": "Nakel", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3564,8 +3478,7 @@
         "N43": "", 
         "N245A": "Frankfurt", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3605,8 +3518,7 @@
         "N43": "$$ae-cau---$$ae-xv---", 
         "N245A": "Klagenfurt", 
         "POZNAMKA": "", 
-        "N651": "$$aKlagenfurt (Rakousko : oblast)\n$$7ge273424", 
-        "ID": "0"
+        "N651": "$$aKlagenfurt (Rakousko : oblast)\n$$7ge273424"
       }
     }, 
     {
@@ -3646,8 +3558,7 @@
         "N43": "$$ae-xr---$$ae-au---$$ae-gx---", 
         "N245A": "Budweis|\u010c. Bud\u011bjovice|Budweis (Bud\u011bjovice)|Budweis \u010c. Bud\u011bjovice, Budweis", 
         "POZNAMKA": "", 
-        "N651": "$$a\u010cesk\u00e9 Bud\u011bjovice (\u010cesko : oblast)$$7ge135833", 
-        "ID": "0"
+        "N651": "$$a\u010cesk\u00e9 Bud\u011bjovice (\u010cesko : oblast)$$7ge135833"
       }
     }, 
     {
@@ -3687,8 +3598,7 @@
         "N43": "$$ae-ci---$$ae-xv---", 
         "N245A": "Pola, Pula", 
         "POZNAMKA": "", 
-        "N651": "$$aPula (Chorvatsko : oblast)\n$$7ge828495", 
-        "ID": "0"
+        "N651": "$$aPula (Chorvatsko : oblast)\n$$7ge828495"
       }
     }, 
     {
@@ -3728,8 +3638,7 @@
         "N43": "$$ae-xv---$$ae-ci---$$ae-au---$$ae-it---", 
         "N245A": "Laibach, Ljubljana", 
         "POZNAMKA": "", 
-        "N651": "$$aLubla\u0148 (Slovinsko : oblast)\n$$7ge582052", 
-        "ID": "0"
+        "N651": "$$aLubla\u0148 (Slovinsko : oblast)\n$$7ge582052"
       }
     }, 
     {
@@ -3769,8 +3678,7 @@
         "N43": "", 
         "N245A": "Linz", 
         "POZNAMKA": "Linz|Linec", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3810,8 +3718,7 @@
         "N43": "$$ae-xr---", 
         "N245A": "Prag|Praha|Prag (Praha), Prag", 
         "POZNAMKA": "", 
-        "N651": "$$aPraha (\u010cesko : oblast)$$7ge130513", 
-        "ID": "0"
+        "N651": "$$aPraha (\u010cesko : oblast)$$7ge130513"
       }
     }, 
     {
@@ -3851,8 +3758,7 @@
         "N43": "$$ae-gx---$$ae-xr---$$ae-pl---", 
         "N245A": "Bautzen|Litom\u011b\u0159ice|\u010c. L\u00edpa, Bautzen|Terez\u00edn, Bautzen", 
         "POZNAMKA": "\u010c. L\u00edpa", 
-        "N651": "$$aBudy\u0161\u00edn (N\u011bmecko : oblast)$$7ge807051|$$aLitom\u011b\u0159ice (\u010cesko : oblast)$$7ge129847|$$a\u010cesk\u00e1 L\u00edpa (\u010cesko : oblast)$$7ge131693|$$aTerez\u00edn (Litom\u011b\u0159ice, \u010cesko : oblast)$$7ge131067", 
-        "ID": "0"
+        "N651": "$$aBudy\u0161\u00edn (N\u011bmecko : oblast)$$7ge807051|$$aLitom\u011b\u0159ice (\u010cesko : oblast)$$7ge129847|$$a\u010cesk\u00e1 L\u00edpa (\u010cesko : oblast)$$7ge131693|$$aTerez\u00edn (Litom\u011b\u0159ice, \u010cesko : oblast)$$7ge131067"
       }
     }, 
     {
@@ -3892,8 +3798,7 @@
         "N43": "", 
         "N245A": "Insel Selve", 
         "POZNAMKA": "Insel Selve", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3933,8 +3838,7 @@
         "N43": "", 
         "N245A": "Stettin", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -3974,8 +3878,7 @@
         "N43": "", 
         "N245A": "Reczyca", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4015,8 +3918,7 @@
         "N43": "", 
         "N245A": "Katarzy", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4051,13 +3953,12 @@
       "properties": {
         "SCALE": "200000", 
         "SHEET": "4849", 
-        "N80": "null", 
+        "N80": "", 
         "TITLE": "Uman", 
-        "N43": "null", 
+        "N43": "", 
         "N245A": "Uman", 
-        "POZNAMKA": "null", 
-        "N651": "null", 
-        "ID": "500"
+        "POZNAMKA": "", 
+        "N651": ""
       }
     }, 
     {
@@ -4097,8 +3998,7 @@
         "N43": "", 
         "N245A": "Odessa", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4138,8 +4038,7 @@
         "N43": "", 
         "N245A": "Ananiew", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4179,8 +4078,7 @@
         "N43": "", 
         "N245A": "Kijew", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4220,8 +4118,7 @@
         "N43": "", 
         "N245A": "Czernobyl", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4261,8 +4158,7 @@
         "N43": "", 
         "N245A": "Rogaczew", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4302,8 +4198,7 @@
         "N43": "", 
         "N245A": "Glogau", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4343,8 +4238,7 @@
         "N43": "$$ae-hu---$$ae-au---$$ae-xv---$$ae-ci---", 
         "N245A": "Steinamanger, Szombathely", 
         "POZNAMKA": "", 
-        "N651": "$$aSzombathely (Ma\u010farsko : oblast)$$7ge856366", 
-        "ID": "0"
+        "N651": "$$aSzombathely (Ma\u010farsko : oblast)$$7ge856366"
       }
     }, 
     {
@@ -4384,8 +4278,7 @@
         "N43": "$$ae-xr---$$ae-au---", 
         "N245A": "Brno|Br\u00fcnn|Br\u00fcnn (Brno), Br\u00fcnn", 
         "POZNAMKA": "", 
-        "N651": "$$aBrno (\u010cesko : oblast)$$7ge128414", 
-        "ID": "0"
+        "N651": "$$aBrno (\u010cesko : oblast)$$7ge128414"
       }
     }, 
     {
@@ -4425,8 +4318,7 @@
         "N43": "", 
         "N245A": "Kostajnica", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4466,8 +4358,7 @@
         "N43": "$$ae-ci---$$ae-xv---$$ae-hu---", 
         "N245A": "Zagreb, Z\u00e1gr\u00e1b", 
         "POZNAMKA": "", 
-        "N651": "$$aZ\u00e1h\u0159eb (Chorvatsko : oblast)\n$$7ge445597", 
-        "ID": "0"
+        "N651": "$$aZ\u00e1h\u0159eb (Chorvatsko : oblast)\n$$7ge445597"
       }
     }, 
     {
@@ -4507,8 +4398,7 @@
         "N43": "$$ae-au---$$ae-hu---", 
         "N245A": "V\u00edde\u0148|Wien, Becs", 
         "POZNAMKA": "", 
-        "N651": "$$aV\u00edde\u0148 (Rakousko : oblast)$$7ge311468", 
-        "ID": "0"
+        "N651": "$$aV\u00edde\u0148 (Rakousko : oblast)$$7ge311468"
       }
     }, 
     {
@@ -4548,8 +4438,7 @@
         "N43": "", 
         "N245A": "I. Lissa", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4589,8 +4478,7 @@
         "N43": "$$ae-xr---$$ae-pl---", 
         "N245A": "Josefstadt|Josefov|Vysok\u00e9 M\u00fdto|Glatz, Josefstadt", 
         "POZNAMKA": "", 
-        "N651": "$$aJosefov (Jarom\u011b\u0159, \u010cesko : oblast)$$7ge884444|$$aVysok\u00e9 M\u00fdto (\u010cesko : oblast)$$7ge131354|$$aKladsko (Polsko : oblast)$$7ge129579", 
-        "ID": "0"
+        "N651": "$$aJosefov (Jarom\u011b\u0159, \u010cesko : oblast)$$7ge884444|$$aVysok\u00e9 M\u00fdto (\u010cesko : oblast)$$7ge131354|$$aKladsko (Polsko : oblast)$$7ge129579"
       }
     }, 
     {
@@ -4630,8 +4518,7 @@
         "N43": "$$ae-pl---$$ae-xr---", 
         "N245A": "Schweidnitz|Trutnov, Schweidnitz|Trutnov|\u00dapice, Schweidnitz", 
         "POZNAMKA": "Sv\u00eddnice", 
-        "N651": "$$aSv\u00eddnice (Polsko : oblast)$$7ge343761|$$aTrutnov (\u010cesko : oblast)$$7ge131134|$$a\u00dapice (\u010cesko : oblast)$$7ge250326", 
-        "ID": "0"
+        "N651": "$$aSv\u00eddnice (Polsko : oblast)$$7ge343761|$$aTrutnov (\u010cesko : oblast)$$7ge131134|$$a\u00dapice (\u010cesko : oblast)$$7ge250326"
       }
     }, 
     {
@@ -4671,8 +4558,7 @@
         "N43": "$$ae-ci---$$ae-bn---", 
         "N245A": "Spalato, Split", 
         "POZNAMKA": "", 
-        "N651": "$$aSplit (Chorvatsko : oblast)\n$$7ge856365", 
-        "ID": "0"
+        "N651": "$$aSplit (Chorvatsko : oblast)\n$$7ge856365"
       }
     }, 
     {
@@ -4712,8 +4598,7 @@
         "N43": "", 
         "N245A": "Schneidem\u00fchl", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4753,8 +4638,7 @@
         "N43": "", 
         "N245A": "Torgau", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4794,8 +4678,7 @@
         "N43": "$$ae-au---$$ae-it---$$ae-xv---", 
         "N245A": "Hofgastein", 
         "POZNAMKA": "", 
-        "N651": "$$aBad Hofgastein (Rakousko : oblast)$$7ge828358", 
-        "ID": "0"
+        "N651": "$$aBad Hofgastein (Rakousko : oblast)$$7ge828358"
       }
     }, 
     {
@@ -4835,8 +4718,7 @@
         "N43": "$$ae-gx---$$ae-xr---$$ae-au---", 
         "N245A": "Klatovy |Passau|Klatovy, Passau", 
         "POZNAMKA": "", 
-        "N651": "$$aKlatovy (\u010cesko : oblast)$$7ge128500|$$aPasov-oblast (N\u011bmecko)$$7ge114414", 
-        "ID": "0"
+        "N651": "$$aKlatovy (\u010cesko : oblast)$$7ge128500|$$aPasov-oblast (N\u011bmecko)$$7ge114414"
       }
     }, 
     {
@@ -4876,8 +4758,7 @@
         "N43": "", 
         "N245A": "Rovigno", 
         "POZNAMKA": "Rovigno", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4917,8 +4798,7 @@
         "N43": "", 
         "N245A": "Triest", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4958,8 +4838,7 @@
         "N43": "", 
         "N245A": "Salzburg", 
         "POZNAMKA": "Salzburg|Salcpurk", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -4999,8 +4878,7 @@
         "N43": "", 
         "N245A": "Ascoli", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5040,8 +4918,7 @@
         "N43": "$$ae-xr---$$ae-gx---", 
         "N245A": "Pilsen|Plze\u0148|Pilsen (Plze\u0148), Pilsen", 
         "POZNAMKA": "", 
-        "N651": "$$aPlze\u0148 (\u010cesko : oblast)\n$$7ge130440", 
-        "ID": "0"
+        "N651": "$$aPlze\u0148 (\u010cesko : oblast)\n$$7ge130440"
       }
     }, 
     {
@@ -5081,8 +4958,7 @@
         "N43": "$$ae-gx---$$ae-xr---", 
         "N245A": "Dresden|Teplice-\u0160anov, Dresden|Teplice-\u0160anov|Teplice-\u0160anov, Dresden, Dresen", 
         "POZNAMKA": "Dr\u00e1\u017e\u010fany", 
-        "N651": "$$aDr\u00e1\u017e\u010fany (N\u011bmecko : oblast)$$7ge129087|$$aTeplice (\u010cesko : oblast)$$7ge131061", 
-        "ID": "0"
+        "N651": "$$aDr\u00e1\u017e\u010fany (N\u011bmecko : oblast)$$7ge129087|$$aTeplice (\u010cesko : oblast)$$7ge131061"
       }
     }, 
     {
@@ -5122,8 +4998,7 @@
         "N43": "", 
         "N245A": "Ancona", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5163,8 +5038,7 @@
         "N43": "", 
         "N245A": "Berlin", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5204,8 +5078,7 @@
         "N43": "", 
         "N245A": "Wittenberge", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5245,8 +5118,7 @@
         "N43": "$$ae-it---$$ae-au---", 
         "N245A": "Bruneck", 
         "POZNAMKA": "", 
-        "N651": "$$aBrunico (It\u00e1lie : oblast)$$7ge828346", 
-        "ID": "0"
+        "N651": "$$aBrunico (It\u00e1lie : oblast)$$7ge828346"
       }
     }, 
     {
@@ -5286,8 +5158,7 @@
         "N43": "$$ae-gx---$$ae-xr---", 
         "N245A": "Klene\u010d pod \u010cerchovem|Klene\u010d, Regensburg|Klen\u010d\u00ed pod \u010cerchovem|Regensburg|Klene\u010d pod \u010cerchovem, Regensburg", 
         "POZNAMKA": "Klene\u010d p. \u010cerchovem, Regensburg|Klene\u010d p. \u010cerch.", 
-        "N651": "$$aKlen\u010d\u00ed pod \u010cerchovem (\u010cesko : oblast)$$7ge500297|$$a\u0158ezno (N\u011bmecko : oblast)$$7ge391146", 
-        "ID": "0"
+        "N651": "$$aKlen\u010d\u00ed pod \u010cerchovem (\u010cesko : oblast)$$7ge500297|$$a\u0158ezno (N\u011bmecko : oblast)$$7ge391146"
       }
     }, 
     {
@@ -5327,8 +5198,7 @@
         "N43": "", 
         "N245A": "Rom", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5368,8 +5238,7 @@
         "N43": "$$ae-it---", 
         "N245A": "Venedig", 
         "POZNAMKA": "", 
-        "N651": "$$aBen\u00e1tky (It\u00e1lie : oblast)$$7ge182468", 
-        "ID": "0"
+        "N651": "$$aBen\u00e1tky (It\u00e1lie : oblast)$$7ge182468"
       }
     }, 
     {
@@ -5409,8 +5278,7 @@
         "N43": "", 
         "N245A": "Belluno", 
         "POZNAMKA": "Belluno", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5450,8 +5318,7 @@
         "N43": "", 
         "N245A": "Kufstein", 
         "POZNAMKA": "Kufstein", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5491,8 +5358,7 @@
         "N43": "", 
         "N245A": "Perugia", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5532,8 +5398,7 @@
         "N43": "$$ae-gx---$$ae-xr---", 
         "N245A": "Eger|Cheb, Eger", 
         "POZNAMKA": "", 
-        "N651": "$$aCheb (\u010cesko : oblast)$$7ge128921", 
-        "ID": "0"
+        "N651": "$$aCheb (\u010cesko : oblast)$$7ge128921"
       }
     }, 
     {
@@ -5573,8 +5438,7 @@
         "N43": "", 
         "N245A": "Leipzig", 
         "POZNAMKA": "Leipzig", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5614,8 +5478,7 @@
         "N43": "", 
         "N245A": "Ravenna", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5655,8 +5518,7 @@
         "N43": "", 
         "N245A": "Bern", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5696,8 +5558,7 @@
         "N43": "", 
         "N245A": "Strassbourg", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5737,8 +5598,7 @@
         "N43": "", 
         "N245A": "Torino", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5778,8 +5638,7 @@
         "N43": "", 
         "N245A": "Aosta", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5819,8 +5678,7 @@
         "N43": "", 
         "N245A": "Colmar", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5860,8 +5718,7 @@
         "N43": "", 
         "N245A": "Koblenz", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5901,8 +5758,7 @@
         "N43": "", 
         "N245A": "K\u00f6ln", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5942,8 +5798,7 @@
         "N43": "", 
         "N245A": "Nizza", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -5983,8 +5838,7 @@
         "N43": "", 
         "N245A": "Nowogeorgiewsk", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6024,8 +5878,7 @@
         "N43": "", 
         "N245A": "Szolnok", 
         "POZNAMKA": "Szolnok", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6065,8 +5918,7 @@
         "N43": "", 
         "N245A": "Elbasan", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6106,8 +5958,7 @@
         "N43": "$$ae-xo---$$ae-pl---$$ae-hu---", 
         "N245A": "Leutschau|Spi\u0161. N. Ves|Levo\u010da (L\u00f6cse)|Levo\u010da|L\u0151cse|Spi\u0161sk\u00e1 Nov\u00e1 Ves|Spi\u0161sk\u00e1 N. Ves, Locse", 
         "POZNAMKA": "", 
-        "N651": "$$aLevo\u010da (Slovensko : oblast)$$7xx0092932|$$aSpi\u0161sk\u00e1 Nov\u00e1 Ves (Slovensko : oblast)$$7ge784155", 
-        "ID": "0"
+        "N651": "$$aLevo\u010da (Slovensko : oblast)$$7xx0092932|$$aSpi\u0161sk\u00e1 Nov\u00e1 Ves (Slovensko : oblast)$$7ge784155"
       }
     }, 
     {
@@ -6147,8 +5998,7 @@
         "N43": "", 
         "N245A": "Prizren", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6188,8 +6038,7 @@
         "N43": "$$ae-rb---$$ae-rm---", 
         "N245A": "Belgrad, Belgr\u00e1d", 
         "POZNAMKA": "", 
-        "N651": "$$aB\u011blehrad (Srbsko : oblast)$$7ge452990", 
-        "ID": "0"
+        "N651": "$$aB\u011blehrad (Srbsko : oblast)$$7ge452990"
       }
     }, 
     {
@@ -6229,8 +6078,7 @@
         "N43": "$$ae-rb---$$ae-hu---$$ae-rm---", 
         "N245A": "Szegedin, Szeged", 
         "POZNAMKA": "", 
-        "N651": "$$aSzeged (Ma\u010farsko : oblast)$$7ge856405", 
-        "ID": "0"
+        "N651": "$$aSzeged (Ma\u010farsko : oblast)$$7ge856405"
       }
     }, 
     {
@@ -6270,8 +6118,7 @@
         "N43": "$$ae-gr---$$ae-aa---", 
         "N245A": "Korfu (Kerkira), Kerkira (Korfu)", 
         "POZNAMKA": "", 
-        "N651": "$$aKorfu (\u0158ecko : oblast)$$7ge856399", 
-        "ID": "0"
+        "N651": "$$aKorfu (\u0158ecko : oblast)$$7ge856399"
       }
     }, 
     {
@@ -6311,8 +6158,7 @@
         "N43": "$$ae-hu---$$ae-xo---", 
         "N245A": "Miskolcz|Miskolcz (Mi\u0161kovec)|Mi\u0161kovec|Rimavsk\u00e1 Sobota|Rim. Sobota|Rim. Sobota, Miskolcz, Miskolc", 
         "POZNAMKA": "", 
-        "N651": "$$aMiskolc (Ma\u010farsko)$$7ge390948|$$aRimavsk\u00e1 Sobota (Slovensko : oblast)$$7xx0127667", 
-        "ID": "0"
+        "N651": "$$aMiskolc (Ma\u010farsko)$$7ge390948|$$aRimavsk\u00e1 Sobota (Slovensko : oblast)$$7xx0127667"
       }
     }, 
     {
@@ -6352,8 +6198,7 @@
         "N43": "", 
         "N245A": "Preveza", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6393,8 +6238,7 @@
         "N43": "", 
         "N245A": "Novipazar", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6434,8 +6278,7 @@
         "N43": "$$ae-pl---", 
         "N245A": "Krakau|Krakov|Krak\u00f3w, Krakk\u00f3", 
         "POZNAMKA": "", 
-        "N651": "$$aKrakov (Polsko : oblast)$$7ge116258", 
-        "ID": "0"
+        "N651": "$$aKrakov (Polsko : oblast)$$7ge116258"
       }
     }, 
     {
@@ -6475,8 +6318,7 @@
         "N43": "", 
         "N245A": "Kielce", 
         "POZNAMKA": "Kielce", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6516,8 +6358,7 @@
         "N43": "$$ae-rb---", 
         "N245A": "U\u017eice, Uzice", 
         "POZNAMKA": "", 
-        "N651": "$$aU\u017eice (Srbsko : oblast)$$7ge856404", 
-        "ID": "0"
+        "N651": "$$aU\u017eice (Srbsko : oblast)$$7ge856404"
       }
     }, 
     {
@@ -6557,8 +6398,7 @@
         "N43": "$$ae-pl---", 
         "N245A": "M\u0142awa, Miawa", 
         "POZNAMKA": "", 
-        "N651": "$$aM\u0142awa (Polsko : oblast)$$7ge856409", 
-        "ID": "0"
+        "N651": "$$aM\u0142awa (Polsko : oblast)$$7ge856409"
       }
     }, 
     {
@@ -6598,8 +6438,7 @@
         "N43": "", 
         "N245A": "Warschau", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6639,8 +6478,7 @@
         "N43": "", 
         "N245A": "B\u00e9k\u00e9scsaba", 
         "POZNAMKA": "B\u00e9k\u00e9s-Csaba", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6680,8 +6518,7 @@
         "N43": "", 
         "N245A": "Monastir", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6721,8 +6558,7 @@
         "N43": "$$ae-xo---$$ae-pl---$$ae-hu---", 
         "N245A": "Kassa (Kaschau)|Ko\u0161ice|Kaschau, Kassa", 
         "POZNAMKA": "", 
-        "N651": "$$aKo\u0161ice (Slovensko : oblast)$$7ge189287", 
-        "ID": "0"
+        "N651": "$$aKo\u0161ice (Slovensko : oblast)$$7ge189287"
       }
     }, 
     {
@@ -6762,8 +6598,7 @@
         "N43": "", 
         "N245A": "Skopje", 
         "POZNAMKA": "Skoplje", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6803,8 +6638,7 @@
         "N43": "$$ae-rb---$$ae-rm---", 
         "N245A": "Versecz, Versec", 
         "POZNAMKA": "", 
-        "N651": "$$aVr\u0161ac (Srbsko : oblast)$$7ge856415", 
-        "ID": "0"
+        "N651": "$$aVr\u0161ac (Srbsko : oblast)$$7ge856415"
       }
     }, 
     {
@@ -6844,8 +6678,7 @@
         "N43": "", 
         "N245A": "Temesv\u00e1r", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6885,8 +6718,7 @@
         "N43": "", 
         "N245A": "Janina", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -6926,8 +6758,7 @@
         "N43": "$$ae-hu---$$ae-xo---", 
         "N245A": "Cejkov|Debreczen|Debrec\u00edn, Debrecen", 
         "POZNAMKA": "", 
-        "N651": "$$aDebrec\u00edn (Ma\u010farsko : oblast)$$7ge736510|$$aCejkov (Slovensko : oblast)$$7ge828966", 
-        "ID": "0"
+        "N651": "$$aDebrec\u00edn (Ma\u010farsko : oblast)$$7ge736510|$$aCejkov (Slovensko : oblast)$$7ge828966"
       }
     }, 
     {
@@ -6967,8 +6798,7 @@
         "N43": "", 
         "N245A": "Arta", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7008,8 +6838,7 @@
         "N43": "$$ae-kv---$$ae-rb---", 
         "N245A": "Pri\u0161tina, Pristina", 
         "POZNAMKA": "", 
-        "N651": "$$aPri\u0161tina (Kosovo : oblast)$$7ge856412", 
-        "ID": "0"
+        "N651": "$$aPri\u0161tina (Kosovo : oblast)$$7ge856412"
       }
     }, 
     {
@@ -7049,8 +6878,7 @@
         "N43": "$$ae-pl---", 
         "N245A": "Tarn\u00f3w", 
         "POZNAMKA": "Tarnov", 
-        "N651": "$$aTarn\u00f3w (Polsko : oblast)$$7ge214600", 
-        "ID": "0"
+        "N651": "$$aTarn\u00f3w (Polsko : oblast)$$7ge214600"
       }
     }, 
     {
@@ -7090,8 +6918,7 @@
         "N43": "", 
         "N245A": "Radom", 
         "POZNAMKA": "Radom", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7131,8 +6958,7 @@
         "N43": "$$ae-rb---", 
         "N245A": "Kragujevac, Kragujev\u00e1c", 
         "POZNAMKA": "", 
-        "N651": "$$aKragujevac (Srbsko : oblast)$$7ge856414", 
-        "ID": "0"
+        "N651": "$$aKragujevac (Srbsko : oblast)$$7ge856414"
       }
     }, 
     {
@@ -7172,8 +6998,7 @@
         "N43": "$$ae-pl---", 
         "N245A": "Ostro\u0142\u0119ka, Ostroleka", 
         "POZNAMKA": "", 
-        "N651": "$$aOstro\u0142\u0119ka (Polsko : oblast)$$7ge856417", 
-        "ID": "0"
+        "N651": "$$aOstro\u0142\u0119ka (Polsko : oblast)$$7ge856417"
       }
     }, 
     {
@@ -7213,8 +7038,7 @@
         "N43": "", 
         "N245A": "Braunschweig", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7254,8 +7078,7 @@
         "N43": "$$ae-it---$$ae-sz---$$ae-au---$$ae-gx---", 
         "N245A": "Glurns, Glorenza", 
         "POZNAMKA": "", 
-        "N651": "$$aGlorenza (It\u00e1lie : oblast)$$7ge856344", 
-        "ID": "0"
+        "N651": "$$aGlorenza (It\u00e1lie : oblast)$$7ge856344"
       }
     }, 
     {
@@ -7295,8 +7118,7 @@
         "N43": "", 
         "N245A": "Ansbach", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7336,8 +7158,7 @@
         "N43": "$$ae-it---", 
         "N245A": "Mantua, Mantova", 
         "POZNAMKA": "", 
-        "N651": "$$aMantova (It\u00e1lie : oblast)$$7ge671384", 
-        "ID": "0"
+        "N651": "$$aMantova (It\u00e1lie : oblast)$$7ge671384"
       }
     }, 
     {
@@ -7377,8 +7198,7 @@
         "N43": "$$ae-it---$$ae-sz---", 
         "N245A": "Sondrio", 
         "POZNAMKA": "", 
-        "N651": "$$aSondrio (It\u00e1lie : oblast)$$7ge856197", 
-        "ID": "0"
+        "N651": "$$aSondrio (It\u00e1lie : oblast)$$7ge856197"
       }
     }, 
     {
@@ -7418,8 +7238,7 @@
         "N43": "", 
         "N245A": "Ulm", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7459,8 +7278,7 @@
         "N43": "", 
         "N245A": "Elba Island", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7500,8 +7318,7 @@
         "N43": "", 
         "N245A": "W\u00fcrzburg", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7541,8 +7358,7 @@
         "N43": "", 
         "N245A": "Meiningen", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7582,8 +7398,7 @@
         "N43": "", 
         "N245A": "Livorno", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7623,8 +7438,7 @@
         "N43": "", 
         "N245A": "Mozyr", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7664,8 +7478,7 @@
         "N43": "", 
         "N245A": "Bendery", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7705,8 +7518,7 @@
         "N43": "", 
         "N245A": "Konstantinopel", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7746,8 +7558,7 @@
         "N43": "", 
         "N245A": "Braclaw", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7787,8 +7598,7 @@
         "N43": "", 
         "N245A": "Sulina", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7828,8 +7638,7 @@
         "N43": "", 
         "N245A": "Tatar Bunar", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7869,8 +7678,7 @@
         "N43": "", 
         "N245A": "Balta", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7910,8 +7718,7 @@
         "N43": "", 
         "N245A": "Skwira", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7951,8 +7758,7 @@
         "N43": "", 
         "N245A": "Chabnoje", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -7992,8 +7798,7 @@
         "N43": "", 
         "N245A": "Bobrujsk", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8033,8 +7838,7 @@
         "N43": "", 
         "N245A": "Kobrin", 
         "POZNAMKA": "Kobrin", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8074,8 +7878,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "Bistrita|Bestercze (Bistritz), Beszterce", 
         "POZNAMKA": "Besztercze|Besztercze Rodnahegyseg", 
-        "N651": "$$aBistri\u0163a (Rumunsko : oblast)$$7ge856654", 
-        "ID": "0"
+        "N651": "$$aBistri\u0163a (Rumunsko : oblast)$$7ge856654"
       }
     }, 
     {
@@ -8115,8 +7918,7 @@
         "N43": "", 
         "N245A": "Kavala", 
         "POZNAMKA": "Kavala", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8156,8 +7958,7 @@
         "N43": "$$ae-un---", 
         "N245A": "Stanislau|Stanis\u0142aw\u00f3w|Stanislavov|Stanislaw\u00f3w, Ivanovo Frankijszk", 
         "POZNAMKA": "", 
-        "N651": "$$aIvano-Frankivsk (Ukrajina : oblast)$$7ge476209", 
-        "ID": "0"
+        "N651": "$$aIvano-Frankivsk (Ukrajina : oblast)$$7ge476209"
       }
     }, 
     {
@@ -8197,8 +7998,7 @@
         "N43": "$$ae-bu---$$ae-gr---", 
         "N245A": "Plovdiv (Philippopel), Philippopel", 
         "POZNAMKA": "", 
-        "N651": "$$aPlovdiv (Bulharsko : oblast)$$7ge723127", 
-        "ID": "0"
+        "N651": "$$aPlovdiv (Bulharsko : oblast)$$7ge723127"
       }
     }, 
     {
@@ -8238,8 +8038,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "R\u00e2mnicu-V\u00e2lcea, Ramnicu Valcea", 
         "POZNAMKA": "Rimnik", 
-        "N651": "$$aR\u00e2mnicu-V\u00e2lcea (Rumunsko : oblast)$$7ge856648", 
-        "ID": "0"
+        "N651": "$$aR\u00e2mnicu-V\u00e2lcea (Rumunsko : oblast)$$7ge856648"
       }
     }, 
     {
@@ -8279,8 +8078,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "Sibiu (Hermannstadt)|Nagy-Szeben (Hermannstadt)\n, Nagyszeben", 
         "POZNAMKA": "", 
-        "N651": "$$aSibiu (Rumunsko : oblast)$$7ge332458", 
-        "ID": "0"
+        "N651": "$$aSibiu (Rumunsko : oblast)$$7ge332458"
       }
     }, 
     {
@@ -8320,8 +8118,7 @@
         "N43": "", 
         "N245A": "Athos", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8361,8 +8158,7 @@
         "N43": "$$ae-un---$$ae-rm---", 
         "N245A": "M\u00e1ramaros-Sziget|Maramoros-Sziget|Marmaro\u0161 Siho\u0165|Rahovo a Sighetul Maram|Rachov|Rachov, Sighet, M\u00e1ramarossziget", 
         "POZNAMKA": "Rahovo, Maramure\u0219ului|Rahovo", 
-        "N651": "$$aMarmaro\u0161sk\u00e1 Siho\u0165 (Rumunsko : oblast)$$7ge784176|$$aRachov (Ukrajina : oblast)$$7ge828865", 
-        "ID": "0"
+        "N651": "$$aMarmaro\u0161sk\u00e1 Siho\u0165 (Rumunsko : oblast)$$7ge784176|$$aRachov (Ukrajina : oblast)$$7ge828865"
       }
     }, 
     {
@@ -8402,8 +8198,7 @@
         "N43": "", 
         "N245A": "Szk\u00edrosz", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8443,8 +8238,7 @@
         "N43": "$$ae-bu---", 
         "N245A": "Pleven (Plevna), Plevna", 
         "POZNAMKA": "", 
-        "N651": "$$aPleven (Bulharsko : oblast)$$7ge856643", 
-        "ID": "0"
+        "N651": "$$aPleven (Bulharsko : oblast)$$7ge856643"
       }
     }, 
     {
@@ -8484,8 +8278,7 @@
         "N43": "$$ae-un---$$ae-pl---", 
         "N245A": "Lemberk, Lemberg", 
         "POZNAMKA": "Lemberg", 
-        "N651": "$$aLvov (Ukrajina : oblast)$$7ge341443", 
-        "ID": "0"
+        "N651": "$$aLvov (Ukrajina : oblast)$$7ge341443"
       }
     }, 
     {
@@ -8525,8 +8318,7 @@
         "N43": "$$ae-un---$$ae-pl---", 
         "N245A": "Kowel", 
         "POZNAMKA": "", 
-        "N651": "$$aKovel\u2019 (Ukrajina : oblast)$$7ge251173", 
-        "ID": "0"
+        "N651": "$$aKovel\u2019 (Ukrajina : oblast)$$7ge251173"
       }
     }, 
     {
@@ -8566,8 +8358,7 @@
         "N43": "", 
         "N245A": "Slatina", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8607,8 +8398,7 @@
         "N43": "", 
         "N245A": "Wolkowisk", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8648,8 +8438,7 @@
         "N43": "", 
         "N245A": "Chur", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8689,8 +8478,7 @@
         "N43": "", 
         "N245A": "Stuttgart", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8730,8 +8518,7 @@
         "N43": "$$ae-it---$$ae-sz---", 
         "N245A": "Mailand, Milano", 
         "POZNAMKA": "", 
-        "N651": "$$aMil\u00e1n (It\u00e1lie : oblast)$$7ge392508", 
-        "ID": "0"
+        "N651": "$$aMil\u00e1n (It\u00e1lie : oblast)$$7ge392508"
       }
     }, 
     {
@@ -8771,8 +8558,7 @@
         "N43": "", 
         "N245A": "Como", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8812,8 +8598,7 @@
         "N43": "", 
         "N245A": "Konstanz", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8853,8 +8638,7 @@
         "N43": "", 
         "N245A": "Aschaffenburg", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8894,8 +8678,7 @@
         "N43": "", 
         "N245A": "Kassel", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -8935,8 +8718,7 @@
         "N43": "$$ae-it---", 
         "N245A": "Genua, Genova", 
         "POZNAMKA": "", 
-        "N651": "$$aJanov (It\u00e1lie : oblast)$$7ge418801", 
-        "ID": "0"
+        "N651": "$$aJanov (It\u00e1lie : oblast)$$7ge418801"
       }
     }, 
     {
@@ -8976,8 +8758,7 @@
         "N43": "", 
         "N245A": "Pinsk", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9017,8 +8798,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "Piatra, Kar\u00e1csonko", 
         "POZNAMKA": "", 
-        "N651": "$$aPiatra Neam\u021b (Rumunsko : oblast)$$7ge856679", 
-        "ID": "0"
+        "N651": "$$aPiatra Neam\u021b (Rumunsko : oblast)$$7ge856679"
       }
     }, 
     {
@@ -9058,8 +8838,7 @@
         "N43": "", 
         "N245A": "Dimotika", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9099,8 +8878,7 @@
         "N43": "$$ae-un---", 
         "N245A": "Husiatyn", 
         "POZNAMKA": "", 
-        "N651": "$$aHusiatyn (Ukrajina : oblast)$$7ge828856", 
-        "ID": "0"
+        "N651": "$$aHusiatyn (Ukrajina : oblast)$$7ge828856"
       }
     }, 
     {
@@ -9140,8 +8918,7 @@
         "N43": "", 
         "N245A": "Adrianopel", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9181,8 +8958,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "Ploe\u0219ti, Ploiesti", 
         "POZNAMKA": "", 
-        "N651": "$$aPloies\u0326ti (Rumunsko : oblast)$$7ge856672", 
-        "ID": "0"
+        "N651": "$$aPloies\u0326ti (Rumunsko : oblast)$$7ge856672"
       }
     }, 
     {
@@ -9222,8 +8998,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "K\u00e9zdi-V\u00e1s\u00e1rhely, K\u00e9zdiv\u00e1s\u00e1rhely", 
         "POZNAMKA": "", 
-        "N651": "$$aT\u00e2rgu Secuiesc (Rumunsko : oblast)$$7ge856675", 
-        "ID": "0"
+        "N651": "$$aT\u00e2rgu Secuiesc (Rumunsko : oblast)$$7ge856675"
       }
     }, 
     {
@@ -9263,8 +9038,7 @@
         "N43": "", 
         "N245A": "Gelibolu", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9304,8 +9078,7 @@
         "N43": "$$ae-rm---$$ae-un---$$ae-mv---", 
         "N245A": "Czernowitz, Csernyivici", 
         "POZNAMKA": "", 
-        "N651": "$$a\u010cern\u00ecvc\u00ec (Ukrajina : oblast)$$7ge828845", 
-        "ID": "0"
+        "N651": "$$a\u010cern\u00ecvc\u00ec (Ukrajina : oblast)$$7ge828845"
       }
     }, 
     {
@@ -9345,8 +9118,7 @@
         "N43": "$$ae-bu---", 
         "N245A": "Sliven (Slivno), Slivno", 
         "POZNAMKA": "", 
-        "N651": "$$aSliven (Bulharsko : oblast)$$7ge856668", 
-        "ID": "0"
+        "N651": "$$aSliven (Bulharsko : oblast)$$7ge856668"
       }
     }, 
     {
@@ -9386,8 +9158,7 @@
         "N43": "$$ae-un---", 
         "N245A": "Ostrog", 
         "POZNAMKA": "", 
-        "N651": "$$aOstrih (Ukrajina : oblast)$$7ge828847", 
-        "ID": "0"
+        "N651": "$$aOstrih (Ukrajina : oblast)$$7ge828847"
       }
     }, 
     {
@@ -9427,8 +9198,7 @@
         "N43": "", 
         "N245A": "Rowno", 
         "POZNAMKA": "Rowno", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9468,8 +9238,7 @@
         "N43": "$$ae-rm---$$ae-bu---", 
         "N245A": "Bukure\u0219ti (Bukarest), Bukarest", 
         "POZNAMKA": "", 
-        "N651": "$$aBukure\u0161\u0165 (Rumunsko : oblast)$$7ge856669", 
-        "ID": "0"
+        "N651": "$$aBukure\u0161\u0165 (Rumunsko : oblast)$$7ge856669"
       }
     }, 
     {
@@ -9509,8 +9278,7 @@
         "N43": "", 
         "N245A": "Nieswiez", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9550,8 +9318,7 @@
         "N43": "", 
         "N245A": "Turow", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9591,8 +9358,7 @@
         "N43": "", 
         "N245A": "Iasi", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9632,8 +9398,7 @@
         "N43": "", 
         "N245A": "Rodosto", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9673,8 +9438,7 @@
         "N43": "", 
         "N245A": "Proskurow", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9714,8 +9478,7 @@
         "N43": "", 
         "N245A": "Burgas", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9755,8 +9518,7 @@
         "N43": "", 
         "N245A": "Buzau", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9796,8 +9558,7 @@
         "N43": "", 
         "N245A": "Focsany", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9837,8 +9598,7 @@
         "N43": "", 
         "N245A": "Mogilew", 
         "POZNAMKA": "Mogilew", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -9878,8 +9638,7 @@
         "N43": "$$ae-bu---", 
         "N245A": "\u0160umen (\u0160umla), Sumla", 
         "POZNAMKA": "", 
-        "N651": "$$a\u0160umen (Bulharsko : oblast)$$7ge746648", 
-        "ID": "0"
+        "N651": "$$a\u0160umen (Bulharsko : oblast)$$7ge746648"
       }
     }, 
     {
@@ -9919,8 +9678,7 @@
         "N43": "$$ae-un---", 
         "N245A": "Starokonstantyn\u00f3w, Starokonstantynow", 
         "POZNAMKA": "Starokonstantynow", 
-        "N651": "$$aStarokonstjantyn\u00ecv (Ukrajina : oblast)$$7ge856682", 
-        "ID": "0"
+        "N651": "$$aStarokonstjantyn\u00ecv (Ukrajina : oblast)$$7ge856682"
       }
     }, 
     {
@@ -9960,8 +9718,7 @@
         "N43": "", 
         "N245A": "Rokitno", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10001,8 +9758,7 @@
         "N43": "", 
         "N245A": "Silistra", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10042,8 +9798,7 @@
         "N43": "", 
         "N245A": "Sluck", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10083,8 +9838,7 @@
         "N43": "", 
         "N245A": "Kalisz", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10124,8 +9878,7 @@
         "N43": "", 
         "N245A": "Sz\u00e9kesfeh\u00e9rv\u00e1r", 
         "POZNAMKA": "Sz\u00e9kesfeh\u00e9rv\u00e1r, Stoln\u00fd B\u011blehrad|Stoli\u010dn\u00fd B\u011blehrad", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10165,8 +9918,7 @@
         "N43": "$$ae-xo---$$ae-xr---", 
         "N245A": "Tren\u010d\u00edn|Trentschin|Trentschin (Tren\u010d\u00edn)|\u017dilina, Tren\u010d\u00edn, Trencs\u00e9n", 
         "POZNAMKA": "", 
-        "N651": "$$aTren\u010d\u00edn (Slovensko : oblast)$$7ge301093|$$a\u017dilina (Slovensko : oblast)$$7ge131618", 
-        "ID": "0"
+        "N651": "$$aTren\u010d\u00edn (Slovensko : oblast)$$7ge301093|$$a\u017dilina (Slovensko : oblast)$$7ge131618"
       }
     }, 
     {
@@ -10206,8 +9958,7 @@
         "N43": "", 
         "N245A": "Cattaro", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10247,8 +9998,7 @@
         "N43": "$$ae-bn---$$ae-ci---", 
         "N245A": "Brod, Br\u00f3d", 
         "POZNAMKA": "", 
-        "N651": "$$aSlavonski Brod (Chorvatsko : oblast)$$7ge516044", 
-        "ID": "0"
+        "N651": "$$aSlavonski Brod (Chorvatsko : oblast)$$7ge516044"
       }
     }, 
     {
@@ -10288,8 +10038,7 @@
         "N43": "$$ae-hu---$$ae-ci---", 
         "N245A": "F\u00fcnfkirchen, P\u00e9cs", 
         "POZNAMKA": "", 
-        "N651": "$$aP\u00e9cs (Ma\u010farsko : oblast)$$7ge856379", 
-        "ID": "0"
+        "N651": "$$aP\u00e9cs (Ma\u010farsko : oblast)$$7ge856379"
       }
     }, 
     {
@@ -10329,8 +10078,7 @@
         "N43": "$$ae-xo---$$ae-hu---", 
         "N245A": "Kom\u00e1rno|Komorn|Kom\u00e1rom, Kom\u00e1rom", 
         "POZNAMKA": "", 
-        "N651": "$$aKom\u00e1rno (Slovensko : oblast)$$7ge831948", 
-        "ID": "0"
+        "N651": "$$aKom\u00e1rno (Slovensko : oblast)$$7ge831948"
       }
     }, 
     {
@@ -10370,8 +10118,7 @@
         "N43": "", 
         "N245A": "Ragusa", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10411,8 +10158,7 @@
         "N43": "$$ae-pl---$$ae-xr---$$ae-xo---", 
         "N245A": "Ostrava|Troppau|Mor. Ostrava|Opava|M\u00e4hr. Ostrau (Mor. Ostrava)|Moravsk\u00e1 Ostrava, Opava", 
         "POZNAMKA": "", 
-        "N651": "$$aOstrava (\u010cesko : oblast)$$7ge130341|$$aOpava (\u010cesko : oblast)$$7ge128535|$$aMoravsk\u00e1 Ostrava (Ostrava, \u010cesko : oblast)$$7ge828501", 
-        "ID": "0"
+        "N651": "$$aOstrava (\u010cesko : oblast)$$7ge130341|$$aOpava (\u010cesko : oblast)$$7ge128535|$$aMoravsk\u00e1 Ostrava (Ostrava, \u010cesko : oblast)$$7ge828501"
       }
     }, 
     {
@@ -10452,8 +10198,7 @@
         "N43": "", 
         "N245A": "Oppeln", 
         "POZNAMKA": "Oppeln|Opol\u00ed", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10493,8 +10238,7 @@
         "N43": "$$ae-bn---", 
         "N245A": "Sarajevo, Szarajev\u00f3", 
         "POZNAMKA": "", 
-        "N651": "$$aSarajevo (Bosna a Hercegovina : oblast)$$7ge856376", 
-        "ID": "0"
+        "N651": "$$aSarajevo (Bosna a Hercegovina : oblast)$$7ge856376"
       }
     }, 
     {
@@ -10534,8 +10278,7 @@
         "N43": "", 
         "N245A": "Thorn", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10575,8 +10318,7 @@
         "N43": "", 
         "N245A": "Krosno", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10616,8 +10358,7 @@
         "N43": "", 
         "N245A": "Graz", 
         "POZNAMKA": "Graz", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10657,8 +10398,7 @@
         "N43": "$$ae-xr---$$ae-au---", 
         "N245A": "Iglau|Jihlava|Iglau (Jihlava), Iglau", 
         "POZNAMKA": "", 
-        "N651": "$$aJihlava (\u010cesko : oblast)$$7ge129470", 
-        "ID": "0"
+        "N651": "$$aJihlava (\u010cesko : oblast)$$7ge129470"
       }
     }, 
     {
@@ -10698,8 +10438,7 @@
         "N43": "$$ae-ci---$$ae-xv---$$ae-bn---", 
         "N245A": "Senj, Zengg", 
         "POZNAMKA": "", 
-        "N651": "$$aSenj (Chorvatsko : oblast)\n$$7ge856358", 
-        "ID": "0"
+        "N651": "$$aSenj (Chorvatsko : oblast)\n$$7ge856358"
       }
     }, 
     {
@@ -10739,8 +10478,7 @@
         "N43": "$$ae-xv---$$ae-ci---", 
         "N245A": "Cilli, Celje", 
         "POZNAMKA": "", 
-        "N651": "$$aCelje (Slovinsko : oblast)\n$$7ge856361", 
-        "ID": "0"
+        "N651": "$$aCelje (Slovinsko : oblast)\n$$7ge856361"
       }
     }, 
     {
@@ -10780,8 +10518,7 @@
         "N43": "$$ae-au---", 
         "N245A": "Skt. P\u00f6lten, St. P\u00f6lten", 
         "POZNAMKA": "St. P\u00f6lten|Sv. Hipolyt", 
-        "N651": "$$aSankt P\u00f6lten (Rakousko : oblast)$$7ge856363", 
-        "ID": "0"
+        "N651": "$$aSankt P\u00f6lten (Rakousko : oblast)$$7ge856363"
       }
     }, 
     {
@@ -10821,8 +10558,7 @@
         "N43": "$$ae-xr---", 
         "N245A": "Kolin|Kol\u00edn|Kolin (Kol\u00edn), Kolin", 
         "POZNAMKA": "", 
-        "N651": "$$aKol\u00edn (\u010cesko : oblast)$$7ge129621", 
-        "ID": "0"
+        "N651": "$$aKol\u00edn (\u010cesko : oblast)$$7ge129621"
       }
     }, 
     {
@@ -10862,8 +10598,7 @@
         "N43": "$$ae-pl---$$ae-xr---$$ae-gx---", 
         "N245A": "Liberec|Reichenberg|Turnov, Reichenbach", 
         "POZNAMKA": "Liberec, G\u00f6rlitz", 
-        "N651": "$$aLiberec (\u010cesko : oblast)$$7ge129801|$$aTurnov (\u010cesko : oblast)$$7ge131147\n", 
-        "ID": "0"
+        "N651": "$$aLiberec (\u010cesko : oblast)$$7ge129801|$$aTurnov (\u010cesko : oblast)$$7ge131147\n"
       }
     }, 
     {
@@ -10903,8 +10638,7 @@
         "N43": "$$ae-ci---", 
         "N245A": "Zara, Z\u00e1ra", 
         "POZNAMKA": "", 
-        "N651": "$$aZadar (Chorvatsko : oblast)\n$$7xx0160293", 
-        "ID": "0"
+        "N651": "$$aZadar (Chorvatsko : oblast)\n$$7xx0160293"
       }
     }, 
     {
@@ -10944,8 +10678,7 @@
         "N43": "", 
         "N245A": "Landsberg", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -10985,8 +10718,7 @@
         "N43": "", 
         "N245A": "Brest Litowsk", 
         "POZNAMKA": "Brest-Litowsk", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -11026,8 +10758,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "Cluj|Kolozsv\u00e1r (Klausenburg), Koloszv\u00e1r", 
         "POZNAMKA": "Klu\u017e", 
-        "N651": "$$aCluj-Napoca (Rumunsko : oblast)$$7ge856442", 
-        "ID": "0"
+        "N651": "$$aCluj-Napoca (Rumunsko : oblast)$$7ge856442"
       }
     }, 
     {
@@ -11067,8 +10798,7 @@
         "N43": "", 
         "N245A": "Saloniki", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -11108,8 +10838,7 @@
         "N43": "$$ae-un---$$ae-pl---", 
         "N245A": "Turka|Svaljava, Turka|Svalava, Drohobycz|Svalava, Turka", 
         "POZNAMKA": "", 
-        "N651": "$$aTurka (Ukrajina : oblast)$$7ge805260|$$aSvaljava (Ukrajina : oblast)$$7ge828877|$$aDrohoby\u010d (Ukrajina : oblast)$$7ge560284", 
-        "ID": "0"
+        "N651": "$$aTurka (Ukrajina : oblast)$$7ge805260|$$aSvaljava (Ukrajina : oblast)$$7ge828877|$$aDrohoby\u010d (Ukrajina : oblast)$$7ge560284"
       }
     }, 
     {
@@ -11149,8 +10878,7 @@
         "N43": "$$ae-bu---$$ae-xn---", 
         "N245A": "D\u017eumaja, Dzumaja", 
         "POZNAMKA": "", 
-        "N651": "$$aBlagoevgrad (Bulharsko : oblast)$$7ge856424", 
-        "ID": "0"
+        "N651": "$$aBlagoevgrad (Bulharsko : oblast)$$7ge856424"
       }
     }, 
     {
@@ -11190,8 +10918,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "T\u00e2rgu-Jiu, Zsilv\u00e1s\u00e1rhely", 
         "POZNAMKA": "", 
-        "N651": "$$aT\u00e2rgu Jiu (Rumunsko : oblast)$$7ge856440", 
-        "ID": "0"
+        "N651": "$$aT\u00e2rgu Jiu (Rumunsko : oblast)$$7ge856440"
       }
     }, 
     {
@@ -11231,8 +10958,7 @@
         "N43": "$$ae-rm---", 
         "N245A": "Gyula-Feh\u00e9rv\u00e1r (Karlsburg), Gyulafeh\u00e9rv\u00e1r", 
         "POZNAMKA": "", 
-        "N651": "$$aAlba Iulia (Rumunsko : oblast)$$7ge856441", 
-        "ID": "0"
+        "N651": "$$aAlba Iulia (Rumunsko : oblast)$$7ge856441"
       }
     }, 
     {
@@ -11272,8 +10998,7 @@
         "N43": "", 
         "N245A": "Chalkidike", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -11313,8 +11038,7 @@
         "N43": "$$ae-rm---$$ae-un---$$ae-hu---", 
         "N245A": "Sz\u00e1tm\u00e1r-N\u00e9meti|Szatm\u00e1r-N\u00e9meti|Hust\u00e9, S\u0103tmar|Chust, S\u0103tmar|Chust, Szatm\u00e1rn\u00e9meti", 
         "POZNAMKA": "Szatmar Nemeti|Hust\u00e9", 
-        "N651": "$$aSatu-Mare (Rumunsko : oblast)$$7ge270578|$$aChust (Ukrajina : oblast)$$7ge828869", 
-        "ID": "0"
+        "N651": "$$aSatu-Mare (Rumunsko : oblast)$$7ge270578|$$aChust (Ukrajina : oblast)$$7ge828869"
       }
     }, 
     {
@@ -11354,8 +11078,7 @@
         "N43": "", 
         "N245A": "V\u00f3losz", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -11395,8 +11118,7 @@
         "N43": "", 
         "N245A": "Sofia", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -11436,8 +11158,7 @@
         "N43": "$$ae-un---$$ae-pl---", 
         "N245A": "Sambor", 
         "POZNAMKA": "", 
-        "N651": "$$aSambir (Ukrajina : oblast)$$7ge828834", 
-        "ID": "0"
+        "N651": "$$aSambir (Ukrajina : oblast)$$7ge828834"
       }
     }, 
     {
@@ -11477,8 +11198,7 @@
         "N43": "$$ae-pl---$$ae-un---$$ae-bw---", 
         "N245A": "Zamo\u015b\u0107, Zamosc", 
         "POZNAMKA": "", 
-        "N651": "$$aZamo\u015b\u0107 (Polsko : oblast)$$7ge828836", 
-        "ID": "0"
+        "N651": "$$aZamo\u015b\u0107 (Polsko : oblast)$$7ge828836"
       }
     }, 
     {
@@ -11518,8 +11238,7 @@
         "N43": "", 
         "N245A": "", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }, 
     {
@@ -11559,8 +11278,7 @@
         "N43": "", 
         "N245A": "", 
         "POZNAMKA": "", 
-        "N651": "", 
-        "ID": "0"
+        "N651": ""
       }
     }
   ]
