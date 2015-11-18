@@ -4,6 +4,7 @@ import cz.mzk.settings.Settings;
 import it.geosolutions.geoserver.rest.GeoServerRESTManager;
 import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
 import it.geosolutions.geoserver.rest.GeoServerRESTReader;
+import it.geosolutions.geoserver.rest.decoder.RESTDataStoreList;
 import it.geosolutions.geoserver.rest.decoder.RESTLayerList;
 import it.geosolutions.geoserver.rest.decoder.utils.NameLinkElem;
 import it.geosolutions.geoserver.rest.encoder.GSLayerEncoder;
@@ -60,10 +61,6 @@ public class GeoServer {
     private static GSAbstractDatastoreEncoder getDataStoreEncoder(String shapeFile) throws MalformedURLException {
         File shpDir = new File(settings.getGeoServerDataDir(), settings.getGeoServerWorkspace());
         File shpFile = new File(shpDir, shapeFile + ".shp");
-//        URL url = new File(settings.getGeoServerDataDir()).toURI().relativize(shpFile.toURI()).toURL();
-//        logger.info(new File(settings.getGeoServerDataDir()).toURI().toString());
-//        logger.info(shpFile.toString());
-//        logger.info(url.toString());
         GSShapefileDatastoreEncoder datastore = new GSShapefileDatastoreEncoder(shapeFile, shpFile.toURI().toURL());
         datastore.setCharset(Charset.forName("UTF-8"));
         return datastore;
@@ -74,13 +71,18 @@ public class GeoServer {
         GeoServerRESTPublisher publisher = manager.getPublisher();
         GeoServerRESTStoreManager storeManager = manager.getStoreManager();
         RESTLayerList layers = reader.getLayers();
-        for (NameLinkElem layer : layers) {
-            String layerName = layer.getName();
-            publisher.unpublishFeatureType(workspace, layerName, layerName);
+        if (layers != null) {
+            for (NameLinkElem layer : layers) {
+                String layerName = layer.getName();
+                publisher.unpublishFeatureType(workspace, layerName, layerName);
+            }
         }
-        for (NameLinkElem dataStore : reader.getDatastores(workspace)) {
-            String dataStoreName = dataStore.getName();
-            storeManager.remove(workspace, getDataStoreEncoder(dataStoreName), false);
+        RESTDataStoreList datastores = reader.getDatastores(workspace);
+        if (datastores != null) {
+            for (NameLinkElem dataStore : datastores) {
+                String dataStoreName = dataStore.getName();
+                storeManager.remove(workspace, getDataStoreEncoder(dataStoreName), false);
+            }
         }
     }
 
