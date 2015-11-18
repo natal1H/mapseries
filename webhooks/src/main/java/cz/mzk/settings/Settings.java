@@ -48,8 +48,24 @@ public class Settings {
         return get("remote.repo", "https://github.com/moravianlibrary/mapseries.git");
     }
 
-    public String getShapeFileDir() {
-        return get("shapefile.dir", "/tmp/shapefile");
+    public String getGeoServerUrl() {
+        return get("geoserver.url", "http://mapseries.georeferencer.org/geoserver");
+    }
+
+    public String getGeoServerUsername() {
+        return get("geoserver.username", "");
+    }
+
+    public String getGeoServerPassword() {
+        return get("geoserver.password", "");
+    }
+
+    public String getGeoServerDataDir() {
+        return get("geoserver.data.dir", "/tmp");
+    }
+
+    public String getGeoServerWorkspace() {
+        return get("geoserver.workspace", "mapseries");
     }
 
 }

@@ -1,6 +1,7 @@
 package cz.mzk.webhooks;
 
 import cz.mzk.tools.FormatTransformer;
+import cz.mzk.tools.GeoServer;
 import cz.mzk.tools.Github;
 
 import javax.ws.rs.POST;
@@ -16,5 +17,6 @@ public class PushWebHook {
 
         FormatTransformer.transform();
 
+        GeoServer.registerShapefiles();
     }
 }
