@@ -47,7 +47,7 @@ ms.Loader.prototype.loadSeries = function(objSeries) {
       ser.template = tempreq.getResponseText();
     }
   });
-  tempreq.send('templates/' +
+  tempreq.send('https://raw.githubusercontent.com/moravianlibrary/mapseries-data/master/template/' +
       objSeries['template'], 'GET');
 
   return ser;
