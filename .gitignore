@@ -1,7 +1,7 @@
-/bower_components/
-/node_modules/
-/client/public/
-/nbproject/private/
+/view/bower_components/
+/view/node_modules/
+/view/client/public/
+/view/nbproject/private/
 /webhooks/.idea
 /webhooks/webhooks.iml
 /webhooks/target
