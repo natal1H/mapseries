@@ -32,9 +32,9 @@
     "uselessCode": "ERROR",
     "visibility": "ERROR"
   },
-  
+
   "closure-library": "../../bower_components/closure-library/closure/goog",
-  
+
   "css-allowed-unrecognized-properties": [
     "user-select"
   ],
@@ -43,10 +43,10 @@
   ],
 
   "css-output-file": "../public/mapseries.css",
-  
+
 
   "define": {
-    "goog.DEBUG": false,
+    "goog.DEBUG": true,
     "goog.LOCALE": "cs",
     "goog.asserts.ENABLE_ASSERTS": false,
     "goog.dom.ASSUME_STANDARDS_MODE": true
@@ -60,7 +60,7 @@
 
 
   "externs": [
-    "//google_maps_api_v3.js",
+    "//externs/maps/google_maps_api_v3.js",
     "externs/mapseries.js",
     "../../bower_components/closure-externs/src/openlayers2.js",
     "../../bower_components/closure-externs/src/zeroclipboard.js"
@@ -73,7 +73,9 @@
   "level": "VERBOSE",
 
   "mode": "ADVANCED",
-  
+
+  "pretty-print": true,
+
   "name-suffixes-to-strip": [
     "logger",
     "logger_"
@@ -82,7 +84,7 @@
   "paths": [
     "js"
   ],
-  
+
   "treat-warnings-as-errors": true,
 
   "type-prefixes-to-strip": [
@@ -121,6 +123,8 @@
     "goog.debug.normalizeErrorObject",
     "goog.debug.reflect",
     "goog.log"
-  ]
+  ],
+
+  "output-wrapper": "(function(){\"use strict\";%output%}).call(this)"
 
 }

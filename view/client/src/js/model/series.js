@@ -9,6 +9,12 @@ goog.provide('ms.Series');
 ms.Series = function() {
 
   /**
+   * ID
+   * @type {number}
+   */
+  this.id;
+
+  /**
    * Title.
    * @type {string}
    */

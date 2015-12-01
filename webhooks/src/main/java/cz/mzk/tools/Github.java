@@ -1,18 +1,18 @@
 package cz.mzk.tools;
 
-import cz.mzk.settings.Settings;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.*;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 public class Github {
 
-    public static final Logger logger = Logger.getLogger(Github.class.getName());
+    public static final Logger logger = LoggerFactory.getLogger(Github.class);
 
     private static final Settings settings = Settings.getInstance();
 
@@ -47,11 +47,11 @@ public class Github {
                     .call();
             logger.info("Cloning succesffuly done.");
         } catch (InvalidRemoteException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (TransportException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (GitAPIException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } finally {
             if (result != null) {
                 result.getRepository().close();
@@ -69,25 +69,25 @@ public class Github {
             git.pull().call();
             logger.info("Pulling succesffuly done.");
         } catch (IOException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (DetachedHeadException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (NoHeadException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (TransportException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (InvalidConfigurationException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (InvalidRemoteException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (CanceledException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (WrongRepositoryStateException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (RefNotFoundException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } catch (GitAPIException e) {
-            logger.severe(e.getMessage());
+            logger.error(e.getMessage(), e);
         } finally {
             if (repository != null) {
                 repository.close();

@@ -43,6 +43,7 @@ public class WriteShapefile {
 		Map<String, Serializable> params = new HashMap<String, Serializable>();
 		params.put("url", outfile.toURI().toURL());
 		params.put("create spatial index", Boolean.TRUE);
+		params.put("charset", "UTF-8");
 
 		shpDataStore = (ShapefileDataStore) dataStoreFactory.createNewDataStore(params);
 	}

@@ -178,7 +178,7 @@ ms.Search.prototype.init = function(config) {
         var bbox = [ll.lon, ll.lat, ur.lon, ur.lat, 'epsg:900913'].join(',');
 
         var jsonp = new OpenLayers.Protocol.Script({
-          'url': 'http://mapseries.georeferencer.org/geoserver/wfs',
+          'url': '/geoserver/wfs',
           'callbackKey': 'format_options',
           'callbackPrefix': 'callback:',
           'params': {
@@ -188,7 +188,7 @@ ms.Search.prototype.init = function(config) {
                 OpenLayers.Util.getParameters(
                 /** @type {string} */(_this.series.overlay.url))['layers'],
             'srsName': 'epsg:900913',
-            'outputFormat': 'json'
+            'outputFormat': 'text/javascript'
           },
           'callback': function(evt) {
             var fs = evt.features;
@@ -224,7 +224,12 @@ ms.Search.prototype.setSeries = function(series) {
   this.series = series;
   this.series.overlay.setVisibility(true);
   this.series.overlay.redraw();
+  window.console.log(series);
 
+  var bttn = goog.dom.createDom('a', {href: '/edit/#mapserie=' + series.id}, 'Edit');
+  var container = /** @type {!Element} */(goog.dom.getElement('edit-bttn'));
+  goog.dom.removeChildren(container);
+  goog.dom.append(container, bttn);
 };
 
 

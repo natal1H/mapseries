@@ -94,13 +94,13 @@ module.exports = function(grunt) {
     'createPublicHtml',
     'Creating client/public/**/*.html',
     function() {
-      
+
       //taken from grunt-contrib-copy
       var dest;
       var isExpandedPair;
-      
+
       var urlsToReplace = [];
-      
+
       this.files.forEach(function(filePair) {
         isExpandedPair = filePair.orig.expand || false;
 
@@ -117,15 +117,15 @@ module.exports = function(grunt) {
         });
       });
       //end of grunt-contrib-copy
-      
+
       var findPathToReplace = function(url) {
         return goog.array.find(urlsToReplace, function(urlToReplace) {
           return goog.string.endsWith(url, urlToReplace.src);
         });
       };
-      
+
       var htmls = grunt.file.expand('client/src/**/*.html');
-      
+
       goog.array.forEach(htmls, function(htmlPath) {
         var cnt = grunt.file.read(htmlPath);
         var pathPrefix = path.relative('client/src/', path.dirname(htmlPath));
@@ -168,17 +168,17 @@ module.exports = function(grunt) {
         fse.ensureDirSync(path.dirname(dst));
         grunt.file.write(dst, cnt);
       });
-      
+
       goog.array.forEach(prodPlovrConfigs, function(pth) {
         var dst = pth.replace('client/src/', 'client/public/');
         fse.ensureDirSync(path.dirname(dst));
       });
-      
-      
+
+
     }
   );
 
-  
+
   grunt.registerTask(
     'updatePathsInPublicCss',
     'Updating paths in public CSSs built by Plovr',
@@ -196,7 +196,7 @@ module.exports = function(grunt) {
             });
         grunt.file.write(plovrBuildCss, cnt);
       });
-      
+
     }
   );
 
@@ -216,14 +216,13 @@ module.exports = function(grunt) {
     }
   };
   //end grunt-contrib-copy
-  
-  
+
+
   grunt.registerTask('updatePublic', ['clean:build', 'copy:fromBower', 'copy:fromSrc', 'createPublicHtml:my']);
 var buildTasks = [
     'updatePublic',
     'shell:buildUsingPlovr',
-    'updatePathsInPublicCss',
-    'open:build'
+    'updatePathsInPublicCss'
   ];
   var useMap = grunt.option('map');
   if (useMap) {

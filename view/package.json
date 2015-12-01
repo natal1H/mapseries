@@ -21,7 +21,6 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-curl": "^2.0.2",
     "grunt-express-server": "^0.4.17",
-    "grunt-open": "^0.2.3",
     "grunt-shell": "^0.7.0",
     "load-grunt-tasks": "^0.4.0"
   },

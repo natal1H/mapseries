@@ -21,13 +21,14 @@ ms.Loader = function() {
  * @param {Object} objSeries object.
  * @return {ms.Series} one map series.
  */
-ms.Loader.prototype.loadSeries = function(objSeries) {
+ms.Loader.prototype.loadSeries = function(objSeries, id) {
   var ser = new ms.Series();
+  ser.id = id;
   ser.title = objSeries['title'];
   ser.grid = objSeries['baseGrid'];
 
   ser.overlay = new OpenLayers.Layer.OSM(ser.title,
-      'http://mapseries.georeferencer.org/geoserver/gwc/service/gmaps?' +
+      'geoserver/gwc/service/gmaps?' +
       'layers=mapseries:' + objSeries['layer'] +
       '&zoom=${z}&x=${x}&y=${y}&format=image/png',
       {
@@ -47,7 +48,7 @@ ms.Loader.prototype.loadSeries = function(objSeries) {
       ser.template = tempreq.getResponseText();
     }
   });
-  tempreq.send('https://raw.githubusercontent.com/moravianlibrary/mapseries-data/master/template/' +
+  tempreq.send('/github-proxy/template/' +
       objSeries['template'], 'GET');
 
   return ser;

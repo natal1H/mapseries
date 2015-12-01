@@ -1,6 +1,5 @@
 package cz.mzk.tools;
 
-import cz.mzk.settings.Settings;
 import it.geosolutions.geoserver.rest.GeoServerRESTManager;
 import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
 import it.geosolutions.geoserver.rest.GeoServerRESTReader;
@@ -13,17 +12,18 @@ import it.geosolutions.geoserver.rest.encoder.datastore.GSShapefileDatastoreEnco
 import it.geosolutions.geoserver.rest.encoder.feature.GSFeatureTypeEncoder;
 import it.geosolutions.geoserver.rest.manager.GeoServerRESTStoreManager;
 import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.*;
-import java.util.logging.Logger;
 
 public class GeoServer {
 
-    private static final Logger logger = Logger.getLogger(GeoServer.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(GeoServer.class);
 
     private static final Settings settings = Settings.getInstance();
 
@@ -34,16 +34,18 @@ public class GeoServer {
             String username = settings.getGeoServerUsername();
             String password = settings.getGeoServerPassword();
             String workspace = settings.getGeoServerWorkspace();
+            String styleName = settings.getStyleName();
+            String styleFile = settings.getStyleFile();
 
             GeoServerRESTManager manager = new GeoServerRESTManager(url, username, password);
 
-            clear(manager, workspace);
+            clear(manager, workspace, styleName, styleFile);
             for (String shapeFile : getListOfShapeFiles()) {
                 createStore(shapeFile, manager, workspace);
                 createLayer(shapeFile, manager, workspace);
             }
         } catch (MalformedURLException e) {
-            logger.severe(e.getMessage());
+            logger.error("Malformed url", e);
         }
     }
 
@@ -66,24 +68,11 @@ public class GeoServer {
         return datastore;
     }
 
-    private static void clear(GeoServerRESTManager manager, String workspace) throws MalformedURLException {
-        GeoServerRESTReader reader = manager.getReader();
+    private static void clear(GeoServerRESTManager manager, String workspace, String styleName, String styleFile) throws MalformedURLException {
         GeoServerRESTPublisher publisher = manager.getPublisher();
-        GeoServerRESTStoreManager storeManager = manager.getStoreManager();
-        RESTLayerList layers = reader.getLayers();
-        if (layers != null) {
-            for (NameLinkElem layer : layers) {
-                String layerName = layer.getName();
-                publisher.unpublishFeatureType(workspace, layerName, layerName);
-            }
-        }
-        RESTDataStoreList datastores = reader.getDatastores(workspace);
-        if (datastores != null) {
-            for (NameLinkElem dataStore : datastores) {
-                String dataStoreName = dataStore.getName();
-                storeManager.remove(workspace, getDataStoreEncoder(dataStoreName), false);
-            }
-        }
+        publisher.removeWorkspace(workspace, true);
+        publisher.createWorkspace(workspace);
+        publisher.updateStyle(new File(styleFile), styleName);
     }
 
     private static void createStore(String shapeFile, GeoServerRESTManager manager, String workspace) throws MalformedURLException {

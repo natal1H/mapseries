@@ -1,14 +1,14 @@
 'use strict';
 
 module.exports = function(grunt) {
-  
+
   grunt.initConfig({
-    
+
     // bower_components files that should be copied to public folder
     publBowerFiles: [
     ],
-    
-    
+
+
     // source files that should be copied to public folder
     publSrcFiles: [
       {
@@ -16,29 +16,25 @@ module.exports = function(grunt) {
         src: [
           'css/**/*',
           '!css/plovr.css',
-          'doc/**/*',
-          'templates/**/*',
-          'config.js'
+          'doc/**/*'
         ],
         dest: 'client/public/',
         expand: true
       }
     ]
-    
-    
+
+
 
   });
-  
+
   require('./tasks/util/reg-plovr-vars.js')(grunt);
 
   require('load-grunt-tasks')(grunt);
   grunt.loadTasks('tasks');
 
-  
 
-  
+
+
   grunt.registerTask('default', ['dev']);
 
 };
-
-

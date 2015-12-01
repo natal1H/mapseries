@@ -14,8 +14,7 @@ module.exports = function(grunt) {
     },
     shell: {
       installLinter: {
-        command: (os.platform() !== 'win32' ? 'sudo ' : '')
-            + 'pip install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz --upgrade'
+        command: 'pip install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz --upgrade'
       },
       installPip: {
         command: 'python get-pip.py'
@@ -28,7 +27,7 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
-  
+
   grunt.registerTask(
     'deletePip',
     'Deleting pip download file',

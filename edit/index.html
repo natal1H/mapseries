@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=Edge'>
+  <link href='lib/mapbox.js/latest/mapbox.css' rel='stylesheet' />
+  <link rel='stylesheet' href='css/font-awesome/css/font-awesome.min.css'>
+  <link rel='stylesheet' href='css/fonts/mplus.css'>
+  <title>geojson.io</title>
+  <link href='lib/draw/leaflet.draw.css' rel='stylesheet' />
+  <link href='lib/codemirror/lib/codemirror.css' rel='stylesheet' />
+  <link href='lib/codemirror/addon/lint/lint.css' rel='stylesheet' />
+  <link href='lib/label/dist/leaflet.label.css' rel='stylesheet' />
+  <link href='css/base.css' rel='stylesheet' />
+  <link href='css/marker.css' rel='stylesheet' />
+  <link href='css/github_browse.css' rel='stylesheet' />
+  <link href='css/site.css' rel='stylesheet' />
+  <link href='css/theme.css' rel='stylesheet' />
+  <link href='css/ui.css' rel='stylesheet' />
+  <link href='css/leaflet.grid.css' rel='stylesheet' />
+  <link href='node_modules/vex-js/css/vex.css' rel='stylesheet' />
+  <link href='node_modules/vex-js/css/vex-theme-os.css' rel='stylesheet' />
+  <link href='node_modules/jquery-ui/themes/smoothness/jquery-ui.css' rel='stylesheet' />
+  <link href='node_modules/jstree/dist/themes/default/style.min.css' rel='stylesheet' />
+  <link rel='icon' type='image/x-icon' href='/img/favicon.png' />
+  <meta name='author' content='MapBox' />
+  <meta name='description' content='simply edit geojson map data' />
+  <meta property='og:site_name' content='geojson.io'/>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1'>
+  <!--[if lt IE 9]>
+    <script type='text/javascript' src='lib/aight.min.js'></script>
+  <![endif]-->
+  <script src='lib/mapbox.js/latest/mapbox.js'></script>
+  <script src='lib/raven.min.js'></script>
+  <script>
+  if (/a\.tiles\.mapbox\.com/.test(L.mapbox.config.HTTP_URL)) {
+    Raven.config('https://c2d096c944dd4150ab7e44b0881b4a46@app.getsentry.com/11480', {
+      whitelistUrls: [/geojson\.io/],
+      ignoreErrors: [
+          'Uncaught Error: Error connecting to extension ckibcdccnfeookdmbahgiakhnjcddpki',
+          'Uncaught Error: Error connecting to extension pioclpoplcdbaefihamjohnefbikjilc'
+      ]
+    }).install();
+  }
+  </script>
+</head>
+<body id='geojsonio-body'>
+
+<div class='geojsonio'></div>
+
+<div id='loading'></div>
+
+<script src='dist/delegate.js'></script>
+<script src='dist/lib.js'></script>
+<script src='dist/site.js'></script>
+<script type='text/javascript'>
+if (/a\.tiles\.mapbox\.com/.test(L.mapbox.config.HTTP_URL)) {
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '51eee846108d7b2871000081');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+}
+</script>
+</body>
+</html>

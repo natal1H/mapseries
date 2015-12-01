@@ -5,3 +5,6 @@
 /webhooks/.idea
 /webhooks/webhooks.iml
 /webhooks/target
+.idea
+*.iml
+/edit/dist
