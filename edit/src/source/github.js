@@ -253,22 +253,34 @@ module.exports = function(context, config) {
           return;
         }
         // Recreate work branch
-        var origin = getOrigin();
-        origin.deleteRef('heads/' + workBranch, function(err) {
+        discardWork(function(err) {
           if (err) {
             console.error(err);
             callback.call(this, err);
             return;
           }
-          origin.branch(workBranch, function(err) {
-            if (err) {
-              console.error(err);
-              callback.call(this, err);
-              return;
-            }
-            callback.call(this);
-          });
+          callback.call(this);
         });
+      });
+    });
+  }
+
+  function discardWork(callback) {
+    var origin = getOrigin();
+    origin.deleteRef('heads/' + workBranch, function(err) {
+      if (err) {
+        console.error(err);
+        callback.call(this, err);
+        return;
+      }
+      origin.branch(workBranch, function(err) {
+        if (err) {
+          console.error(err);
+          callback.call(this, err);
+          return;
+        }
+        context.dispatch.discardWork();
+        callback.call(this);
       });
     });
   }
@@ -278,6 +290,7 @@ module.exports = function(context, config) {
     lsPath: lsPath,
     readFile: readFile,
     writeFile: writeFile,
-    pullRequest: pullRequest
+    pullRequest: pullRequest,
+    discardWork: discardWork
   };
 };

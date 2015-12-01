@@ -78,6 +78,11 @@ module.exports = function fileBar(context) {
           action: saveWork,
           enabled: false
         }, {
+          title: 'Zahodiť zmeny',
+          id: 'discard',
+          action: discardWork,
+          enabled: false
+        }, {
           title: 'Publikovať',
           id: 'publish',
           action: publishWork,
@@ -156,6 +161,7 @@ module.exports = function fileBar(context) {
 
         /* Register events */
         context.dispatch.on('init_dirty.file_bar', function() {
+          $('#button-discard').removeClass('disabled');
           $('#button-publish').removeClass('disabled');
         });
 
@@ -165,6 +171,7 @@ module.exports = function fileBar(context) {
             $('#button-publish').removeClass('disabled');
           } else {
             $('#button-save').addClass('disabled');
+            $('#button-discard').removeClass('disabled');
           }
         });
 
@@ -178,6 +185,11 @@ module.exports = function fileBar(context) {
           $('#button-import').addClass('disabled');
           $('#button-export').addClass('disabled');
           $('#button-tools').addClass('disabled');
+        });
+
+        context.dispatch.on('discardWork.file_bar', function() {
+          $('#button-discard').addClass('disabled');
+          $('#button-publish').addClass('disabled');
         });
 
         function sourceIcon(type) {
@@ -303,6 +315,18 @@ module.exports = function fileBar(context) {
               flash(context.container, 'Uloženie zlyhalo. Nastala neočakávaná chyba.');
             } else {
               flash(context.container, 'Úspešne uložené.');
+            }
+          });
+        }
+
+        function discardWork() {
+          loading.show();
+          github.discardWork(function(err) {
+            loading.hide();
+            if (err) {
+              flash(context.container, 'Uloženie zlyhalo. Nastala neočakávaná chyba.');
+            } else {
+              flash(context.container, 'Zmeny boli úspešné zrušené.');
             }
           });
         }

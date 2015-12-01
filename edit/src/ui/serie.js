@@ -87,7 +87,7 @@ module.exports = function(context) {
             return;
           }
           context.data.dirty = false;
-          context.dispatch.change({obj: {}, source: 'file_bar'});
+          context.dispatch.change({obj: {}, source: 'serie'});
           callback.call(this);
         });
       });
