@@ -19,10 +19,11 @@ module.exports = {
       fontSize: 12
     },
 
-    initialize: function(options) {
+    initialize: function(texts, options) {
       L.Control.prototype.initialize.call(this, options);
       vex.defaultOptions.className = 'vex-theme-os';
       vexDialog.defaultOptions.showCloseButton = true;
+      this.texts = texts;
       this._cols = 5;
       this._rows = 5;
       this._ltCoor = [90, -180];
@@ -48,16 +49,16 @@ module.exports = {
 
     onAction: function() {
       var controlInstance = this;
-      var input = '<canvas id="gridCanvas" width="400" height="300"></canvas>'
-                + '<label for="input-cols">Cols:</label>'
-                + '<input type="number" id="input-cols" value="' + this._cols + '">'
-                + '<label for="input-rows">Rows:</label>'
-                + '<input type="number" id="input-rows" value="' + this._rows + '">'
-                + '<div id="bttn-proj">EPSG: ' + this._proj + '</div>';
+      var input = '<canvas id="gridCanvas" width="400" height="300"></canvas>' +
+                  '<label for="input-cols">' + this.texts.colsCount + ':</label>' +
+                  '<input type="number" id="input-cols" value="' + this._cols + '">' +
+                  '<label for="input-rows">' + this.texts.rowsCount + ':</label>' +
+                  '<input type="number" id="input-rows" value="' + this._rows + '">' +
+                  '<div id="bttn-proj">EPSG: ' + this._proj + '</div>';
 
 
       vexDialog.open({
-        message: 'Grid',
+        message: this.texts.gridDialogTitle,
         input: input,
         callback: this.confirmDialog.bind(this),
         afterOpen: function() {

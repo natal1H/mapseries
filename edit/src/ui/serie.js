@@ -13,7 +13,7 @@ module.exports = function(context) {
     github.readFile('template/template.txt', function(err, data) {
       if (err) {
         console.error(err);
-        flash(context.container, 'Nastala neočakávaná chyba.');
+        flash(context.container, context.texts.unexpectedError);
         return;
       }
       context.data.set({template: data}, 'buttons');
@@ -29,7 +29,7 @@ module.exports = function(context) {
 
     config.markEdited(id);
 
-    var errmsg = 'Nastala neočakávaná chyba.';
+    var errmsg = context.texts.unexpectedError;
     var geojsonPath = config.getGeoJsonPath();
     var templatePath = config.getTemplatePath();
 

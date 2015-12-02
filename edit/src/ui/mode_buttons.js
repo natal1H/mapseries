@@ -31,7 +31,7 @@ module.exports = function(context, pane) {
         .attr('class', function(d) { return 'icon-' + d.icon; });
     enter
         .append('span')
-        .text(function(d) { return d.title; });
+        .text(function(d) { return ' ' + d.title; });
 
     buttons.exit().remove();
 

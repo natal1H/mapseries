@@ -6,6 +6,7 @@ var ui = require('./ui'),
     repo = require('./core/repo'),
     user = require('./core/user'),
     api = require('./core/api'),
+    texts = require('./core/texts'),
     store = require('store');
 
 var gjIO = geojsonIO(),
@@ -27,5 +28,6 @@ function geojsonIO() {
     context.repo = repo(context);
     context.router = router(context);
     context.user = user(context);
+    context.texts = texts();
     return context;
 }

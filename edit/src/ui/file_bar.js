@@ -15,9 +15,7 @@ var shpwrite = require('shp-write'),
 
 require('jstree');
 
-var share = require('./share'),
-    modal = require('./modal.js'),
-    flash = require('./flash'),
+var flash = require('./flash'),
     zoomextent = require('../lib/zoomextent'),
     readFile = require('../lib/readfile'),
     meta = require('../lib/meta.js'),
@@ -65,66 +63,66 @@ module.exports = function fileBar(context) {
     function bar(selection) {
 
         var actions = [{
-          title: 'Nová séria',
+          title: context.texts.newSerie,
           action: newSerie,
           enabled: true
         }, {
-          title: 'Otvoriť sériu',
+          title: context.texts.openSerie,
           action: openSerie,
           enabled: true
         }, {
-          title: 'Uložiť',
+          title: context.texts.save,
           id: 'save',
           action: saveWork,
           enabled: false
         }, {
-          title: 'Zahodiť zmeny',
+          title: context.texts.discardChanges,
           id: 'discard',
           action: discardWork,
           enabled: false
         }, {
-          title: 'Publikovať',
+          title: context.texts.publish,
           id: 'publish',
           action: publishWork,
           enabled: false
         }, {
-          title: 'Import',
+          title: context.texts.import,
           id: 'import',
-          alt: 'GeoJSON, TopoJSON, KML, CSV, GPX and OSM XML supported',
+          alt: context.texts.importAlt,
           action: blindImport,
           enabled: false
         }, {
-          title: 'Export',
+          title: context.texts.export,
           id: 'export',
           children: exportFormats,
           enabled: false
         }, {
-            title: 'Nástroje',
+            title: context.texts.tools,
             id: 'tools',
             children: [
                 {
-                    title: 'Add map layer',
-                    alt: 'Add a custom tile layer',
+                    title: context.texts.addMapLayer,
+                    alt: context.texts.addMapLayerAlt,
                     action: function() {
-                        var layerURL = prompt('Layer URL \n(http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg)');
+                        var layerURL = prompt(context.texts.layerURL + ' \n(http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg)');
                         if (layerURL === null) return;
-                        var layerName = prompt('Layer name');
+                        var layerName = prompt(context.texts.layerName);
                         if (layerName === null) return;
                         meta.adduserlayer(context, layerURL, layerName);
                     }
                 },
                 {
-                    title: 'Zoom to features',
-                    alt: 'Zoom to the extent of all features',
+                    title: context.texts.zoomToFeatures,
+                    alt: context.texts.zoomToFeaturesAlt,
                     action: function() {
                         meta.zoomextent(context);
                     }
                 },
                 {
-                    title: 'Clear',
-                    alt: 'Delete all features from the map',
+                    title: context.texts.clear,
+                    alt: context.texts.clearAlt,
                     action: function() {
-                        if (confirm('Are you sure you want to delete all features from this map?')) {
+                        if (confirm(context.texts.clearConfirm)) {
                             meta.clear(context);
                         }
                     }
@@ -192,18 +190,6 @@ module.exports = function fileBar(context) {
           $('#button-publish').addClass('disabled');
         });
 
-        function sourceIcon(type) {
-            if (type == 'github') return 'icon-github';
-            else if (type == 'gist') return 'icon-github-alt';
-            else return 'icon-file-alt';
-        }
-
-        function saveNoun(_) {
-            buttons.filter(function(b) {
-                return b.title === 'Save';
-            }).select('span.title').text(_);
-        }
-
         function submenu(children) {
             return function(selection) {
                 selection
@@ -211,9 +197,6 @@ module.exports = function fileBar(context) {
                     .data(children)
                     .enter()
                     .append('a')
-                    .attr('title', function(d) {
-                        if (d.title == 'File' || d.title == 'GitHub' || d.title == 'Gist' || d.title == 'Add map layer' || d.title == 'Zoom to features' || d.title == 'Clear' || d.title == 'Random: Points' || d.title == 'Add bboxes' || d.title == 'Flatten Multi Features') return d.alt;
-                    })
                     .text(function(d) {
                         return d.title;
                     })
@@ -229,7 +212,7 @@ module.exports = function fileBar(context) {
           config.loadConfig(function(err) {
             loading.hide();
             if (err) {
-              flash(context.container, 'Nastala neočakávaná chyba.');
+              flash(context.container, context.texts.unexpectedError);
               return;
             }
             newSerieDialog(config.getAreas());
@@ -237,9 +220,9 @@ module.exports = function fileBar(context) {
         }
 
         function newSerieDialog(areas) {
-          var input = '<label for="input-title">Názov novej série</label>' +
+          var input = '<label for="input-title">' + context.texts.newSerieDialogSerieTitle + '</label>' +
                       '<input id="input-title" name="name" type="text" required />' +
-                      '<div class="radio-box"><div class="title">Názov oblasti, do ktorej séria spadá</div>' +
+                      '<div class="radio-box"><div class="title">' + context.texts.newSerieDialogSerieArea + '</div>' +
                       '<div class="vertical-scroll">';
 
           var first = true;
@@ -251,10 +234,10 @@ module.exports = function fileBar(context) {
               input += '<input type="radio" name="area" value="' + area + '"/><span>' + area + '</span></br>';
             }
           });
-          input += '</div><span class="other"><input id="radio-area-other" type="radio" name="area" value="&lt;other&gt;"/><input id="input-area-other" type="text" name="area-other" placeholder="Iná" /></span></div>';
+          input += '</div><span class="other"><input id="radio-area-other" type="radio" name="area" value="&lt;other&gt;"/><input id="input-area-other" type="text" name="area-other" placeholder="' + context.texts.other + '" /></span></div>';
 
           vexDialog.open({
-            message: 'Vytvorenie novej série',
+            message: context.texts.newSerieDialogTitle,
             input: input,
             afterOpen: function() {
               var inputAreaOther = document.getElementById('input-area-other');
@@ -279,12 +262,12 @@ module.exports = function fileBar(context) {
           config.loadConfig(function(err) {
             loading.hide();
             if (err) {
-              flash(context.container, 'Nastala neočakávaná chyba.');
+              flash(context.container, context.texts.unexpectedError);
               return;
             }
 
             vexDialog.open({
-              message: 'Otvoriť existujúcu sériu',
+              message: context.texts.openSerieDialogTitle,
               input: '<div id="file-tree"></div>',
               contentCSS: {
                 width: '600px'
@@ -312,9 +295,9 @@ module.exports = function fileBar(context) {
           serie.save(function(err) {
             loading.hide();
             if (err) {
-              flash(context.container, 'Uloženie zlyhalo. Nastala neočakávaná chyba.');
+              flash(context.container, context.texts.saveFailed);
             } else {
-              flash(context.container, 'Úspešne uložené.');
+              flash(context.container, context.texts.saveSuccess);
             }
           });
         }
@@ -324,9 +307,9 @@ module.exports = function fileBar(context) {
           github.discardWork(function(err) {
             loading.hide();
             if (err) {
-              flash(context.container, 'Uloženie zlyhalo. Nastala neočakávaná chyba.');
+              flash(context.container, context.texts.discardFailed);
             } else {
-              flash(context.container, 'Zmeny boli úspešné zrušené.');
+              flash(context.container, context.texts.discardSuccess);
             }
           });
         }
@@ -336,15 +319,15 @@ module.exports = function fileBar(context) {
           serie.save(function(err) {
             if (err) {
               loading.hide();
-              flash(context.container, 'Ukladanie zlyhalo. Nastala neočakávaná chyba.');
+              flash(context.container, context.texts.saveFailed);
               return;
             }
             github.pullRequest(config.getTitle(), function(err) {
               loading.hide();
               if (err) {
-                flash(context.container, 'Publikovanie zlyhalo. Nastala neočakávaná chyba.');
+                flash(context.container, context.texts.publishFailed);
               } else {
-                flash(context.container, 'Úspešne publikované.');
+                flash(context.container, context.texts.publishSuccess);
                 context.dispatch.clear();
                 $('#button-publish').addClass('disabled');
               }
@@ -378,7 +361,7 @@ module.exports = function fileBar(context) {
                 if (warning) {
                     flash(context.container, warning.message);
                 } else {
-                    flash(context.container, 'Imported ' + gj.features.length + ' features.')
+                    flash(context.container, context.texts.imported + ' ' + gj.features.length + ' ' + context.texts.features + '.')
                         .classed('success', 'true');
                 }
                 zoomextent(context);

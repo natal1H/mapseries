@@ -34,7 +34,7 @@ module.exports = function(context) {
       return eval(config);
     } catch(err) {
       loading.hide();
-      flash(context.container, 'Nastala chyba pri parsování súboru config.');
+      flash(context.container, config.texts.configParseError);
       return null;
     }
   }
