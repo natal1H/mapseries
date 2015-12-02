@@ -12,7 +12,7 @@ module.exports = function(context) {
             .attr('href', '#');
 
         function nextLogin() {
-            action.text('login').on('click', login);
+            action.text(context.texts.login).on('click', login);
             name
                 .text('anon')
                 .attr('href', '#')
@@ -21,7 +21,7 @@ module.exports = function(context) {
 
         function nextLogout() {
             name.on('click', null);
-            action.text('logout').on('click', logout);
+            action.text(context.texts.logout).on('click', logout);
         }
 
         function login() {
