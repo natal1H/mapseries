@@ -20,7 +20,7 @@ api(gjIO);
 
 function geojsonIO() {
     var context = {};
-    context.dispatch = d3.dispatch('change', 'route', 'clear', 'init_dirty', 'open_serie', 'discardWork');
+    context.dispatch = d3.dispatch('change', 'route', 'clear', 'init_dirty', 'open_serie', 'save_serie', 'discardWork');
     context.storage = store;
     context.map = map(context);
     context.data = data(context);

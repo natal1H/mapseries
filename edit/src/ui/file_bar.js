@@ -169,7 +169,6 @@ module.exports = function fileBar(context) {
             $('#button-publish').removeClass('disabled');
           } else {
             $('#button-save').addClass('disabled');
-            $('#button-discard').removeClass('disabled');
           }
         });
 
@@ -177,6 +176,10 @@ module.exports = function fileBar(context) {
           $('#button-import').removeClass('disabled');
           $('#button-export').removeClass('disabled');
           $('#button-tools').removeClass('disabled');
+        });
+
+        context.dispatch.on('save_serie.file_bar', function() {
+          $('#button-discard').removeClass('disabled');
         });
 
         context.dispatch.on('clear.file_bar', function() {
@@ -221,7 +224,7 @@ module.exports = function fileBar(context) {
 
         function newSerieDialog(areas) {
           var input = '<label for="input-title">' + context.texts.newSerieDialogSerieTitle + '</label>' +
-                      '<input id="input-title" name="name" type="text" required />' +
+                      '<input id="input-title" name="title" type="text" required />' +
                       '<div class="radio-box"><div class="title">' + context.texts.newSerieDialogSerieArea + '</div>' +
                       '<div class="vertical-scroll">';
 
@@ -310,6 +313,7 @@ module.exports = function fileBar(context) {
               flash(context.container, context.texts.discardFailed);
             } else {
               flash(context.container, context.texts.discardSuccess);
+              context.dispatch.clear();
             }
           });
         }

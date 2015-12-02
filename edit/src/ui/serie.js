@@ -88,6 +88,7 @@ module.exports = function(context) {
           }
           context.data.dirty = false;
           context.dispatch.change({obj: {}, source: 'serie'});
+          context.dispatch.save_serie();
           callback.call(this);
         });
       });

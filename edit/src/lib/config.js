@@ -39,9 +39,12 @@ module.exports = function(context) {
     }
   }
 
-  function setConfig(data) {
+  function setConfig(data, dirty) {
+    if (dirty === undefined) {
+      dirty = true;
+    }
     var prefix = 'var mapseries = {};\nmapseries.config = ';
-    context.data.set({config: prefix + serializer(data)}, 'config');
+    context.data.set({config: prefix + serializer(data), dirty: dirty}, 'config');
   }
 
   function createSerie(title, area) {
@@ -105,7 +108,7 @@ module.exports = function(context) {
   function markEdited(pos) {
     var config = getConfig();
     config.series[pos].edited = true;
-    setConfig(config);
+    setConfig(config, false);
   }
 
   function getGeoJsonPath() {
