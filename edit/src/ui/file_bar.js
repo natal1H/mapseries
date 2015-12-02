@@ -7,6 +7,7 @@ var shpwrite = require('shp-write'),
     githubBrowser = require('github-file-browser'),
     gistBrowser = require('gist-map-browser'),
     geojsonNormalize = require('geojson-normalize'),
+    geojsonNormalizeProperties = require('../lib/geojson-normalize-properties'),
     wellknown = require('wellknown'),
     vex = require('vex-js'),
     vexDialog = require('vex-js/js/vex.dialog.js'),
@@ -360,6 +361,7 @@ module.exports = function fileBar(context) {
 
         function onImport(err, gj, warning) {
             gj = geojsonNormalize(gj);
+            geojsonNormalizeProperties(gj);
             if (gj) {
                 context.data.mergeFeatures(gj.features);
                 if (warning) {
