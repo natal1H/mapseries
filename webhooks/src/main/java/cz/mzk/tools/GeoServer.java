@@ -2,10 +2,6 @@ package cz.mzk.tools;
 
 import it.geosolutions.geoserver.rest.GeoServerRESTManager;
 import it.geosolutions.geoserver.rest.GeoServerRESTPublisher;
-import it.geosolutions.geoserver.rest.GeoServerRESTReader;
-import it.geosolutions.geoserver.rest.decoder.RESTDataStoreList;
-import it.geosolutions.geoserver.rest.decoder.RESTLayerList;
-import it.geosolutions.geoserver.rest.decoder.utils.NameLinkElem;
 import it.geosolutions.geoserver.rest.encoder.GSLayerEncoder;
 import it.geosolutions.geoserver.rest.encoder.datastore.GSAbstractDatastoreEncoder;
 import it.geosolutions.geoserver.rest.encoder.datastore.GSShapefileDatastoreEncoder;
@@ -34,12 +30,9 @@ public class GeoServer {
             String username = settings.getGeoServerUsername();
             String password = settings.getGeoServerPassword();
             String workspace = settings.getGeoServerWorkspace();
-            String styleName = settings.getStyleName();
-            String styleFile = settings.getStyleFile();
 
             GeoServerRESTManager manager = new GeoServerRESTManager(url, username, password);
 
-            clear(manager, workspace, styleName, styleFile);
             for (String shapeFile : getListOfShapeFiles()) {
                 createStore(shapeFile, manager, workspace);
                 createLayer(shapeFile, manager, workspace);
@@ -47,6 +40,50 @@ public class GeoServer {
         } catch (MalformedURLException e) {
             logger.error("Malformed url", e);
         }
+    }
+
+    public static void clear() {
+
+        try {
+            URL url = new URL(settings.getGeoServerUrl());
+            String username = settings.getGeoServerUsername();
+            String password = settings.getGeoServerPassword();
+            String workspace = settings.getGeoServerWorkspace();
+            String styleName = settings.getStyleName();
+            String styleFile = settings.getStyleFile();
+
+            GeoServerRESTManager manager = new GeoServerRESTManager(url, username, password);
+
+            clear(manager, workspace, styleName, styleFile);
+        } catch (MalformedURLException e) {
+            logger.error("Malformed url", e);
+        }
+    }
+
+    public static void createWorkspace() {
+
+        try {
+            URL url = new URL(settings.getGeoServerUrl());
+            String username = settings.getGeoServerUsername();
+            String password = settings.getGeoServerPassword();
+            String workspace = settings.getGeoServerWorkspace();
+            String styleName = settings.getStyleName();
+            String styleFile = settings.getStyleFile();
+
+            GeoServerRESTManager manager = new GeoServerRESTManager(url, username, password);
+            GeoServerRESTPublisher publisher = manager.getPublisher();
+            publisher.createWorkspace(workspace);
+            publisher.updateStyle(new File(styleFile), styleName);
+        } catch (MalformedURLException e) {
+            logger.error("Malformed url", e);
+        }
+    }
+
+    private static void clear(GeoServerRESTManager manager, String workspace, String styleName, String styleFile) {
+        GeoServerRESTPublisher publisher = manager.getPublisher();
+        publisher.removeWorkspace(workspace, true);
+        publisher.createWorkspace(workspace);
+        publisher.updateStyle(new File(styleFile), styleName);
     }
 
     private static List<String> getListOfShapeFiles() {
@@ -66,13 +103,6 @@ public class GeoServer {
         GSShapefileDatastoreEncoder datastore = new GSShapefileDatastoreEncoder(shapeFile, shpFile.toURI().toURL());
         datastore.setCharset(Charset.forName("UTF-8"));
         return datastore;
-    }
-
-    private static void clear(GeoServerRESTManager manager, String workspace, String styleName, String styleFile) throws MalformedURLException {
-        GeoServerRESTPublisher publisher = manager.getPublisher();
-        publisher.removeWorkspace(workspace, true);
-        publisher.createWorkspace(workspace);
-        publisher.updateStyle(new File(styleFile), styleName);
     }
 
     private static void createStore(String shapeFile, GeoServerRESTManager manager, String workspace) throws MalformedURLException {

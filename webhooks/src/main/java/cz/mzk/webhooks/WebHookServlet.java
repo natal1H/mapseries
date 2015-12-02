@@ -1,9 +1,6 @@
 package cz.mzk.webhooks;
 
 import cz.mzk.ActionPerformer;
-import cz.mzk.tools.FormatTransformer;
-import cz.mzk.tools.GeoServer;
-import cz.mzk.tools.Github;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +15,7 @@ public class WebHookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         if (httpServletRequest.getPathInfo().endsWith("push")) {
-            ActionPerformer.cloneAndTransformGeoJsonToShp();
+            ActionPerformer.onPush();
         }
     }
 }

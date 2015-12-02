@@ -22,7 +22,7 @@ public class InitializeListener implements ServletContextListener {
         executor.schedule(new Runnable() {
             @Override
             public void run() {
-                ActionPerformer.cloneAndTransformGeoJsonToShp();
+                ActionPerformer.init();
             }
         }, 30, TimeUnit.SECONDS);
 
