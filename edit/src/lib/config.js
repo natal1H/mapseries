@@ -111,11 +111,12 @@ module.exports = function(context) {
   function getGeoJsonPath() {
     var config = getConfig();
     var result = null;
-    config.series.forEach(function(serie) {
+    config.series.every(function(serie) {
       if (serie.edited === true) {
         result = 'geojson/' + serie.layer + '.json';
-        return;
+        return false;
       }
+      return true;
     });
     return result;
   }
@@ -123,11 +124,12 @@ module.exports = function(context) {
   function getTemplatePath() {
     var config = getConfig();
     var result = null;
-    config.series.forEach(function(serie) {
+    config.series.every(function(serie) {
       if (serie.edited === true) {
         result = 'template/' + serie.template;
-        return;
+        return false;
       }
+      return true;
     });
     return result;
   }
@@ -135,11 +137,12 @@ module.exports = function(context) {
   function getTitle() {
     var config = getConfig();
     var result = null;
-    config.series.forEach(function(serie) {
+    config.series.every(function(serie) {
       if (serie.edited === true) {
         result = serie.title;
-        return;
+        return false;
       }
+      return true;
     });
     return result;
   }
