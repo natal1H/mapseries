@@ -65,7 +65,7 @@ module.exports = function(context) {
     function openSerie(serieId) {
         var config = require('../lib/config')(context),
             serie = require('../ui/serie')(context);
-            
+
         loading.show();
         config.loadConfig(function(err) {
           loading.hide();
@@ -77,13 +77,7 @@ module.exports = function(context) {
         });
     }
 
-    return function(query) {
-        if (context.storage.get('github_token')) {
-          loading.show();
-          github(context).init(function() {
-            loading.hide();
-          });
-        }
+    function loader(query, isAuth) {
         if (!query.id && !query.data && !query.mapserie) return;
 
         var oldRoute = d3.event ? qs.stringQs(d3.event.oldURL.split('#')[1]).id :
@@ -99,10 +93,26 @@ module.exports = function(context) {
                 }
             }
         } else if (query.mapserie) {
-          openSerie(query.mapserie);
+          if (isAuth) {
+            openSerie(query.mapserie);
+          } else {
+            flash(context.container, 'Musíte sa prihlásiť.');
+          }
         } else if (query.id !== oldRoute) {
             context.container.select('.map').classed('loading', true);
             context.data.fetch(query, success);
+        }
+    }
+
+    return function(query) {
+        if (context.storage.get('github_token')) {
+          loading.show();
+          github(context).init(function() {
+            loading.hide();
+            loader(query, true);
+          });
+        } else {
+          loader(query, false);
         }
     };
 };

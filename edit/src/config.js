@@ -3,7 +3,7 @@ module.exports = function(hostname) {
     L.mapbox.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6IlpIdEpjOHcifQ.Cldl4wq_T5KOgxhLvbjE-w';
     if (hostname === 'geojson.io') {
         return {
-            client_id: '62c753fd0faf18392d85',
+            client_id: '70c8690c165d40b7079d',
             gatekeeper_url: 'https://geojsonioauth.herokuapp.com',
         };
     // Customize these settings for your own development/deployment

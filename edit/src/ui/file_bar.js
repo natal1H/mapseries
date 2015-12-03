@@ -33,7 +33,8 @@ module.exports = function fileBar(context) {
     var github = require('../source/github')(context),
         config = require('../lib/config')(context),
         serie = require('../ui/serie')(context),
-        shpSupport = typeof ArrayBuffer !== 'undefined';
+        shpSupport = typeof ArrayBuffer !== 'undefined'
+        isAuth = context.storage.get('github_token') !== undefined;
     vex.defaultOptions.className = 'vex-theme-os';
     vexDialog.defaultOptions.showCloseButton = true;
 
@@ -66,11 +67,11 @@ module.exports = function fileBar(context) {
         var actions = [{
           title: context.texts.newSerie,
           action: newSerie,
-          enabled: true
+          enabled: isAuth
         }, {
           title: context.texts.openSerie,
           action: openSerie,
-          enabled: true
+          enabled: isAuth
         }, {
           title: context.texts.save,
           id: 'save',

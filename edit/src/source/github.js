@@ -20,16 +20,6 @@ module.exports = function(context, config) {
       auth: 'oauth'
     });
 
-    if (!context.storage.get('github_username')) {
-      context.user.details(function(err, d) {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        context.storage.set('github_username', d.login);
-      });
-    }
-
     return github;
   }
 

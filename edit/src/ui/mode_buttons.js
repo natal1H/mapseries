@@ -71,7 +71,7 @@ module.exports = function(context, pane) {
     var tab = getTab(title);
 
     if (!tab) {
-      openTabInternal(title, type, content);
+      openTabInternal(title, type);
     }
 
     if (doUpdate) {

@@ -43,7 +43,7 @@ module.exports = function(context) {
     };
 
     user.authenticate = function() {
-        window.location.href = (config.GithubAPI || 'https://github.com') + '/login/oauth/authorize?client_id=' +
+        window.location.href = (config.GithubAPI || 'https://github.com') + '/login/oauth/authorize?redirect_uri=' + encodeURIComponent(window.location.href) + '&client_id=' +
             config.client_id +
             '&scope=gist,repo,delete_repo';
     };
@@ -60,26 +60,35 @@ module.exports = function(context) {
         context.storage.remove('github_token');
     };
 
-    function killTokenUrl() {
-        if (window.location.href.indexOf('?code') !== -1) {
-            window.location.href = window.location.href.replace(/\?code=.*$/, '');
+    user.waitForAuthentization = function(callback) {
+        function killTokenUrl() {
+            if (window.location.href.indexOf('?code') !== -1) {
+                window.location.href = window.location.href.replace(/[?&]code=[A-Za-z0-9]*/, '');
+            }
         }
-    }
 
-    if (window.location.search && window.location.search.indexOf('?code') === 0) {
-        var code = window.location.search.replace('?code=', '');
-        d3.select('.map').classed('loading', true);
-        d3.json(config.gatekeeper_url + '/authenticate/' + code)
-            .on('load', function(l) {
-                d3.select('.map').classed('loading', false);
-                if (l.token) window.localStorage.github_token = l.token;
-                killTokenUrl();
-            })
-            .on('error', function() {
-                d3.select('.map').classed('loading', false);
-                alert('Authentication with GitHub failed');
-            })
-            .get();
+        if (window.location.search && window.location.search.indexOf('?code') === 0) {
+            var code = window.location.search.replace('?code=', '');
+            d3.select('.map').classed('loading', true);
+            d3.json(config.gatekeeper_url + '/authenticate/' + code)
+                .on('load', function(l) {
+                    context.authInProgress = false;
+                    d3.select('.map').classed('loading', false);
+                    if (l.token) {
+                      context.storage.set('github_token', l.token);
+                    }
+                    killTokenUrl();
+                    callback.call(this);
+                })
+                .on('error', function() {
+                    d3.select('.map').classed('loading', false);
+                    alert('Authentication with GitHub failed');
+                    callback.call(this);
+                })
+                .get();
+        } else {
+          callback.call(this);
+        }
     }
 
     return user;

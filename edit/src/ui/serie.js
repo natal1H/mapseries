@@ -52,6 +52,7 @@ module.exports = function(context) {
         context.editor.openTab('template', 'javascript', false);
         context.editor.openTab('config', 'javascript', false);
         context.editor.openTab('geojson', 'geojson', true);
+        meta.zoomextent(context);
         context.dispatch.open_serie();
       });
     });
