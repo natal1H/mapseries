@@ -5,6 +5,7 @@
 /webhooks/.idea
 /webhooks/webhooks.iml
 /webhooks/target
+/github-proxy/target
 .idea
 *.iml
 /edit/dist

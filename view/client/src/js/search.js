@@ -9,6 +9,9 @@ goog.require('latlng');
 goog.require('ms.Loader');
 goog.require('ms.Series');
 goog.require('ms.Template');
+goog.require('goog.ui.ac.AutoComplete.EventType');
+goog.require('goog.ui.ac.Nominatim');
+goog.require('goog.asserts');
 
 
 
@@ -160,6 +163,26 @@ ms.Search.prototype.init = function(config) {
       goog.dom.appendChild(layerSelect, optel);
     }
   }
+
+  // initialize Find a place input
+  /**
+   * @private
+   * @type {Element}
+   */
+  this.searchElement_ = goog.dom.getElement('search');
+  goog.asserts.assert(this.searchElement_ != null);
+  /**
+   * @private
+   * @type {goog.ui.ac.Nominatim}
+   */
+  this.search_ = new goog.ui.ac.Nominatim(this.searchElement_, null);
+  goog.events.listen(this.search_, goog.ui.ac.AutoComplete.EventType.UPDATE, function(e) {
+    var bbox = goog.array.map(e['row']['boundingbox'], function(item) {return parseFloat(item)});
+    var bounds = new OpenLayers.Bounds(bbox[2], bbox[0], bbox[3], bbox[1]);
+    var src = new OpenLayers.Projection('EPSG:4326');
+    var dst = _this.map.getProjectionObject();
+    _this.map.zoomToExtent(bounds.transform(src, dst));
+  });
 
   // initialize region switcher
   var regions = ms.Series.getRegions(this.seriess);

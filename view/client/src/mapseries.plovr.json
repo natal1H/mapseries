@@ -82,7 +82,8 @@
   ],
 
   "paths": [
-    "js"
+    "js",
+    "../../bower_components/closure-library/third_party/closure"
   ],
 
   "treat-warnings-as-errors": true,

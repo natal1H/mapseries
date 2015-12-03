@@ -23,13 +23,16 @@ public class GeoServer {
 
     private static final Settings settings = Settings.getInstance();
 
+    private static final String username = System.getenv("GEOSERVER_USERNAME");
+    private static final String password = System.getenv("GEOSERVER_PASSWORD");
+    private static final String workspace = settings.getGeoServerWorkspace();
+    private static final String styleName = settings.getStyleName();
+    private static final String styleFile = settings.getStyleFile();
+
     public static void registerShapefiles() {
 
         try {
             URL url = new URL(settings.getGeoServerUrl());
-            String username = settings.getGeoServerUsername();
-            String password = settings.getGeoServerPassword();
-            String workspace = settings.getGeoServerWorkspace();
 
             GeoServerRESTManager manager = new GeoServerRESTManager(url, username, password);
 
@@ -46,11 +49,6 @@ public class GeoServer {
 
         try {
             URL url = new URL(settings.getGeoServerUrl());
-            String username = settings.getGeoServerUsername();
-            String password = settings.getGeoServerPassword();
-            String workspace = settings.getGeoServerWorkspace();
-            String styleName = settings.getStyleName();
-            String styleFile = settings.getStyleFile();
 
             GeoServerRESTManager manager = new GeoServerRESTManager(url, username, password);
 
@@ -64,11 +62,6 @@ public class GeoServer {
 
         try {
             URL url = new URL(settings.getGeoServerUrl());
-            String username = settings.getGeoServerUsername();
-            String password = settings.getGeoServerPassword();
-            String workspace = settings.getGeoServerWorkspace();
-            String styleName = settings.getStyleName();
-            String styleFile = settings.getStyleFile();
 
             GeoServerRESTManager manager = new GeoServerRESTManager(url, username, password);
             GeoServerRESTPublisher publisher = manager.getPublisher();

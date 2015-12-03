@@ -72,7 +72,6 @@ module.exports = function(context) {
             d3.select('.map').classed('loading', true);
             d3.json(config.gatekeeper_url + '/authenticate/' + code)
                 .on('load', function(l) {
-                    context.authInProgress = false;
                     d3.select('.map').classed('loading', false);
                     if (l.token) {
                       context.storage.set('github_token', l.token);

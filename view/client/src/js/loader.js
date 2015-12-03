@@ -48,7 +48,7 @@ ms.Loader.prototype.loadSeries = function(objSeries, id) {
       ser.template = tempreq.getResponseText();
     }
   });
-  tempreq.send('/github-proxy/template/' +
+  tempreq.send('/github-proxy/data/template/' +
       objSeries['template'], 'GET');
 
   return ser;
