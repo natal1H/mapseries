@@ -62,7 +62,8 @@ module.exports = function() {
       acres: 'Rozloha v akroch',
       sqMiles: 'Rozloha v míľach',
       authFailed: 'Autentizácia zlyhala',
-      loginRequired: 'Musíte sa prihlásiť'
+      loginRequired: 'Musíte sa prihlásiť',
+      beforeExit: 'Máte neuloženú prácu. Naozaj chcete opstiť stránku?'
     },
     'en': {
       newSerie: 'New serie',
@@ -122,7 +123,8 @@ module.exports = function() {
       acres: 'Acres',
       sqMiles: 'Sq. Miles',
       authFailed: 'Authentication with GitHub failed',
-      loginRequired: 'Login required'
+      loginRequired: 'Login required',
+      beforeExit: 'Your work is not saved. Are you sure you want to leave?'
     }
   };
 

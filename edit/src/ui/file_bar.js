@@ -169,8 +169,12 @@ module.exports = function fileBar(context) {
           if (context.data.dirty === true) {
             $('#button-save').removeClass('disabled');
             $('#button-publish').removeClass('disabled');
+            $(window).on('beforeunload', function(e) {
+              return context.texts.beforeExit;
+            });
           } else {
             $('#button-save').addClass('disabled');
+            $(window).off('beforeunload');
           }
         });
 
