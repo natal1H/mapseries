@@ -8,20 +8,6 @@ var ui = require('./ui'),
     texts = require('./core/texts'),
     store = require('store');
 
-// var gjIO = geojsonIO(),
-//     gjUI = ui(gjIO).write;
-//
-// d3.select('.geojsonio').call(gjUI);
-//
-// gjIO.router.on();
-//
-// api(gjIO);
-//
-// function geojsonIO() {
-//
-//     return context;
-// }
-
 var context = {};
 context.dispatch = d3.dispatch('change', 'route', 'clear', 'init_dirty', 'open_serie', 'save_serie', 'discardWork');
 context.storage = store;
