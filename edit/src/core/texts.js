@@ -60,7 +60,9 @@ module.exports = function() {
       sqKilometers: 'Rozloha v kilometroch',
       sqFeet: 'Rozloha v stopách',
       acres: 'Rozloha v akroch',
-      sqMiles: 'Rozloha v míľach'
+      sqMiles: 'Rozloha v míľach',
+      authFailed: 'Autentizácia zlyhala',
+      loginRequired: 'Musíte sa prihlásiť'
     },
     'en': {
       newSerie: 'New serie',
@@ -118,7 +120,9 @@ module.exports = function() {
       sqKilometers: 'Sq. Kilometers',
       sqFeet: 'Sq. Feet',
       acres: 'Acres',
-      sqMiles: 'Sq. Miles'
+      sqMiles: 'Sq. Miles',
+      authFailed: 'Authentication with GitHub failed',
+      loginRequired: 'Login required'
     }
   };
 

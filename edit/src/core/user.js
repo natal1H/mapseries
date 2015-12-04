@@ -81,7 +81,7 @@ module.exports = function(context) {
                 })
                 .on('error', function() {
                     d3.select('.map').classed('loading', false);
-                    alert('Authentication with GitHub failed');
+                    alert(context.texts.authFailed);
                     callback.call(this);
                 })
                 .get();

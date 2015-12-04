@@ -70,7 +70,7 @@ module.exports = function(context) {
         config.loadConfig(function(err) {
           loading.hide();
           if (err) {
-            flash(context.container, 'Nastala neočakávaná chyba.');
+            flash(context.container, context.texts.unexpectedError);
             return;
           }
           serie.open(serieId);
@@ -96,7 +96,7 @@ module.exports = function(context) {
           if (isAuth) {
             openSerie(query.mapserie);
           } else {
-            flash(context.container, 'Musíte sa prihlásiť.');
+            flash(context.container, context.texts.loginRequired);
           }
         } else if (query.id !== oldRoute) {
             context.container.select('.map').classed('loading', true);
