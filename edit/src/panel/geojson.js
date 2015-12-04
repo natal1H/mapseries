@@ -29,17 +29,17 @@ module.exports = function(context) {
             lineNumbers: true
         });
 
-        var data = context.data.get('map');
-        renderer.editor.setValue(JSON.stringify(data, null, 2));
-
-        renderer.editor.on('change', validate(renderer.changeValidated));
-
-        renderer.changeValidated = function(err, data, zoom) {
+        renderer.changeValidated = validate(function(err, data, zoom) {
             if (!err) {
               context.data.set({map: data}, 'json');
               if (zoom) zoomextent(context);
             }
-        }
+        });
+
+        var data = context.data.get('map');
+        renderer.editor.setValue(JSON.stringify(data, null, 2));
+
+        renderer.editor.on('change', renderer.changeValidated);
 
         context.dispatch.on('change.json', function(event) {
             if (event.source !== 'json' && event.obj.map) {
@@ -52,7 +52,7 @@ module.exports = function(context) {
 
     renderer.off = function() {
         context.dispatch.on('change.json', null);
-        renderer.editor.off('change', renderer.changed);
+        renderer.editor.off('change', renderer.changeValidated);
     };
 
     return renderer;

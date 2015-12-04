@@ -36,15 +36,15 @@ module.exports = function(context, type) {
             lineNumbers: true
         });
 
+        renderer.changed = function() {
+          var obj = {};
+          obj[type] = renderer.editor.getValue();
+          context.data.set(obj, 'editor.' + type);
+        }
+
         renderer.editor.setValue(context.data.get(type));
 
         renderer.editor.on('change', renderer.changed);
-
-        renderer.changed = function() {
-          var obj = {};
-          obj[type] = editor.getValue();
-          context.data.set(obj, 'editor.' + type);
-        }
 
         context.dispatch.on('change.editor.' + type, function(event) {
           if (event.source !== 'editor.' + type && event.obj[type]) {

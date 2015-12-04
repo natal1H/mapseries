@@ -319,6 +319,7 @@ module.exports = function fileBar(context) {
               flash(context.container, context.texts.discardFailed);
             } else {
               flash(context.container, context.texts.discardSuccess);
+              context.dispatch.beforeclear();
               context.dispatch.clear();
             }
           });
@@ -338,6 +339,7 @@ module.exports = function fileBar(context) {
                 flash(context.container, context.texts.publishFailed);
               } else {
                 flash(context.container, context.texts.publishSuccess);
+                context.dispatch.beforeclear();
                 context.dispatch.clear();
                 $('#button-publish').addClass('disabled');
               }

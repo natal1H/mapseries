@@ -9,7 +9,7 @@ module.exports = function(context, pane) {
   var tabs = [];
   var idCounter = 0;
 
-  context.dispatch.on('clear.tabs', function() {
+  context.dispatch.on('beforeclear.tabs', function() {
     if (mode) {
       mode.off();
     }
