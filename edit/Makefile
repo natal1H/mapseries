@@ -54,6 +54,9 @@ dist/lib.js: dist dist/d3.js lib/label/dist/leaflet.label.js $(LIBS)
 		lib/codemirror/mode/javascript/javascript.js \
 		lib/codemirror/addon/lint/lint.js \
 		lib/codemirror/addon/lint/javascript-lint.js \
+		lib/codemirror/addon/search/search.js \
+		lib/codemirror/addon/search/searchcursor.js \
+		lib/codemirror/addon/dialog/dialog.js \
 		lib/leaflet.geometryutil.js \
 		lib/leaflet.snap.js \
 		lib/leaflet.draw.topology.js \

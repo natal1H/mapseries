@@ -33,6 +33,8 @@ module.exports = function(context) {
     var geojsonPath = config.getGeoJsonPath();
     var templatePath = config.getTemplatePath();
 
+    context.dispatch.clear();
+
     github.readFile(geojsonPath, function(err, data) {
       if (err) {
         loading.hide();

@@ -17,12 +17,14 @@ module.exports = function(context, type) {
         return false;
     }
 
-    function render(selection) {
+    var renderer = {}
+
+    renderer.render = function(selection) {
         var textarea = selection
             .html('')
             .append('textarea');
 
-        var editor = CodeMirror.fromTextArea(textarea.node(), {
+        renderer.editor = CodeMirror.fromTextArea(textarea.node(), {
             mode: 'javascript',
             matchBrackets: true,
             tabSize: 2,
@@ -34,11 +36,11 @@ module.exports = function(context, type) {
             lineNumbers: true
         });
 
-        editor.setValue(context.data.get(type));
+        renderer.editor.setValue(context.data.get(type));
 
-        editor.on('change', changed);
+        renderer.editor.on('change', renderer.changed);
 
-        function changed() {
+        renderer.changed = function() {
           var obj = {};
           obj[type] = editor.getValue();
           context.data.set(obj, 'editor.' + type);
@@ -46,16 +48,17 @@ module.exports = function(context, type) {
 
         context.dispatch.on('change.editor.' + type, function(event) {
           if (event.source !== 'editor.' + type && event.obj[type]) {
-            var scrollInfo = editor.getScrollInfo();
-            editor.setValue(event.obj[type]);
-            editor.scrollTo(scrollInfo.left, scrollInfo.top);
+            var scrollInfo = renderer.editor.getScrollInfo();
+            renderer.editor.setValue(event.obj[type]);
+            renderer.editor.scrollTo(scrollInfo.left, scrollInfo.top);
           }
         });
     }
 
-    render.off = function() {
+    renderer.off = function() {
         context.dispatch.on('change.json', null);
+        renderer.editor.off('change', renderer.changed);
     };
 
-    return render;
+    return renderer;
 };

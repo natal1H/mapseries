@@ -400,7 +400,7 @@ module.exports = {
 
       var contains = function(x, y) { return x.indexOf(y) > -1; }
       var isEmpty = function(x) { return !x || 0 === x.length };
-      var isDigit = function(x) { return (x > '0' && x < '9') || x == '.' || x == ',' };
+      var isDigit = function(x) { return (x >= '0' && x <= '9') || x == '.' || x == ',' };
 
       var startContainsDegree = contains(start, '°');
       var startContainsMinute = contains(start, "'");
@@ -412,10 +412,10 @@ module.exports = {
       var endContainsMinute = contains(end, "'");
       var endContainsSecond = contains(end, '"');
 
-      var isMinus = e.key == '-';
-      var isNumber = e.key >= '0' && e.key <= '9';
-      var isDecimalSep = e.key == '.' || e.key == ',';
-      var isSpace = e.key == ' ';
+      var isMinus = e.keyCode == 109;
+      var isNumber = e.keyCode >= 96 && e.keyCode <= 105;
+      var isDecimalSep = e.keyCode == 190 || e.keyCode == 188;
+      var isSpace = e.keyCode == 32;
       var isNavigation = e.keyCode == 37 /* LEFT */
         || e.keyCode == 39 /* RIGHT */
         || e.keyCode == 36 /* HOME */

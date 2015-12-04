@@ -11,12 +11,14 @@ module.exports = function(context) {
         fallthrough: ['default']
     };
 
-    function render(selection) {
+    var renderer = {}
+
+    renderer.render = function(selection) {
         var textarea = selection
             .html('')
             .append('textarea');
 
-        var editor = CodeMirror.fromTextArea(textarea.node(), {
+        renderer.editor = CodeMirror.fromTextArea(textarea.node(), {
             mode: 'application/json',
             matchBrackets: true,
             tabSize: 2,
@@ -28,11 +30,11 @@ module.exports = function(context) {
         });
 
         var data = context.data.get('map');
-        editor.setValue(JSON.stringify(data, null, 2));
+        renderer.editor.setValue(JSON.stringify(data, null, 2));
 
-        editor.on('change', validate(changeValidated));
+        renderer.editor.on('change', validate(renderer.changeValidated));
 
-        function changeValidated(err, data, zoom) {
+        renderer.changeValidated = function(err, data, zoom) {
             if (!err) {
               context.data.set({map: data}, 'json');
               if (zoom) zoomextent(context);
@@ -41,16 +43,17 @@ module.exports = function(context) {
 
         context.dispatch.on('change.json', function(event) {
             if (event.source !== 'json' && event.obj.map) {
-                var scrollInfo = editor.getScrollInfo();
-                editor.setValue(JSON.stringify(context.data.get('map'), null, 2));
-                editor.scrollTo(scrollInfo.left, scrollInfo.top);
+                var scrollInfo = renderer.editor.getScrollInfo();
+                renderer.editor.setValue(JSON.stringify(context.data.get('map'), null, 2));
+                renderer.editor.scrollTo(scrollInfo.left, scrollInfo.top);
             }
         });
     }
 
-    render.off = function() {
+    renderer.off = function() {
         context.dispatch.on('change.json', null);
+        renderer.editor.off('change', renderer.changed);
     };
 
-    return render;
+    return renderer;
 };

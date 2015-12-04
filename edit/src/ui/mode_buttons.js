@@ -45,7 +45,7 @@ module.exports = function(context, pane) {
           mode.off();
         }
         mode = d.behavior(context, d.title);
-        pane.call(mode);
+        pane.call(mode.render);
     }
   }
 
