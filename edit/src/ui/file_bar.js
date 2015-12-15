@@ -131,6 +131,10 @@ module.exports = function fileBar(context) {
                 }
             ],
             enabled: false
+        }, {
+          title: 'Catalog',
+          href: '/',
+          enabled: true
         }];
 
         var items = selection.append('div')
@@ -144,6 +148,7 @@ module.exports = function fileBar(context) {
 
         var buttons = items.append('a')
             .attr('class', 'parent')
+            .attr('href', function(d) { return d.href ? d.href : '#'; })
             .on('click', function(d) {
                 if (d.action) d.action.apply(this, d);
             })
