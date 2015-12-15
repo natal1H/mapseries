@@ -75,6 +75,8 @@ RUN cp -r client/public/* $CATALINA_HOME/webapps/ROOT
 COPY edit /build/edit
 WORKDIR /build/edit
 RUN npm link local_packages/github-api
+RUN npm link local_packages/floatthead
+RUN npm link local_packages/d3-metatable
 RUN npm install
 RUN make
 RUN mkdir $CATALINA_HOME/webapps/edit

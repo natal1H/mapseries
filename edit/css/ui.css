@@ -33,3 +33,60 @@
   color: gray;
   pointer-events: none;
 }
+
+button.confirm.disabled {
+  pointer-events: none;
+  background-color: gray;
+}
+
+button.confirm {
+  background-color: #34495E;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  float: right;
+  margin: 10px;
+}
+
+button.confirm:hover {
+  background-color: #2980b9
+}
+
+.controls button {
+  background-color: #EEE;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.controls button:hover {
+  background-color: #f7f7f7;
+}
+
+.floatThead-wrapper {
+  position: absolute !important;
+  top: 57px;
+  bottom: 0;
+  width: 98%;
+}
+
+.tabledata {
+  top: 0px;
+  bottom: 0px;
+  overflow: auto;
+  width: 100%;
+  position: absolute;
+  margin: 10px;
+}
+
+.right table {
+  margin: 0;
+}
+
+.tabledata tr.active input {
+  background-color: #FFA366;
+}
+
+.right .CodeMirror {
+  top: 55px;
+  border-top: 1px solid #D3D3D3;
+}

@@ -17,6 +17,7 @@ module.exports = function(context) {
         return;
       }
       context.data.set({template: data}, 'buttons');
+      context.editor.openTab('metadata', 'table', false);
       context.editor.openTab('template', 'javascript', false);
       context.editor.openTab('config', 'javascript', false);
       context.editor.openTab('geojson', 'geojson', true);
@@ -52,6 +53,7 @@ module.exports = function(context) {
           return;
         }
         context.data.set({template: data, dirty: false}, 'file_bar');
+        context.editor.openTab('metadata', 'table', false);
         context.editor.openTab('template', 'javascript', false);
         context.editor.openTab('config', 'javascript', false);
         context.editor.openTab('geojson', 'geojson', true);
@@ -66,6 +68,8 @@ module.exports = function(context) {
       callback.call(this);
       return;
     }
+
+    context.dispatch.before_save();
 
     var geojsonData = JSON.stringify(context.data.get('map'), null, 2);
     var templateData = context.data.get('template');

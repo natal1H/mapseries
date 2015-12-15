@@ -18,10 +18,18 @@ module.exports = function(context, type) {
     }
 
     var renderer = {}
+    renderer.dirty = false;
 
     renderer.render = function(selection) {
+
+        selection = selection.html('');
+
+        var confirmButton = selection
+            .append('button')
+            .attr('class', 'confirm')
+            .text('Confirm changes');
+
         var textarea = selection
-            .html('')
             .append('textarea');
 
         renderer.editor = CodeMirror.fromTextArea(textarea.node(), {
@@ -36,15 +44,21 @@ module.exports = function(context, type) {
             lineNumbers: true
         });
 
-        renderer.changed = function() {
-          var obj = {};
-          obj[type] = renderer.editor.getValue();
-          context.data.set(obj, 'editor.' + type);
-        }
+        renderer.confirmChanges = function() {
+          if (renderer.dirty) {
+            var obj = {};
+            obj[type] = renderer.editor.getValue();
+            context.data.set(obj, 'editor.' + type);
+          }
+        };
+
+        renderer.changedEvent = function() {
+          renderer.dirty = true;
+        };
+
+        confirmButton.on('click', renderer.confirmChanges);
 
         renderer.editor.setValue(context.data.get(type));
-
-        renderer.editor.on('change', renderer.changed);
 
         context.dispatch.on('change.editor.' + type, function(event) {
           if (event.source !== 'editor.' + type && event.obj[type]) {
@@ -53,11 +67,14 @@ module.exports = function(context, type) {
             renderer.editor.scrollTo(scrollInfo.left, scrollInfo.top);
           }
         });
-    }
+
+        renderer.editor.on('change', renderer.changedEvent);
+    };
 
     renderer.off = function() {
-        context.dispatch.on('change.json', null);
-        renderer.editor.off('change', renderer.changed);
+        context.dispatch.on('change.editor.' + type, null);
+        renderer.editor.off('change', renderer.changedEvent);
+        renderer.confirmChanges();
     };
 
     return renderer;

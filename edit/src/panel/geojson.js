@@ -12,10 +12,18 @@ module.exports = function(context) {
     };
 
     var renderer = {}
+    renderer.dirty = false;
 
     renderer.render = function(selection) {
+
+        selection = selection.html('');
+
+        var confirmButton = selection
+            .append('button')
+            .attr('class', 'confirm')
+            .text('Confirm changes');
+
         var textarea = selection
-            .html('')
             .append('textarea');
 
         renderer.editor = CodeMirror.fromTextArea(textarea.node(), {
@@ -30,11 +38,21 @@ module.exports = function(context) {
         });
 
         renderer.changeValidated = validate(function(err, data, zoom) {
-            if (!err) {
-              context.data.set({map: data}, 'json');
-              if (zoom) zoomextent(context);
+            if (err) {
+              confirmButton.classed('disabled', true);
+            } else {
+              confirmButton.classed('disabled', false);
+              renderer.dirty = true;
             }
         });
+
+        renderer.confirmChanges = function() {
+          if (renderer.dirty) {
+            context.data.set({map: JSON.parse(renderer.editor.getValue())}, 'json');
+          }
+        }
+
+        confirmButton.on('click', renderer.confirmChanges);
 
         var data = context.data.get('map');
         renderer.editor.setValue(JSON.stringify(data, null, 2));
@@ -53,6 +71,7 @@ module.exports = function(context) {
     renderer.off = function() {
         context.dispatch.on('change.json', null);
         renderer.editor.off('change', renderer.changeValidated);
+        renderer.confirmChanges();
     };
 
     return renderer;

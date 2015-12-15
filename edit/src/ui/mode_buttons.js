@@ -1,5 +1,6 @@
 var geojson = require('../panel/geojson'),
-    javascript = require('../panel/javascript');
+    javascript = require('../panel/javascript'),
+    table = require('../panel/table');
 
 module.exports = function(context, pane) {
 
@@ -16,6 +17,12 @@ module.exports = function(context, pane) {
     tabs = [];
     update();
     pane.html('');
+  });
+
+  context.dispatch.on('before_save.tabs', function() {
+    if (mode) {
+      mode.confirmChanges();
+    }
   });
 
   function update(s) {
@@ -52,7 +59,8 @@ module.exports = function(context, pane) {
   function getBehavior(type) {
     var behaviors = {
       geojson: geojson,
-      javascript: javascript
+      javascript: javascript,
+      table: table
     };
     return behaviors[type];
   }
