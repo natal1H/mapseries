@@ -39,6 +39,30 @@ button.confirm.disabled {
   background-color: gray;
 }
 
+.controls button, .pane a.control {
+  background-color: #EEE;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.controls button:hover, .pane a.control:hover {
+  background-color: #f7f7f7;
+}
+
+.pane a.control {
+  display: block;
+  float: left;
+  margin: 10px;
+  padding: 5px;
+  color: black;
+  height: 23px;
+  line-height: 24px;
+}
+
+button.confirm:hover {
+  background-color: #2980b9
+}
+
 button.confirm {
   background-color: #34495E;
   color: white;
@@ -46,20 +70,6 @@ button.confirm {
   border-radius: 3px;
   float: right;
   margin: 10px;
-}
-
-button.confirm:hover {
-  background-color: #2980b9
-}
-
-.controls button {
-  background-color: #EEE;
-  padding: 5px;
-  border-radius: 3px;
-}
-
-.controls button:hover {
-  background-color: #f7f7f7;
 }
 
 .floatThead-wrapper {

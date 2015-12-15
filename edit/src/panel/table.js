@@ -40,6 +40,14 @@ module.exports = function(context) {
                     .attr('class', 'confirm')
                     .on('click', renderer.confirmChanges)
                     .text('Confirm changes');
+
+                selection
+                    .append('a')
+                    .attr('class', 'control')
+                    .attr('href', 'http://unicode-table.com')
+                    .attr('target', '_blank')
+                    .text('Special characters')
+
                 selection
                     .data([props])
                     .call(metatable()

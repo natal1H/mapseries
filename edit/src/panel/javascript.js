@@ -29,6 +29,13 @@ module.exports = function(context, type) {
             .attr('class', 'confirm')
             .text('Confirm changes');
 
+        selection
+            .append('a')
+            .attr('class', 'control')
+            .attr('href', 'http://unicode-table.com')
+            .attr('target', '_blank')
+            .text('Special characters')
+
         var textarea = selection
             .append('textarea');
 
