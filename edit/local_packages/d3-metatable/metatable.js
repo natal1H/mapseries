@@ -4,6 +4,9 @@ if (typeof module !== 'undefined') {
     };
 }
 
+var $ = require('jquery');
+require('jquery-ui');
+
 function metatable() {
     var event = d3.dispatch('change', 'rowfocus', 'beforestructurechanged', 'structurechanged');
 
@@ -11,6 +14,16 @@ function metatable() {
         selection.each(function(d) {
             var sel = d3.select(this),
                 table;
+
+            var autocompleteData = {}
+            d.forEach(function(d) {
+              Object.keys(d).forEach(function(key) {
+                if (!(key in autocompleteData)) {
+                  autocompleteData[key] = new Set();
+                }
+                autocompleteData[key].add(d[key]);
+              });
+            });
 
             var keyset = d3.set();
             d.map(Object.keys).forEach(function(k) {
@@ -93,7 +106,12 @@ function metatable() {
                 td.enter()
                     .append('td')
                     .append('input')
-                    .attr('field', String);
+                    .attr('field', String)
+                    .each(function(d) {
+                      $(this).autocomplete({
+                        source: Array.from(autocompleteData[d])
+                      })
+                    });
 
                 td.exit().remove();
 
