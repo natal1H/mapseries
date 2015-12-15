@@ -127,6 +127,11 @@ module.exports = {
               this.included = true;
               _this._excludedRects.delete(this.id);
             }
+          };
+          if (this._excludedRects.has(rect.id)) {
+            rect.setFill(this._canvas.backgroundColor);
+            rect.setStroke(this._canvas.backgroundColor);
+            rect.included = false;
           }
           this._canvas.add(rect);
         }
