@@ -35,9 +35,6 @@ dist/d3.js: node_modules node_modules/d3/*
 		node_modules/d3/src/geo/path.js \
 		node_modules/d3/src/end.js > dist/d3.js
 
-dist/d3.min.js: dist/d3.js
-	$(UGLIFY) dist/d3.js > dist/d3.min.js
-
 dist/lib.js: dist dist/d3.js lib/label/dist/leaflet.label.js $(LIBS)
 	cat dist/d3.js \
 		lib/hashchange.js \
@@ -61,6 +58,7 @@ dist/lib.js: dist dist/d3.js lib/label/dist/leaflet.label.js $(LIBS)
 		lib/leaflet.snap.js \
 		lib/leaflet.draw.topology.js \
 		lib/label/dist/leaflet.label-src.js > dist/lib.js
+	$(UGLIFY) -o dist/lib.js dist/lib.js
 
 lib/label/dist/leaflet.label.js:
 	cd lib/label && jake
@@ -79,9 +77,11 @@ lib/mapbox.js/latest/mapbox.js: node_modules/mapbox.js/*
 
 dist/site.js: dist/lib.js src/index.js $(shell $(BROWSERIFY) --list src/index.js)
 	$(BROWSERIFY) --noparse=src/source/local.js -t brfs -r topojson  src/index.js > dist/site.js
+	$(UGLIFY) -o dist/site.js dist/site.js
 
 dist/site.mobile.js: dist/lib.js src/mobile.js $(shell $(BROWSERIFY) --list src/mobile.js)
 	$(BROWSERIFY) --noparse=src/source/local.js -t brfs -r topojson src/mobile.js > dist/site.mobile.js
+	$(UGLIFY) -o dist/site.mobile.js dist/site.mobile.js
 
 clean:
 	rm -f dist/*
