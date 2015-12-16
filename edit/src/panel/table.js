@@ -42,18 +42,18 @@ module.exports = function(context) {
                     .append('button')
                     .attr('class', 'confirm')
                     .on('click', renderer.confirmChanges)
-                    .text('Confirm changes');
+                    .text(context.texts.confirmChanges);
 
                 selection
                     .append('a')
                     .attr('class', 'control')
                     .attr('href', 'http://unicode-table.com')
                     .attr('target', '_blank')
-                    .text('Special characters')
+                    .text(context.texts.specialCharacters)
 
                 selection
                     .data([props])
-                    .call(metatable()
+                    .call(metatable(context.texts)
                         .on('change', function(row, i) {
                             renderer.dirty = true;
                             if (geojson.geometry) {

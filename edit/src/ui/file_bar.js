@@ -133,7 +133,7 @@ module.exports = function fileBar(context) {
             ],
             enabled: false
         }, {
-          title: 'Catalog',
+          title: context.texts.catalog,
           href: '/',
           enabled: true
         }];
@@ -283,7 +283,7 @@ module.exports = function fileBar(context) {
           if (dirty && !confirm(context.texts.beforeExit)) {
             return;
           }
-          
+
           loading.show();
           config.loadConfig(function(err) {
             loading.hide();

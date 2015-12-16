@@ -7,7 +7,7 @@ if (typeof module !== 'undefined') {
 var $ = require('jquery');
 require('jquery-ui');
 
-function metatable() {
+function metatable(texts) {
     var event = d3.dispatch('change', 'rowfocus', 'beforestructurechanged', 'structurechanged');
 
     function table(selection) {
@@ -45,7 +45,7 @@ function metatable() {
 
                 var colbutton = controls.append('button')
                     .on('click', function() {
-                        var name = prompt('column name');
+                        var name = prompt(texts.newColumnMsg);
                         if (name) {
                             event.beforestructurechanged();
                             keyset.add(name);
@@ -54,7 +54,7 @@ function metatable() {
                         }
                     });
                 colbutton.append('span').attr('class', 'icon-plus');
-                colbutton.append('span').text(' new column');
+                colbutton.append('span').text(' ' + texts.newColumn);
 
                 var enter = sel
                     .append('div')
@@ -117,17 +117,17 @@ function metatable() {
 
                 delbutton.on('click', deleteClick);
                 delbutton.append('span').attr('class', 'icon-minus');
-                delbutton.append('span').text(' delete');
+                delbutton.append('span').text(' ' + texts.deleteColumn);
 
-                renamebutton.append('span').text(' rename');
+                renamebutton.append('span').text(' ' + texts.renameColumn);
                 renamebutton.on('click', renameClick);
 
                 fillbutton.on('click', fillClick);
-                fillbutton.append('span').text(' fill');
+                fillbutton.append('span').text(' ' + texts.fillColumn);
 
                 function deleteClick(d) {
                     var name = d;
-                    if (confirm('Delete column ' + name + '?')) {
+                    if (confirm(texts.deleteColumnConfirm + ' ' + name + '?')) {
                         event.beforestructurechanged();
                         keyset.remove(name);
                         tr.selectAll('input')
@@ -148,7 +148,7 @@ function metatable() {
 
                 function renameClick(d) {
                     var name = d;
-                    var newname = prompt('New name for column ' + name + '?');
+                    var newname = prompt(texts.newNameColumnMsg + ' ' + name + '?');
                     if (newname) {
                         event.beforestructurechanged();
                         keyset.remove(name);
@@ -178,7 +178,7 @@ function metatable() {
 
                 function fillClick(d) {
                   var name = d;
-                  var value = prompt('Insert value');
+                  var value = prompt(texts.fillColumnMsg);
                   if (value) {
                     tr.selectAll('input')
                       .data(function(d, i) {
