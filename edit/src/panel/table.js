@@ -81,7 +81,9 @@ module.exports = function(context) {
                             });
                             $(renderer.table).floatThead('reflow');
                           }
+                          renderer.confirmChanges();
                         })
+
                     );
                 selection.select('table').each(function() {
                   renderer.table = this;

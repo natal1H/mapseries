@@ -153,6 +153,12 @@ function metatable() {
                         event.beforestructurechanged();
                         keyset.remove(name);
                         keyset.add(newname);
+
+                        if (name != newname) {
+                            autocompleteData[newname] = autocompleteData[name];
+                            delete autocompleteData[name];
+                        }
+
                         tr.selectAll('input')
                             .data(function(d, i) {
                                 var map = d3.map(d);
