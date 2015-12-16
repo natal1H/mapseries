@@ -22,14 +22,14 @@ module.exports = function(context) {
         var confirmButton = selection
             .append('button')
             .attr('class', 'confirm')
-            .text('Confirm changes');
+            .text(context.texts.confirmChanges);
 
         selection
             .append('a')
             .attr('class', 'control')
             .attr('href', 'http://unicode-table.com')
             .attr('target', '_blank')
-            .text('Special characters')
+            .text(context.texts.specialCharacters)
 
         var textarea = selection
             .append('textarea');
