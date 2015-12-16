@@ -108,9 +108,11 @@ function metatable(texts) {
                     .append('input')
                     .attr('field', String)
                     .each(function(d) {
-                      $(this).autocomplete({
-                        source: Array.from(autocompleteData[d])
-                      })
+                      if (autocompleteData[d]) {
+                        $(this).autocomplete({
+                          source: Array.from(autocompleteData[d])
+                        })
+                      }
                     });
 
                 td.exit().remove();
