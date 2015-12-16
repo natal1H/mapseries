@@ -148,7 +148,7 @@ module.exports = function fileBar(context) {
 
         var buttons = items.append('a')
             .attr('class', 'parent')
-            .attr('href', function(d) { return d.href ? d.href : '#'; })
+            .attr('href', function(d) { return d.href ? d.href : undefined; })
             .on('click', function(d) {
                 if (d.action) d.action.apply(this, d);
             })
