@@ -34,9 +34,10 @@ module.exports = function fileBar(context) {
         config = require('../lib/config')(context),
         serie = require('../ui/serie')(context),
         shpSupport = typeof ArrayBuffer !== 'undefined'
-        isAuth = context.storage.get('github_token') !== undefined;
-    vex.defaultOptions.className = 'vex-theme-os';
-    vexDialog.defaultOptions.showCloseButton = true;
+        isAuth = context.storage.get('github_token') !== undefined,
+        dirty = false;
+      vex.defaultOptions.className = 'vex-theme-os';
+      vexDialog.defaultOptions.showCloseButton = true;
 
     var exportFormats = [{
         title: 'GeoJSON',
@@ -177,9 +178,11 @@ module.exports = function fileBar(context) {
             $(window).on('beforeunload', function(e) {
               return context.texts.beforeExit;
             });
+            dirty = true;
           } else {
             $('#button-save').addClass('disabled');
             $(window).off('beforeunload');
+            dirty = false;
           }
         });
 
@@ -221,6 +224,10 @@ module.exports = function fileBar(context) {
         }
 
         function newSerie() {
+          if (dirty && !confirm(context.texts.beforeExit)) {
+            return;
+          }
+
           loading.show();
 
           config.loadConfig(function(err) {
@@ -273,6 +280,11 @@ module.exports = function fileBar(context) {
         }
 
         function openSerie() {
+          if (dirty && !confirm(context.texts.beforeExit)) {
+            return;
+          }
+          
+          loading.show();
           config.loadConfig(function(err) {
             loading.hide();
             if (err) {

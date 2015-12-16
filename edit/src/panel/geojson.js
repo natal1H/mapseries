@@ -1,5 +1,6 @@
 var validate = require('../lib/validate'),
-    zoomextent = require('../lib/zoomextent');
+    zoomextent = require('../lib/zoomextent'),
+    loading = require('../ui/loading.js');
 
 module.exports = function(context) {
 
@@ -73,6 +74,7 @@ module.exports = function(context) {
                 renderer.editor.scrollTo(scrollInfo.left, scrollInfo.top);
             }
         });
+        loading.hide();
     }
 
     renderer.off = function() {

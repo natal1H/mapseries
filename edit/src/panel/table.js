@@ -1,6 +1,7 @@
 var metatable = require('d3-metatable')(d3),
     smartZoom = require('../lib/smartzoom.js'),
-    $ = require('jquery');
+    $ = require('jquery'),
+    loading = require('../ui/loading.js');
 
 require('floatthead');
 
@@ -19,7 +20,9 @@ module.exports = function(context) {
 
             renderer.confirmChanges = function() {
               if (renderer.dirty) {
+                loading.show();
                 context.data.set('map', geojson);
+                loading.hide();
               }
             }
 
@@ -131,6 +134,7 @@ module.exports = function(context) {
             });
             return layer;
         }
+        loading.hide();
     };
 
     renderer.off = function() {

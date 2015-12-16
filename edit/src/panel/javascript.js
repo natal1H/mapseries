@@ -1,4 +1,5 @@
-var validate = require('../lib/validate');
+var validate = require('../lib/validate'),
+    loading = require('../ui/loading.js');
 
 module.exports = function(context, type) {
 
@@ -76,6 +77,7 @@ module.exports = function(context, type) {
         });
 
         renderer.editor.on('change', renderer.changedEvent);
+        loading.hide();
     };
 
     renderer.off = function() {

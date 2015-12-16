@@ -1,6 +1,7 @@
 var geojson = require('../panel/geojson'),
     javascript = require('../panel/javascript'),
-    table = require('../panel/table');
+    table = require('../panel/table'),
+    loading = require('../ui/loading.js');
 
 module.exports = function(context, pane) {
 
@@ -47,6 +48,7 @@ module.exports = function(context, pane) {
     d3.select(buttons.node()).trigger('click');
 
     function buttonClick(d) {
+        loading.show();
         buttons.classed('active', function(_) { return d.title == _.title; });
         if (mode) {
           mode.off();
