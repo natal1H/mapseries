@@ -38,6 +38,12 @@ module.exports = function(context) {
                 props = geojson.geometry ? [geojson.properties] :
                     geojson.features.map(getProperties);
 
+                props.forEach(function(obj) {
+                  obj['SHEET'] = obj['SHEET'] || '';
+                });
+
+                console.log(props);
+
                 selection
                     .html('')
                     .append('button')
