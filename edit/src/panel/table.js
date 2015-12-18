@@ -22,6 +22,7 @@ module.exports = function(context) {
               if (renderer.dirty) {
                 loading.show();
                 context.data.set('map', geojson);
+                renderer.dirty = false;
                 loading.hide();
               }
             }
@@ -75,7 +76,7 @@ module.exports = function(context) {
                             $(renderer.table).floatThead('destroy');
                           }
                         })
-                        .on('structurechanged', function() {
+                        .on('structurechanged', function(confirmChanges) {
                           if (renderer.table) {
                             $(renderer.table).floatThead({
                               scrollContainer: function(table) {
@@ -84,7 +85,9 @@ module.exports = function(context) {
                             });
                             $(renderer.table).floatThead('reflow');
                           }
-                          renderer.confirmChanges();
+                          if (confirmChanges) {
+                            renderer.confirmChanges();
+                          }
                         })
 
                     );

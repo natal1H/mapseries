@@ -57,6 +57,7 @@ module.exports = function(context, type) {
             var obj = {};
             obj[type] = renderer.editor.getValue();
             context.data.set(obj, 'editor.' + type);
+            renderer.dirty = false;
           }
         };
 

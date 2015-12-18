@@ -50,7 +50,7 @@ function metatable(texts) {
                             event.beforestructurechanged();
                             keyset.add(name);
                             paint();
-                            event.structurechanged();
+                            event.structurechanged(false);
                         }
                     });
                 colbutton.append('span').attr('class', 'icon-plus');
@@ -144,7 +144,7 @@ function metatable(texts) {
                                 };
                             });
                         paint();
-                        event.structurechanged();
+                        event.structurechanged(false);
                     }
                 }
 
@@ -174,7 +174,7 @@ function metatable(texts) {
                                 };
                             });
                         paint();
-                        event.structurechanged();
+                        event.structurechanged(true);
                     }
                 }
 

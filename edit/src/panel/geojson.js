@@ -57,6 +57,7 @@ module.exports = function(context) {
         renderer.confirmChanges = function() {
           if (renderer.dirty) {
             context.data.set({map: JSON.parse(renderer.editor.getValue())}, 'json');
+            renderer.dirty = false;
           }
         }
 
