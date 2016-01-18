@@ -8,13 +8,15 @@ module.exports = ui;
 
 function ui(context) {
 
+    var map = null;
+
     function init(selection) {
 
         var container = selection
             .append('div')
             .attr('class', 'container');
 
-        var map = container
+        map = container
             .append('div')
             .attr('class', 'map')
             .call(context.map)
@@ -29,39 +31,17 @@ function ui(context) {
 
         var container = init(selection);
 
-        var right = container
+        var editor = container
             .append('div')
-            .attr('class', 'right');
+            .attr('class', 'editor');
 
-        var top = right
+        var top = editor
             .append('div')
             .attr('class', 'top');
 
-        top
-            .append('button')
-            .attr('class', 'collapse-button')
-            .attr('title', 'Collapse')
-            .on('click', function collapse() {
-                d3.select('body').classed('fullscreen',
-                    !d3.select('body').classed('fullscreen'));
-                var full = d3.select('body').classed('fullscreen');
-                d3.select(this)
-                    .select('.icon')
-                    .classed('icon-caret-up', !full)
-                    .classed('icon-caret-down', full);
-                context.map.invalidateSize();
-            })
-            .append('class', 'span')
-            .attr('class', 'icon icon-caret-up');
-
-        var pane = right
+        var pane = editor
             .append('div')
             .attr('class', 'pane');
-
-        top
-            .append('div')
-            .attr('class', 'user fr pad1 deemphasize')
-            .call(userUi(context));
 
         context.editor = buttons(context, pane);
 
@@ -70,10 +50,26 @@ function ui(context) {
             .attr('class', 'buttons')
             .call(context.editor.update);
 
-        container
+        var fileBar = container
             .append('div')
             .attr('class', 'file-bar')
             .call(file_bar(context));
+
+        fileBar
+            .append('div')
+            .attr('class', 'user fr deemphasize')
+            .call(userUi(context));
+
+        context.dispatch.on('select_layer.ui', function() {
+          map.style({display: 'none'});
+          editor.style({display: 'block'});
+        });
+
+        context.dispatch.on('switch_to_map', function() {
+          map.style({display: 'block'});
+          editor.style({display: 'none'});
+          context.map.invalidateSize();
+        });
 
         dnd(context);
     }

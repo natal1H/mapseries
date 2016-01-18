@@ -21,8 +21,13 @@ module.exports = function(context) {
 
         var confirmButton = selection
             .append('button')
-            .attr('class', 'confirm')
+            .attr('class', 'fr toolbar')
             .text(context.texts.confirmChanges);
+
+        var switchToMapButton = selection
+            .append('button')
+            .attr('class', 'fr toolbar')
+            .text(context.texts.switchToMap);
 
         selection
             .append('a')
@@ -61,7 +66,12 @@ module.exports = function(context) {
           }
         }
 
+        renderer.switchToMap = function() {
+          context.dispatch.switch_to_map();
+        }
+
         confirmButton.on('click', renderer.confirmChanges);
+        switchToMapButton.on('click', renderer.switchToMap);
 
         var data = context.data.get('map');
         renderer.editor.setValue(JSON.stringify(data, null, 2));

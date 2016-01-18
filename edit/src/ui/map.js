@@ -73,18 +73,6 @@ module.exports = function(context, readonly) {
             geojsonToLayer(context.data.get('map'), context.mapLayer, context.labelLayer);
         });
 
-        context.dispatch.on('select_layer.map', function(layer) {
-            if (selectedLayer) {
-              selectedLayer.setStyle({
-                fillColor: '#555555'
-              });
-            }
-            selectedLayer = layer;
-            selectedLayer.setStyle({
-              fillColor: '#FF6600'
-            });
-        });
-
         function created(e) {
             if (e.layer) {
               context.mapLayer.addLayer(e.layer);
@@ -127,8 +115,6 @@ module.exports = function(context, readonly) {
 
     function bindClick(l) {
       l.on('click', function(e) {
-        console.log('clicked');
-        console.log(e);
         context.dispatch.select_layer(e.target);
       });
     }

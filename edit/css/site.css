@@ -13,20 +13,20 @@
 /* Utility classes */
 .map {
     position:absolute;
-    top:0;
+    top:40px;
     bottom:0;
     left:0;
-    right:40%;
+    right:0;
 }
 
-.right {
+.editor {
+    display: none;
     overflow-x:hidden;
     position:absolute;
     bottom:0;
-    top:0;
+    top:40px;
     right:0;
-    width:40%;
-    min-width:400px;
+    left:0;
     box-sizing:border-box;
     background:#fff;
     transition:all 200ms;
@@ -38,14 +38,14 @@ body.fullscreen .map {
     right:0;
 }
 
-body.fullscreen .right {
+body.fullscreen .editor {
     height:40px;
     bottom:auto;
     border-bottom: 1px solid #d9d9d9;
     overflow-y: hidden;
 }
 
-body.fullscreen .right .top .buttons,
+body.fullscreen .editor .top .buttons,
 body.fullscreen .file-bar .fr {
     display:none;
 }
@@ -67,7 +67,7 @@ p.intro-hint:hover {
     opacity:1;
 }
 
-.right .pane {
+.editor .pane {
     position:absolute;
     top:40px;
     bottom:0;
@@ -76,7 +76,7 @@ p.intro-hint:hover {
 }
 
 /*
- * .right ---------------------------------------------------------------------
+ * .editor ---------------------------------------------------------------------
  */
 .top {
     background:#eee;
@@ -94,7 +94,6 @@ p.intro-hint:hover {
 }
 
 .top .buttons {
-    margin-left:28px;
     height:40px;
 }
 
@@ -182,7 +181,7 @@ button.delete-invert:hover {
 /*
  * CodeMirror & Markers -------------------------------------------------------
  */
-.right .CodeMirror {
+.editor .CodeMirror {
     position:absolute;
     bottom:0;
     right:0;
@@ -227,7 +226,7 @@ button.delete-invert:hover {
     margin-left:35px;
 }
 
-.right .edit-pane .CodeMirror-linenumber {
+.editor .edit-pane .CodeMirror-linenumber {
     color:#666;
     font-size:75%;
 }
@@ -287,7 +286,7 @@ body.dragover .modal-message {
     text-align:center;
 }
 
-.right table {
+.editor table {
     margin:10px;
 }
 
@@ -332,9 +331,11 @@ textarea.full-width {
     position:absolute;
     top:0;
     left:0;
+    right: 0;
     height:40px;
     box-sizing:border-box;
     line-height:40px;
+    background:#eee;
 }
 
 .file-bar .name {
@@ -346,6 +347,10 @@ textarea.full-width {
 
 .file-bar .name .filename {
     margin-left:10px;
+}
+
+.file-bar .fr {
+    padding-right: 10px;
 }
 
 .clickable:hover,
@@ -536,13 +541,10 @@ div.children a {
         display:none;
     }
     .share, .download, .map {
-        right:50%;
-    }
-    .right {
-        width:50%;
+        right:0;
     }
     .file-bar {
-        right:50%;
+        right:0;
     }
 }
 

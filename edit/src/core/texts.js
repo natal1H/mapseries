@@ -58,7 +58,8 @@ module.exports = function() {
       deleteColumnConfirm: 'Naozaj chcete zmazať stĺpec',
       newNameColumnMsg: 'Nový názov pre',
       fillColumnMsg: 'Zadajte hodnotu ktorou sa vyplnia prázdne polia v stĺpci.',
-      newColumnMsg: 'Názov nového stĺpca'
+      newColumnMsg: 'Názov nového stĺpca',
+      switchToMap: 'Prepni na mapu'
     },
 	'cs': {
       newSerie: 'Nová kolekce',
@@ -114,7 +115,8 @@ module.exports = function() {
       deleteColumnConfirm: 'Opravdu chcete smazat sloupec',
       newNameColumnMsg: 'Nový název pro',
       fillColumnMsg: 'Zadajte hodnotu, kterou se vyplní prázdná pole v sloupci.',
-      newColumnMsg: 'Název nového sloupce'
+      newColumnMsg: 'Název nového sloupce',
+      switchToMap: 'Přepni na mapu'
     },
     'en': {
       newSerie: 'New serie',
@@ -170,7 +172,8 @@ module.exports = function() {
       deleteColumnConfirm: 'Delete column',
       newNameColumnMsg: 'New name for column',
       fillColumnMsg: 'Insert value',
-      newColumnMsg: 'Name of the new column'
+      newColumnMsg: 'Name of the new column',
+      switchToMap: 'Switch to map'
     }
   };
 

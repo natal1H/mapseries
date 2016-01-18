@@ -54,14 +54,6 @@ public class Settings {
         return get("geoserver.url", "http://localhost:8080/geoserver");
     }
 
-    public String getGeoServerUsername() {
-        return get("geoserver.username", "");
-    }
-
-    public String getGeoServerPassword() {
-        return get("geoserver.password", "");
-    }
-
     public String getGeoServerDataDir() {
         return get("geoserver.data.dir", "/tmp");
     }

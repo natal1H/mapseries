@@ -27,8 +27,13 @@ module.exports = function(context, type) {
 
         var confirmButton = selection
             .append('button')
-            .attr('class', 'confirm')
+            .attr('class', 'fr toolbar')
             .text(context.texts.confirmChanges);
+
+        var switchToMapButton = selection
+            .append('button')
+            .attr('class', 'fr toolbar')
+            .text(context.texts.switchToMap);
 
         selection
             .append('a')
@@ -61,11 +66,16 @@ module.exports = function(context, type) {
           }
         };
 
+        renderer.switchToMap = function() {
+          context.dispatch.switch_to_map();
+        }
+
         renderer.changedEvent = function() {
           renderer.dirty = true;
         };
 
         confirmButton.on('click', renderer.confirmChanges);
+        switchToMapButton.on('click', renderer.switchToMap);
 
         renderer.editor.setValue(context.data.get(type));
 

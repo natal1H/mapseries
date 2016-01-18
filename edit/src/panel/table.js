@@ -27,6 +27,10 @@ module.exports = function(context) {
               }
             }
 
+            renderer.switchToMap = function() {
+              context.dispatch.switch_to_map();
+            }
+
             if (!geojson || !geojson.geometry &&
                 (!geojson.features || !geojson.features.length)) {
                 selection
@@ -42,14 +46,18 @@ module.exports = function(context) {
                   obj['SHEET'] = obj['SHEET'] || '';
                 });
 
-                console.log(props);
-
                 selection
                     .html('')
                     .append('button')
-                    .attr('class', 'confirm')
+                    .attr('class', 'fr toolbar')
                     .on('click', renderer.confirmChanges)
                     .text(context.texts.confirmChanges);
+
+                selection
+                    .append('button')
+                    .attr('class', 'fr toolbar')
+                    .on('click', renderer.switchToMap)
+                    .text(context.texts.switchToMap);
 
                 selection
                     .append('a')

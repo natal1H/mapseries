@@ -9,7 +9,7 @@ var ui = require('./ui'),
     store = require('store');
 
 var context = {};
-context.dispatch = d3.dispatch('change', 'route', 'beforeclear', 'clear', 'init_dirty', 'open_serie', 'save_serie', 'before_save', 'discardWork', 'select_layer');
+context.dispatch = d3.dispatch('change', 'route', 'beforeclear', 'clear', 'init_dirty', 'open_serie', 'save_serie', 'before_save', 'discardWork', 'select_layer', 'switch_to_map');
 context.storage = store;
 context.map = map(context);
 context.data = data(context);

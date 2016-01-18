@@ -57,16 +57,15 @@ button.confirm.disabled {
   color: black;
 }
 
-button.confirm:hover {
+.pane button.toolbar:hover {
   background-color: #2980b9
 }
 
-button.confirm {
+.pane button.toolbar {
   background-color: #34495E;
   color: white;
   padding: 5px;
   border-radius: 3px;
-  float: right;
   margin: 10px;
 }
 
@@ -74,7 +73,7 @@ button.confirm {
   position: absolute !important;
   top: 57px;
   bottom: 0;
-  width: 98%;
+  width: 99%;
 }
 
 .tabledata {
@@ -86,15 +85,21 @@ button.confirm {
   margin: 10px;
 }
 
-.right table {
+.editor table {
   margin: 0;
+  width: 99%;
 }
+
+.tabledata tr input {
+  width: 100%;
+}
+
 
 .tabledata tr.active input {
   background-color: #FFA366;
 }
 
-.right .CodeMirror {
+.editor .CodeMirror {
   top: 55px;
   border-top: 1px solid #D3D3D3;
 }
