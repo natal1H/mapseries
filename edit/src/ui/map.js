@@ -5,6 +5,7 @@ var popup = require('../lib/popup'),
     grid = require('../lib/leaflet.grid'),
     escape = require('escape-html'),
     LGeo = require('leaflet-geodesy'),
+    $ = require('jquery'),
     writable = false,
     makiValues = require('../../data/maki.json'),
     maki = '';
@@ -71,6 +72,11 @@ module.exports = function(context, readonly) {
 
         context.dispatch.on('change.map', function() {
             geojsonToLayer(context.data.get('map'), context.mapLayer, context.labelLayer);
+        });
+
+        context.dispatch.on('open_serie', function() {
+          $('.leaflet-draw-section').css('display', 'block');
+          $('.leaflet-control-grid-container').css('display', 'block');
         });
 
         function created(e) {

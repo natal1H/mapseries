@@ -36,7 +36,7 @@ module.exports = {
 
     onAdd: function(map) {
       this._map = map;
-      var container = L.DomUtil.create('div', 'leaflet-control-grid');
+      var container = L.DomUtil.create('div', 'leaflet-control-grid-container');
       var button = L.DomUtil.create('div', 'leaflet-control-grid-action');
       L.DomEvent
         .on(button, 'click', L.DomEvent.stopPropagation)

@@ -74,9 +74,9 @@ RUN cp -r client/public/* $CATALINA_HOME/webapps/ROOT
 # DEPLOY edit
 COPY edit /build/edit
 WORKDIR /build/edit
+RUN wget https://raw.githubusercontent.com/handsontable/handsontable/0.22.0/dist/handsontable.full.min.js -O lib/handsontable.full.js
+RUN wget https://raw.githubusercontent.com/handsontable/handsontable/0.22.0/dist/handsontable.full.min.css -O css/handsontable.full.css
 RUN npm link local_packages/github-api
-RUN npm link local_packages/floatthead
-RUN npm link local_packages/d3-metatable
 RUN npm install
 RUN make
 RUN mkdir $CATALINA_HOME/webapps/edit

@@ -1,4 +1,4 @@
-var buttons = require('./ui/mode_buttons'),
+var editor = require('./ui/editor'),
     file_bar = require('./ui/file_bar'),
     dnd = require('./ui/dnd'),
     userUi = require('./ui/user'),
@@ -31,24 +31,11 @@ function ui(context) {
 
         var container = init(selection);
 
-        var editor = container
+        context.editor = editor(context);
+        container
             .append('div')
-            .attr('class', 'editor');
-
-        var top = editor
-            .append('div')
-            .attr('class', 'top');
-
-        var pane = editor
-            .append('div')
-            .attr('class', 'pane');
-
-        context.editor = buttons(context, pane);
-
-        top
-            .append('div')
-            .attr('class', 'buttons')
-            .call(context.editor.update);
+            .attr('class', 'editor')
+            .call(context.editor.init);
 
         var fileBar = container
             .append('div')
@@ -60,14 +47,15 @@ function ui(context) {
             .attr('class', 'user fr deemphasize')
             .call(userUi(context));
 
-        context.dispatch.on('select_layer.ui', function() {
+        context.dispatch.on('select_layer.ui', function(layer) {
           map.style({display: 'none'});
-          editor.style({display: 'block'});
+          context.editor.show();
+          context.editor.selectLayer(layer);
         });
 
         context.dispatch.on('switch_to_map', function() {
           map.style({display: 'block'});
-          editor.style({display: 'none'});
+          context.editor.hide();
           context.map.invalidateSize();
         });
 

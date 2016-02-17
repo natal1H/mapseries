@@ -6,9 +6,6 @@ LIBS = $(shell find lib -type f -name '*.js')
 
 all: dist/site.js dist/site.mobile.js dist/delegate.js lib/mapbox.js/latest lib/mapbox.js/latest/mapbox.js
 
-node_modules: package.json
-	npm install
-
 dist:
 	mkdir -p dist
 
@@ -76,7 +73,7 @@ lib/mapbox.js/latest/mapbox.js: node_modules/mapbox.js/*
 	$(CLEANCSS) -o lib/mapbox.js/latest/mapbox.css --skip-rebase node_modules/mapbox.js/theme/style.css
 
 dist/site.js: dist/lib.js src/index.js $(shell $(BROWSERIFY) --list src/index.js)
-	$(BROWSERIFY) --noparse=src/source/local.js -t brfs -r topojson  src/index.js > dist/site.js
+	$(BROWSERIFY) -t brfs -r topojson  src/index.js > dist/site.js
 	$(UGLIFY) -o dist/site.js dist/site.js
 
 dist/site.mobile.js: dist/lib.js src/mobile.js $(shell $(BROWSERIFY) --list src/mobile.js)

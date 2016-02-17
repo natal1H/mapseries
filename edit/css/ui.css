@@ -34,22 +34,22 @@
   pointer-events: none;
 }
 
-button.confirm.disabled {
-  pointer-events: none;
-  background-color: gray;
+.editor-container button.disabled {
+  pointer-events: none !important;
+  background-color: gray !important;
 }
 
-.controls button, .pane a.control {
+.controls button, .editor-container a.control {
   background-color: #EEE;
   padding: 5px;
   border-radius: 3px;
 }
 
-.controls button:hover, .pane a.control:hover {
+.controls button:hover, .editor-container a.control:hover {
   background-color: #f7f7f7;
 }
 
-.pane a.control {
+.editor-container a.control {
   display: block;
   float: left;
   margin: 10px;
@@ -57,11 +57,11 @@ button.confirm.disabled {
   color: black;
 }
 
-.pane button.toolbar:hover {
+.editor-container button.toolbar:hover {
   background-color: #2980b9
 }
 
-.pane button.toolbar {
+.editor-container button.toolbar {
   background-color: #34495E;
   color: white;
   padding: 5px;
@@ -69,44 +69,20 @@ button.confirm.disabled {
   margin: 10px;
 }
 
-.floatThead-wrapper {
-  position: absolute !important;
-  top: 57px;
-  bottom: 0;
-  width: 99%;
-}
-
-.tabledata {
-  top: 0px;
-  bottom: 0px;
-  overflow: auto;
-  width: 100%;
-  position: absolute;
-  margin: 10px;
-}
-
-.editor table {
-  margin: 0;
-  width: 99%;
-}
-
-.tabledata tr input {
-  width: 100%;
-}
-
-
-.tabledata tr.active input {
-  background-color: #FFA366;
-}
-
 .editor .CodeMirror {
-  top: 55px;
+  top: 95px;
   border-top: 1px solid #D3D3D3;
 }
 
-.ui-autocomplete {
-  max-height: 200px;
-  overflow-y: auto;
-  /* prevent horizontal scrollbar */
-  overflow-x: hidden;
+.editor .editor-table {
+  overflow: hidden;
+  position: absolute;
+  top: 95px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.leaflet-draw-section, .leaflet-control-grid-container {
+  display: none;
 }

@@ -45,7 +45,7 @@ body.fullscreen .editor {
     overflow-y: hidden;
 }
 
-body.fullscreen .editor .top .buttons,
+body.fullscreen .editor .tab-container,
 body.fullscreen .file-bar .fr {
     display:none;
 }
@@ -78,22 +78,11 @@ p.intro-hint:hover {
 /*
  * .editor ---------------------------------------------------------------------
  */
-.top {
+.tab-container {
     background:#eee;
 }
 
-.top .info {
-    line-height:40px;
-    text-align:center;
-    width:40px;
-    color:#222;
-}
-
-.top .info:hover {
-    background:#ccc;
-}
-
-.top .buttons {
+.editor .tab-container {
     height:40px;
 }
 
@@ -153,7 +142,7 @@ button.delete-invert:hover {
     color: #E25353;
 }
 
-.top .collapse-button {
+.tab-container .collapse-button {
     position:absolute;
     top:0;
     left:0;
@@ -164,7 +153,7 @@ button.delete-invert:hover {
     border:none;
 }
 
-.top .buttons button {
+.editor .tab-container button {
     padding:10px 15px;
     font-weight:normal;
     height:40px;
@@ -172,7 +161,7 @@ button.delete-invert:hover {
     vertical-align:top;
 }
 
-.top .buttons button span.icon {
+.editor .tab-container button span.icon {
     font-size:16px;
     margin-right:5px;
     vertical-align:middle;

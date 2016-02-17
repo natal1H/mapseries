@@ -16,11 +16,7 @@ module.exports = function(context) {
         flash(context.container, context.texts.unexpectedError);
         return;
       }
-      context.data.set({template: data}, 'buttons');
-      context.editor.openTab('metadata', 'table', false);
-      context.editor.openTab('template', 'javascript', false);
-      context.editor.openTab('config', 'javascript', false);
-      context.editor.openTab('geojson', 'geojson', true);
+      context.data.set({template: data}, 'serie');
       context.dispatch.open_serie();
     });
   }
@@ -44,7 +40,7 @@ module.exports = function(context) {
         flash(context.container, errmsg);
         return;
       }
-      context.data.set({map: JSON.parse(data), dirty: false}, 'file_bar');
+      context.data.set({map: JSON.parse(data), dirty: false}, 'serie');
       github.readFile(templatePath, function(err, data) {
         loading.hide();
         if (err) {
@@ -52,11 +48,7 @@ module.exports = function(context) {
           flash(context.container, errmsg);
           return;
         }
-        context.data.set({template: data, dirty: false}, 'file_bar');
-        context.editor.openTab('metadata', 'table', false);
-        context.editor.openTab('template', 'javascript', false);
-        context.editor.openTab('config', 'javascript', false);
-        context.editor.openTab('geojson', 'geojson', true);
+        context.data.set({template: data, dirty: false}, 'serie');
         meta.zoomextent(context);
         context.dispatch.open_serie();
       });
