@@ -71,27 +71,21 @@ module.exports = function(context) {
     var templatePath = config.getTemplatePath();
     var configPath = config.getConfigPath();
 
-    github.writeFile(geojsonPath, geojsonData, 'Updated ' + geojsonPath, function(err) {
+    var files = [
+      {path: geojsonPath, content: geojsonData},
+      {path: templatePath, content: templateData},
+      {path: configPath, content: configData}
+    ];
+
+    github.writeFiles(files, "Updated " + config.getTitle() + " serie", function(err) {
       if (err) {
         callback.call(this, err);
         return;
       }
-      github.writeFile(templatePath, templateData, 'Updated ' + templatePath, function(err) {
-        if (err) {
-          callback.call(this, err);
-          return;
-        }
-        github.writeFile(configPath, configData, 'Updated ' + configPath, function(err) {
-          if (err) {
-            callback.call(this, err);
-            return;
-          }
-          context.data.dirty = false;
-          context.dispatch.change({obj: {}, source: 'serie'});
-          context.dispatch.save_serie();
-          callback.call(this);
-        });
-      });
+      context.data.dirty = false;
+      context.dispatch.change({obj: {}, source: 'serie'});
+      context.dispatch.save_serie();
+      callback.call(this);
     });
   }
 

@@ -288,6 +288,10 @@
         _request('POST', repoPath + '/git/refs', options, cb);
       };
 
+      this.updateRef = function(ref, sha, cb) {
+        _request('PATCH', repoPath + '/git/refs/' + ref, {sha: sha}, cb);
+      };
+
       // Delete a reference
       // --------
       //
@@ -375,7 +379,7 @@
       // For a given file path, get the corresponding sha (blob for files, tree for dirs)
       // -------
 
-      this.getCommit = function(branch, sha, cb) {
+      this.getCommit = function(sha, cb) {
         _request("GET", repoPath + "/git/commits/"+sha, null, function(err, commit) {
           if (err) return cb(err);
           cb(null, commit);
@@ -396,8 +400,9 @@
       // Retrieve the tree a commit points to
       // -------
 
-      this.getTree = function(tree, cb) {
-        _request("GET", repoPath + "/git/trees/"+tree, null, function(err, res) {
+      this.getTree = function(tree, cb, recursive) {
+        var params = recursive ? {recursive: recursive} : null;
+        _request("GET", repoPath + "/git/trees/"+tree, params, function(err, res) {
           if (err) return cb(err);
           cb(null, res.tree);
         });
@@ -451,7 +456,7 @@
       // -------
 
       this.postTree = function(tree, cb) {
-        _request("POST", repoPath + "/git/trees", { "tree": tree }, function(err, res) {
+        _request("POST", repoPath + "/git/trees", tree, function(err, res) {
           if (err) return cb(err);
           cb(null, res.sha);
         });

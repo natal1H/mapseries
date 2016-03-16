@@ -203,24 +203,91 @@ module.exports = function(context, config) {
 
   function readFile(path, callback) {
     var repo = getOrigin();
-    repo.read(workBranch, path, callback);
-  }
-
-  function writeFile(path, content, message, callback) {
-    var repo = getOrigin();
-    var options = {
-      author: {
-        name: 'geojson.io'
-      }
-    };
-    repo.write(workBranch, path, content, message, function(err) {
+    repo.getRef('heads/' + workBranch, function(err, sha) {
       if (err) {
-        console.error(err);
         callback.call(this, err);
         return;
       }
-      callback.call(this);
+      repo.getTree(sha, function(err, tree) {
+        if (err) {
+          callback.call(this, err);
+          return;
+        }
+        tree.forEach(function(t) {
+          if (t.path == path) {
+            repo.getBlob(t.sha, function(err, blob) {
+              if (err) {
+                callback.call(this, err);
+                return;
+              }
+              callback.call(this, null, blob);
+            });
+          }
+        });
+      }, 1);
     });
+  }
+
+  function writeFiles(files, message, callback, blobs) {
+    var repo = getOrigin();
+    var workRef = 'heads/' + workBranch;
+
+    if (files.length) {
+      var file = files.pop();
+      repo.postBlob(file.content, function(err, sha) {
+        if (err) {
+          callback.call(this, err);
+          return;
+        }
+        blobs = blobs || [];
+        blobs.push({path: file.path, sha: sha});
+        writeFiles(files, message, callback, blobs);
+      });
+    } else {
+      repo.getRef(workRef, function(err, commitSha) {
+        if (err) {
+          callback.call(this, err);
+          return;
+        }
+        repo.getCommit(commitSha, function(err, commit) {
+          if (err) {
+            callback.call(this, err);
+            return;
+          }
+          var treeRequest = {
+            base_tree: commit.tree.sha,
+            tree: []
+          };
+          blobs.forEach(function(blob) {
+            treeRequest.tree.push({
+              path: blob.path,
+              mode: '100644',
+              type: 'blob',
+              sha: blob.sha
+            });
+          });
+          repo.postTree(treeRequest, function(err, treeSha) {
+            if (err) {
+              callback.call(this, err);
+              return;
+            }
+            repo.commit(commitSha, treeSha, message, function(err, commit) {
+              if (err) {
+                callback.call(this, err);
+                return;
+              }
+              repo.updateRef(workRef, commit, function(err) {
+                if (err) {
+                  callback.call(this, err);
+                  return;
+                }
+                callback.call(this, null);
+              });
+            });
+          });
+        });
+      });
+    }
   }
 
   function pullRequest(title, callback) {
@@ -279,7 +346,7 @@ module.exports = function(context, config) {
     init: init,
     lsPath: lsPath,
     readFile: readFile,
-    writeFile: writeFile,
+    writeFiles: writeFiles,
     pullRequest: pullRequest,
     discardWork: discardWork
   };
