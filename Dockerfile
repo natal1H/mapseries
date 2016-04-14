@@ -70,6 +70,7 @@ RUN grunt build
 RUN rm -rf $CATALINA_HOME/webapps/ROOT
 RUN mkdir $CATALINA_HOME/webapps/ROOT
 RUN cp -r client/public/* $CATALINA_HOME/webapps/ROOT
+RUN cp -r lib $CATALINA_HOME/webapps/ROOT
 
 # DEPLOY edit
 COPY edit /build/edit

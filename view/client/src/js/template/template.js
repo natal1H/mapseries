@@ -35,7 +35,7 @@ ms.Template = function() {
   this.clipboard008 = null;
 
   ZeroClipboard.setMoviePath(
-      'http://mapseries.georeferencer.org/zeroclipboard/ZeroClipboard.swf');
+      '/lib/zeroclipboard/ZeroClipboard.swf');
 };
 goog.inherits(ms.Template, goog.ui.Dialog);
 
