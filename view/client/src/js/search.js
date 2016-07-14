@@ -91,11 +91,6 @@ ms.Search.prototype.init = function(config) {
 
   //add layers
   var osm = new OpenLayers.Layer.OSM();
-  var osm_mq = new OpenLayers.Layer.OSM('OpenStreetMap - MapQuest',
-      ['http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg',
-       'http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg',
-       'http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg',
-       'http://otile4.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg']);
   var gmap = new OpenLayers.Layer.Google('Modern - Google Streets', {
     'numZoomLevels': 20
   });
@@ -111,7 +106,7 @@ ms.Search.prototype.init = function(config) {
     type: google.maps.MapTypeId.TERRAIN,
     'numZoomLevels': 20
   });
-  this.map.addLayers([osm_mq, osm, gmap, gsat, ghyb, gphy]);
+  this.map.addLayers([osm, gmap, gsat, ghyb, gphy]);
 
 
   var loader = new ms.Loader();
