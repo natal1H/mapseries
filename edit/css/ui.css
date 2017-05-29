@@ -86,3 +86,7 @@
 .leaflet-draw-section, .leaflet-control-grid-container {
   display: none;
 }
+
+.handsontable td {
+  word-break: break-all;
+}

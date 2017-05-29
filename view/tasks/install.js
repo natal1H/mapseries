@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     },
     shell: {
       installLinter: {
-        command: 'pip install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz --upgrade'
+        command: 'pip install https://github.com/google/closure-linter/archive/v2.3.19.tar.gz --upgrade'
       },
       installPip: {
         command: 'python get-pip.py'
