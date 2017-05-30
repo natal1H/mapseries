@@ -13,6 +13,7 @@ module.exports = function(context) {
     table = new Handsontable(container.node(), {
       rowHeaders: true,
       stretchH: 'all',
+      autoColumnSize: false,
       contextMenu: {
         items: {
           'col_left': {

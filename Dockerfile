@@ -75,8 +75,8 @@ RUN cp -r lib $CATALINA_HOME/webapps/ROOT
 # DEPLOY edit
 COPY edit /build/edit
 WORKDIR /build/edit
-RUN wget https://raw.githubusercontent.com/handsontable/handsontable/0.22.0/dist/handsontable.full.min.js -O lib/handsontable.full.js
-RUN wget https://raw.githubusercontent.com/handsontable/handsontable/0.22.0/dist/handsontable.full.min.css -O css/handsontable.full.css
+RUN wget https://raw.githubusercontent.com/handsontable/handsontable/0.31.2/dist/handsontable.full.min.js -O lib/handsontable.full.js
+RUN wget https://raw.githubusercontent.com/handsontable/handsontable/0.31.2/dist/handsontable.full.min.css -O css/handsontable.full.css
 RUN npm link local_packages/github-api
 RUN npm install
 RUN make
