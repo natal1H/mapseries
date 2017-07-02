@@ -4,7 +4,7 @@ CLEANCSS = node_modules/.bin/cleancss
 UGLIFY = node_modules/.bin/uglifyjs
 LIBS = $(shell find lib -type f -name '*.js')
 
-all: dist/site.js dist/site.mobile.js dist/delegate.js lib/mapbox.js/latest lib/mapbox.js/latest/mapbox.js
+all: dist/site.js dist/site.mobile.js dist/delegate.js
 
 dist:
 	mkdir -p dist
@@ -32,7 +32,7 @@ dist/d3.js: node_modules node_modules/d3/*
 		node_modules/d3/src/geo/path.js \
 		node_modules/d3/src/end.js > dist/d3.js
 
-dist/lib.js: dist dist/d3.js lib/label/dist/leaflet.label.js $(LIBS)
+dist/lib.js: dist dist/d3.js $(LIBS)
 	cat dist/d3.js \
 		lib/hashchange.js \
 		lib/blob.js \
@@ -42,7 +42,6 @@ dist/lib.js: dist dist/d3.js lib/label/dist/leaflet.label.js $(LIBS)
 		lib/d3.keybinding.js \
 		lib/d3.trigger.js \
 		lib/d3-compat.js \
-		lib/draw/leaflet.draw-src.js \
 		lib/jshint.js \
 		lib/codemirror/lib/codemirror.js \
 		lib/codemirror/mode/javascript/javascript.js \
@@ -50,27 +49,11 @@ dist/lib.js: dist dist/d3.js lib/label/dist/leaflet.label.js $(LIBS)
 		lib/codemirror/addon/lint/javascript-lint.js \
 		lib/codemirror/addon/search/search.js \
 		lib/codemirror/addon/search/searchcursor.js \
-		lib/codemirror/addon/dialog/dialog.js \
-		lib/leaflet.geometryutil.js \
-		lib/leaflet.snap.js \
-		lib/leaflet.draw.topology.js \
-		lib/label/dist/leaflet.label-src.js > dist/lib.js
+		lib/codemirror/addon/dialog/dialog.js  > dist/lib.js
 	$(UGLIFY) -o dist/lib.js dist/lib.js
-
-lib/label/dist/leaflet.label.js:
-	cd lib/label && jake
 
 dist/delegate.js: src/delegate.js
 	$(BROWSERIFY)  src/delegate.js > dist/delegate.js
-
-lib/mapbox.js/latest:
-	mkdir -p lib/mapbox.js/latest
-
-lib/mapbox.js/latest/mapbox.js: node_modules/mapbox.js/*
-	$(BROWSERIFY) node_modules/mapbox.js > lib/mapbox.js/latest/mapbox.js
-	$(UGLIFY) -o lib/mapbox.js/latest/mapbox.js lib/mapbox.js/latest/mapbox.js
-	cp -r node_modules/mapbox.js/theme/images/ lib/mapbox.js/latest/images/
-	$(CLEANCSS) -o lib/mapbox.js/latest/mapbox.css --skip-rebase node_modules/mapbox.js/theme/style.css
 
 dist/site.js: dist/lib.js src/index.js $(shell $(BROWSERIFY) --list src/index.js)
 	$(BROWSERIFY) -t brfs -r topojson  src/index.js > dist/site.js

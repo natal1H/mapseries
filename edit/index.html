@@ -3,15 +3,13 @@
 <head>
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=Edge'>
-  <link href='lib/mapbox.js/latest/mapbox.css' rel='stylesheet' />
+  <link href='lib/mapbox-gl-v0.38.0/mapbox-gl.css' rel='stylesheet' />
   <link rel='stylesheet' href='css/font-awesome/css/font-awesome.min.css'>
   <link rel='stylesheet' href='css/fonts/mplus.css'>
   <title>Editor</title>
-  <link href='lib/draw/leaflet.draw.css' rel='stylesheet' />
   <link href='lib/codemirror/lib/codemirror.css' rel='stylesheet' />
   <link href='lib/codemirror/addon/lint/lint.css' rel='stylesheet' />
   <link href='lib/codemirror/addon/dialog/dialog.css' rel='stylesheet' />
-  <link href='lib/label/dist/leaflet.label.css' rel='stylesheet' />
   <link href='css/handsontable.full.css' rel='stylesheet' />
   <link href='css/base.css' rel='stylesheet' />
   <link href='css/marker.css' rel='stylesheet' />
@@ -32,7 +30,8 @@
   <!--[if lt IE 9]>
     <script type='text/javascript' src='lib/aight.min.js'></script>
   <![endif]-->
-  <script src='lib/mapbox.js/latest/mapbox.js'></script>
+  <script src='lib/mapbox-gl-v0.38.0/mapbox-gl.js'></script>
+  <script src='lib/turf-4.4.0.min.js'></script>
   <script src='lib/handsontable.full.js'></script>
 </head>
 <body id='geojsonio-body'>
@@ -44,20 +43,5 @@
 <script src='dist/delegate.js'></script>
 <script src='dist/lib.js'></script>
 <script src='dist/site.js'></script>
-<script type='text/javascript'>
-if (/a\.tiles\.mapbox\.com/.test(L.mapbox.config.HTTP_URL)) {
-  var _gauges = _gauges || [];
-  (function() {
-    var t   = document.createElement('script');
-    t.type  = 'text/javascript';
-    t.async = true;
-    t.id    = 'gauges-tracker';
-    t.setAttribute('data-site-id', '51eee846108d7b2871000081');
-    t.src = '//secure.gaug.es/track.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(t, s);
-  })();
-}
-</script>
 </body>
 </html>

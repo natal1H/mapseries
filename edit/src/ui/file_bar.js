@@ -106,6 +106,7 @@ module.exports = function fileBar(context) {
                 {
                     title: context.texts.addMapLayer,
                     alt: context.texts.addMapLayerAlt,
+                    enabled: false,
                     action: function() {
                         var layerURL = prompt(context.texts.layerURL + ' \n(http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg)');
                         if (layerURL === null) return;

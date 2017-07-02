@@ -4,7 +4,8 @@ module.exports = function(context) {
   var container = null,
       confirmButton = null,
       table = null,
-      dirty = false;
+      dirty = false,
+      rowIndex = {};
 
   // API functions
   function init(selection, cb) {
@@ -121,9 +122,12 @@ module.exports = function(context) {
         headers = getHeaders(data),
         tableData = [];
 
-    data.forEach(function(it) {
+    rowIndex = {};
+
+    data.forEach(function(it, i) {
       var row = headers.map(function(header) { return it[header] || '' });
       tableData.push(row);
+      rowIndex[it['SHEET']] = i;
     });
 
     table.updateSettings({
@@ -148,13 +152,7 @@ module.exports = function(context) {
   }
 
   function selectLayer(layer) {
-    var i = 0;
-    context.mapLayer.eachLayer(function(l) {
-      if (layer === l) {
-        table.selectCell(i, 0);
-      }
-      i++;
-    });
+    table.selectCell(rowIndex[layer], 0);
   }
 
   function onDataChanged() {

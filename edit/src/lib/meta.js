@@ -2,22 +2,26 @@ var escape = require('escape-html'),
     geojsonRandom = require('geojson-random'),
     geojsonExtent = require('geojson-extent'),
     geojsonFlatten = require('geojson-flatten'),
-    zoomextent = require('../lib/zoomextent');
+    zoomextent = require('../lib/zoomextent'),
+    layer_switch = require('../ui/layer_switch');
 
 module.exports.adduserlayer = function(context, _url, _name) {
     var url = escape(_url), name = escape(_name);
-    var layer = L.tileLayer(url);
-    if (context.layerControl) {
-        context.map.addLayer(layer);
-        context.layerControl.addOverlay(layer, name);
-    }
-    else {
-        context.layerControl = L.control.layers(null, {}, {
-            position: 'bottomright',
-            collapsed: false
-        }).addTo(context.map).addOverlay(layer, name);
-        context.map.addLayer(layer);
-    }
+
+    context.layerSwitch.addLayer(name, url);
+
+    // var layer = L.tileLayer(url);
+    // if (context.layerControl) {
+    //     context.map.addLayer(layer);
+    //     context.layerControl.addOverlay(layer, name);
+    // }
+    // else {
+    //     context.layerControl = L.control.layers(null, {}, {
+    //         position: 'bottomright',
+    //         collapsed: false
+    //     }).addTo(context.map).addOverlay(layer, name);
+    //     context.map.addLayer(layer);
+    // }
 };
 
 module.exports.zoomextent = function(context) {

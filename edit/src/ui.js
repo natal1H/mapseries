@@ -20,7 +20,7 @@ function ui(context) {
             .append('div')
             .attr('class', 'map')
             .call(context.map)
-            .call(layer_switch(context));
+            .call(layer_switch(context).init);
 
         context.container = container;
 
@@ -56,7 +56,6 @@ function ui(context) {
         context.dispatch.on('switch_to_map', function() {
           map.style({display: 'block'});
           context.editor.hide();
-          context.map.invalidateSize();
         });
 
         dnd(context);
