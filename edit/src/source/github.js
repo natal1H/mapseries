@@ -71,15 +71,34 @@ module.exports = function(context, config) {
 
   function fork(callback) {
     doFork(function() {
-      var repo = getOrigin();
-      repo.branch('master', workBranch, function(err) {
-        if (err) {
-          console.error(err);
-          callback.call(this, err);
-          return;
-        }
+      initWork(callback);
+    });
+  }
+
+  function hasWork(callback) {
+    var repo = getOrigin();
+
+    repo.getRef('heads/' + workBranch, function(err) {
+      callback.call(this, !err);
+    });
+  }
+
+  function initWork(callback) {
+
+    hasWork(function(hasWork) {
+      if (!hasWork) {
+        var repo = getOrigin();
+        repo.branch('master', workBranch, function(err) {
+          if (err) {
+            console.error(err);
+            callback.call(this, err);
+            return;
+          }
+          callback.call(this);
+        });
+      } else {
         callback.call(this);
-      });
+      }
     });
   }
 
@@ -155,35 +174,37 @@ module.exports = function(context, config) {
   function init(callback) {
     hasFork(function(forked) {
       if (forked) {
-        isDirty(function(err, dirty) {
-          if (err) {
-            callback.call(err);
-            return;
-          }
-          if (dirty) {
-            context.dispatch.init_dirty();
-            callback.call(this);
-          } else {
-            isSynced(function(err, synced) {
-              if (err) {
-                callback.call(err);
-                return;
-              }
-              if (synced) {
-                callback.call(this);
-              } else {
-                var repo = getOrigin();
-                repo.deleteRepo(function(err) {
-                  if (err) {
-                    console.error(err);
-                    callback.call(err);
-                    return;
-                  }
-                  fork(callback);
-                });
-              }
-            });
-          }
+        initWork(function () {
+          isDirty(function(err, dirty) {
+            if (err) {
+              callback.call(err);
+              return;
+            }
+            if (dirty) {
+              context.dispatch.init_dirty();
+              callback.call(this);
+            } else {
+              isSynced(function(err, synced) {
+                if (err) {
+                  callback.call(err);
+                  return;
+                }
+                if (synced) {
+                  callback.call(this);
+                } else {
+                  var repo = getOrigin();
+                  repo.deleteRepo(function(err) {
+                    if (err) {
+                      console.error(err);
+                      callback.call(err);
+                      return;
+                    }
+                    fork(callback);
+                  });
+                }
+              });
+            }
+          });
         });
       } else {
         fork(callback);
