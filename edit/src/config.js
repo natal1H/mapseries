@@ -1,4 +1,5 @@
 module.exports = function(hostname) {
+
     if (hostname === 'mapseries.mzk.cz') {
         return {
             client_id: '70c8690c165d40b7079d',

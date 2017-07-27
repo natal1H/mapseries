@@ -19,23 +19,25 @@ RUN apt-get update && \
 
 # INSTALL nvm
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 0.10.40
+ENV NODE_VERSION 6.11.0
 
-RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash \
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash \
     && source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
     && nvm use default
 
-ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
-ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
+ENV NODE_PATH $NVM_DIR/versions/v$NODE_VERSION/lib/node_modules
+ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 # INSTALL javascript tools
-RUN npm install -g grunt-cli
-RUN npm install -g bower
-RUN npm install -g geojson-extent
-RUN npm install -g jake
-RUN npm install -g jshint
+RUN npm install -g npm@latest && \
+    npm install -g grunt-cli && \
+    npm install -g bower && \
+    npm install -g geojson-extent && \
+    npm install -g jake && \
+    npm install -g jshint && \
+    npm install -g gulp-cli
 
 # DEPLOY Geoserver
 COPY geoserver/geoserver.war /
@@ -75,10 +77,7 @@ RUN cp -r lib $CATALINA_HOME/webapps/ROOT
 # DEPLOY edit
 COPY edit /build/edit
 WORKDIR /build/edit
-RUN wget https://raw.githubusercontent.com/handsontable/handsontable/0.31.2/dist/handsontable.full.min.js -O lib/handsontable.full.js
-RUN wget https://raw.githubusercontent.com/handsontable/handsontable/0.31.2/dist/handsontable.full.min.css -O css/handsontable.full.css
-RUN npm link local_packages/github-api
 RUN npm install
-RUN make
+RUN gulp
 RUN mkdir $CATALINA_HOME/webapps/edit
 RUN cp -r * $CATALINA_HOME/webapps/edit

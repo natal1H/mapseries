@@ -6,7 +6,11 @@ var ui = require('./ui'),
     user = require('./core/user'),
     api = require('./core/api'),
     texts = require('./core/texts'),
-    store = require('store');
+    store = require('store'),
+    d3 = require('d3');
+
+require("babel-polyfill");
+
 
 var context = {};
 context.dispatch = d3.dispatch('change', 'route', 'beforeclear', 'clear', 'init_dirty', 'open_serie', 'save_serie', 'before_save', 'discardWork', 'select_layer', 'switch_to_map');

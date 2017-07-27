@@ -17,7 +17,6 @@ module.exports = function(context, config) {
     }
     github = new GitHub({
       token: context.storage.get('github_token'),
-      auth: 'oauth'
     });
 
     return github;
@@ -41,282 +40,280 @@ module.exports = function(context, config) {
     return origin;
   }
 
-  function hasFork(callback) {
+  function hasFork() {
     var repo = getOrigin();
-    repo.contents('master', null, function(err) {
-      callback.call(this, err ? false : true);
+
+    return new Promise(function(resolve, reject) {
+      repo.getContents('master', "")
+      .then(() => { resolve(true) })
+      .catch(() => { resolve(false) })
     });
   }
 
-  function doFork(callback) {
+  function fork() {
     var timer = null;
-    timer = window.setInterval(function() {
-      hasFork(function(result) {
-        if (result) {
-          window.clearInterval(timer);
-          callback.call(this);
-        }
-      });
-    }, 1000);
 
-    var repo = getUpstream();
-    repo.fork(function(err) {
-      if (err) {
-        console.error(err);
-        window.clearInterval(timer);
-        callback.call(this, err);
-      }
-    });
-  }
+    return new Promise((resolve, reject) => {
+      timer = window.setInterval(() => {
 
-  function fork(callback) {
-    doFork(function() {
-      initWork(callback);
-    });
-  }
-
-  function hasWork(callback) {
-    var repo = getOrigin();
-
-    repo.getRef('heads/' + workBranch, function(err) {
-      callback.call(this, !err);
-    });
-  }
-
-  function initWork(callback) {
-
-    hasWork(function(hasWork) {
-      if (!hasWork) {
-        var repo = getOrigin();
-        repo.branch('master', workBranch, function(err) {
-          if (err) {
-            console.error(err);
-            callback.call(this, err);
-            return;
+        hasFork().then((result) => {
+          if (result) {
+            window.clearInterval(timer);
+            resolve();
           }
-          callback.call(this);
-        });
-      } else {
-        callback.call(this);
-      }
-    });
-  }
+        })
+      }, 1000);
 
-  function isDirty(callback) {
-    var origin = getOrigin();
-
-    origin.getRef('heads/master', function(err, masterSha) {
-      if (err) {
-        console.error(err);
-        callback.call(this, err);
-        return;
-      }
-      origin.getRef('heads/' + workBranch, function(err, workSha) {
-        if (err) {
-          console.error(err);
-          callback.call(this, err);
-          return;
-        }
-        callback.call(this, null, masterSha != workSha);
+      var repo = getUpstream();
+      repo.fork()
+      .catch((err) => {
+        window.clearInterval(timer);
+        reject(err);
       });
     });
   }
 
-  function isSynced(callback) {
-    var origin = getOrigin();
-    var upstream = getUpstream();
-
-    origin.getRef('heads/master', function(err, originSha) {
-      if (err) {
-        console.error(err);
-        callback.call(this, err);
-        return;
-      }
-      upstream.getRef('heads/master', function(err, upstreamSha) {
-        if (err) {
-          console.error(err);
-          callback.call(this, err);
-          return;
-        }
-        callback.call(this, null, originSha == upstreamSha);
-      });
-    });
-  }
-
-  function createPullBranch(callback) {
+  function hasWork() {
     var repo = getOrigin();
-    repo.listBranches(function(err, branches) {
-      if (err) {
-        console.error(err);
-        callback.call(err);
-        return;
-      }
-      var maxNum = 0;
-      var regex = /^pull(\d+)$/;
-      branches.forEach(function(branch) {
-        var match = regex.exec(branch);
-        if (match) {
-          maxNum = Math.max(maxNum, parseInt(match[1]));
-        }
-      });
-      var branchName = 'pull' + (maxNum + 1);
-      repo.branch(workBranch, branchName, function(err) {
-        if (err) {
-          console.error(err);
-          callback.call(err);
-          return;
-        }
-        callback.call(this, null, branchName);
-      });
+
+    return new Promise((resolve, reject) => {
+      repo.getRef('heads/' + workBranch)
+      .then(() => { resolve(true) })
+      .catch(() => { resolve(false) })
     });
   }
 
-  function init(callback) {
-    hasFork(function(forked) {
-      if (forked) {
-        initWork(function () {
-          isDirty(function(err, dirty) {
-            if (err) {
-              callback.call(err);
-              return;
-            }
-            if (dirty) {
-              context.dispatch.init_dirty();
-              callback.call(this);
-            } else {
-              isSynced(function(err, synced) {
-                if (err) {
-                  callback.call(err);
-                  return;
-                }
-                if (synced) {
-                  callback.call(this);
-                } else {
-                  var repo = getOrigin();
-                  repo.deleteRepo(function(err) {
-                    if (err) {
-                      console.error(err);
-                      callback.call(err);
-                      return;
-                    }
-                    fork(callback);
-                  });
-                }
-              });
-            }
-          });
-        });
+  function initWork() {
+
+    return hasWork()
+    .then((result) => {
+      if (result) {
+        return new Promise((resolve, reject) => { resolve() })
       } else {
-        fork(callback);
+        var repo = getOrigin();
+        return repo.createBranch('master', workBranch);
       }
     });
+
+  }
+
+  function isDirty() {
+    var origin = getOrigin(),
+        masterSha = null;
+
+    return origin.getRef('heads/master')
+    .then((res) => {
+      masterSha = res;
+      return origin.getRef('heads/' + workBranch);
+    })
+    .then((workSha) => {
+      return new Promise((resolve, reject) => { resolve(masterSha.data.object.sha != workSha.data.object.sha) });
+    });
+
+  }
+
+  function isSynced() {
+    var origin = getOrigin(),
+        upstream = getUpstream(),
+        originSha = null;
+
+    return origin.getRef('heads/master')
+    .then((res) => {
+      originSha = res;
+      return upstream.getRef('heads/master');
+    })
+    .then((upstreamSha) => {
+      return new Promise((resolve, reject) => { resolve(originSha.data.object.sha == upstreamSha.data.object.sha) });
+    });
+
+  }
+
+  function createPullBranch() {
+    var repo = getOrigin();
+    var branchName;
+
+    return new Promise((resolve, reject) => {
+
+      repo.listBranches()
+      .then((branches) => {
+        var maxNum = 0;
+        var regex = /^pull(\d+)$/;
+        branches.data.forEach(function(branch) {
+          var match = regex.exec(branch.name);
+          if (match) {
+            maxNum = Math.max(maxNum, parseInt(match[1]));
+          }
+        });
+        branchName = 'pull' + (maxNum + 1);
+
+        return repo.createBranch(workBranch, branchName);
+      })
+      .then(() => { resolve(branchName) })
+      .catch((err) => { reject(err) });
+
+    });
+  }
+
+  function init() {
+
+    return hasFork()
+    .then((forked) => {
+      if (!forked) {
+        return fork();
+      } else {
+        return new Promise((resolve, reject) => { resolve() });
+      }
+    })
+    .then(() => {
+      return hasWork();
+    })
+    .then((work) => {
+      if (!work) {
+        return initWork();
+      } else {
+        return new Promise((resolve, reject) => { resolve() });
+      }
+    })
+    .then(() => {
+      return isDirty();
+    })
+    .then((dirty) => {
+      if (dirty) {
+        context.dispatch.init_dirty();
+        return new Promise((resolve, reject) => { resolve() });
+      } else {
+        return isSynced()
+        .then((synced) => {
+          if (synced) {
+            return new Promise((resolve, reject) => { resolve() });
+          } else {
+            var repo = getOrigin();
+            return repo.deleteRepo();
+          }
+        });
+      }
+    })
   }
 
   function lsPath(path, callback) {
     var repo = getOrigin();
-    repo.contents(workBranch, path, function(err, contents) {
-      if (err) {
-        callback.call(this, err);
-      }
-      callback.call(this, null, contents);
-    });
+    return repo.contents(workBranch, path);
   }
 
-  function readFile(path, callback) {
+  function getTreeSha(treeSha, name) {
+
     var repo = getOrigin();
-    repo.getRef('heads/' + workBranch, function(err, sha) {
-      if (err) {
-        callback.call(this, err);
-        return;
-      }
-      repo.getTree(sha, function(err, tree) {
-        if (err) {
-          callback.call(this, err);
-          return;
-        }
-        tree.forEach(function(t) {
-          if (t.path == path) {
-            repo.getBlob(t.sha, function(err, blob) {
-              if (err) {
-                callback.call(this, err);
-                return;
-              }
-              callback.call(this, null, blob);
-            });
+
+    return new Promise((resolve, reject) => {
+      repo.getTree(treeSha)
+      .then((tree) => {
+        var resolved = false;
+        tree.data.tree.forEach((t) => {
+          if (t.path == name) {
+            resolved = true;
+            resolve(t.sha);
+            return;
           }
         });
-      }, 1);
+        if (!resolved) {
+          reject(name + ' was not found in ' + tree);
+        }
+      })
+      .catch((err) => { reject(err) });
     });
   }
 
-  function writeFiles(files, message, callback, blobs) {
-    var repo = getOrigin();
-    var workRef = 'heads/' + workBranch;
+  function readFile(path, treeSha) {
+
+    var repo = getOrigin(),
+        paths = null;
+
+    if (typeof path === "string") {
+      paths = path.split('/')
+    } else {
+      paths = path;
+    }
+
+    if (paths.length > 0) {
+      let p = paths[0];
+
+      if (!treeSha) {
+
+        return repo.getRef('heads/' + workBranch)
+        .then((sha) => {
+
+          return getTreeSha(sha.data.object.sha, p)
+          .then((sha) => { return readFile(paths.slice(1), sha) })
+
+        });
+
+      } else {
+
+        return getTreeSha(treeSha, p)
+        .then((sha) => { return readFile(paths.slice(1), sha) })
+
+      }
+
+    } else {
+      return repo.getBlob(treeSha)
+      .then((data) => {
+        return new Promise((resolve, reject) => { resolve(data.data) })
+      })
+    }
+  }
+
+  function writeFiles(files, message, blobs) {
+    var repo = getOrigin(),
+        workRef = 'heads/' + workBranch;
 
     if (files.length) {
       var file = files.pop();
-      repo.postBlob(file.content, function(err, sha) {
-        if (err) {
-          callback.call(this, err);
-          return;
-        }
+
+      return repo.createBlob({content: file.content})
+      .then((sha) => {
         blobs = blobs || [];
-        blobs.push({path: file.path, sha: sha});
-        writeFiles(files, message, callback, blobs);
+        blobs.push({path: file.path, sha: sha.data.sha});
+        return writeFiles(files, message, blobs);
       });
+
     } else {
-      repo.getRef(workRef, function(err, commitSha) {
-        if (err) {
-          callback.call(this, err);
-          return;
-        }
-        repo.getCommit(commitSha, function(err, commit) {
-          if (err) {
-            callback.call(this, err);
-            return;
-          }
-          var treeRequest = {
-            base_tree: commit.tree.sha,
-            tree: []
-          };
-          blobs.forEach(function(blob) {
-            treeRequest.tree.push({
-              path: blob.path,
-              mode: '100644',
-              type: 'blob',
-              sha: blob.sha
-            });
-          });
-          repo.postTree(treeRequest, function(err, treeSha) {
-            if (err) {
-              callback.call(this, err);
-              return;
-            }
-            repo.commit(commitSha, treeSha, message, function(err, commit) {
-              if (err) {
-                callback.call(this, err);
-                return;
-              }
-              repo.updateRef(workRef, commit, function(err) {
-                if (err) {
-                  callback.call(this, err);
-                  return;
-                }
-                callback.call(this, null);
-              });
-            });
+
+      var commitSha = null,
+          commit = null,
+          treeSha = null;
+
+      repo.getRef(workRef)
+      .then((res) => {
+        commitSha = res.data.object.sha;
+        return repo.getCommit(commitSha);
+      })
+      .then((res) => {
+        commit = res.data;
+        var tree = [];
+        blobs.forEach(function(blob) {
+          tree.push({
+            path: blob.path,
+            mode: '100644',
+            type: 'blob',
+            sha: blob.sha
           });
         });
+        return repo.createTree(tree, commit.tree.sha);
+      })
+      .then((res) => {
+        treeSha = res.data.sha;
+        return repo.commit(commitSha, treeSha, message);
+      })
+      .then((commit) => {
+        return repo.updateHead(workRef, commit.data.sha, false);
       });
     }
   }
 
-  function pullRequest(title, callback) {
-    createPullBranch(function(err, branch) {
-      if (err) {
-        callback.call(this, err);
-        return;
-      }
+  function pullRequest(title) {
+
+    return createPullBranch()
+    .then((branch) => {
       var pull = {
         body: 'Generated by geojson.io',
         base: 'master',
@@ -324,42 +321,23 @@ module.exports = function(context, config) {
         title: title
       };
       var repo = getUpstream();
-      repo.createPullRequest(pull, function(err, pullRequest) {
-        if (err) {
-          console.error(err);
-          callback.call(this, err);
-          return;
-        }
-        // Recreate work branch
-        discardWork(function(err) {
-          if (err) {
-            console.error(err);
-            callback.call(this, err);
-            return;
-          }
-          callback.call(this);
-        });
-      });
+      return repo.createPullRequest(pull);
+    })
+    .then(() => {
+      return discardWork();
     });
   }
 
-  function discardWork(callback) {
+  function discardWork() {
     var origin = getOrigin();
-    origin.deleteRef('heads/' + workBranch, function(err) {
-      if (err) {
-        console.error(err);
-        callback.call(this, err);
-        return;
-      }
-      origin.branch(workBranch, function(err) {
-        if (err) {
-          console.error(err);
-          callback.call(this, err);
-          return;
-        }
-        context.dispatch.discardWork();
-        callback.call(this);
-      });
+
+    return origin.deleteRef('heads/' + workBranch)
+    .then(() => {
+      return origin.createBranch('master', workBranch);
+    })
+    .then(() => {
+      context.dispatch.discardWork();
+      return new Promise((resolve, reject) => { resolve() });
     });
   }
 

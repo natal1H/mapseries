@@ -1,3 +1,5 @@
+var Handsontable = require('handsontable');
+
 module.exports = function(context) {
 
   // Variables

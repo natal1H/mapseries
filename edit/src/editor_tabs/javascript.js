@@ -1,3 +1,9 @@
+var CodeMirror = require('codemirror');
+
+require('codemirror/mode/javascript/javascript');
+require('codemirror/addon/lint/lint');
+require('codemirror/addon/lint/javascript-lint');
+
 module.exports = function(context, type) {
 
   // Static initialization
@@ -27,7 +33,6 @@ module.exports = function(context, type) {
         tabSize: 2,
         gutters: ['CodeMirror-lint-markers'],
         lint: type == 'config',
-        theme: 'eclipse',
         autofocus: (window === window.top),
         keyMap: 'tabSpace',
         lineNumbers: true

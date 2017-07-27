@@ -4,15 +4,13 @@ var shpwrite = require('shp-write'),
     topojson = require('topojson'),
     saveAs = require('filesaver.js'),
     tokml = require('tokml'),
-    githubBrowser = require('github-file-browser'),
-    gistBrowser = require('gist-map-browser'),
     geojsonNormalize = require('geojson-normalize'),
     geojsonNormalizeProperties = require('../lib/geojson-normalize-properties'),
     wellknown = require('wellknown'),
     vex = require('vex-js'),
-    vexDialog = require('vex-js/js/vex.dialog.js'),
     S = require('string'),
-    $ = require('jquery');
+    $ = require('jquery'),
+    d3 = require('d3');
 
 require('jstree');
 
@@ -22,6 +20,9 @@ var flash = require('./flash'),
     meta = require('../lib/meta.js'),
     serializer = require('../lib/serializer'),
     loading = require('../ui/loading.js');
+
+vex.registerPlugin(require('vex-dialog'));
+vex.defaultOptions.className = 'vex-theme-os';
 
 /**
  * This module provides the file picking & status bar above the map interface.
@@ -33,11 +34,12 @@ module.exports = function fileBar(context) {
     var github = require('../source/github')(context),
         config = require('../lib/config')(context),
         serie = require('../ui/serie')(context),
-        shpSupport = typeof ArrayBuffer !== 'undefined'
+        shpSupport = typeof ArrayBuffer !== 'undefined',
         isAuth = context.storage.get('github_token') !== undefined,
-        dirty = false;
+        dirty = false,
+        initDirty = false;
       vex.defaultOptions.className = 'vex-theme-os';
-      vexDialog.defaultOptions.showCloseButton = true;
+      vex.dialog.defaultOptions.showCloseButton = true;
 
     var exportFormats = [{
         title: 'GeoJSON',
@@ -169,7 +171,7 @@ module.exports = function fileBar(context) {
         /* Register events */
         context.dispatch.on('init_dirty.file_bar', function() {
           $('#button-discard').removeClass('disabled');
-          $('#button-publish').removeClass('disabled');
+          initDirty = true;
         });
 
         context.dispatch.on('change.file_bar', function(e) {
@@ -191,6 +193,9 @@ module.exports = function fileBar(context) {
           $('#button-import').removeClass('disabled');
           $('#button-export').removeClass('disabled');
           $('#button-tools').removeClass('disabled');
+          if (initDirty) {
+            $('#button-publish').removeClass('disabled');
+          }
         });
 
         context.dispatch.on('save_serie.file_bar', function() {
@@ -206,6 +211,7 @@ module.exports = function fileBar(context) {
         context.dispatch.on('discardWork.file_bar', function() {
           $('#button-discard').addClass('disabled');
           $('#button-publish').addClass('disabled');
+          initDirty = false;
         });
 
         function submenu(children) {
@@ -231,13 +237,15 @@ module.exports = function fileBar(context) {
 
           loading.show();
 
-          config.loadConfig(function(err) {
+          config.loadConfig()
+          .then(() => {
             loading.hide();
-            if (err) {
-              flash(context.container, context.texts.unexpectedError);
-              return;
-            }
             newSerieDialog(config.getAreas());
+          })
+          .catch((err) => {
+            loading.hide();
+            console.error(err);
+            flash(context.container, context.texts.unexpectedError);
           });
         }
 
@@ -258,7 +266,7 @@ module.exports = function fileBar(context) {
           });
           input += '</div><span class="other"><input id="radio-area-other" type="radio" name="area" value="&lt;other&gt;"/><input id="input-area-other" type="text" name="area-other" placeholder="' + context.texts.other + '" /></span></div>';
 
-          vexDialog.open({
+          vex.dialog.open({
             message: context.texts.newSerieDialogTitle,
             input: input,
             afterOpen: function() {
@@ -286,14 +294,11 @@ module.exports = function fileBar(context) {
           }
 
           loading.show();
-          config.loadConfig(function(err) {
-            loading.hide();
-            if (err) {
-              flash(context.container, context.texts.unexpectedError);
-              return;
-            }
 
-            vexDialog.open({
+          config.loadConfig()
+          .then(() => {
+            loading.hide();
+            vex.dialog.open({
               message: context.texts.openSerieDialogTitle,
               input: '<div id="file-tree"></div>',
               contentCSS: {
@@ -308,60 +313,70 @@ module.exports = function fileBar(context) {
                   }
                 }).on('changed.jstree', function(e, data) {
                   if (data.node.parent != '#') {
-                    vex.close(_this.id);
+                    vex.close(_this);
                     serie.open(data.node.original.id);
                   }
                 });
               }
-            });
+            })
+          })
+          .catch((err) => {
+            loading.hide();
+            console.log(err);
+            flash(context.container, context.texts.unexpectedError);
           });
         }
 
         function saveWork() {
           loading.show();
-          serie.save(function(err) {
+
+          serie.save()
+          .then(() => {
             loading.hide();
-            if (err) {
-              flash(context.container, context.texts.saveFailed);
-            } else {
-              flash(context.container, context.texts.saveSuccess);
-            }
-          });
+            flash(context.container, context.texts.saveSuccess);
+          })
+          .catch((err => {
+            console.log(err);
+            loading.hide();
+            flash(context.container, context.texts.saveFailed);
+          }))
         }
 
         function discardWork() {
           loading.show();
-          github.discardWork(function(err) {
+
+          github.discardWork()
+          .then(() => {
             loading.hide();
-            if (err) {
-              flash(context.container, context.texts.discardFailed);
-            } else {
-              flash(context.container, context.texts.discardSuccess);
-              context.dispatch.beforeclear();
-              context.dispatch.clear();
-            }
+            flash(context.container, context.texts.discardSuccess);
+            context.dispatch.beforeclear();
+            context.dispatch.clear();
+          })
+          .catch((err) => {
+            loading.hide();
+            console.error(err);
+            flash(context.container, context.texts.discardFailed);
           });
+
         }
 
         function publishWork() {
           loading.show();
-          serie.save(function(err) {
-            if (err) {
-              loading.hide();
-              flash(context.container, context.texts.saveFailed);
-              return;
-            }
-            github.pullRequest(config.getTitle(), function(err) {
-              loading.hide();
-              if (err) {
-                flash(context.container, context.texts.publishFailed);
-              } else {
-                flash(context.container, context.texts.publishSuccess);
-                context.dispatch.beforeclear();
-                context.dispatch.clear();
-                $('#button-publish').addClass('disabled');
-              }
-            });
+
+          serie.save()
+          .then(() => {
+            return github.pullRequest(config.getTitle());
+          })
+          .then(() => {
+            loading.hide();
+            flash(context.container, context.texts.publishSuccess);
+            context.dispatch.beforeclear();
+            context.dispatch.clear();
+            $('#button-publish').addClass('disabled');
+          })
+          .catch((err) => {
+            console.error(err);
+            flash(context.container, context.texts.publishFailed);
           });
         }
 

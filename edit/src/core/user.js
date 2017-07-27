@@ -1,4 +1,5 @@
-var config = require('../config.js')(location.hostname);
+var config = require('../config.js')(location.hostname),
+    d3 = require('d3');
 
 module.exports = function(context) {
     var user = {};

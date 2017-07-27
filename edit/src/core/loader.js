@@ -2,7 +2,8 @@ var qs = require('qs-hash'),
     zoomextent = require('../lib/zoomextent'),
     flash = require('../ui/flash'),
     loading = require('../ui/loading'),
-    github = require('../source/github');
+    github = require('../source/github'),
+    d3 = require('d3');
 
 module.exports = function(context) {
 
@@ -67,13 +68,14 @@ module.exports = function(context) {
             serie = require('../ui/serie')(context);
 
         loading.show();
-        config.loadConfig(function(err) {
+        config.loadConfig()
+        .then(() => {
           loading.hide();
-          if (err) {
-            flash(context.container, context.texts.unexpectedError);
-            return;
-          }
           serie.open(serieId);
+        })
+        .catch((err) => {
+          console.error(err);
+          flash(context.container, context.texts.unexpectedError);
         });
     }
 
@@ -107,9 +109,15 @@ module.exports = function(context) {
     return function(query) {
         if (context.storage.get('github_token')) {
           loading.show();
-          github(context).init(function() {
+          github(context).init()
+          .then(() => {
             loading.hide();
             loader(query, true);
+          })
+          .catch((err) => {
+            console.error(err);
+            loading.hide();
+            flash(context.container, context.texts.unexpectedError);
           });
         } else {
           loader(query, false);

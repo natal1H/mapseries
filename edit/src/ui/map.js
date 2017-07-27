@@ -1,13 +1,15 @@
-require('qs-hash');
+// require('qs-hash');
 // require('../lib/custom_hash.js');
 
 var popup = require('../lib/popup'),
     // grid = require('../lib/leaflet.grid'), TODO
     escape = require('escape-html'),
     $ = require('jquery'),
+    mapboxgl = require('mapbox-gl'),
     writable = false,
     makiValues = require('../../data/maki.json'),
-    maki = '';
+    maki = '',
+    turf = require('turf');
 
 for (var i = 0; i < makiValues.length; i++) {
     maki += '<option value="' + makiValues[i].icon + '">';

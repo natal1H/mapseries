@@ -1,5 +1,6 @@
 var qs = require('qs-hash'),
-    xtend = require('xtend');
+    xtend = require('xtend'),
+    d3 = require('d3');
 
 module.exports = function(context) {
     var router = {};

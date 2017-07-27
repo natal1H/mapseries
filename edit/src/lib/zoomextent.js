@@ -1,4 +1,5 @@
-var $ = require('jquery');
+var turf = require('turf'),
+    $ = require('jquery');
 
 module.exports = function(context) {
     // var bounds = context.mapLayer.getBounds();
