@@ -1,15 +1,14 @@
-// require('qs-hash');
-// require('../lib/custom_hash.js');
-
 var popup = require('../lib/popup'),
-    // grid = require('../lib/leaflet.grid'), TODO
     escape = require('escape-html'),
     $ = require('jquery'),
     mapboxgl = require('mapbox-gl'),
     writable = false,
     makiValues = require('../../data/maki.json'),
     maki = '',
-    turf = require('turf');
+    turf = require('turf'),
+    EditControl = require('./map-controls/editControl'),
+    GridControl = require('./map-controls/gridControl'),
+    loading = require('./loading.js');
 
 for (var i = 0; i < makiValues.length; i++) {
     maki += '<option value="' + makiValues[i].icon + '">';
@@ -19,17 +18,10 @@ module.exports = function(context, readonly) {
 
     writable = !readonly;
 
-    var selectedLayer = null;
+    var editMode = false;
+    var dataBeforeEdit = null;
 
     function map(selection) {
-        // context.map = L.mapbox.map(selection.node(), null, {
-        //         infoControl: true,
-        //         attributionControl: false
-        //     })
-        //     .setView([20, 0], 2)
-        //     .addControl(L.mapbox.geocoderControl('mapbox.places', {
-        //         position: 'topright'
-        //     }));
 
         context.map = new mapboxgl.Map({
             container: selection.node(), // container id
@@ -58,68 +50,55 @@ module.exports = function(context, readonly) {
             zoom: 5 // starting zoom
         });
 
+        var gridControl = new GridControl({ texts: context.texts })
+        .on('confirm', function(confirmed) {
+          if (confirmed) {
+            loading.show();
+          }
+        })
+        .on('done', function(geojson) {
+          loading.hide();
+          context.data.set({map: geojson}, 'map');
+        });
+
+        var editControl = new EditControl({ source: () => { return context.data.get('map'); } })
+        .on('switch-to-edit', function() {
+          dataBeforeEdit = context.data.get('map');
+          context.map.getSource('geojson-source').setData({
+            type: 'FeatureCollection',
+            features: []
+          });
+          context.map.removeControl(gridControl);
+          editMode = true;
+        })
+        .on('done', (data) => {
+          context.data.set({map: data}, 'map');
+          context.map.addControl(gridControl);
+          editMode = false;
+        })
+        .on('cancel', () => {
+          context.map.getSource('geojson-source').setData(dataBeforeEdit);
+          dataBeforeEdit = null;
+          context.map.addControl(gridControl);
+          editMode = false;
+        });
+
         context.map.addControl(new mapboxgl.NavigationControl());
 
-        // L.hash(context.map);
-
-
-        // if (writable) {
-        //   context.drawControl = new L.Control.Draw({
-        //       position: 'topright',
-        //       edit: { featureGroup: context.mapLayer },
-        //       draw: {
-        //           circle: false,
-        //           polyline: false,
-        //           polygon: { metric: (navigator.language !== 'en-us' && navigator.language !== 'en-US'), guideLayers: [context.mapLayer], snapDistance: 5 },
-        //           marker: false
-        //       }
-        //   }).addTo(context.map);
-        //
-        //   context.drawGrid = new grid.Control(context.texts, {
-        //     position: 'topright'
-        //   }).addTo(context.map);
-        //
-        //   context.map
-        //     .on('draw:edited', update)
-        //     .on('draw:deleted', update);
-        // } TODO
-
-        // context.map
-        //     .on('draw:created', created)
-        //     .on('popupopen', popup(context)); TODO
-
-        // context.map.infoControl.addInfo('<a target="_blank" href="http://tmcw.wufoo.com/forms/z7x4m1/">Feedback</a>');
-        // context.map.infoControl.addInfo('<a target="_blank" href="http://geojson.io/about.html">About</a>'); TODO
-
-        function update() {
-            geojsonToLayer(context.mapLayer.toGeoJSON(), context.mapLayer, context.labelLayer);
-            context.data.set({map: layerToGeoJSON()}, 'map');
-        }
-
-        context.dispatch.on('change.map', function() {
-            geojsonToLayer(context.data.get('map'));
+        context.dispatch.on('open_serie.map', function() {
+          context.map.addControl(editControl);
+          context.map.addControl(gridControl);
         });
 
-        context.dispatch.on('open_serie', function() {
-          $('.leaflet-draw-section').css('display', 'block');
-          $('.leaflet-control-grid-container').css('display', 'block');
+        context.dispatch.on('change.map', function(data) {
+          if (data.obj && data.obj.map) {
+            geojsonToLayer(data.obj.map);
+          }
         });
 
-        function created(e) {
-            if (e.layer) {
-              context.mapLayer.addLayer(e.layer);
-            }
-            if (e.layers) {
-              e.layers.forEach(function(l) {
-                context.mapLayer.addLayer(l);
-              });
-            }
-            update();
-        }
-    }
-
-    function layerToGeoJSON() {
-      return context.map.getSource("geojson-source").getData();
+        context.dispatch.on('beforeclear.map', () => {
+          editControl.cancel();
+        });
     }
 
     function geojsonToLayer(geojson) {
@@ -169,14 +148,23 @@ module.exports = function(context, readonly) {
           }
         });
         context.map.on('click', 'label-layer', function(e) {
+          if (editMode) {
+            return;
+          }
           context.dispatch.select_layer(e.features[0].properties['SHEET']);
         });
         context.map.on('mouseenter', 'label-layer', function () {
+          if (editMode) {
+            return;
+          }
           context.map.getCanvas().style.cursor = 'pointer';
         });
 
         // Change it back to a pointer when it leaves.
         context.map.on('mouseleave', 'label-layer', function () {
+          if (editMode) {
+            return;
+          }
           context.map.getCanvas().style.cursor = '';
         });
       } else {
@@ -186,44 +174,7 @@ module.exports = function(context, readonly) {
         });
       }
 
-      // L.geoJson(geojson, {
-      //     style: L.mapbox.simplestyle.style,
-      //     pointToLayer: function(feature, latlon) {
-      //         if (!feature.properties) feature.properties = {};
-      //         return L.mapbox.marker.style(feature, latlon);
-      //     }
-      // }).eachLayer(add);
-      // function add(l) {
-      //     bindClick(l);
-      //     bindLabel(l, labelLayer);
-      //     l.addTo(mapLayer);
-      // }
     }
-
-    // function bindClick(l) {
-    //   l.on('click', function(e) {
-    //     console.log(e);
-    //     context.dispatch.select_layer(e.target);
-    //   });
-    // }
-    //
-    // function bindLabel(l, layer) {
-    //   var props = JSON.parse(JSON.stringify(l.toGeoJSON().properties)),
-    //       properties = {};
-    //
-    //   // Steer clear of XSS
-    //   for (var k in props) {
-    //       var e = escape(k);
-    //       properties[e] = escape(props[k]);
-    //   }
-    //
-    //   if (properties.SHEET) {
-    //     var label = new L.Label({direction: 'center'});
-    //     label.setContent(properties.SHEET);
-    //     label.setLatLng(l.getBounds().getCenter());
-    //     layer.addLayer(label);
-    //   }
-    // }
 
     return map;
 };

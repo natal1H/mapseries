@@ -3,7 +3,6 @@ var vex = require('vex-js'),
     $ = require('jquery');
 
 require('fabric');
-require('jquery-ui');
 
 module.exports = {
   Control: L.Control.extend({

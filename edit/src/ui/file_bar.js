@@ -23,6 +23,7 @@ var flash = require('./flash'),
 
 vex.registerPlugin(require('vex-dialog'));
 vex.defaultOptions.className = 'vex-theme-os';
+vex.dialog.defaultOptions.showCloseButton = true;
 
 /**
  * This module provides the file picking & status bar above the map interface.

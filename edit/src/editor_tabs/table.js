@@ -116,7 +116,7 @@ module.exports = function(context) {
         });
       });
 
-      context.data.set('map', geojson);
+      context.data.set({map: geojson}, 'table');
       markClean();
     }
   }

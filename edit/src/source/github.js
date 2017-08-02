@@ -1,4 +1,5 @@
-var GitHub = require('github-api');
+var GitHub = require('github-api'),
+    log = require('../lib/logger')('github.js');
 
 module.exports = function(context, config) {
 
@@ -41,20 +42,23 @@ module.exports = function(context, config) {
   }
 
   function hasFork() {
+    log.debug('Calling hasFork()')
     var repo = getOrigin();
 
     return new Promise(function(resolve, reject) {
       repo.getContents('master', "")
-      .then(() => { resolve(true) })
-      .catch(() => { resolve(false) })
+      .then(() => { log.debug('hasFork returned true'); resolve(true) })
+      .catch(() => { log.debug('hasFork returned false'); resolve(false) })
     });
   }
 
   function fork() {
+    log.debug('Calling fork()')
     var timer = null;
 
     return new Promise((resolve, reject) => {
       timer = window.setInterval(() => {
+        log.debug('window.setInterval')
 
         hasFork().then((result) => {
           if (result) {
@@ -74,16 +78,18 @@ module.exports = function(context, config) {
   }
 
   function hasWork() {
+    log.debug('Calling hasWork()')
     var repo = getOrigin();
 
     return new Promise((resolve, reject) => {
       repo.getRef('heads/' + workBranch)
-      .then(() => { resolve(true) })
-      .catch(() => { resolve(false) })
+      .then(() => { log.debug('hasWork returned true'); resolve(true) })
+      .catch(() => { log.debug('hasWork returned false'); resolve(false) })
     });
   }
 
   function initWork() {
+    log.debug('Calling initWork()')
 
     return hasWork()
     .then((result) => {
@@ -98,6 +104,7 @@ module.exports = function(context, config) {
   }
 
   function isDirty() {
+    log.debug('Calling isDirty()')
     var origin = getOrigin(),
         masterSha = null;
 
@@ -107,12 +114,15 @@ module.exports = function(context, config) {
       return origin.getRef('heads/' + workBranch);
     })
     .then((workSha) => {
-      return new Promise((resolve, reject) => { resolve(masterSha.data.object.sha != workSha.data.object.sha) });
+      var result = masterSha.data.object.sha != workSha.data.object.sha;
+      log.debug('isDirty returned ' + result)
+      return new Promise((resolve, reject) => { resolve(result) });
     });
 
   }
 
   function isSynced() {
+    log.debug('Calling isSynced()')
     var origin = getOrigin(),
         upstream = getUpstream(),
         originSha = null;
@@ -123,12 +133,15 @@ module.exports = function(context, config) {
       return upstream.getRef('heads/master');
     })
     .then((upstreamSha) => {
-      return new Promise((resolve, reject) => { resolve(originSha.data.object.sha == upstreamSha.data.object.sha) });
+      var result = originSha.data.object.sha == upstreamSha.data.object.sha;
+      log.debug('isSynced returned ' + result)
+      return new Promise((resolve, reject) => { resolve(result) });
     });
 
   }
 
   function createPullBranch() {
+    log.debug('Calling createPullBranch()')
     var repo = getOrigin();
     var branchName;
 
@@ -155,6 +168,7 @@ module.exports = function(context, config) {
   }
 
   function init() {
+    log.debug('Calling init()')
 
     return hasFork()
     .then((forked) => {
@@ -188,7 +202,10 @@ module.exports = function(context, config) {
             return new Promise((resolve, reject) => { resolve() });
           } else {
             var repo = getOrigin();
-            return repo.deleteRepo();
+            return repo.deleteRepo()
+            .then(() => {
+              return fork()
+            })
           }
         });
       }
@@ -196,11 +213,13 @@ module.exports = function(context, config) {
   }
 
   function lsPath(path, callback) {
+    log.debug('Calling lsPath()')
     var repo = getOrigin();
     return repo.contents(workBranch, path);
   }
 
   function getTreeSha(treeSha, name) {
+    log.debug('Calling getTreeSha()')
 
     var repo = getOrigin();
 
@@ -224,6 +243,7 @@ module.exports = function(context, config) {
   }
 
   function readFile(path, treeSha) {
+    log.debug('Calling readFile()')
 
     var repo = getOrigin(),
         paths = null;
@@ -263,6 +283,7 @@ module.exports = function(context, config) {
   }
 
   function writeFiles(files, message, blobs) {
+    log.debug('Calling writeFiles()')
     var repo = getOrigin(),
         workRef = 'heads/' + workBranch;
 
@@ -311,6 +332,7 @@ module.exports = function(context, config) {
   }
 
   function pullRequest(title) {
+    log.debug('Calling pullRequest()')
 
     return createPullBranch()
     .then((branch) => {
@@ -329,6 +351,7 @@ module.exports = function(context, config) {
   }
 
   function discardWork() {
+    log.debug('Calling discardWork()')
     var origin = getOrigin();
 
     return origin.deleteRef('heads/' + workBranch)

@@ -10,14 +10,16 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     del = require('del'),
     spawn = require('child_process').spawn,
-    babelify = require('babelify');
+    babelify = require('babelify'),
+    plumber = require('gulp-plumber');
 
 var entryPoint = 'src/index.js',
     outputName = 'main.js';
 
 function bundle_js(bundler) {
-  return bundler.bundle()
+  return bundler.bundle().on('error', (err) => {console.log(err)})
     .pipe(source(outputName))
+    .pipe(plumber())
     .pipe(buffer())
     .pipe(gulp.dest('dist'))
     .pipe(rename({ suffix: '.min' }))
@@ -29,16 +31,20 @@ function bundle_js(bundler) {
     }))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist'))
-    .pipe(notify({ message: 'Scripts task complete' }));
+    .pipe(notify({ message: 'Scripts task complete' }))
 }
 
 gulp.task('build', function () {
-  var bundler = browserify(entryPoint, { debug: true })
-  .transform(babelify, {
-    presets: ['es2015']
+  var bundler = browserify(entryPoint, {
+    debug: true,
+    transform: [
+      ['coffeeify'],
+      ['babelify', { presets: ['es2015'] }]
+    ],
+    extensions: ['.coffee']
   })
 
-  return bundle_js(bundler)
+  return bundle_js(bundler);
 })
 
 gulp.task('clean', function() {
