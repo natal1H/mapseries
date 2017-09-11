@@ -107,6 +107,9 @@ module.exports = function(context) {
       geojson.features.forEach(function(feature, i) {
         var row = tableData[i];
         row.forEach(function(col, j) {
+          if (col === null) {
+            col = '';
+          }
           feature.properties[headers[j]] = col;
         });
       });
