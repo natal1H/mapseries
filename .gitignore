@@ -9,3 +9,4 @@
 .idea
 *.iml
 /edit/dist
+/edit/node_modules

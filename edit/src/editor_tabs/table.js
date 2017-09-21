@@ -1,3 +1,5 @@
+var Handsontable = require('handsontable');
+
 module.exports = function(context) {
 
   // Variables
@@ -114,7 +116,7 @@ module.exports = function(context) {
         });
       });
 
-      context.data.set('map', geojson);
+      context.data.set({map: geojson}, 'table');
       markClean();
     }
   }

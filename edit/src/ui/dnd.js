@@ -1,6 +1,7 @@
 var readDrop = require('../lib/readfile.js').readDrop,
     flash = require('./flash.js'),
-    zoomextent = require('../lib/zoomextent');
+    zoomextent = require('../lib/zoomextent'),
+    d3 = require('d3');
 
 module.exports = function(context) {
     d3.select('body')

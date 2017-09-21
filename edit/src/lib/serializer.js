@@ -55,7 +55,7 @@ module.exports = function(object) {
     if (diffIdent == 0) {
       return result;
     } else if (diffIdent > 0) {
-      addIdent = Array(diffIdent + 1).join(' ');
+      var addIdent = Array(diffIdent + 1).join(' ');
       lines.forEach(function(x, i, arr) {
         if (i == 0) {
           // skip first lines

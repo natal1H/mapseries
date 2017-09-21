@@ -7,14 +7,12 @@ module.exports = function(context) {
 
   var github = require('../source/github')(context);
 
-  function loadConfig(callback) {
-    github.readFile(getConfigPath(), function(err, data) {
-      if (err) {
-        callback.call(this, err);
-        return;
-      }
+  function loadConfig() {
+
+    return github.readFile(getConfigPath())
+    .then((data) => {
       context.data.set({config: data, dirty: false}, 'config');
-      callback.call(this);
+      return new Promise((resolve, reject) => { resolve() });
     });
   }
 
@@ -83,7 +81,7 @@ module.exports = function(context) {
   }
 
   function getJsTreeData() {
-    seriesTree = [];
+    var seriesTree = [];
     var data = getGroupedByArea();
     for (var area in data) {
       var series = data[area];

@@ -1,4 +1,7 @@
-var validate = require('../lib/validate');
+var validate = require('../lib/validate'),
+    CodeMirror = require('codemirror');
+
+require('codemirror/mode/javascript/javascript');
 
 module.exports = function(context) {
 

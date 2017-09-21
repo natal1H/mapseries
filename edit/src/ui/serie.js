@@ -10,14 +10,14 @@ module.exports = function(context) {
     config.createSerie(title, area);
     meta.clear(context);
 
-    github.readFile('template/template.txt', function(err, data) {
-      if (err) {
-        console.error(err);
-        flash(context.container, context.texts.unexpectedError);
-        return;
-      }
+    github.readFile('template/template.txt')
+    .then((data) => {
       context.data.set({template: data}, 'serie');
       context.dispatch.open_serie();
+    })
+    .catch((err) => {
+      console.error(err);
+      flash(context.container, context.texts.unexpectedError);
     });
   }
 
@@ -33,32 +33,27 @@ module.exports = function(context) {
     context.dispatch.beforeclear();
     context.dispatch.clear();
 
-    github.readFile(geojsonPath, function(err, data) {
-      if (err) {
-        loading.hide();
-        console.error(err);
-        flash(context.container, errmsg);
-        return;
-      }
-      context.data.set({map: JSON.parse(data), dirty: false}, 'serie');
-      github.readFile(templatePath, function(err, data) {
-        loading.hide();
-        if (err) {
-          console.error(err);
-          flash(context.container, errmsg);
-          return;
-        }
-        context.data.set({template: data, dirty: false}, 'serie');
-        meta.zoomextent(context);
-        context.dispatch.open_serie();
-      });
+    github.readFile(geojsonPath)
+    .then((data) => {
+      context.data.set({map: data, dirty: false}, 'serie');
+      return github.readFile(templatePath);
+    })
+    .then((data) => {
+      loading.hide();
+      context.data.set({template: data, dirty: false}, 'serie');
+      meta.zoomextent(context);
+      context.dispatch.open_serie();
+    })
+    .catch((err) => {
+      loading.hide();
+      console.error(err);
+      flash(context.container, errmsg);
     });
   }
 
-  function save(callback) {
+  function save() {
     if (!context.data.dirty) {
-      callback.call(this);
-      return;
+      return new Promise((resolve, reject) => { resolve() });
     }
 
     context.dispatch.before_save();
@@ -77,15 +72,13 @@ module.exports = function(context) {
       {path: configPath, content: configData}
     ];
 
-    github.writeFiles(files, "Updated " + config.getTitle() + " serie", function(err) {
-      if (err) {
-        callback.call(this, err);
-        return;
-      }
+    return github.writeFiles(files,"Updated " + config.getTitle() + " serie")
+    .then(() => {
       context.data.dirty = false;
       context.dispatch.change({obj: {}, source: 'serie'});
       context.dispatch.save_serie();
-      callback.call(this);
+
+      return new Promise((resolve, reject) => { resolve() });
     });
   }
 
