@@ -1,60 +1,49 @@
 # Mapseries
 
-* Web application for cataloguing mapseries
-* Able to automatically fill map sheet metadata and copy it to clipboard for another cataloguing software, e.g. Aleph.
+As name hints mapseries is a web application for presenting, editing and cataloging map's series. The application consists of three separate applications. Presentation application listening on root `/`, [cataloging application](catalog/README.md) listening on `/catalog` and application for editing and creating new series listening on `/edit`.
 
-## Add new map series
-Read [manual](client/src/doc/navod.docx). Or briefly:
+## How to deploy
 
-1. Prepare ShapeFile with map sheets.
-  - Each map sheet should be one polygon.
-  - Table must have at least SHEET and TITLE columns.
-      SHEET contains unique ID of the sheet within map series.
-      TITLE contains sheet title
-  - Table might have another attributes, that can be used for filling the
-      template.
-2. Add the ShapeFile as a new layer to GeoServer running at
-    http://mapseries.georeferencer.org/geoserver
-  Use mapseries workspace.
-3. Create template file in /templates direcory. Find an inspiration in the
-    existing ah-ms3-200.txt template.
-4. Add map series metadata to the config.js. Specify at least
-    - title: map series title
-    - layer: name of the GeoServer layer
-    - template: template file created in step 3
-5. Get beer
+Recommended way for deploying the application is to use [Docker Compose](https://docs.docker.com/compose/). In the root's directory of the repository you can find file `docker-compose.yml` which can be used as a template for your deployment. Everything what must be done is just filling in few environment variables described below. If you are done, just run following command in the root's directory.
 
-## Development
-Repository structure based on [ol3ds](https://github.com/jirik/ol3ds).
-
-### Requirements
-* [Java 7 or higher](http://www.java.com/)
-  * Windows users: `path/to/directory/with/java.exe` must be in your PATH system variable
-* [Python 2.7](https://www.python.org/downloads/) (32bit or 64bit; must correspond with node.js because of node-gyp)
-  * Windows users: `path/to/python/directory` and `path/to/python/directory/Scripts` must be in your PATH system variable
-* [node.js](http://nodejs.org/download/) (32bit or 64bit; must correspond with Python 2.7 because of node-gyp)
-* [grunt](http://gruntjs.com/) `npm install -g grunt-cli`
-* [bower](http://bower.io/) `npm install -g bower`
-* [git](http://git-scm.com/downloads)
-  * Windows users: `path/to/directory/with/git.exe` must be in your PATH system variable
-
-### Installation
+```bash
+docker-compose up
 ```
-git clone https://github.com/klokan/mapseries-temap.git mapseries
-cd mapseries
-npm install
-bower install
-sudo grunt install (Linux) / grunt install (Windows)
+
+### Configuring the deployment
+
+As it was indicated in previous paragraph, if you want to deploy the application, you have to configure few environment variables. In this chapter I will explain meaning of this variables and what values you should put in.
+
+| Name                                                           | Description                                                                                                   |
+| -------------------------------------------------------|  -------------------------------------------------------------------------------------------- |
+| GITHUB_CLIENT_ID <br> GITHUB_CLIENT_SECRET | These variables are needed for github authentication. For more information what they mean and mainly how to get them, see [Github's official documentation](https://developer.github.com/v3/guides/basics-of-authentication/). |
+| POSTGRES_PASSWORD                               | This variable is required by [postgres image](https://hub.docker.com/_/postgres/) and it defines password for the postgres user. |
+
+It is also important to configure volume for your postgres image, so the database data are preserved between restart of the postgres image.
+
+### Preparation of the database
+
+If you run the mapseries application using the `docker-compose` for the first time, it won't work yet because the postgres database must be prepared. You have to create database and user which are expected by the application. To prepare the database use following commands.
+
+```bash
+# attach to running postgres container
+docker exec -it mapseries_postgres_1 bash
+# login into the postgres. As a password use value passed to POSTGRES_PASSWORD env variable
+psql -U postgres -W
+# Execute following commands
+CREATE USER mapseries WITH PASSWORD 'mapseries';
+CREATE DATABASE mapseries WITH owner = mapseries;
 ```
-#### Problems with installation
-Windows users: If you have some errors during `npm install` related to [node-gyp](https://github.com/TooTallNate/node-gyp), you will probably need to install [Microsoft Visual Studio C++ 2012 Express for Windows Desktop](http://www.microsoft.com/en-us/download/details.aspx?id=34673) and run the installation again.
 
-### Development
-* `grunt` to run dev server and open mapseries.html in web browser
-  * Edit e.g. content of `client/src/js/webpages/mapseries.js` and see changes in the browser
-* `grunt lint` to run gjslint
-* `grunt fix` to run fixjsstyle
+After that restart the application.
 
-### Build
-* `grunt build` to compile the code and copy files to `client/public`
-* `grunt build --map` to include also [source maps](https://developer.chrome.com/devtools/docs/javascript-debugging#source-maps)
+```bash
+docker-compose restart
+```
+
+Last step you have to do is set up one Github account as admin account for presentation application. Others admins may be added via GUI. Login to postgres database as it was described in previous paragraph. However now use username and password `mapseries`. Then execute following SQL command.
+
+```
+psql -U mapseries -W
+INSERT INTO admindao (name) VALUES ('admin');
+```

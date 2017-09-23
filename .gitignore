@@ -10,3 +10,5 @@
 *.iml
 /edit/dist
 /edit/node_modules
+/presentation/nbproject/private/
+/presentation/target/

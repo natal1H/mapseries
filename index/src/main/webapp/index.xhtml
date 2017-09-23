@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   
+    <f:metadata>
+        <f:viewParam name="code" value="#{user.code}" />
+        <f:viewParam name="lang" value="#{user.lang}" />
+    </f:metadata>
+     
+    <ui:composition template="/templates/base.xhtml">
+        
+        <ui:define name="content">
+            <div class="container">
+                
+                <ui:repeat step="2" value="#{series.series}" varStatus="outerLoopIndex" var="outerLoopVar">
+                    <div class="row margin-top">
+                        <ui:repeat offset="#{outerLoopIndex.index}" size="#{(outerLoopIndex.index + 2) gt series.series.size() ? series.series.size() : outerLoopIndex.index + 2}" 
+                        var="serie" value="#{series.series}">
+                            
+                            <div class="col-md-6">
+                                <div class="pull-left margin-right">
+                                    <img src="#{serie.thumbnailUrl}"/>
+                                </div>
+                                <div>
+                                    <h:outputLink value="#{application.contextPath}/map.xhtml">
+                                        <f:param name="serie" value="#{serie.name}"/>
+                                    <h:outputText value="#{serie.name}"/>
+                                </h:outputLink>
+                                </div>
+                            </div>
+                        
+                        </ui:repeat>
+                    </div>
+                </ui:repeat>
+                
+            </div>
+        </ui:define>
+        
+    </ui:composition>
+    
+</html>
+

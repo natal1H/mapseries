@@ -1,0 +1,89 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import "~bootstrap/less/bootstrap";
+@import "~handsontable/dist/handsontable.full.min.css";
+@import "~mapbox-gl/dist/mapbox-gl.css";
+@import "css/ie10-viewport-bug-workaround";
+@import "css/dashboard";
+
+html, body, #content {
+  height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.loading {
+  display: none;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 10000;
+  background-image: url("#{resource['default:loading.gif']}");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+
+.dropdown-locale .dropdown-menu {
+  min-width: auto;
+  width: 100%;
+}
+
+.dropdown-locale .dropdown-menu li {
+  text-align: center;
+  margin: 2px 0 2px 0;
+}
+
+.dropdown-locale .dropdown-menu li a {
+  padding: 0;
+}
+
+.navbar-right li {
+  margin-right: 15px;
+}
+
+.expand-this {
+    width: 100%;
+    height: 100%;
+}
+
+.expand {
+    width: 100%;
+    height: 100%;
+
+    * {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.noexpand {
+    width: auto;
+    height: auto;
+}
+
+ul.buttons {
+  margin: 15px 0 15px 0;
+  padding: 0;
+  li {
+      display: inline-block;
+  }
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+.margin-right {
+  margin-right: 20px;
+}

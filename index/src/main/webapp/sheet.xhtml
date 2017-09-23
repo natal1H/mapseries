@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <f:metadata>
+        <f:viewParam name="code" value="#{user.code}" />
+        <f:viewParam name="lang" value="#{user.lang}" />
+        <f:viewParam name="serie" value="#{series.serie}" />
+        <f:viewParam name="sheet" value="#{series.sheet}" />
+    </f:metadata>
+     
+    <ui:composition template="/templates/base.xhtml">
+        
+        <ui:define name="content">
+            <div class="container">
+                
+                <ui:repeat step="2" value="#{series.sheets}" varStatus="outerLoopIndex" var="outerLoopVar">
+                    <div class="row">
+                        <ui:repeat offset="#{outerLoopIndex.index}" size="#{(outerLoopIndex.index + 2) gt series.sheets.size() ? series.sheets.size() : outerLoopIndex.index + 2}" 
+                        var="sheet" value="#{series.sheets}">
+                            
+                            <div class="col-md-6 margin-top">
+                                <div class="pull-left margin-right">
+                                    <a href="#{sheet.digitalLibraryUrl}">
+                                        <img src="#{sheet.thumbnailUrl}"/>
+                                    </a>
+                                </div>
+                                <div><strong>#{sheet.title}</strong></div>
+                                <div>#{sheet.year}</div>
+                                <div><a href="#{sheet.vufindUrl}">Vufind url</a></div>
+                            </div>
+                        
+                        </ui:repeat>
+                    </div>
+                </ui:repeat>
+               
+            </div>
+        </ui:define>
+        
+    </ui:composition>
+    
+</html>
+
