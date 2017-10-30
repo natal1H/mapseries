@@ -72,8 +72,8 @@ module.exports = function(context) {
                 length = keys.length;
 
             for (var i = 0; i < length; i++) {
-                key = keys[i];
-                value = props[key];
+                let key = keys[i];
+                let value = props[key];
                 feature.properties[key] = value;
             }
 
