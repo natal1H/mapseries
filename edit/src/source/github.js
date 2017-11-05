@@ -303,7 +303,7 @@ module.exports = function(context, config) {
           commit = null,
           treeSha = null;
 
-      repo.getRef(workRef)
+      return repo.getRef(workRef)
       .then((res) => {
         commitSha = res.data.object.sha;
         return repo.getCommit(commitSha);
