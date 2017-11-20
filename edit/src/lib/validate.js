@@ -1,4 +1,4 @@
-var geojsonhint = require('geojsonhint'),
+var geojsonhint = require('@mapbox/geojsonhint'),
     d3 = require('d3');
 
 module.exports = function(callback) {

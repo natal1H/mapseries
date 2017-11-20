@@ -57,7 +57,7 @@
     "geojson-normalize": "0.0.1",
     "geojson-random": "^0.4.0",
     "geojson2dsv": "^0.1.0",
-    "geojsonhint": "^2.0.0",
+    "@mapbox/geojsonhint": "^1.2.1",
     "github-api": "git+https://git@github.com/dudaerich/github.git#issue-463-prepare",
     "handsontable": "^0.33.0",
     "jquery": "^1.12.4",
