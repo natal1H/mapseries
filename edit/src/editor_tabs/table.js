@@ -20,6 +20,7 @@ module.exports = function(context) {
       contextMenu: {
         items: {
           'col_left': {
+            name: context.texts.addColumnLeft,
             callback: function(key, selection) {
               var addedColumn = selection.start.col;
               this.alter('insert_col', addedColumn);
@@ -32,6 +33,7 @@ module.exports = function(context) {
             }
           },
           'col_right': {
+            name: context.texts.addColumnRight,
             callback: function(key, selection) {
               var addedColumn = selection.start.col + 1;
               this.alter('insert_col', addedColumn);
@@ -67,15 +69,17 @@ module.exports = function(context) {
               return selected[1] < 0 || this.countCols() >= this.getSettings().maxCols || rowSelected;
             },
           },
-          'clear_column': {},
-          'remove_col': {},
-          'undo': {},
-          'redo': {},
-          'make_read_only': {}
+          'clear_column': {
+            name: context.texts.clearColumn,
+          },
+          'remove_col': {
+            name: context.texts.deleteColumn
+          },
         }
       }
     });
     Handsontable.hooks.add('afterChange', onDataChanged, table);
+    Handsontable.hooks.add('afterRemoveCol', onDataChanged, table);
   }
 
   function show() {
@@ -90,6 +94,7 @@ module.exports = function(context) {
 
   function destroy() {
     Handsontable.hooks.remove('afterChange', onDataChanged, table);
+    Handsontable.hooks.remove('afterRemoveCol', onDataChanged, table);
     table.destroy();
     table = null;
     confirmButton = null;
@@ -108,6 +113,7 @@ module.exports = function(context) {
 
       geojson.features.forEach(function(feature, i) {
         var row = tableData[i];
+        feature.properties = {};
         row.forEach(function(col, j) {
           if (col === null) {
             col = '';

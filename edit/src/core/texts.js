@@ -59,7 +59,10 @@ module.exports = function() {
       newNameColumnMsg: 'Nový názov pre',
       fillColumnMsg: 'Zadajte hodnotu ktorou sa vyplnia prázdne polia v stĺpci.',
       newColumnMsg: 'Názov nového stĺpca',
-      switchToMap: 'Prepni na mapu'
+      switchToMap: 'Prepni na mapu',
+      clearColumn: 'Vyprázdniť stĺpec',
+      addColumnLeft: 'Pridať stĺpec vľavo',
+      addColumnRight: 'Pridať stĺpec vpravo',
     },
 	'cs': {
       newSerie: 'Nová kolekce',
@@ -116,7 +119,8 @@ module.exports = function() {
       newNameColumnMsg: 'Nový název pro',
       fillColumnMsg: 'Zadajte hodnotu, kterou se vyplní prázdná pole v sloupci.',
       newColumnMsg: 'Název nového sloupce',
-      switchToMap: 'Přepni na mapu'
+      switchToMap: 'Přepni na mapu',
+      clearColumn: 'Vyprázdniť stĺpec'
     },
     'en': {
       newSerie: 'New serie',
@@ -173,7 +177,8 @@ module.exports = function() {
       newNameColumnMsg: 'New name for column',
       fillColumnMsg: 'Insert value',
       newColumnMsg: 'Name of the new column',
-      switchToMap: 'Switch to map'
+      switchToMap: 'Switch to map',
+      clearColumn: 'Clear column'
     }
   };
 
