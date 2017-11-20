@@ -32,7 +32,7 @@ cp node_modules/vex-js/dist/css/vex.css $CATALINA_HOME/webapps/edit/node_modules
 cp node_modules/vex-js/dist/css/vex-theme-os.css $CATALINA_HOME/webapps/edit/node_modules/vex-js/dist/css/vex-theme-os.css
 
 mkdir -p $CATALINA_HOME/webapps/edit/node_modules/jstree/dist/themes/default
-cp node_modules/jstree/dist/themes/default/style.min.css $CATALINA_HOME/webapps/edit/node_modules/jstree/dist/themes/default/style.min.css
+cp node_modules/jstree/dist/themes/default/* $CATALINA_HOME/webapps/edit/node_modules/jstree/dist/themes/default
 
 mkdir -p $CATALINA_HOME/webapps/edit/node_modules/jquery-ui/themes/base
 cp node_modules/jquery-ui/themes/base/jquery-ui.css $CATALINA_HOME/webapps/edit/node_modules/jquery-ui/themes/base/jquery-ui.css
