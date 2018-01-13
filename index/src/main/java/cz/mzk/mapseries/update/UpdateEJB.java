@@ -69,7 +69,7 @@ public class UpdateEJB {
         UpdateTaskDAO updateTaskDAO = new UpdateTaskDAO();
         updateTaskManager.persistTask(updateTaskDAO);
         
-        TextMessage msg = context.createTextMessage(githubService.loadFile(Configuration.CONTENT_DEFINITION_PATH));
+        TextMessage msg = context.createTextMessage(githubService.loadFile("/" + Configuration.CONTENT_DEFINITION_PATH));
         msg.setLongProperty(TASK_ID_KEY, updateTaskDAO.getId());
         context.createProducer().send(queue, msg);
     }
