@@ -23,7 +23,7 @@ public class Configuration {
     
     private static final Logger LOG = Logger.getLogger(Configuration.class);
     
-    public static final String CONTENT_DEFINITION_PATH = "/content-definition.json";
+    public static final String CONTENT_DEFINITION_PATH = "content-definition.json";
     
     private Long updateTaskId;
     
@@ -55,7 +55,7 @@ public class Configuration {
         String data = null;
         
         try {
-            data = githubService.loadFile(CONTENT_DEFINITION_PATH);
+            data = githubService.loadFile("/" + CONTENT_DEFINITION_PATH);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         }
