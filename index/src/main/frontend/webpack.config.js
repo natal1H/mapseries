@@ -13,9 +13,23 @@ module.exports = {
     },
     module: {
       rules: [
+        // Loader for project js files
+        {
+            test: /\/src\.*\.js/,
+            loader: 'babel-loader',
+            options: {
+                presets: ['env'],
+            },
+            exclude: [/node_modules/, /test/],
+        },
         {
           test: /\.coffee$/,
-          use: [ 'coffee-loader' ]
+          loader: 'coffee-loader',
+          options: {
+            transpile: {
+              presets: ['env']
+            }
+          }
         },
         {
           test: /\.less$/,
@@ -56,6 +70,11 @@ module.exports = {
           $: 'jquery',
           jquery: 'jquery'
       }),
-      //new webpack.optimize.UglifyJsPlugin()
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false,
+            comparisons: false,  // don't optimize comparisons. It causes problems in mapboxgl
+        },
+      })
     ]
 };
