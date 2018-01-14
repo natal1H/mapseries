@@ -94,6 +94,7 @@ public class UpdateEJB {
             context.createProducer().send(queue, msg);
         } catch (Exception e) {
             LOG.error("Error thrown when automatically scheduled the task.", e);
+            throw new RuntimeException("Error thrown when automatically scheduled the task.", e);
         }
     }
     
