@@ -1,6 +1,7 @@
 package cz.mzk.mapseries.update;
 
 import cz.mzk.mapseries.github.GithubService;
+import cz.mzk.mapseries.github.GithubServiceUnauthorized;
 import cz.mzk.mapseries.jsf.beans.Configuration;
 import cz.mzk.mapseries.oai.marc.MarcDataField;
 import cz.mzk.mapseries.oai.marc.MarcRecord;
@@ -52,6 +53,9 @@ public class UpdateEJB {
     
     @Inject
     private GithubService githubService;
+    
+    @Inject
+    private GithubServiceUnauthorized githubServiceUnauthorized;
 
     @Resource(lookup = "java:/jms/queue/UpdateTasks")
     private Queue queue;
@@ -77,7 +81,17 @@ public class UpdateEJB {
     @Schedule(second = "0", minute = "0", hour = "3", persistent = false)
     public void scheduledAutomatically() {
         try {
-            scheduleUpdateTask();
+            List<UpdateTaskDAO> unfinishedTasks = updateTaskManager.getUnfinishedTasks();
+            if (unfinishedTasks.size() >= 2) {
+                return;
+            }
+
+            UpdateTaskDAO updateTaskDAO = new UpdateTaskDAO();
+            updateTaskManager.persistTask(updateTaskDAO);
+
+            TextMessage msg = context.createTextMessage(githubServiceUnauthorized.loadFile(Configuration.CONTENT_DEFINITION_PATH));
+            msg.setLongProperty(TASK_ID_KEY, updateTaskDAO.getId());
+            context.createProducer().send(queue, msg);
         } catch (Exception e) {
             LOG.error("Error thrown when automatically scheduled the task.", e);
         }

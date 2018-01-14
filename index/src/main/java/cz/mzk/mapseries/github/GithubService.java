@@ -1,5 +1,6 @@
 package cz.mzk.mapseries.github;
 
+import cz.mzk.mapseries.Constants;
 import cz.mzk.mapseries.Pair;
 import cz.mzk.mapseries.dao.AdminManager;
 import java.io.IOException;
@@ -51,12 +52,6 @@ public class GithubService implements Serializable {
     
     private static final Logger LOG = Logger.getLogger(GithubService.class);
     
-    private static final String REPO_USER = "moravianlibrary";
-    private static final String REPO_NAME = "mapseries-data";
-    
-    public static final String CLIENT_ID = System.getenv("GITHUB_CLIENT_ID");
-    public static final String CLIENT_SECRET = System.getenv("GITHUB_CLIENT_SECRET");
-    
     @Inject
     private HttpSession httpSession;
     
@@ -78,8 +73,8 @@ public class GithubService implements Serializable {
                         .build();
 
             List<NameValuePair> params = new ArrayList<>();
-            params.add(new BasicNameValuePair("client_id", CLIENT_ID));
-            params.add(new BasicNameValuePair("client_secret", CLIENT_SECRET));
+            params.add(new BasicNameValuePair("client_id", Constants.GITHUB_CLIENT_ID));
+            params.add(new BasicNameValuePair("client_secret", Constants.GITHUB_CLIENT_SECRET));
             params.add(new BasicNameValuePair("code", code));
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, Consts.UTF_8);
             HttpPost httpPost = new HttpPost(githubUri);
@@ -162,7 +157,7 @@ public class GithubService implements Serializable {
         UserService userService = new UserService(githubClient);
         User user = userService.getUser();
 
-        Repository repository = repositoryService.getRepository(REPO_USER, REPO_NAME);
+        Repository repository = repositoryService.getRepository(Constants.REPO_USER, Constants.REPO_NAME);
         
         Blob blob = new Blob();
         blob.setContent(content);
@@ -205,7 +200,7 @@ public class GithubService implements Serializable {
         DataService dataService = new DataService(githubClient);
         RepositoryService repositoryService = new RepositoryService(githubClient);
         
-        Repository repository = repositoryService.getRepository(REPO_USER, REPO_NAME);
+        Repository repository = repositoryService.getRepository(Constants.REPO_USER, Constants.REPO_NAME);
         Reference reference = dataService.getReference(repository, "heads/master");
         Tree tree = dataService.getTree(repository, reference.getObject().getSha());
         

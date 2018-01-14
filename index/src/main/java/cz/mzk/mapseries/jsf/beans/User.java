@@ -1,5 +1,6 @@
 package cz.mzk.mapseries.jsf.beans;
 
+import cz.mzk.mapseries.Constants;
 import cz.mzk.mapseries.dao.AdminDAO;
 import cz.mzk.mapseries.dao.AdminManager;
 import cz.mzk.mapseries.github.GithubService;
@@ -105,7 +106,7 @@ public class User implements Serializable {
         params.put("redirect_uri", redirectUriParam);
         
         List<String> clientIdParam = new ArrayList<>();
-        clientIdParam.add(GithubService.CLIENT_ID);
+        clientIdParam.add(Constants.GITHUB_CLIENT_ID);
         params.put("client_id", clientIdParam);
         
         List<String> scopeParam = new ArrayList<>();
