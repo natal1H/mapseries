@@ -40,5 +40,5 @@ mkdir -p $TARGET_DIR/edit/node_modules/jquery-ui/themes/base
 cp node_modules/jquery-ui/themes/base/jquery-ui.css $TARGET_DIR/edit/node_modules/jquery-ui/themes/base/jquery-ui.css
 
 # clean up after yourself
-# cd /
-# rm -rf /build/edit
+cd /
+rm -rf /build/edit
