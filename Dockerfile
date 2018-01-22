@@ -5,22 +5,20 @@ COPY configs /configs
 
 USER root
 RUN /scripts/setup.sh
+RUN rm -rf /scripts /configs
 
 ENV LANG en_US.utf8
 
-# view
 COPY catalog /build/catalog
-RUN /build/catalog/docker.sh
-
-# edit
 COPY edit /build/edit
-RUN /build/edit/docker.sh
-
-# index
 COPY index /build/index
-RUN /build/index/docker.sh
 
-RUN rm -rf /scripts /build
+RUN chown -R jboss:jboss /build
 USER jboss
+
+RUN /build/catalog/docker.sh && \
+    /build/edit/docker.sh && \
+    /build/index/docker.sh && \
+    rm -rf /build/*
 
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-c", "standalone-full-mapseries.xml"]
