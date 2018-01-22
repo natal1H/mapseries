@@ -35,6 +35,8 @@ cp node_modules/vex-js/dist/css/vex-theme-os.css $TARGET_DIR/edit/node_modules/v
 
 mkdir -p $TARGET_DIR/edit/node_modules/jstree/dist/themes/default
 cp node_modules/jstree/dist/themes/default/style.min.css $TARGET_DIR/edit/node_modules/jstree/dist/themes/default/style.min.css
+cp node_modules/jstree/dist/themes/default/*.gif $TARGET_DIR/edit/node_modules/jstree/dist/themes/default
+cp node_modules/jstree/dist/themes/default/*.png $TARGET_DIR/edit/node_modules/jstree/dist/themes/default
 
 mkdir -p $TARGET_DIR/edit/node_modules/jquery-ui/themes/base
 cp node_modules/jquery-ui/themes/base/jquery-ui.css $TARGET_DIR/edit/node_modules/jquery-ui/themes/base/jquery-ui.css
