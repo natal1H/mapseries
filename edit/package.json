@@ -58,7 +58,7 @@
     "geojson-random": "^0.4.0",
     "geojson2dsv": "^0.1.0",
     "@mapbox/geojsonhint": "^1.2.1",
-    "github-api": "git+https://git@github.com/dudaerich/github.git#9fb9c6be83d5c9e43d84874caf0af17a8fb30733",
+    "github-api": "git+https://git@github.com/dudaerich/github.git#a2b1b120413fe9ff1981c6a54d50b5fd270be7ba",
     "handsontable": "^0.33.0",
     "jquery": "^1.12.4",
     "jquery-ui": "1.10.4",
