@@ -163,14 +163,13 @@ public class UpdateEJB {
                 log.println(String.format("[WARN] following record has no datafield %s: %s", marcIds[0], marcRecord));
                 continue;
             }
-            MarcDataField dataField = marcRecord.getDataField(marcIds[0]);
             
-            if (!dataField.hasSubfield(marcIds[1])) {
-                log.println(String.format("[WARN] following record has no field %s: %s", definition.getSheets(), marcRecord));
+            String sheetId = getOrDefault(marcRecord, marcIds[0], marcIds[1], null);
+            
+            if (sheetId == null) {
                 continue;
             }
             
-            String sheetId = dataField.getSubfield(marcIds[1]);
             sheetId = applyGroovyTransformation(sheetId, definition.getGroupBy());
             
             SheetDAO sheetDAO = new SheetDAO();
@@ -229,15 +228,17 @@ public class UpdateEJB {
             return false;
         }
         
-        MarcDataField dataField = marcRecord.getDataField(fieldParsed[0]);
+        List<MarcDataField> dataFields = marcRecord.getDataFields(fieldParsed[0]);
         
-        if (!dataField.hasSubfield(fieldParsed[1])) {
-            return false;
-        }
-        
-        String subfield = dataField.getSubfield(fieldParsed[1]);
-        
-        return definition.getName().equals(subfield);
+        return dataFields.stream().anyMatch((dataField) -> {
+            if (!dataField.hasSubfield(fieldParsed[1])) {
+                return false;
+            }
+
+            String subfield = dataField.getSubfield(fieldParsed[1]);
+
+            return definition.getName().equals(subfield);
+        });
     }
     
     private String[] parseMarcFieldId(String id) throws Exception {
@@ -269,13 +270,17 @@ public class UpdateEJB {
             return defVal;
         }
         
-        MarcDataField dataField = marcRecord.getDataField(field);
-        if (!dataField.hasSubfield(subfield)) {
-            log.println(String.format("[WARN] following record has no subfield %s%s: %s", field, subfield, marcRecord));
-            return defVal;
+        List<MarcDataField> dataFields = marcRecord.getDataFields(field);
+        
+        for (MarcDataField dataField : dataFields) {
+            if (dataField.hasSubfield(subfield)) {
+                return dataField.getSubfield(subfield);
+            }
         }
         
-        return dataField.getSubfield(subfield);
+        log.println(String.format("[WARN] following record has no subfield %s%s: %s", field, subfield, marcRecord));
+        
+        return defVal;
     }
     
 }

@@ -1,6 +1,8 @@
 package cz.mzk.mapseries.oai.marc;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,7 +12,7 @@ public class MarcRecord {
 
     private Map<String, String> controlFields = new HashMap<>();
 
-    private Map<String, MarcDataField> dataFields = new HashMap<>();
+    private Map<String, List<MarcDataField>> dataFields = new HashMap<>();
 
     public void addControlField(String tag, String value) {
         controlFields.put(tag, value);
@@ -25,14 +27,17 @@ public class MarcRecord {
     }
 
     public void addDataField(String tag, MarcDataField dataField) {
-        dataFields.put(tag, dataField);
+        if (!dataFields.containsKey(tag)) {
+            dataFields.put(tag, new ArrayList<>());
+        }
+        dataFields.get(tag).add(dataField);
     }
 
     public boolean hasDataField(String tag) {
         return dataFields.containsKey(tag);
     }
 
-    public MarcDataField getDataField(String tag) {
+    public List<MarcDataField> getDataFields(String tag) {
         return dataFields.get(tag);
     }
 
