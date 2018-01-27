@@ -72,7 +72,7 @@ export default {
         negFeatures = []
 
         geojson.features.forEach (feature) ->
-          sheetId = feature.properties.SHEET
+          sheetId = feature.properties.SHEET.toString()
           if sheetId in window.mapSettings.sheetIds
             posFeatures.push(feature)
           else
