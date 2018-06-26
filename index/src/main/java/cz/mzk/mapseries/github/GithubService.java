@@ -176,8 +176,8 @@ public class GithubService implements Serializable {
         Tree tree = dataService.createTree(repository, Arrays.asList(treeEntry), masterCommit.getTree().getSha());
         CommitUser commitUser = new CommitUser();
         commitUser.setDate(Calendar.getInstance().getTime());
-        commitUser.setName(getOrDefault(user.getName(), ""));
-        commitUser.setEmail(getOrDefault(user.getEmail(), ""));
+        commitUser.setName(getOrDefault(user.getName(), "anonymous"));
+        commitUser.setEmail(getOrDefault(user.getEmail(), "anonym@site.com"));
         
         Commit commit = new Commit();
         commit.setMessage(commitMessage);
