@@ -74,6 +74,18 @@ class Search
                     "type": "FeatureCollection",
                     "features": []
                   }
+                "serie-source-marked":
+                  "type": "geojson"
+                  "data": {
+                    "type": "FeatureCollection",
+                    "features": []
+                  }
+                "serie-source-labels-marked":
+                  "type": "geojson"
+                  "data": {
+                    "type": "FeatureCollection",
+                    "features": []
+                  }
 
             "layers": [
               {
@@ -90,13 +102,37 @@ class Search
                 "paint": {
                     "fill-color": "#888"
                     "fill-outline-color": "#000"
-                    "fill-opacity": 0.8
+                    "fill-opacity": 0.4
                 }
               }
               {
                 "id": "serie-layer-labels"
                 "type": "symbol"
                 "source": "serie-source-labels"
+                "layout": {
+                  "text-field": "{SHEET}"
+                  "text-font": ["Open Sans Light"]
+                }
+              }
+              {
+                "id": "serie-layer-marked"
+                "type": "fill"
+                "source": "serie-source-marked"
+                "paint": {
+                    "fill-color": "#e67e22"
+                    "fill-outline-color": "#e67e22"
+                    "fill-opacity": 0.4
+                }
+              }
+              {
+                "id": "serie-layer-labels-marked"
+                "type": "symbol"
+                "source": "serie-source-labels-marked"
+                "paint": {
+                    "text-color": "#e74c3c"
+                    "text-halo-color": "#f1c40f"
+                    "text-halo-width": 3
+                }
                 "layout": {
                   "text-field": "{SHEET}"
                   "text-font": ["Open Sans Light"]
@@ -138,8 +174,12 @@ class Search
       sheet = e.features[0]
       @setActiveSheet(sheet)
 
-    @map.on 'mouseenter', 'serie-layer-labels', () => @map.getCanvas().style.cursor = 'pointer'
-    @map.on 'mouseleave', 'serie-layer-labels', () => @map.getCanvas().style.cursor = ''
+    @map.on 'click', 'serie-layer', (e) =>
+      sheet = e.features[0]
+      @setActiveSheet(sheet)
+
+    @map.on 'mouseenter', 'serie-layer', () => @map.getCanvas().style.cursor = 'pointer'
+    @map.on 'mouseleave', 'serie-layer', () => @map.getCanvas().style.cursor = ''
 
     # restore the view state when navigating through the history, see
     # https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
@@ -270,9 +310,29 @@ class Search
   setActiveSheet: (sheet) ->
     html = null
     if !sheet
+      @map.getSource("serie-source-labels-marked").setData({
+        "type": "FeatureCollection",
+        "features": []
+      })
+      @map.getSource("serie-source-marked").setData({
+        "type": "FeatureCollection",
+        "features": []
+      })
       html = $('<i>Click on a sheet</i>')
       @template.setVisible(false);
     else
+      centroid = turf.centroid(sheet)
+      centroid.properties = sheet.properties
+
+      @map.getSource("serie-source-labels-marked").setData({
+        "type": "FeatureCollection",
+        "features": [centroid]
+      })
+      @map.getSource("serie-source-marked").setData({
+        "type": "FeatureCollection",
+        "features": [sheet]
+      })
+
       label = sheet.properties['SHEET'] + ' - ' + sheet.properties['TITLE']
       html = $('<a></a>')
       html.attr('href', '#')
