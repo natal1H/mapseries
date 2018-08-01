@@ -28,7 +28,7 @@ class Search
     regions = Series.getRegions(@seriess)
     @updateRegions(regions)
     @setRegion('')
-    @setActiveSheet(null);
+    @setActiveSheet(null)
 
   initMap: ->
     # default zoom, center and rotation
@@ -266,6 +266,7 @@ class Search
     @setSeries(seriess[0])
 
   setSeries: (series) ->
+    @setActiveSheet(null)
     @series = series
 
     loading.show()
@@ -310,11 +311,11 @@ class Search
   setActiveSheet: (sheet) ->
     html = null
     if !sheet
-      @map.getSource("serie-source-labels-marked").setData({
+      @map.getSource("serie-source-labels-marked")?.setData({
         "type": "FeatureCollection",
         "features": []
       })
-      @map.getSource("serie-source-marked").setData({
+      @map.getSource("serie-source-marked")?.setData({
         "type": "FeatureCollection",
         "features": []
       })
