@@ -52,14 +52,13 @@ public class UpdateMDB implements MessageListener {
             UpdateTaskDAO updateTaskDAO = updateTaskManager.findById(taskId);
             updateTaskDAO.setStartDate(ZonedDateTime.now());
             
-            List<SerieDAO> series = new ArrayList<>();
+            List<Object> series = new ArrayList<>();
                 
             updateEJB.runUpdateTask(updateTaskDAO, msg.getBody(String.class), series);
             
             // Only if the task passed, persist the series
             if (updateTaskDAO.isResult() == true) {
                 em.createQuery("DELETE FROM SheetDAO").executeUpdate();
-                em.createQuery("DELETE FROM SheetsDAO").executeUpdate();
                 em.createQuery("DELETE FROM SerieDAO").executeUpdate();
                 series.forEach(serie -> em.merge(serie) );
             }

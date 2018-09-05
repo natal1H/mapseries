@@ -39,7 +39,7 @@ public class UpdateEJB {
     
     private static final Logger LOG = Logger.getLogger(UpdateEJB.class);
     
-    public static final String TASK_ID_KEY = "taskId";
+    private static final String TASK_ID_KEY = "taskId";
     
     private static final Pattern MARC_ID_PATTERN = Pattern.compile("(\\d+)(\\w)");
     
@@ -99,7 +99,7 @@ public class UpdateEJB {
     }
     
     @Lock(READ)
-    public synchronized void runUpdateTask(UpdateTaskDAO updateTaskDAO, String definitionJson, List<SerieDAO> output) {
+    public synchronized void runUpdateTask(UpdateTaskDAO updateTaskDAO, String definitionJson, List<Object> output) {
         
         runningTask = updateTaskDAO;
         
@@ -134,7 +134,7 @@ public class UpdateEJB {
         return runningTask;
     }
     
-    private void doUpdate(String definitionJson, List<SerieDAO> output) throws Exception {
+    private void doUpdate(String definitionJson, List<Object> output) throws Exception {
         log.println("Starting update.");
         
         List<ContentDefinition> definitions = ContentDefinition.readFromJSONArray(definitionJson);
@@ -143,6 +143,7 @@ public class UpdateEJB {
         OaiMarcXmlReader oaiMarcXmlReader = new OaiMarcXmlReader("http://aleph.mzk.cz/OAI", "MZK01-MAPY");
         
         for (MarcRecord marcRecord : oaiMarcXmlReader) {
+
             ContentDefinition definition = findDefinitionForRecord(definitions, marcRecord);
             if (definition == null) {
                 continue;
@@ -155,6 +156,7 @@ public class UpdateEJB {
                 serie.setGrid(definition.getGrid());
                 serie.setThumbnailUrl(definition.getThumbnailUrl());
                 series.put(definition, serie);
+                output.add(serie);
             }
             
             String[] marcIds = parseMarcFieldId(definition.getSheets());
@@ -173,13 +175,16 @@ public class UpdateEJB {
             sheetId = applyGroovyTransformation(sheetId, definition.getGroupBy());
             
             SheetDAO sheetDAO = new SheetDAO();
-            
+            output.add(sheetDAO);
+
+            sheetDAO.setSheetId(sheetId);
+            sheetDAO.setSerie(serie);
             sheetDAO.setTitle(getOrDefault(marcRecord, "245", "a", "Unknown"));
             
             String year = getOrDefault(marcRecord, "490", "v", "");
             if (year.contains(",")) {
                 int comma = year.indexOf(',');
-                year = year.substring(comma + 1, year.length()).trim();
+                year = year.substring(comma + 1).trim();
             }
             sheetDAO.setYear(year);
             
@@ -200,11 +205,7 @@ public class UpdateEJB {
                 sheetDAO.setVufindUrl(String.format("https://vufind.mzk.cz/Record/MZK01-%s", marcRecord.getControlField("001")));
             }
             
-            serie.addSheet(sheetId, sheetDAO);
-            
         }
-        
-        output.addAll(series.values());
         
         log.println("Update finished successfully");
     }

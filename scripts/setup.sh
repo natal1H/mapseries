@@ -1,8 +1,9 @@
 #!/bin/bash
 
 set -e
+set -x
 
-MAVEN_URL=http://mirror.hosting90.cz/apache/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz
+MAVEN_URL=http://apache.miloslavbrada.cz/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
 MAVEN_ARCHIVE_FILE=maven.tar.gz
 MAVEN_LOCATION=/opt
 

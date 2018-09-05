@@ -3,16 +3,12 @@ package cz.mzk.mapseries.jsf.beans;
 import cz.mzk.mapseries.update.SeriesManager;
 import cz.mzk.mapseries.update.dao.SerieDAO;
 import cz.mzk.mapseries.update.dao.SheetDAO;
-import cz.mzk.mapseries.update.dao.SheetsDAO;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import org.jboss.logging.Logger;
+
 import javax.ejb.EJB;
 import javax.enterprise.inject.Model;
-import org.jboss.logging.Logger;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Erich Duda <dudaerich@gmail.com>
@@ -54,32 +50,13 @@ public class Series {
     }
     
     public List<SheetDAO> getSheets() {
-        
-        Map<String, SheetsDAO> sheets = getSheetsMap();
-        
-        if (sheets == null) {
-            return Collections.EMPTY_LIST;
-        }
-        
-        SheetsDAO sheetsDao = sheets.get(sheet);
-        
-        if (sheetsDao == null) {
-            return Collections.EMPTY_LIST;
-        }
-        
-        return sheetsDao.getSheets();
+
+        return seriesManager.getSheets(serie, sheet);
     }
     
     public String getSheetIds() {
         
-        Set<String> ids = new HashSet<>();
-        Map<String, SheetsDAO> sheets = getSheetsMap();
-        
-        for (Map.Entry<String, SheetsDAO> entry : sheets.entrySet()) {
-            if (!entry.getValue().getSheets().isEmpty()) {
-                ids.add(entry.getKey());
-            }
-        }
+        List<String> ids = seriesManager.getSheetIds(serie);
         
         StringBuilder sb = new StringBuilder("[");
         
@@ -95,19 +72,5 @@ public class Series {
         }
         sb.append("]");
         return sb.toString();
-    }
-    
-    private Map<String, SheetsDAO> getSheetsMap() {
-        SerieDAO serieDAO = getSerieDAO();
-        if (serieDAO == null) {
-            return Collections.EMPTY_MAP;
-        }
-        
-        Map<String, SheetsDAO> sheets = serieDAO.getSheets();
-        if (sheets == null) {
-            return Collections.EMPTY_MAP;
-        }
-        
-        return sheets;
     }
 }

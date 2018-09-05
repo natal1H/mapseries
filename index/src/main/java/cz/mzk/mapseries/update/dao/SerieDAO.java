@@ -1,13 +1,8 @@
 package cz.mzk.mapseries.update.dao;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
+import java.util.Objects;
 
 /**
  * @author Erich Duda <dudaerich@gmail.com>
@@ -21,10 +16,6 @@ public class SerieDAO {
     private String grid;
     
     private String thumbnailUrl;
-    
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @MapKey(name = "id")
-    private Map<String, SheetsDAO> sheets = new HashMap<>();
 
     public String getName() {
         return name;
@@ -50,26 +41,27 @@ public class SerieDAO {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    public Map<String, SheetsDAO> getSheets() {
-        return sheets;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SerieDAO serieDAO = (SerieDAO) o;
+        return Objects.equals(name, serieDAO.name) &&
+                Objects.equals(grid, serieDAO.grid) &&
+                Objects.equals(thumbnailUrl, serieDAO.thumbnailUrl);
     }
 
-    public void setSheets(Map<String, SheetsDAO> sheets) {
-        this.sheets = sheets;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, grid, thumbnailUrl);
     }
-    
-    public void addSheet(String sheetId, SheetDAO sheet) {
-        
-        if (sheets.containsKey(sheetId)) {
-            SheetsDAO sheetsDAO = sheets.get(sheetId);
-            sheetsDAO.addSheet(sheet);
-        } else {
-            SheetsDAO sheetsDAO = new SheetsDAO();
-            sheetsDAO.setId(sheetId);
-            sheetsDAO.setSerie(this);
-            sheetsDAO.addSheet(sheet);
-            sheets.put(sheetId, sheetsDAO);
-        }
+
+    @Override
+    public String toString() {
+        return "SerieDAO{" +
+                "name='" + name + '\'' +
+                ", grid='" + grid + '\'' +
+                ", thumbnailUrl='" + thumbnailUrl + '\'' +
+                '}';
     }
-    
 }

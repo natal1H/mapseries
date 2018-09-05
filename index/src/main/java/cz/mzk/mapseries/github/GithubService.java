@@ -223,7 +223,6 @@ public class GithubService implements Serializable {
                 if (path.equals(treePath)) {
                     Blob blob = dataService.getBlob(repository, pair.getRight().getSha());
                     String content = blob.getContent().replaceAll("\\s+", "");
-                    LOG.infof("\"%s\"", content);
                     return new String(Base64.getDecoder().decode(content));
                 }
             }
