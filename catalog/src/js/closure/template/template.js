@@ -7,7 +7,7 @@ goog.require('goog.ui.Dialog');
 goog.require('goog.html.legacyconversions');
 goog.require('ms.ComboBox');
 
-
+import Clipboard from 'clipboard'
 
 /**
  * Template.
@@ -22,21 +22,6 @@ ms.Template = function() {
    * @type {Array.<ms.ComboBox>}
    */
   this.fields;
-
-  /**
-   * Clipboard.
-   * @type {ZeroClipboard.Client}
-   */
-  this.clipboard = null;
-
-  /**
-   * Clipboard 008.
-   * @type {ZeroClipboard.Client}
-   */
-  this.clipboard008 = null;
-
-  ZeroClipboard.setMoviePath(
-      'lib/zeroclipboard/ZeroClipboard.swf');
 };
 goog.inherits(ms.Template, goog.ui.Dialog);
 
@@ -46,55 +31,51 @@ goog.inherits(ms.Template, goog.ui.Dialog);
  * @private
  */
 ms.Template.prototype.addTemplateListeners_ = function() {
-  var _this = this;
-
-
-  var getTextToCopy = function() {
-    var container = _this.getContentElement();
-    var pre = goog.dom.getElementsByTagNameAndClass('pre', null, container)[0];
-    var textToCopy = '';
-    var node;
-    for (var i = 0; i < pre.childNodes.length; i++) {
-      node = pre.childNodes[i];
-      switch (node.nodeType) {
-        case goog.dom.NodeType.TEXT:
-          textToCopy += node.nodeValue;
-          break;
-        case goog.dom.NodeType.ELEMENT:
-          if (goog.dom.classlist.contains(node, 'combo')) {
-            var field = goog.array.find(_this.fields, function(field) {
-              return node === field.getElement().parentNode;
-            });
-            textToCopy += field.getValue();
-          } else if (goog.dom.classlist.contains(node, 'multipleValues')) {
-            textToCopy += goog.dom.getRawTextContent(node);
-          }
-          break;
-      }
-    }
-    return textToCopy;
-  };
-
-  this.clipboard = new ZeroClipboard.Client();
-  this.clipboard.glue('clipboard_button', 'clipboard_container');
-  this.clipboard.addEventListener('mouseDown', function(client) {
-    var textToCopy = getTextToCopy();
-    _this.clipboard.setText(textToCopy);
-  });
-
-  this.clipboard008 = new ZeroClipboard.Client();
-  this.clipboard008.glue('clipboard_button_008', 'clipboard_container_008');
-  this.clipboard008.addEventListener('mouseDown', function(client) {
-    var line008 = '';
-    var allText = getTextToCopy();
-    var res = allText.match(/^008.*$/gm);
-    if (goog.isArray(res) && res.length) {
-      line008 = res[0];
-    }
-    _this.clipboard008.setText(line008);
-  });
+  this.initClipboardHandler_();
 };
 
+ms.Template.prototype.initClipboardHandler_ = function() {
+  let clipboard = Clipboard.getInstance();
+  clipboard.deregisterButtons();
+  clipboard.registerButton('clipboard_button', goog.bind(this.getTextToCopyAll_, this));
+  clipboard.registerButton('clipboard_button_008', goog.bind(this.getTextToCopyField008_, this));
+}
+
+ms.Template.prototype.getTextToCopyAll_ = function() {
+  var container = this.getContentElement();
+  var pre = goog.dom.getElementsByTagNameAndClass('pre', null, container)[0];
+  var textToCopy = '';
+  var node;
+  for (var i = 0; i < pre.childNodes.length; i++) {
+    node = pre.childNodes[i];
+    switch (node.nodeType) {
+      case goog.dom.NodeType.TEXT:
+        textToCopy += node.nodeValue;
+        break;
+      case goog.dom.NodeType.ELEMENT:
+        if (goog.dom.classlist.contains(node, 'combo')) {
+          var field = goog.array.find(this.fields, function(field) {
+            return node === field.getElement().parentNode;
+          });
+          textToCopy += field.getValue();
+        } else if (goog.dom.classlist.contains(node, 'multipleValues')) {
+          textToCopy += goog.dom.getRawTextContent(node);
+        }
+        break;
+    }
+  }
+  return textToCopy;
+};
+
+ms.Template.prototype.getTextToCopyField008_ = function() {
+  var line008 = '';
+  var allText = this.getTextToCopyAll_();
+  var res = allText.match(/^008.*$/gm);
+  if (goog.isArray(res) && res.length) {
+    line008 = res[0];
+  }
+  return line008;
+}
 
 /**
  * Create template HTML content and ComboBoxes.
@@ -125,11 +106,11 @@ ms.Template.prototype.createHtmlAndComboBoxes_ =
 
   html = '<pre>' + html + '</pre>';
 
-  html += '<div id="clipboard_container" style="position:relative" ' +
+  html += '<div id="clipboard_button_container" style="position:relative" ' +
       'class="clipboard-container">';
   html += '<button id="clipboard_button">Copy to Clipboard</button>';
   html += '</div>';
-  html += '<div id="clipboard_container_008" style="position:relative" ' +
+  html += '<div id="clipboard_button_008_container" style="position:relative" ' +
       'class="clipboard-container">';
   html += '<button id="clipboard_button_008">Copy 008 to Clipboard</button>';
   html += '</div>';

@@ -52,7 +52,8 @@ module.exports = {
           loader: 'coffee-loader',
           options: {
             transpile: {
-              presets: ['env']
+              presets: ['env'],
+              sourceMap: true
             }
           }
         },
@@ -99,6 +100,7 @@ module.exports = {
           jquery: 'jquery'
       }),
       new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
         compress: {
             warnings: false,
             comparisons: false,  // don't optimize comparisons. It causes problems in mapboxgl
