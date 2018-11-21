@@ -10,7 +10,7 @@
         <f:viewParam name="lang" value="#{user.lang}" />
     </f:metadata>
      
-    <ui:composition template="/templates/admin.xhtml">
+    <ui:composition template="/templates/admin/base.xhtml">
         
         <ui:param name="activeMenuItem" value="update" />
         
@@ -18,9 +18,9 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="buttons">
-                        <li><button class="btn btn-danger" onclick="window.updateSettings.onUpdateDataClick()">#{msg['updateSettings.updateDataAction']}</button></li>
-                    </ul>
+                    <div class="buttons">
+                        <button class="btn btn-danger" onclick="window.updateSettings.onUpdateDataClick()">#{msg['updateSettings.updateDataAction']}</button>
+                    </div>
                 </div>
             </div>
             

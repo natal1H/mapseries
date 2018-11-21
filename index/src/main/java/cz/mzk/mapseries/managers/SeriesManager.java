@@ -1,9 +1,10 @@
-package cz.mzk.mapseries.update;
+package cz.mzk.mapseries.managers;
 
-import cz.mzk.mapseries.update.dao.SerieDAO;
-import cz.mzk.mapseries.update.dao.SheetDAO;
+import cz.mzk.mapseries.dao.SerieDAO;
+import cz.mzk.mapseries.dao.SheetDAO;
 
 import java.util.List;
+import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -32,6 +33,19 @@ public class SeriesManager {
     
     public SerieDAO getSerie(String id) {
         return em.find(SerieDAO.class, id);
+    }
+    
+    public Optional<String> getSerieDescription(String serieName, String lang) {
+        TypedQuery<String> query = em.createQuery("SELECT d.text FROM DescriptionDAO d WHERE d.serie.name = :serieName AND d.lang = :lang", String.class);
+        query.setParameter("serieName", serieName);
+        query.setParameter("lang", lang);
+        List<String> result = query.getResultList();
+        
+        if (result.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(result.get(0));
+        }
     }
 
     public List<SheetDAO> getSheets(String serieName, String sheetId) {

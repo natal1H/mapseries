@@ -1,10 +1,12 @@
 package cz.mzk.mapseries.update;
 
-import cz.mzk.mapseries.update.dao.SerieDAO;
-import cz.mzk.mapseries.update.dao.UpdateTaskDAO;
+import cz.mzk.mapseries.managers.UpdateTaskManager;
+import cz.mzk.mapseries.dao.UpdateTaskDAO;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.sql.Clob;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.EJB;
@@ -16,6 +18,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.Topic;
 import javax.persistence.EntityManager;
+import org.hibernate.Session;
 import org.jboss.logging.Logger;
 
 /**
@@ -48,19 +51,33 @@ public class UpdateMDB implements MessageListener {
     @Override
     public void onMessage(Message msg) {
         try {
-            long taskId = msg.getLongProperty("taskId");
+            long taskId = msg.getLongProperty(UpdateEJB.TASK_ID_KEY);
             UpdateTaskDAO updateTaskDAO = updateTaskManager.findById(taskId);
             updateTaskDAO.setStartDate(ZonedDateTime.now());
-            
-            List<Object> series = new ArrayList<>();
                 
-            updateEJB.runUpdateTask(updateTaskDAO, msg.getBody(String.class), series);
+            UpdateTaskResult result = updateEJB.runUpdateTask(updateTaskDAO, msg.getBody(String.class));
             
             // Only if the task passed, persist the series
-            if (updateTaskDAO.isResult() == true) {
+            if (result.getData().isPresent()) {
+                updateTaskDAO.setResult(true);
                 em.createQuery("DELETE FROM SheetDAO").executeUpdate();
+                em.createQuery("DELETE FROM DescriptionDAO").executeUpdate();
                 em.createQuery("DELETE FROM SerieDAO").executeUpdate();
-                series.forEach(serie -> em.merge(serie) );
+                result.getData().get().forEach(d -> em.merge(d));
+            } else {
+                updateTaskDAO.setResult(false);
+            }
+            
+            Session session = em.unwrap(Session.class);
+            
+            try {
+                Reader reader = new FileReader(result.getLogFile());
+                Clob clob = session.getLobHelper().createClob(reader, result.getLogSize());
+                updateTaskDAO.setLog(clob);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } finally {
+                result.getLogFile().delete();
             }
             
             updateTaskDAO.setEndDate(ZonedDateTime.now());

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -35,7 +36,7 @@ public class User implements Serializable {
     
     private static final String LANG_KEY = "lang";
     
-    private static final List<String> supportedLocales = Arrays.asList("cs", "en");
+    private static final List<String> SUPPORTED_LOCALES = Arrays.asList("cs", "en");
     
     private final FacesContext context = FacesContext.getCurrentInstance();
     
@@ -77,7 +78,7 @@ public class User implements Serializable {
     public void setLang(String lang) {
         if (lang != null && !lang.isEmpty()) {
             context.getExternalContext().getSessionMap().put(LANG_KEY, lang);
-            if (supportedLocales.contains(lang)) {
+            if (SUPPORTED_LOCALES.contains(lang)) {
                 context.getViewRoot().setLocale(Locale.forLanguageTag(lang));
             }
         }
@@ -161,15 +162,34 @@ public class User implements Serializable {
         return "#";
     }
     
+    public String getLangUrlMap() {
+        
+        String result = getLanguages()
+                .stream()
+                .map(lang -> String.format("'%s': '%s'", lang, getLangUrl(lang)))
+                .collect(Collectors.joining(", "));
+        
+        return String.format("{%s}", result);
+        
+    }
+    
     public List<String> getLanguages() {
         String currentLang = getLang();
         List<String> result = new ArrayList<>();
-        for (String lang : supportedLocales) {
+        for (String lang : SUPPORTED_LOCALES) {
             if (!lang.equals(currentLang)) {
                 result.add(lang);
             }
         }
         return result;
+    }
+    
+    public List<String> getAllLanguages() {
+        return SUPPORTED_LOCALES;
+    }
+    
+    public String getTranslatedLangKey(String lang) {
+        return "translatedLang-" + lang;
     }
     
     public String getUserName() {

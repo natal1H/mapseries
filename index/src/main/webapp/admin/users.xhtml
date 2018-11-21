@@ -10,7 +10,7 @@
         <f:viewParam name="lang" value="#{user.lang}" />
     </f:metadata>
      
-    <ui:composition template="/templates/admin.xhtml">
+    <ui:composition template="/templates/admin/base.xhtml">
         
         <ui:param name="activeMenuItem" value="users" />
         
@@ -18,9 +18,9 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="buttons">
-                        <li><button class="btn btn-danger" onclick="window.usersSettings.onAddAdminClick()">#{msg['usersSettings.addAdmin']}</button></li>
-                    </ul>
+                    <div class="buttons">
+                        <button class="btn btn-danger" onclick="window.usersSettings.onAddAdminClick()">#{msg['usersSettings.addAdmin']}</button>
+                    </div>
                 </div>
             </div>
             
@@ -35,8 +35,8 @@
                                 <td>
                                     <span>#{admin.name}</span>
                                     <ui:fragment rendered="#{admin.name != user.login}">
-                                        <button type="button" class="btn btn-link pull-right no-padding" onclick="window.usersSettings.onRemoveAdminClick('#{admin.name}')">
-                                        <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+                                        <button type="button" class="btn btn-link float-right no-padding" onclick="window.usersSettings.onRemoveAdminClick('#{admin.name}')">
+                                        <i class="fas fa-ban" style="color: #dc3545;"></i>
                                     </button>
                                     </ui:fragment>
                                 </td>

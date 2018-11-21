@@ -39,6 +39,10 @@ public class OaiMarcXmlReader implements Iterable<MarcRecord> {
 
     private String resumptionToken = null;
 
+    private MarcRecord.Builder marcRecordBuilder;
+
+    private MarcDataField.Builder marcDataFieldBuilder;
+
     public OaiMarcXmlReader(String baseUrl, String setName) {
         this.baseUrl = baseUrl;
         this.setName = setName;
@@ -123,10 +127,11 @@ public class OaiMarcXmlReader implements Iterable<MarcRecord> {
             for (int i = 0; i < records.getLength(); i++) {
                 Element record = (Element) records.item(i);
 
-                MarcRecord marcRecord = new MarcRecord();
-                parseControlFields(record, marcRecord);
-                parseDataFields(record, marcRecord);
-                result.add(marcRecord);
+                marcRecordBuilder = new MarcRecord.Builder();
+                parseControlFields(record);
+                parseDataFields(record);
+                result.add(marcRecordBuilder.build());
+                marcRecordBuilder = null;
             }
 
             NodeList resumptionTokenNodeList = doc.getElementsByTagNameNS(OAI_NAMESPACE, "resumptionToken");
@@ -148,7 +153,7 @@ public class OaiMarcXmlReader implements Iterable<MarcRecord> {
         return result;
     }
 
-    private void parseControlFields(Element record, MarcRecord marcRecord) {
+    private void parseControlFields(Element record) {
 
         NodeList controlFields = record.getElementsByTagNameNS(MARC_NAMESPACE, "controlfield");
 
@@ -160,12 +165,12 @@ public class OaiMarcXmlReader implements Iterable<MarcRecord> {
                 continue;
             }
 
-            marcRecord.addControlField(controlField.getAttribute("tag"), controlField.getTextContent().trim());
+            marcRecordBuilder.withControlField(controlField.getAttribute("tag"), controlField.getTextContent().trim());
         }
 
     }
 
-    private void parseDataFields(Element record, MarcRecord marcRecord) {
+    private void parseDataFields(Element record) {
 
         NodeList dataFields = record.getElementsByTagNameNS(MARC_NAMESPACE, "datafield");
 
@@ -177,21 +182,23 @@ public class OaiMarcXmlReader implements Iterable<MarcRecord> {
                 continue;
             }
 
-            MarcDataField marcDataField = new MarcDataField();
+            marcDataFieldBuilder = new MarcDataField.Builder();
 
             if (dataField.hasAttribute("ind1")) {
-                marcDataField.setInd1(dataField.getAttribute("ind1"));
+                marcDataFieldBuilder.withIndicator1(dataField.getAttribute("ind1"));
             }
             if (dataField.hasAttribute("ind2")) {
-                marcDataField.setInd2(dataField.getAttribute("ind2"));
+                marcDataFieldBuilder.withIndicator2(dataField.getAttribute("ind2"));
             }
-            parseSubFields(dataField, marcDataField);
-            marcRecord.addDataField(dataField.getAttribute("tag"), marcDataField);
+            parseSubFields(dataField);
+
+            marcRecordBuilder.withDataField(dataField.getAttribute("tag"), marcDataFieldBuilder.build());
+            marcDataFieldBuilder = null;
         }
 
     }
 
-    private void parseSubFields(Element dataField, MarcDataField marcDataField) {
+    private void parseSubFields(Element dataField) {
 
         NodeList subFields = dataField.getElementsByTagNameNS(MARC_NAMESPACE, "subfield");
 
@@ -203,7 +210,7 @@ public class OaiMarcXmlReader implements Iterable<MarcRecord> {
                 continue;
             }
 
-            marcDataField.addSubfield(subField.getAttribute("code"), subField.getTextContent().trim());
+            marcDataFieldBuilder.withSubfield(subField.getAttribute("code"), subField.getTextContent().trim());
         }
 
     }

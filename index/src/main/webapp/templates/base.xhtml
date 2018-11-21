@@ -17,17 +17,35 @@
         
         <ui:include src="/templates/js-vars.xhtml"/>
         
-        <ui:insert name="header">
-            <ui:include src="/templates/header.xhtml"/>
+        <div id="map"></div>
+
+        <ui:fragment rendered="#{series.serieDefined}">
+            <script>
+                window.mapSettings = {};
+                window.mapSettings.serie = "#{series.serieDAO.name}";
+                window.mapSettings.grid = "#{series.serieDAO.grid}";
+                window.mapSettings.sheetIds = #{series.sheetIds};
+                window.map.main();
+            </script>
+        </ui:fragment>
+        <ui:fragment rendered="#{not series.serieDefined}">
+            <script>
+                window.mapSettings = null;
+                window.map.main();
+            </script>
+        </ui:fragment>
+        
+        <ui:insert name="panel">
+            <ui:include src="/templates/panel.xhtml"/>
         </ui:insert>
         
         <div id="content">
             <ui:insert name="content"/>
         </div>
         
-        <ui:insert name="footer">
-            <ui:include src="/templates/footer.xhtml"/>
-        </ui:insert>
+        <script>
+            window.hoverable();
+        </script>
         
     </h:body>
 </html>

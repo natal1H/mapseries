@@ -3,13 +3,14 @@ import webpack from "webpack";
 import ExtractTextPlugin from "extract-text-webpack-plugin";
 
 module.exports = {
-    entry: [
-      './src/main',
-      './src/main.less'
-    ],
+    entry: {
+      'main.js': './src/main.coffee',
+      'main.css': './src/main.less',
+      'admin.css': './src/admin.less'
+    },
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'main.js',
+        filename: '[name]',
     },
     module: {
       rules: [
@@ -64,17 +65,17 @@ module.exports = {
         extensions: [".coffee", ".js"]
     },
     plugins: [
-      new ExtractTextPlugin("main.css"),
+      new ExtractTextPlugin("[name]"),
       new webpack.ProvidePlugin({
           jQuery: 'jquery',
           $: 'jquery',
           jquery: 'jquery'
       }),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false,
-            comparisons: false,  // don't optimize comparisons. It causes problems in mapboxgl
-        },
-      })
+      // new webpack.optimize.UglifyJsPlugin({
+      //   compress: {
+      //       warnings: false,
+      //       comparisons: false,  // don't optimize comparisons. It causes problems in mapboxgl
+      //   },
+      // })
     ]
 };

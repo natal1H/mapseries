@@ -1,0 +1,19 @@
+@black-underlay: rgba(16, 18, 22, 0.5);
+
+.hoverable {
+  position: relative;
+
+  * {
+    position: relative;
+  }
+
+  .underlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: @black-underlay;
+    display: none;
+  }
+}

@@ -11,7 +11,7 @@
         <f:viewParam name="task" value="#{configuration.updateTaskId}" />
     </f:metadata>
      
-    <ui:composition template="/templates/admin.xhtml">
+    <ui:composition template="/templates/admin/base.xhtml">
         
         <ui:param name="activeMenuItem" value="update" />
         
@@ -19,10 +19,10 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="buttons">
-                        <li><a class="btn btn-primary" href="#{application.contextPath}/admin/update.xhtml">#{msg['back']}</a></li>
+                    <div class="buttons">
+                        <a class="btn btn-primary" href="#{application.contextPath}/admin/update.xhtml">#{msg['back']}</a>
                         <button class="btn btn-warning" onclick="tools.clip('log');">#{msg['markText']}</button>
-                    </ul>
+                    </div>
                 </div>
             </div>
             
@@ -37,11 +37,18 @@
                     <ui:fragment rendered="#{configuration.updateTask == null}">
                         <p>#{msg['updateTask']} #{msg['withId']} #{configuration.updateTaskId} #{msg['doesNotExist']}.</p>
                     </ui:fragment>
-                    <ui:fragment rendered="#{configuration.updateTask != null}">
-                        <pre id="log" class="pre-scrollable">#{configuration.updateTask.log}</pre>
+                    <ui:fragment rendered="#{configuration.updateTask != null and not configuration.updateTaskLogAvailable}">
+                        <pre id="log">#{msg['logNotAvailable']}</pre>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{configuration.updateTask != null and configuration.updateTaskLogAvailable}">
+                        <pre id="log">#{configuration.updateTaskLog}</pre>
                     </ui:fragment>
                 </div>
             </div>
+            
+            <script>
+                window.admin.log();
+            </script>
             
         </ui:define>
         

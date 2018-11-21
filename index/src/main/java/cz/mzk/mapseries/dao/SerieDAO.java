@@ -1,14 +1,17 @@
-package cz.mzk.mapseries.update.dao;
+package cz.mzk.mapseries.dao;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * @author Erich Duda <dudaerich@gmail.com>
  */
 @Entity
 public class SerieDAO {
+    
+    private static final Pattern SPACE_REPLACE = Pattern.compile("(\\d) (\\d)");
     
     @Id
     private String name;
@@ -19,6 +22,10 @@ public class SerieDAO {
 
     public String getName() {
         return name;
+    }
+    
+    public String getNameHtml() {
+        return SPACE_REPLACE.matcher(name).replaceAll("$1&nbsp;$2");
     }
 
     public void setName(String name) {

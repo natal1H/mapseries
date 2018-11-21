@@ -1,7 +1,8 @@
-package cz.mzk.mapseries.update.dao;
+package cz.mzk.mapseries.dao;
 
+import cz.mzk.mapseries.Constants;
 import javax.persistence.*;
-import java.util.Objects;
+import org.jboss.logging.Logger;
 
 /**
  * @author Erich Duda <dudaerich@gmail.com>
@@ -32,6 +33,18 @@ public class SheetDAO {
     private String vufindUrl;
     
     private String thumbnailUrl;
+    
+    private String author;
+
+    private String otherAuthors;
+
+    private String publisher;
+
+    private String issue;
+
+    private String description;
+
+    private String signature;
 
     public Long getId() {
         return id;
@@ -39,40 +52,6 @@ public class SheetDAO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "SheetDAO{" +
-                "id=" + id +
-                ", serie=" + serie +
-                ", sheetId='" + sheetId + '\'' +
-                ", title='" + title + '\'' +
-                ", year='" + year + '\'' +
-                ", digitalLibraryUrl='" + digitalLibraryUrl + '\'' +
-                ", vufindUrl='" + vufindUrl + '\'' +
-                ", thumbnailUrl='" + thumbnailUrl + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SheetDAO sheetDAO = (SheetDAO) o;
-        return Objects.equals(id, sheetDAO.id) &&
-                Objects.equals(serie, sheetDAO.serie) &&
-                Objects.equals(sheetId, sheetDAO.sheetId) &&
-                Objects.equals(title, sheetDAO.title) &&
-                Objects.equals(year, sheetDAO.year) &&
-                Objects.equals(digitalLibraryUrl, sheetDAO.digitalLibraryUrl) &&
-                Objects.equals(vufindUrl, sheetDAO.vufindUrl) &&
-                Objects.equals(thumbnailUrl, sheetDAO.thumbnailUrl);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, serie, sheetId, title, year, digitalLibraryUrl, vufindUrl, thumbnailUrl);
     }
 
     public SerieDAO getSerie() {
@@ -131,4 +110,62 @@ public class SheetDAO {
         this.thumbnailUrl = thumbnailUrl;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getOtherAuthors() {
+        return otherAuthors;
+    }
+
+    public void setOtherAuthors(String otherAuthors) {
+        this.otherAuthors = otherAuthors;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getIssue() {
+        return issue;
+    }
+
+    public void setIssue(String issue) {
+        this.issue = issue;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+    
+    public boolean isThumbnailUnavailable() {
+        return Constants.THUMBNAIL_UNAVAILABLE.equals(thumbnailUrl);
+    }
+    
+    public boolean isThumbnailCopyrighted() {
+        Logger log = Logger.getLogger(SheetDAO.class);
+        boolean result = Constants.THUMBNAIL_COPYRIGHTED.equals(thumbnailUrl);
+        log.info("isThumbnailCopyrighted:" + result, new Exception());
+        return result;
+    }
 }

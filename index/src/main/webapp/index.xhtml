@@ -13,30 +13,45 @@
     <ui:composition template="/templates/base.xhtml">
         
         <ui:define name="content">
-            <div class="container">
-                
-                <ui:repeat step="2" value="#{series.series}" varStatus="outerLoopIndex" var="outerLoopVar">
-                    <div class="row margin-top">
-                        <ui:repeat offset="#{outerLoopIndex.index}" size="#{(outerLoopIndex.index + 2) gt series.series.size() ? series.series.size() : outerLoopIndex.index + 2}" 
-                        var="serie" value="#{series.series}">
-                            
-                            <div class="col-md-6">
-                                <div class="pull-left margin-right">
-                                    <img src="#{serie.thumbnailUrl}"/>
-                                </div>
-                                <div>
-                                    <h:outputLink value="#{application.contextPath}/map.xhtml">
-                                        <f:param name="serie" value="#{serie.name}"/>
-                                    <h:outputText value="#{serie.name}"/>
+            <div class="top-panel red container">
+                <div class="row">
+                    <h3>#{msg['aboutMapseriesOnline']}</h3>
+                </div>
+                <div class="row">
+                    <div class="col">#{msg['indexTopPanelText1']}</div>
+                    <div class="col">#{msg['indexTopPanelText2']}</div>
+                </div>
+            </div>
+
+            <div class="main">
+                <div class="left-text">
+                    <h2>#{msg['availableSeries']}:</h2>
+                    <div>#{msg['clickOnSerieInstructions']}</div>
+                </div>
+                <div class="series container-fluid">
+                    <div class="row justify-content-start">
+                        <ui:repeat var="serie" value="#{series.series}">
+                            <div class="serie hoverable" data-ref="#{serie.name}">
+                                <div class="underlay"></div>
+                                <h:outputLink value="#{application.contextPath}/map.xhtml">
+                                    <f:param name="serie" value="#{serie.name}"/>
+                                    <div>
+                                        <img src="#{serie.thumbnailUrl}"/>
+                                    </div>
+                                    <div class="serie-title">
+                                        <h:outputText value="#{serie.nameHtml}" escape="false"/>
+                                    </div>
                                 </h:outputLink>
-                                </div>
                             </div>
-                        
                         </ui:repeat>
                     </div>
-                </ui:repeat>
-                
+                </div>
             </div>
+
+            <script>
+                window.index.main();
+            </script>
+
         </ui:define>
         
     </ui:composition>

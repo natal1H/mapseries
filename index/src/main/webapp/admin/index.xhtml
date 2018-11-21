@@ -11,7 +11,7 @@
         <f:viewParam name="lang" value="#{user.lang}" />
     </f:metadata>
      
-    <ui:composition template="/templates/admin.xhtml">
+    <ui:composition template="/templates/admin/base.xhtml">
         
         <ui:param name="activeMenuItem" value="index" />
         
@@ -19,14 +19,16 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="buttons">
-                        <li><button id="btn-save" class="btn btn-danger disabled" onclick="window.contentSettings.onSaveClick()">#{msg['save']}</button></li>
-                        <li><button class="btn btn-default" onclick="window.contentSettings.onRestoreClick()">#{msg['restore']}</button></li>
-                    </ul>
+                    <div class="buttons">
+                        <button id="btn-save" class="btn btn-danger" disabled="true" onclick="window.contentSettings.onSaveClick()">#{msg['save']}</button>
+                        <button class="btn btn-default" onclick="window.contentSettings.onRestoreClick()">#{msg['restore']}</button>
+                    </div>
                 </div>
             </div>
             
-            <div id="content-settings-table"/>
+            <div id="content-settings-table-scrolling-container">
+                <div id="content-settings-table"/>
+            </div>
             
             <script>
                 window.contentDefinitionData = #{configuration.contentDefinitionData};

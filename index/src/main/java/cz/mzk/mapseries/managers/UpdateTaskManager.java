@@ -1,6 +1,6 @@
-package cz.mzk.mapseries.update;
+package cz.mzk.mapseries.managers;
 
-import cz.mzk.mapseries.update.dao.UpdateTaskDAO;
+import cz.mzk.mapseries.dao.UpdateTaskDAO;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;

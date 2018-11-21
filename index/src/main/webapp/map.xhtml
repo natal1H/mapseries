@@ -14,17 +14,7 @@
     <ui:composition template="/templates/base.xhtml">
 
         <ui:define name="content">
-            <div class="container-fluid expand-this no-padding">
-                <div id="map" class="expand-this"></div>
-            </div>
-
-            <script>
-                window.mapSettings = {};
-                window.mapSettings.serie = "#{series.serieDAO.name}";
-                window.mapSettings.grid = "#{series.serieDAO.grid}";
-                window.mapSettings.sheetIds = #{series.sheetIds};
-                window.map.main();
-            </script>
+            
 
         </ui:define>
 
