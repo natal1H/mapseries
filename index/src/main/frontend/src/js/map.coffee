@@ -259,7 +259,6 @@ export default {
 
         onSelect: (e, term, item) ->
           extent = item.data('extent')
-          console.log(extent)
           map.fitBounds(extent, {
             linear: true
           })

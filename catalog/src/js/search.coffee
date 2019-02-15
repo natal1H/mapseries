@@ -7,6 +7,8 @@ import turf from 'turf'
 import Loader from 'loader'
 import Template from 'closure/template/template'
 import Series from 'model/series'
+import ebus from 'ebus'
+import 'autocomplete'
 
 
 class Search
@@ -27,8 +29,9 @@ class Search
     # initialize region switcher
     regions = Series.getRegions(@seriess)
     @updateRegions(regions)
-    @setRegion('')
-    @setActiveSheet(null)
+
+    $('#regionSelect').trigger('change')
+
 
   initMap: ->
     # default zoom, center and rotation
@@ -119,9 +122,8 @@ class Search
                 "type": "fill"
                 "source": "serie-source-marked"
                 "paint": {
-                    "fill-color": "#e67e22"
-                    "fill-outline-color": "#e67e22"
-                    "fill-opacity": 0.4
+                    "fill-color": "#00d583"
+                    "fill-opacity": 0.6
                 }
               }
               {
@@ -129,13 +131,14 @@ class Search
                 "type": "symbol"
                 "source": "serie-source-labels-marked"
                 "paint": {
-                    "text-color": "#e74c3c"
-                    "text-halo-color": "#f1c40f"
-                    "text-halo-width": 3
+                    "text-color": "#ffffff"
+                    "text-halo-color": "#00d583"
+                    "text-halo-width": 4
                 }
                 "layout": {
                   "text-field": "{SHEET}"
                   "text-font": ["Open Sans Light"]
+                  "text-max-width": 20
                 }
               }
             ]
@@ -195,15 +198,66 @@ class Search
       @map.setPitch(event.state.pitch)
       shouldUpdate = true
 
+    # autocomplete
+    $(() =>
+      xhr = null
+      $('#search-location').autoComplete
+        delay: 500
+        source: (term, suggest) ->
+          try
+            xhr.abort()
+
+          url = 'https://api.opencagedata.com/geocode/v1/json'
+          params =
+            q: term,
+            key: '5aa73ae4e27b43248135d8817205efb4'
+
+          successHandler = (data) ->
+            transform = (result) ->
+              if result.bounds
+                northEast = result.bounds.northeast
+                southWest = result.bounds.southwest
+                # northEast = ol.proj.fromLonLat([northEast.lng, northEast.lat])
+                # southWest = ol.proj.fromLonLat([southWest.lng, southWest.lat])
+                minx = Math.min(northEast.lng, southWest.lng)
+                miny = Math.min(northEast.lat, southWest.lat)
+                maxx = Math.max(northEast.lng, southWest.lng)
+                maxy = Math.max(northEast.lat, southWest.lat)
+                return {
+                  text: result.formatted,
+                  extent: [[minx, miny], [maxx, maxy]]
+                }
+              else if result.geometry
+                # geom = ol.proj.fromLonLat([result.geometry.lng, result.geometry.lat])
+                geom = [result.geometry.lng, result.geometry.lat]
+                return {
+                  text: result.formatted,
+                  extent: [[geom[0], geom[1]], [geom[0], geom[1]]]
+                }
+              else
+                return null
+
+            suggestions = data.results.map(transform).filter((x) -> x != null)
+            suggest(suggestions);
+
+          xhr = $.getJSON(url, params, successHandler)
+
+        renderItem: (item, search) ->
+          search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+          re = new RegExp("(" + search.split(' ').join('|') + ")", "gi")
+          "<div class=\"autocomplete-suggestion\" data-extent=\"#{JSON.stringify(item.extent)}\" data-lng=\"#{item.lng}\">#{item.text.replace(re, "<b>$1</b>")}</div>"
+
+        onSelect: (e, term, item) =>
+          extent = item.data('extent')
+          @map.fitBounds(extent, {
+            linear: true
+          })
+    )
+
   updateRegions: (regions) ->
     select = $('#regionSelect')
     select.off()
     select.empty()
-
-    select.append $('<option>', {
-      value: '',
-      text: 'Filter by region'
-    })
 
     regions.forEach (region) ->
       select.append $('<option>', {
@@ -230,11 +284,6 @@ class Search
     select = $('#gridSelect')
     select.off()
     select.empty()
-
-    select.append $('<option>', {
-      value: '',
-      text: 'Filter by grid'
-    })
 
     grids.forEach (grid) ->
       visTitle = if region then grid.getShortTitle() else grid.title
@@ -301,12 +350,9 @@ class Search
         }
     }
 
-    link = $('<a></a>')
-    link.attr('href', '/edit/#mapserie=' + series.id)
-    link.append('Edit')
-
-    container = $('#edit-bttn')
-    container.empty().append(link)
+    editBttn = $('#edit-bttn')
+    editBttn.removeClass('hidden')
+    editBttn.attr('href', "/edit/#mapserie=#{series.id}")
 
   setActiveSheet: (sheet) ->
     html = null
@@ -319,7 +365,7 @@ class Search
         "type": "FeatureCollection",
         "features": []
       })
-      html = $('<i>Click on a sheet</i>')
+      html = $('')
       @template.setVisible(false);
     else
       centroid = turf.centroid(sheet)
@@ -343,6 +389,8 @@ class Search
         e.preventDefault()
 
     $('#results').empty().append(html)
+    ebus.fire('panel-changed')
+
 
   updateSeriess: (seriess, region) ->
     select = $('#seriesSelect')

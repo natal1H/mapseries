@@ -1,0 +1,120 @@
+.template-dialog {
+  font-family: @font;
+  color: white;
+  position: absolute;
+  z-index: 10002;
+  background-color: @black-color;
+  outline: none;
+}
+
+.template-dialog .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  color: @theme-color;
+
+  i {
+    margin-right: 15px;
+    vertical-align: middle;
+  }
+}
+.template-dialog .close-btn:hover {
+  text-decoration: none;
+}
+
+.template-dialog-bg {
+  display: none;
+}
+
+.template-dialog a,
+.template-dialog a:link,
+.template-dialog a:visited  {
+  color: @theme-color;
+  cursor: pointer;
+}
+
+.template-dialog-title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: @title-width;
+  color: white;
+  padding: @dialog-padding;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.template-dialog-title-text {
+  font-size: 20px;
+}
+
+.template-dialog-title-static-content {
+  margin-top: 20px;
+  color: @theme-color;
+}
+
+.template-dialog-content {
+  position: absolute;
+  left: @title-width;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding-top: @dialog-padding;
+}
+
+.template-dialog-content pre {
+  color: white;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.template-dialog-content pre .combo {
+  display: inline;
+}
+
+.template-dialog-content pre .combo.disabled .goog-combobox-button {
+  display: none;
+}
+
+.template-dialog-content pre .no-arrow .goog-combobox-button {
+  display: none;
+}
+
+// .goog-buttonset-default {
+//   font-weight: bold;
+// }
+//
+
+//
+// .template-dialog-content pre .combo.disabled .goog-combobox-button {
+//   display: none;
+// }
+//
+// .template-dialog-content pre .combo.disabled input {
+//   border: 0;
+//   background-color: #e7e7e7;
+// }
+//
+// .template-dialog-content pre .combo.disabled .goog-combobox {
+//   border: 0;
+// }
+//
+// .template-dialog-content pre .no-arrow .goog-combobox-button {
+//   display: none;
+// }
+// .template-dialog-content pre .no-arrow input {
+//   border-right: 0;
+// }
+// .template-dialog-content pre .multipleValues {
+//   background-color: #e7e7e7;
+// }
+
+.clipboard-container {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: @theme-color;
+}

@@ -88,9 +88,6 @@ ms.ComboBox.prototype.configurate = function(configObj, series, map) {
     // to the bounds of multiple Points or Polygon geomteries - it just
     // requires wrapping all the coordinates with the extend method.
     var bbox = coordinates.reduce(function(bounds, coord) {
-        console.log('Bounds + coord');
-        console.log(bounds);
-        console.log(coord);
         return bounds.extend(coord);
     }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
 

@@ -31,8 +31,6 @@
     "gulp-util": "^3.0.8",
     "html-webpack-plugin": "^2.30.1",
     "imports-loader": "^0.7.1",
-    "less": "^2.7.3",
-    "less-loader": "^4.0.5",
     "run-sequence": "^2.2.0",
     "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",
@@ -40,12 +38,16 @@
     "webpack-stream": "^4.0.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.2",
     "bootbox": "^4.4.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.3.1",
     "fs": "0.0.1-security",
     "google-closure-library": "^20171203.0.0",
     "jquery": "^3.2.1",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "mapbox-gl": "^0.43.0",
+    "popper.js": "^1.14.7",
     "turf": "^3.0.14"
   }
 }

@@ -23,7 +23,7 @@ gulp.task('dist:webpack', cb => {
 
 gulp.task('dist:static', cb => {
   gulp.src('./src/index.html').pipe(gulp.dest('./dist'));
-  gulp.src('./lib/**/*', {base: '.'}).pipe(gulp.dest('./dist'));
+  gulp.src('./static/**/*', {base: './static/'}).pipe(gulp.dest('./dist'));
 });
 
 gulp.task('default', cb => {

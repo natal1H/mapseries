@@ -8,6 +8,8 @@ goog.require('goog.html.legacyconversions');
 goog.require('ms.ComboBox');
 
 import Clipboard from 'clipboard'
+import ebus from 'ebus'
+import languages from 'languages'
 
 /**
  * Template.
@@ -15,7 +17,10 @@ import Clipboard from 'clipboard'
  * @extends {goog.ui.Dialog}
  */
 ms.Template = function() {
-  goog.ui.Dialog.call(this);
+  goog.ui.Dialog.call(this, 'template-dialog');
+
+  this.setDraggable(false);
+  this.setButtonSet(null);
 
   /**
    * Fields.s
@@ -25,6 +30,61 @@ ms.Template = function() {
 };
 goog.inherits(ms.Template, goog.ui.Dialog);
 
+ms.Template.prototype.createDom = function() {
+  ms.Template.base(this, 'createDom');
+
+  var dom = this.getDomHelper();
+  dom.removeChildren(this.titleEl_);
+  goog.dom.append(
+    this.titleEl_,
+    this.titleTextEl_ = dom.createDom(
+      goog.dom.TagName.DIV, {
+        'className': goog.getCssName(this.class_, 'title-text'),
+        'id': this.getId()
+      },
+      this.title_),
+    dom.createDom(
+      goog.dom.TagName.DIV, {
+        'className': goog.getCssName(this.class_, 'title-static-content'),
+        'data-text-ref': 'sheet-detail'
+      }
+    )
+  );
+  var closeIcon = dom.createDom(
+    goog.dom.TagName.I, {
+      'className': 'fas fa-times'
+    }
+  );
+  var closeText = dom.createDom(
+    goog.dom.TagName.SPAN, {
+      'data-text-ref': 'close'
+    }
+  );
+  goog.dom.append(
+    this.getElement(),
+    this.closeBtnEl_ = dom.createDom(
+      goog.dom.TagName.A, {
+        'className': 'close-btn',
+        'href': '#'
+      },
+      closeIcon, closeText
+    )
+  );
+};
+
+ms.Template.prototype.enterDocument = function() {
+  ms.Template.base(this, 'enterDocument');
+
+  this.getHandler().listen(
+    this.closeBtnEl_, goog.events.EventType.CLICK, this.onTitleCloseClick_);
+}
+
+ms.Template.prototype.setTitle = function(title) {
+  this.title_ = title;
+    if (this.titleTextEl_) {
+      goog.dom.safe.setInnerHtml(this.titleTextEl_, title);
+  }
+};
 
 /**
  * Add listeners to dialog with decorated template content.
@@ -106,14 +166,12 @@ ms.Template.prototype.createHtmlAndComboBoxes_ =
 
   html = '<pre>' + html + '</pre>';
 
-  html += '<div id="clipboard_button_container" style="position:relative" ' +
-      'class="clipboard-container">';
-  html += '<button id="clipboard_button">Copy to Clipboard</button>';
-  html += '</div>';
-  html += '<div id="clipboard_button_008_container" style="position:relative" ' +
-      'class="clipboard-container">';
-  html += '<button id="clipboard_button_008">Copy 008 to Clipboard</button>';
-  html += '</div>';
+  html += '<div class="clipboard-container">'
+  html += '<a href="#" id="clipboard_button" data-text-ref="copy-to-clipboard"></a>'
+  html += '<span> / </span>'
+  html += '<a href="#" id="clipboard_button_008" data-text-ref="copy-to-clipboard-008">Copy 008 to Clipboard</a>'
+  html += '</div>'
+
   this.setSafeHtmlContent(goog.html.legacyconversions.safeHtmlFromString(html));
 
 };
@@ -146,7 +204,6 @@ ms.Template.prototype.createComboBox_ = function(json, series, map) {
   var cb = new ms.ComboBox();
   cb.configurate(json, series, map);
   cb.base = base || null;
-  cb.setUseDropdownArrow(true);
   this.fields.push(cb);
 
   var cls = ['combo'];
@@ -188,7 +245,7 @@ ms.Template.prototype.initComboBoxes_ = function(sheet, series, map) {
     var idx = parseInt(div.id.substr(16), 10);
     var cb = this.fields[idx];
 
-    var caption = new goog.ui.ComboBoxItem('Select or type another value...');
+    var caption = new goog.ui.ComboBoxItem(languages.getText('input-hint'));
     caption.setSticky(true);
     caption.setEnabled(false);
     cb.addItemAt(caption, 0);
@@ -259,8 +316,6 @@ ms.Template.prototype.initComboBoxes_ = function(sheet, series, map) {
       if (div.title) {
         cb.setDefaultText(div.title + '...');
       }
-    } else {
-      console.log('je null');
     }
   }, this);
 
@@ -335,12 +390,15 @@ ms.Template.prototype.showSheet = function(sheet, series, map) {
 
 
   //set label
-  var label = sheet.properties['SHEET'] + ' - ' + sheet.properties['TITLE'];
+  var sheetHtml = goog.html.SafeHtml.create('strong', null, sheet.properties['SHEET'])
+  var label = goog.html.SafeHtml.concat(sheetHtml, ' - ', sheet.properties['TITLE'])
   this.setTitle(label);
 
   this.setVisible(true);
   this.reposition();
   this.addTemplateListeners_();
+
+  ebus.fire('dialog-shown');
 
 };
 
