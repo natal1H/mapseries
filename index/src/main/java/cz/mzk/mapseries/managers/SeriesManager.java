@@ -3,6 +3,7 @@ package cz.mzk.mapseries.managers;
 import cz.mzk.mapseries.dao.SerieDAO;
 import cz.mzk.mapseries.dao.SheetDAO;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import javax.ejb.Stateless;
@@ -52,7 +53,20 @@ public class SeriesManager {
         TypedQuery<SheetDAO> query = em.createQuery("SELECT sheet FROM SheetDAO sheet WHERE sheet.serie.name = :serieName AND sheet.sheetId = :sheetId", SheetDAO.class);
         query.setParameter("serieName", serieName);
         query.setParameter("sheetId", sheetId);
-        return query.getResultList();
+
+        List<SheetDAO> result = query.getResultList();
+        result.sort(Comparator.comparingInt(a -> parseInt(a.getYear())));
+
+        return result;
+    }
+
+    private int parseInt(String s)
+    {
+        try {
+            return Integer.parseInt(s);
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     public List<String> getSheetIds(String serieName) {
