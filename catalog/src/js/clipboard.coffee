@@ -43,7 +43,7 @@ class FlashConnection extends Connection
 
   __createZeroClipboardConnection: () ->
     @zeroClipboardClient = new ZeroClipboard.Client()
-    @zeroClipboardClient.glue(@buttonId, "#{@buttonId}_container")
+    @zeroClipboardClient.glue(@buttonId)
     @zeroClipboardClient.addEventListener('mouseDown', @__eventListenerHandler)
 
   __destroyZeroClipboardConnection: () ->
