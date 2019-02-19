@@ -4,23 +4,23 @@ export default {
     "en": "img/mzk-logo-en.png"
   },
   "title": {
-    "cs": "Map Series",
-    "en": "Map Series"
+    "cs": "MapSeries",
+    "en": "MapSeries"
   },
   "subtitle": {
-    "cs": "Katalogizace mapových děl",
-    "en": "Cataloguing of map series"
+    "cs": "Katalogizace listů mapových děl",
+    "en": "Cataloguing of Map Series"
   },
   "search-label": {
-    "cs": "Hledej místo na mapě:",
-    "en": "Search place on the map:"
+    "cs": "Hledat místo na mapě:",
+    "en": "Find a place on the map:"
   },
   "tab-main": {
-    "cs": "Serie",
+    "cs": "Seznam",
     "en": "Serie"
   },
   "tab-about": {
-    "cs": "Map Series",
+    "cs": "Mapová díla",
     "en": "Map Series"
   },
   "tab-help": {
@@ -28,15 +28,15 @@ export default {
     "en": "Help"
   },
   "choose-serie": {
-    "cs": "Vyber serii:",
-    "en": "Choose serie:"
+    "cs": "Vybrat mapové dílo:",
+    "en": "Choose a map serie:"
   },
   "filter-region": {
-    "cs": "Filtr podle regiónu:",
+    "cs": "Filtr podle regionu:",
     "en": "Filter by region:"
   },
   "filter-grid": {
-    "cs": "Typ sítě (grid):",
+    "cs": "Klad listů:",
     "en": "Grid:"
   },
   "admin": {
@@ -44,15 +44,15 @@ export default {
     "en": "Admin"
   },
   "sheet-detail": {
-    "cs": "detail listu",
-    "en": "sheet detail"
+    "cs": "Šablona listu pro Aleph",
+    "en": "Sheet template for Aleph"
   },
   "copy-to-clipboard": {
-    "cs": "Skopíruj do schránky",
+    "cs": "Zkopírovat do schránky",
     "en": "Copy to clipboard"
   },
   "copy-to-clipboard-008": {
-    "cs": "Skopíruj 008 do schránky",
+    "cs": "Zkopírovat pole 008 do schránky",
     "en": "Copy 008 to clipboard"
   },
   "mapseries-online": {
@@ -72,11 +72,11 @@ export default {
     "en": "OpenStreetMap"
   },
   "close": {
-    "cs": "zavřít",
-    "en": "close"
+    "cs": "Zavřít",
+    "en": "Close"
   },
   "input-hint": {
-    "cs": "Vyberte nebo napište hodnotu...",
+    "cs": "Vybrat nebo napsat hodnotu...",
     "en": "Select or type another value..."
   }
 }
