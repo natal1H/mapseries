@@ -169,7 +169,7 @@ ms.Template.prototype.createHtmlAndComboBoxes_ =
   html += '<div class="clipboard-container">'
   html += '<a href="#" id="clipboard_button" data-text-ref="copy-to-clipboard"></a>'
   html += '<span> / </span>'
-  html += '<a href="#" id="clipboard_button_008" data-text-ref="copy-to-clipboard-008">Copy 008 to Clipboard</a>'
+  html += '<a href="#" id="clipboard_button_008" data-text-ref="copy-to-clipboard-008"></a>'
   html += '</div>'
 
   this.setSafeHtmlContent(goog.html.legacyconversions.safeHtmlFromString(html));

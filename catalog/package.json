@@ -48,6 +48,7 @@
     "less-loader": "^4.1.0",
     "mapbox-gl": "^0.43.0",
     "popper.js": "^1.14.7",
-    "turf": "^3.0.14"
+    "turf": "^3.0.14",
+    "zeroclipboard": "^2.3.0"
   }
 }

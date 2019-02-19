@@ -1,5 +1,6 @@
 
-ZeroClipboard.setMoviePath('lib/zeroclipboard/ZeroClipboard.swf');
+import ZeroClipboard from 'zeroclipboard'
+import $ from 'jquery'
 
 class Connection
   constructor: (@buttonId, @textFunc) ->
@@ -42,14 +43,13 @@ class FlashConnection extends Connection
     @__destroyZeroClipboardConnection()
 
   __createZeroClipboardConnection: () ->
-    @zeroClipboardClient = new ZeroClipboard.Client()
-    @zeroClipboardClient.glue(@buttonId)
-    @zeroClipboardClient.addEventListener('mouseDown', @__eventListenerHandler)
+    @zeroClipboardClient = new ZeroClipboard($(document.getElementById(@buttonId)))
+    @zeroClipboardClient.on('copy', @__eventListenerHandler)
 
   __destroyZeroClipboardConnection: () ->
     @zeroClipboardClient.destroy()
 
-  __eventListenerHandler: () =>
+  __eventListenerHandler: (e) =>
     textToCopy = @textFunc()
     @zeroClipboardClient.setText(textToCopy)
 
