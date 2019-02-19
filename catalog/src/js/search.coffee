@@ -7,7 +7,6 @@ import turf from 'turf'
 import Loader from 'loader'
 import Template from 'closure/template/template'
 import Series from 'model/series'
-import ebus from 'ebus'
 import 'autocomplete'
 
 
@@ -148,7 +147,9 @@ class Search
         bearing: bearing
         pitch: pitch
 
-    @map.addControl(new mapboxgl.NavigationControl())
+    @map.addControl(new mapboxgl.NavigationControl({showCompass: false}), 'top-left')
+    @map.dragRotate.disable()
+    @map.touchZoomRotate.disableRotation()
 
     shouldUpdate = true
     updatePermalink = () =>
@@ -380,16 +381,7 @@ class Search
         "features": [sheet]
       })
 
-      label = sheet.properties['SHEET'] + ' - ' + sheet.properties['TITLE']
-      html = $('<a></a>')
-      html.attr('href', '#')
-      html.append(label)
-      html.on 'click', (e) =>
-        @template.showSheet(sheet, @series, @map)
-        e.preventDefault()
-
-    $('#results').empty().append(html)
-    ebus.fire('panel-changed')
+      @template.showSheet(sheet, @series, @map)
 
 
   updateSeriess: (seriess, region) ->

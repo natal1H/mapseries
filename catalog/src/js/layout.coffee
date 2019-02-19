@@ -63,7 +63,6 @@ deactiveAuthorsTab = ->
 init = ->
   ebus.on('resize', updateLayout)
   ebus.on('text-updated', updateLayout)
-  ebus.on('panel-changed', updateLayout)
   ebus.on('dialog-shown', updateDialogPosition)
 
   $(window).on('resize', () -> ebus.fire('resize'))

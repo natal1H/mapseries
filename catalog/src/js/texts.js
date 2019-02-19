@@ -39,13 +39,9 @@ export default {
     "cs": "Typ sítě (grid):",
     "en": "Grid:"
   },
-  "choose-layer": {
-    "cs": "Vyber vrstvu:",
-    "en": "Choose layer:"
-  },
-  "edit": {
-    "cs": "edituj",
-    "en": "edit"
+  "admin": {
+    "cs": "Admin",
+    "en": "Admin"
   },
   "sheet-detail": {
     "cs": "detail listu",

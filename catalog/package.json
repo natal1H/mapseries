@@ -46,7 +46,7 @@
     "jquery": "^3.2.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "mapbox-gl": "^0.43.0",
+    "mapbox-gl": "^0.53.0",
     "popper.js": "^1.14.7",
     "turf": "^3.0.14",
     "zeroclipboard": "^2.3.0"
