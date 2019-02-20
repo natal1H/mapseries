@@ -165,7 +165,6 @@ public class SheetDAO {
     public boolean isThumbnailCopyrighted() {
         Logger log = Logger.getLogger(SheetDAO.class);
         boolean result = Constants.THUMBNAIL_COPYRIGHTED.equals(thumbnailUrl);
-        log.info("isThumbnailCopyrighted:" + result, new Exception());
         return result;
     }
 }
