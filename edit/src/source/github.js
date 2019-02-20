@@ -206,6 +206,9 @@ module.exports = function(context, config) {
             .then(() => {
               return fork()
             })
+            .then(() => {
+              return initWork();
+            })
           }
         });
       }

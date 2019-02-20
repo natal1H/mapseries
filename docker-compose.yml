@@ -1,0 +1,18 @@
+version: "2"
+services:
+  mapseries:
+    image: moravianlibrary/mapseries
+    restart: always
+    environment:
+      GITHUB_CLIENT_ID: ...
+      GITHUB_CLIENT_SECRET: ...
+      GEOSERVER_PASSWORD: ...
+    ports:
+      - 8080:8080
+  postgres:
+    image: postgres:10
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ...:/var/lib/postgresql/data:z

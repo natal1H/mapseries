@@ -1,32 +1,24 @@
-FROM tomcat:8.0
+FROM jboss/wildfly:10.1.0.Final
 
 COPY scripts /scripts
+COPY configs /configs
 
+USER root
 RUN /scripts/setup.sh
+RUN rm -rf /scripts /configs
 
-# geoserver
-COPY geoserver /build/geoserver
-RUN /build/geoserver/docker.sh
+ENV LANG en_US.utf8
 
-# github-proxy
-COPY github-proxy /build/github-proxy
-RUN /build/github-proxy/docker.sh
-
-# webhooks
-COPY webhooks /build/webhooks
-RUN /build/webhooks/docker.sh
-
-# CONFIG webhooks
-COPY configs/webhooks.conf /etc/mapseries/webhooks.conf
-COPY configs/polygon.sld /data/geoserver/polygon.sld
-ENV ENABLE_JSONP true
-
-# view
-COPY view /build/view
-RUN /build/view/docker.sh
-
-# edit
+COPY catalog /build/catalog
 COPY edit /build/edit
-RUN /build/edit/docker.sh
+COPY index /build/index
 
-RUN rm -rf /scripts /build
+RUN chown -R jboss:jboss /build
+USER jboss
+
+RUN /build/catalog/docker.sh && \
+    /build/edit/docker.sh && \
+    /build/index/docker.sh && \
+    rm -rf /build/*
+
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-c", "standalone-full-mapseries.xml"]

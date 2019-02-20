@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <f:metadata>
+        <f:viewParam name="code" value="#{user.code}" />
+        <f:viewParam name="lang" value="#{user.lang}" />
+        <f:viewParam name="serie" value="#{series.serie}" />
+        <f:viewParam name="sheet" value="#{series.sheet}" />
+        <f:viewParam name="issue" value="#{series.issue}" />
+    </f:metadata>
+     
+    <ui:composition template="/templates/base.xhtml">
+        
+        <ui:define name="content">
+            <div class="main sheet">
+                
+                <div class="left-panel">
+                    
+                    <div class="title">#{series.sheet}</div>
+                    
+                    <div class="text">#{msg['availableVersionsOfSheet']}</div>
+                    
+                    <c:forEach items="#{series.sheets}" var="sheet" varStatus="status">
+                        <div class="hoverable item #{status.index == series.issue ? 'active' : ''}">
+                            <div class="underlay"></div>
+                            <div class="image">
+                                <h:outputLink>
+                                    <f:param name="serie" value="#{series.serie}" />
+                                    <f:param name="sheet" value="#{series.sheet}" />
+                                    <f:param name="issue" value="#{status.index}" />
+                                    
+                                    <c:choose>
+                                        <c:when test="#{sheet.thumbnailUnavailable}">
+                                            <table class="thumbnail-unavailable">
+                                                <td class="align-middle">#{msg['thumbnail-unavailable']}</td>
+                                            </table>
+                                        </c:when>
+                                        <c:when test="#{sheet.thumbnailCopyrighted}">
+                                            <table class="thumbnail-copyrighted">
+                                                <td class="align-middle">#{msg['thumbnail-copyrighted']}</td>
+                                            </table>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img width="100px" src="#{sheet.thumbnailUrl}"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </h:outputLink>
+                            </div>
+                            <div class="mt-1" style="width: 100px;">#{sheet.title}</div>
+                            <div style="width: 100px;">#{sheet.year}</div>
+                        </div><br/>
+                    </c:forEach>
+                </div>
+                
+                <div class="detail">
+                    <h:outputLink class="close-button" value="#{application.contextPath}/map.xhtml">
+                        <f:param name="serie" value="#{series.serie}" />
+                        <i class="fas fa-times"></i>
+                    </h:outputLink>
+                    <div>
+                        <h:outputLink rendered="#{not series.issueFirst}" class="arrow left">
+                            <f:param name="serie" value="#{series.serie}" />
+                            <f:param name="sheet" value="#{series.sheet}" />
+                            <f:param name="issue" value="#{series.issue - 1}" />
+                            <i class="fas fa-angle-left"></i>
+                        </h:outputLink>
+                        <a href="#{series.activeSheet.digitalLibraryUrl}" class="no-anchor" target="_blank">
+                            <c:choose>
+                                <c:when test="#{series.activeSheet.thumbnailUnavailable}">
+                                    <table class="thumbnail-unavailable">
+                                        <td class="align-middle">#{msg['thumbnail-unavailable']}</td>
+                                    </table>
+                                </c:when>
+                                <c:when test="#{series.activeSheet.thumbnailCopyrighted}">
+                                    <table class="thumbnail-copyrighted">
+                                        <td class="align-middle">#{msg['thumbnail-copyrighted']}</td>
+                                    </table>
+                                </c:when>
+                                <c:otherwise>
+                                    <img height="300px" src="#{series.activeSheet.thumbnailUrl}"/>
+                                </c:otherwise>
+                            </c:choose>
+                        </a>
+                        <h:outputLink rendered="#{not series.issueLast}" class="arrow right">
+                            <f:param name="serie" value="#{series.serie}" />
+                            <f:param name="sheet" value="#{series.sheet}" />
+                            <f:param name="issue" value="#{series.issue + 1}" />
+                            <i class="fas fa-angle-right"></i>
+                        </h:outputLink>
+                    </div>
+                    
+                    <div class="metadata-container">
+                        <div class="metadata">
+                            <div class="title">#{series.activeSheet.title}</div>
+                            <table>
+                                <ui:fragment rendered="#{not empty series.activeSheet.author}">
+                                    <tr><td>#{msg['author']}:</td><td>#{series.activeSheet.author}</td></tr>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{not empty series.activeSheet.otherAuthors}">
+                                    <tr><td>#{msg['otherAuthors']}:</td><td>#{series.activeSheet.otherAuthors}</td></tr>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{not empty series.activeSheet.publisher}">
+                                    <tr><td>#{msg['publisher']}:</td><td>#{series.activeSheet.publisher}</td></tr>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{not empty series.activeSheet.issue}">
+                                    <tr><td>#{msg['issue']}:</td><td>#{series.activeSheet.issue}</td></tr>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{not empty series.activeSheet.description}">
+                                    <tr><td>#{msg['physicalDescription']}:</td><td>#{series.activeSheet.description}</td></tr>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{not empty series.activeSheet.signature}">
+                                    <tr><td>#{msg['signature']}:</td><td>#{series.activeSheet.signature}</td></tr>
+                                </ui:fragment>                                
+                                <tr>
+                                    <td>#{msg['externalReferences']}:</td>
+                                    <td>
+                                        <h:outputLink rendered="#{not empty series.activeSheet.vufindUrl}" value="#{series.activeSheet.vufindUrl}" class="no-anchor" target="_blank">VuFind</h:outputLink>
+                                        <h:outputText rendered="#{not empty series.activeSheet.vufindUrl and not empty series.activeSheet.digitalLibraryUrl}" value=", "/>
+                                        <h:outputLink rendered="#{not empty series.activeSheet.digitalLibraryUrl}" value="#{series.activeSheet.digitalLibraryUrl}" class="no-anchor" target="_blank">#{msg['digitalLibrary']}</h:outputLink>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            
+            <script>
+                window.sheet.main();
+            </script>
+        </ui:define>
+        
+    </ui:composition>
+    
+</html>
+

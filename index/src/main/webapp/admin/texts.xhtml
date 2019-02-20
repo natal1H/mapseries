@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    
+    <f:metadata>
+        <f:viewParam name="code" value="#{user.code}" />
+        <f:viewParam name="lang" value="#{user.lang}" />
+    </f:metadata>
+     
+    <ui:composition template="/templates/admin/base.xhtml">
+        
+        <ui:param name="activeMenuItem" value="texts" />
+        
+        <ui:define name="admin-content">
+            
+            <div class="container-fluid">
+                <ul class="list-group list-group-flush">
+                    <ui:repeat value="#{configuration.contentDefinitions}" var="definition">
+                        <li class="list-group-item">
+                            <span>#{definition.prettyName}</span>
+                            <ui:repeat value="#{user.allLanguages}" var="lang">
+                                <h:outputLink class="float-right mx-1 btn btn-sm btn-#{definition.getDescription(lang).present ? 'info' : 'danger'}" value="#{application.contextPath}/admin/text-editor.xhtml">
+                                    <f:param name="text-lang" value="#{lang}" />
+                                    <f:param name="text-name" value="#{definition.name}" />
+                                    #{msg[user.getTranslatedLangKey(lang)]}
+                                </h:outputLink>
+                            </ui:repeat>
+                        </li>
+                    </ui:repeat>
+                </ul>
+            </div>
+            
+        </ui:define>
+        
+    </ui:composition>
+    
+</html>
+

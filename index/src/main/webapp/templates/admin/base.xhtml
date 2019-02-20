@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Mapseries</title>
+        <h:outputStylesheet library="default" name="admin.css" />
+        <h:outputStylesheet library="default" name="languages.min.css" />
+        <h:outputScript library="default" name="main.js" />
+    </h:head>
+    <h:body>
+        
+        <ui:include src="/templates/js-vars.xhtml"/>
+        
+        <ui:fragment rendered="#{user.authenticate and user.admin}">
+            <ui:include src="/templates/admin/left-panel.xhtml"/>
+        </ui:fragment>
+        
+        <div class="page #{user.authenticate and user.admin ? '' : 'full'}">
+            
+            <ui:include src="/templates/admin/top-panel.xhtml"/>
+            
+            <div class="main">
+                
+                <ui:fragment rendered="#{!user.authenticate}">
+                
+                    <table class="expand">
+                        <tr class="text-center">
+                            <td>
+                                <a class="btn btn-success noexpand" href="#{user.authURL}">#{msg['login']}</a>
+                            </td>
+                        </tr>
+                    </table>
+                
+                </ui:fragment>
+            
+                <ui:fragment rendered="#{user.authenticate}">
+
+                    <ui:fragment rendered="#{!user.admin}">
+
+                        <table class="expand">
+                            <tr class="text-center">
+                                <td>
+                                    <p class="text-danger noexpand">#{msg['notAuthorized']}</p>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </ui:fragment>
+
+                    <ui:fragment rendered="#{user.admin}">
+
+                        <ui:insert name="admin-content"/>
+
+                    </ui:fragment>
+
+                </ui:fragment>
+                
+            </div>
+            
+        </div>
+        
+        <script>
+            window.admin.main()
+        </script>
+        
+        <ui:insert name="footer">
+            <ui:include src="/templates/admin/footer.xhtml"/>
+        </ui:insert>
+        
+    </h:body>
+</html>
+

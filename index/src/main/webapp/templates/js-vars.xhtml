@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <ui:composition>
+        
+        <script>
+            window.contextPath = "#{application.contextPath}";
+            window.msg = {
+                changesNotSaved: "#{msg['changesNotSaved']}",
+                error: "#{msg['error']}"
+            };
+            window.msg.contentSettings = {
+                field: "#{msg['contentSettings.field']}",
+                name: "#{msg['contentSettings.name']}",
+                grid: "#{msg['contentSettings.grid']}",
+                sheets: "#{msg['contentSettings.sheets']}",
+                groupby: "#{msg['contentSettings.groupby']}",
+                thumbnailUrl: "#{msg['contentSettings.thumbnailUrl']}",
+                commitMsgDialogTitle: "#{msg['contentSettings.commitMsgDialogTitle']}",
+                commitMsgCannotBeEmpty: "#{msg['contentSettings.commitMsgCannotBeEmpty']}"
+            };
+            window.msg.usersSettings = {
+                addAdminDialogTitle: "#{msg['usersSettings.addAdminDialogTitle']}",
+                adminCannotBeEmpty: "#{msg['usersSettings.adminCannotBeEmpty']}",
+                removeAdminDialogTitle: "#{msg['usersSettings.removeAdminDialogTitle']}"
+            }
+        </script>
+        
+    </ui:composition>
+    
+</html>
+

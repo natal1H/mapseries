@@ -1,0 +1,2 @@
+# Useful script for modifying css files
+sed "s/url(\([^)]\+\))/url(\"#{resource['default:\1']}\")/g" -i file.css

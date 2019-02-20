@@ -1,0 +1,11 @@
+## Configuration of Postgres DB
+
+```
+psql -U postgres -W
+```
+
+```
+CREATE USER mapseries WITH PASSWORD 'mapseries';
+CREATE DATABASE mapseries WITH owner = mapseries;
+INSERT INTO admindao (name) VALUES ('admin');
+```

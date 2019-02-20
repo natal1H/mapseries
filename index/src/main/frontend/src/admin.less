@@ -1,0 +1,84 @@
+@import (css) url('http://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~handsontable/dist/handsontable.full.min.css";
+@import "~mapbox-gl/dist/mapbox-gl.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "css/ie10-viewport-bug-workaround";
+@import "css/dashboard.css";
+
+.page.full {
+  width: 100%;
+}
+
+.main {
+  padding: 25px;
+  overflow: auto;
+}
+
+#content-settings-table-scrolling-container {
+  overflow: hidden;
+}
+
+.buttons {
+  margin-bottom: 15px;
+
+  button {
+    display: inline-block;
+  }
+}
+
+.loading {
+  display: none;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 10000;
+  background-image: url("#{resource['default:loading.gif']}");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+
+.expand-this {
+    width: 100%;
+    height: 100%;
+}
+
+.expand {
+    width: 100%;
+    height: 100%;
+
+    * {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.noexpand {
+    width: auto;
+    height: auto;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+/* Fixes */
+nav.navbar .dropdown-toggle::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+.page {
+  padding-bottom: 0;
+}
+.bootbox .modal-header {
+  display: block;
+}
+.side-navbar.shrink ul li a {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

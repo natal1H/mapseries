@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <ui:composition>
+
+        <header class="header">
+            <nav class="navbar">
+              <div class="container-fluid">
+                <div class="navbar-holder d-flex align-items-center justify-content-between">
+                    <div class="navbar-header">
+                        <ui:fragment rendered="#{user.authenticate and user.admin}">
+                            <a id="toggle-btn" href="#" class="menu-btn"><i class="fas fa-bars"></i></a>
+                        </ui:fragment>
+                        <a href="#{application.contextPath.isEmpty() ? '/' : application.contextPath}" class="navbar-brand">
+                            <div class="brand-text d-none d-md-inline-block">
+                                <strong>Mapseries</strong>
+                            </div>
+                        </a>
+                    </div>
+                    <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                        <!-- Languages dropdown    -->
+                        <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><span class="lang-sm mr-2" lang="#{user.lang}"></span><span class="d-none d-sm-inline-block">#{msg[user.lang]}</span></a>
+                          <ul aria-labelledby="languages" class="dropdown-menu">
+                            <ui:repeat var="lang" value="#{user.languages}">
+                                <li><a rel="nofollow" href="#{user.getLangUrl(lang)}" class="dropdown-item"><span class="lang-sm mr-2" lang="#{lang}"></span><span>#{msg[lang]}</span></a></li>
+                            </ui:repeat>
+                          </ul>
+                        </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+        </header>
+        
+    </ui:composition>
+        
+</html>
+

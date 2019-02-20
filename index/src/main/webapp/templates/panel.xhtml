@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition>
+
+        <div class="container right-panel">
+            <div class="row justify-content-between content-between red">
+                <div class="logo">
+                    <a href="https://www.mzk.cz/" class="no-anchor" target="_blank">
+                        <h:graphicImage library="default" name="#{msg['mzkLogoSrc']}"/>
+                    </a>
+                </div>
+                <select id="lang-switcher" class="languages custom-select" autocomplete="off">
+                    <option value="#{user.lang}" selected="true">#{msg[user.lang]}</option>
+                    <ui:repeat var="lang" value="#{user.languages}">
+                        <option value="#{lang}">#{msg[lang]}</option>
+                    </ui:repeat>
+                </select>
+            </div>
+            <div class="row justify-content-end content-end red">
+                <a href="#{application.contextPath.isEmpty() ? '/' : application.contextPath}">
+                    <div class="title">#{msg['applicationTitle']}</div>
+                </a>
+            </div>
+            <div class="row justify-content-end content-end red">
+                <div class="subtitle">#{msg['applicationSubTitle']}</div>
+            </div>
+            <div class="row justify-content-end content-end red">
+                <div class="search-label">#{msg['search-label']}:</div>
+            </div>
+            <div class="row justify-content-end content-end red">
+                <input id="search-location" type="text" class="search-input form-control right mb-4 mt-2"/>
+            </div>
+
+            <div class="row">
+                <ul class="nav nav-tabs nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <a id="main-tab" class="nav-link active" data-toggle="tab" href="#main" data-target="#main" role="tab" aria-controls="main" aria-selected="true">#{msg['list']}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="about-tab" class="nav-link" data-toggle="tab" href="#about" data-target="#about" role="tab" aria-controls="about" aria-selected="false">#{msg['applicationTitle']}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="help-tab" class="nav-link" data-toggle="tab" href="#help" data-target="#help" role="tab" aria-controls="help" aria-selected="false">#{msg['help']}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row tab-pane fade show active justify-content-start content-start padding black" id="main" role="tabpanel" aria-labelledby="main-tab">
+                <div class="row mt-4"><h2>#{msg['choose-serie']}:</h2></div>
+                <ui:repeat value="#{series.series}" var="serie">
+                    <div class="row serie hoverable #{series.isSerieActive(serie) ? 'active' : 'inactive'}" data-ref="#{serie.name}">
+                        <div class="underlay"></div>
+                        <h:link outcome="/map.xhtml">
+                            <h:outputText value="— #{serie.nameHtml}" escape="false"/>
+                            <f:param name="serie" value="#{serie.name}"/>
+                        </h:link>
+                        <ui:fragment rendered="#{series.isSerieActive(serie)}">
+                            <div class="description">
+                                #{series.serieDescription}
+                            </div>
+                        </ui:fragment>
+                    </div>                        
+                </ui:repeat>
+            </div>
+            <div class="row tab-pane fade justify-content-start content-start black" id="about" role="tabpanel" aria-labelledby="about-tab">
+                <div class="col">
+                    <div class="row tab-text my-4">
+                        <h:outputText value="#{msg['about.text']}" escape="false"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row tab-pane fade justify-content-start content-start black" id="help" role="tabpanel" aria-labelledby="help-tab">
+                <div class="col">
+                    <div class="row tab-text my-4">
+                        <h:outputText value="#{msg['help.text']}" escape="false"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row tab-pane fade justify-content-start content-start black" id="authors" role="tabpanel" aria-labelledby="authors-tab">
+                <div class="col">
+                    <div class="row tab-text my-4">
+                        <h:outputText value="#{msg['authors.text']}" escape="false"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row black" id="pannel-padding"></div>
+            <div class="black" id="footer">
+                <div class="row">
+                    <div class="col text-center">
+                        <a href="/catalog" class="align-middle no-anchor" target="_blank">#{msg['mapseries-catalog']}</a>
+                        <span class="separator">|</span>
+                    </div>
+                    <div class="col text-center">
+                        <a href="https://moravianlibrary.github.io/scale-calculator/" class="align-middle no-anchor" target="_blank">#{msg['scale-calculator']}</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-center nav">
+                        <a id="authors-tab" href="#authors" data-target="#authors" class="align-middle no-anchor" data-toggle="tab" aria-selected="false" role="tab" aria-controls="authors">
+                            #{msg['authors']}
+                        </a>
+                        <span class="separator">|</span>
+                    </div>
+                    <div class="col-3 text-center">
+                        <a href="#{application.contextPath}/admin" class="align-middle no-anchor">#{msg['admin']}</a>
+                        <span class="separator">|</span>
+                    </div>
+                    <div class="col-6 text-center">
+                        <span class="text">©</span>
+                        <a href="https://www.mzk.cz/" class="align-middle no-anchor" target="_blank">MZK</a><span class="text">,</span>
+                        <a href="https://www.openstreetmap.org/" class="align-middle no-anchor" target="_blank">OpenStreetMap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            window.langUrls = #{user.langUrlMap};
+            window.rightPanel.main();
+        </script>
+
+    </ui:composition>
+</html>
+

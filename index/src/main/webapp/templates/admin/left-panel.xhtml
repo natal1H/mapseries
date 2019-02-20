@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <ui:composition>
+
+    <nav class="side-navbar">
+        <div class="side-navbar-wrapper">
+            <!-- Sidebar Header    -->
+            <div class="sidenav-header d-flex align-items-center justify-content-center">
+                <!-- User Info-->
+                <div class="sidenav-header-inner text-center">
+                    <h:graphicImage value="https://github.com/#{user.login}.png?size=150" alt="person" class="img-fluid rounded-circle"/>
+                    <h2 class="h5">#{user.userName}</h2>
+                    <a href="#{user.logoutUrl}"><span>#{msg['logout']}</span></a>
+                </div>
+                <!-- Small Brand information, appears on minimized sidebar-->
+                <div class="sidenav-header-logo"><a href="#{user.logoutUrl}" class="brand-small text-center"><i class="fas fa-sign-out-alt"></i></a></div>
+            </div>
+            <!-- Sidebar Navigation Menus-->
+            <ul id="side-main-menu" class="side-menu list-unstyled">
+                <li class="#{activeMenuItem == 'index' ? 'active' : ''}"><a href="#{application.contextPath}/admin/index.xhtml"><i class="fas fa-table"></i>#{msg['contentSettings']}</a></li>
+                <li class="#{activeMenuItem == 'texts' ? 'active' : ''}"><a href="#{application.contextPath}/admin/texts.xhtml"><i class="fas fa-font"></i>#{msg['texts']}</a></li>
+                <li class="#{activeMenuItem == 'update' ? 'active' : ''}"><a href="#{application.contextPath}/admin/update.xhtml"><i class="fas fa-sync"></i>#{msg['updateSettings']}</a></li>
+                <li class="#{activeMenuItem == 'users' ? 'active' : ''}"><a href="#{application.contextPath}/admin/users.xhtml"><i class="fas fa-users-cog"></i>#{msg['usersSettings']}</a></li>
+            </ul>
+        </div>
+    </nav>
+        
+    </ui:composition>
+        
+</html>
+
