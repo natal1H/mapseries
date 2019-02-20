@@ -124,7 +124,7 @@ public class SheetBuilder {
     }
     
     private String getDigitalLibraryUrl() {
-        MarcIdentifier marcId = new MarcIdentifier.Builder().withField("911").withSubfield("u").build();
+        MarcIdentifier marcId = new MarcIdentifier.Builder().withField("856").withSubfield("u").build();
         MarcTraversal marcTraversal = createMarcTraversal(marcId).build();
 
         return marcTraversal.getValue(marcId).orElse("");
