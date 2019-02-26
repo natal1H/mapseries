@@ -86,6 +86,7 @@ public class ContentDefinitionManager {
         }
         
         return description.keySet().stream()
+                .filter(key -> !description.isNull(key))
                 .collect(Collectors.toMap(Function.identity(), key -> description.getString(key)));
     }
     
