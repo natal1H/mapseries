@@ -111,7 +111,7 @@ module.exports = function fileBar(context) {
                     alt: context.texts.addMapLayerAlt,
                     enabled: false,
                     action: function() {
-                        var layerURL = prompt(context.texts.layerURL + ' \n(http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg)');
+                        var layerURL = prompt(context.texts.layerURL + ' \n(https://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg)');
                         if (layerURL === null) return;
                         var layerName = prompt(context.texts.layerName);
                         if (layerName === null) return;

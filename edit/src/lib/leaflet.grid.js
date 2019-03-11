@@ -278,7 +278,7 @@ module.exports = {
       });
       out = out.join(';');
       $.ajax({
-        url: 'http://epsg.io/trans',
+        url: 'https://epsg.io/trans',
         jsonp: 'callback',
         dataType: 'jsonp',
         data: {
@@ -330,7 +330,7 @@ module.exports = {
       $(inputProj).autocomplete({
         source: function(request, response) {
           $.ajax({
-            url: 'http://epsg.io',
+            url: 'https://epsg.io',
             jsonp: 'callback',
             dataType: 'jsonp',
             data: {

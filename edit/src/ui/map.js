@@ -31,8 +31,8 @@ module.exports = function(context, readonly) {
                     "base-map-source": {
                         "type": "raster",
                         "tiles": [
-                            "http://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                            "http://b.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                            "https://b.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         ],
                         "tileSize": 256
                     }
@@ -44,7 +44,7 @@ module.exports = function(context, readonly) {
                     "minzoom": 0,
                     "maxzoom": 22
                 }],
-                "glyphs": "http://glfonts.lukasmartinelli.ch/fonts/{fontstack}/{range}.pbf",
+                "glyphs": "https://glfonts.lukasmartinelli.ch/fonts/{fontstack}/{range}.pbf",
             },
             center: [20, 46], // starting position
             zoom: 5 // starting zoom

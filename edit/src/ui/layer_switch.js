@@ -6,15 +6,15 @@ module.exports = function(context) {
     {
      title: 'OSM',
      tiles: [
-       'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
-       'http://b.tile.openstreetmap.org/{z}/{x}/{y}.png'
+       'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+       'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png'
      ]
     },
     {
       title: 'OCM',
       tiles: [
-        'http://a.tile.thunderforest.com/cycle/{z}/{x}/{y}.png',
-        'http://b.tile.thunderforest.com/cycle/{z}/{x}/{y}.png'
+        'https://a.tile.thunderforest.com/cycle/{z}/{x}/{y}.png',
+        'https://b.tile.thunderforest.com/cycle/{z}/{x}/{y}.png'
       ],
     }
   ];

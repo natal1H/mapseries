@@ -248,7 +248,7 @@ class GridControl extends BaseControl
     $(inputProj).autocomplete {
       source: (request, response) =>
         $.ajax {
-          url: 'http://epsg.io'
+          url: 'https://epsg.io'
           jsonp: 'callback'
           dataType: 'jsonp'
           data:
@@ -439,7 +439,7 @@ class GridControl extends BaseControl
     out = ("#{coor[1]},#{coor[0]}" for coor in coors)
     out = out.join(';');
     $.ajax {
-      url: 'http://epsg.io/trans',
+      url: 'https://epsg.io/trans',
       jsonp: 'callback',
       dataType: 'jsonp',
       data:
