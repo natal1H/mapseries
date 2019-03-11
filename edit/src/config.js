@@ -3,7 +3,7 @@ module.exports = function(hostname) {
   if (hostname === 'mapseries.mzk.cz') {
     return {
       client_id: '6c133ed6402352753608',
-      gatekeeper_url: 'http://mapseries.mzk.cz/server',
+      gatekeeper_url: 'https://mapseries.mzk.cz/server',
     };
   // Customize these settings for your own development/deployment
   // version of geojson.io.
