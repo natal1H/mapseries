@@ -279,8 +279,6 @@ class Search
     grids = Series.getGrids(seriess)
     @updateGrids(grids, region)
 
-    @setGrid(null, region);
-
   updateGrids: (grids, region) ->
     select = $('#gridSelect')
     select.off()
@@ -294,7 +292,6 @@ class Search
       })
 
     value = if region then grids.values().next().value.title else ''
-    select.val(value)
     select.on 'change', () =>
       gridTitle = select.val()
       grid = null
@@ -303,17 +300,20 @@ class Search
       region = regSelect.val()
       @setGrid(grid, region)
 
+    select.val(value)
+    select.trigger('change')
+
   setGrid: (grid, region) ->
-    seriess = null
+    i = 0
+    zip = (x) -> { val: x, index: i++ }
+
+    seriess = (zip(x) for x in @seriess)
 
     if grid or region
-      seriess = @seriess.filter (series) ->
-        (!grid || series.grid == grid) && (!region || series.title.startsWith(region))
-    else
-      seriess = @seriess
+      seriess = seriess.filter (series) ->
+        (!grid || series.val.grid == grid) && (!region || series.val.title.startsWith(region))
 
     @updateSeriess(seriess, region)
-    @setSeries(seriess[0])
 
   setSeries: (series) ->
     @setActiveSheet(null)
@@ -389,14 +389,15 @@ class Search
     select.off()
     select.empty()
 
-    seriess.forEach (series, i) ->
-      visTitle = if region then series.getShortTitle() else series.title
+    seriess.forEach (series) ->
+      visTitle = if region then series.val.getShortTitle() else series.val.title
       select.append $('<option>', {
-        value: i
+        value: series.index
         text: visTitle
       })
 
-    select.val(0)
     select.on 'change', () => @setSeries(@seriess[select.val()])
+    select.val(seriess[0].index)
+    select.trigger('change')
 
 export default Search
