@@ -26,6 +26,10 @@
                 <li class="#{activeMenuItem == 'update' ? 'active' : ''}"><a href="#{application.contextPath}/admin/update.xhtml"><i class="fas fa-sync"></i>#{msg['updateSettings']}</a></li>
                 <li class="#{activeMenuItem == 'users' ? 'active' : ''}"><a href="#{application.contextPath}/admin/users.xhtml"><i class="fas fa-users-cog"></i>#{msg['usersSettings']}</a></li>
             </ul>
+            <h5 class="sidenav-heading">#{msg['wrong-data-detection']}</h5>
+            <ul id="side-main-menu" class="side-menu list-unstyled">
+                <li class="#{activeMenuItem == 'non-linked-maps' ? 'active' : ''}"><a href="#{application.contextPath}/admin/non-linked-maps.xhtml"><i class="fas fa-exclamation-circle"></i>#{msg['non-linked-maps']}</a></li>
+            </ul>
         </div>
     </nav>
         
