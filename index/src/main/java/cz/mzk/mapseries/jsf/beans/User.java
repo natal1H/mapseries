@@ -92,7 +92,13 @@ public class User implements Serializable {
         
         HttpServletRequest servletRequest = (HttpServletRequest) context.getExternalContext().getRequest();
         
-        String requestUrl = servletRequest.getRequestURL().toString().replace("http://", "https://");
+        String requestUrl = servletRequest.getRequestURL().toString();
+        
+        if (!requestUrl.contains("localhost")) {
+            requestUrl = requestUrl.replace("http://", "https://");
+        }
+        
+        
         Map<String, List<String>> params = getRequestParams();
         
         LOG.debugf("getAuthURL: requestUrl=%s", requestUrl);
