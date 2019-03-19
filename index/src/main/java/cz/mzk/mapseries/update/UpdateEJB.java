@@ -1,5 +1,6 @@
 package cz.mzk.mapseries.update;
 
+import cz.mzk.mapseries.dao.interfaces.VersionedData;
 import cz.mzk.mapseries.managers.UpdateTaskManager;
 import cz.mzk.mapseries.github.GithubService;
 import cz.mzk.mapseries.github.GithubServiceUnauthorized;
@@ -84,7 +85,7 @@ public class UpdateEJB {
         context.createProducer().send(queue, msg);
     }
     
-    @Schedule(second = "0", minute = "0", hour = "3", persistent = false)
+//    @Schedule(second = "0", minute = "0", hour = "3", persistent = false)
     public void scheduledAutomatically() {
         try {
             List<UpdateTaskDAO> unfinishedTasks = updateTaskManager.getUnfinishedTasks();
@@ -115,7 +116,7 @@ public class UpdateEJB {
         executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         
         try {
-            List<Object> data = doUpdate(definitionJson);
+            List<VersionedData> data = doUpdate(definitionJson);
             return new UpdateTaskResult(logFile, data);
             
         } catch (Exception e) {
@@ -160,10 +161,10 @@ public class UpdateEJB {
         return runningTask;
     }
     
-    private List<Object> doUpdate(String definitionJson) throws Exception {
+    private List<VersionedData> doUpdate(String definitionJson) throws Exception {
         log.println("Starting update.");
         
-        List<Object> result = new ArrayList<>();
+        List<VersionedData> result = new ArrayList<>();
         
         ContentDefinitionManager contentDefinitionManager = ContentDefinitionManager.fromJsonString(definitionJson);
         List<ContentDefinitionItem> definitions = contentDefinitionManager.getDefinitions();
@@ -197,7 +198,7 @@ public class UpdateEJB {
             }
             
             SheetDAO sheetDAO = optSheetDAO.get();
-            sheetDAO.setSerie(serie);
+            sheetDAO.setSerie(serie.getName());
             
             result.add(sheetDAO);
         }

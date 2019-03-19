@@ -2,7 +2,7 @@ package cz.mzk.mapseries.jsf.beans;
 
 import cz.mzk.mapseries.Constants;
 import cz.mzk.mapseries.dao.AdminDAO;
-import cz.mzk.mapseries.dao.AdminManager;
+import cz.mzk.mapseries.managers.AdminManager;
 import cz.mzk.mapseries.github.GithubService;
 import java.io.Serializable;
 import java.util.ArrayList;

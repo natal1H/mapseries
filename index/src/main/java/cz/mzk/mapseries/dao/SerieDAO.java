@@ -1,7 +1,10 @@
 package cz.mzk.mapseries.dao;
 
+import cz.mzk.mapseries.dao.interfaces.VersionedData;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -9,7 +12,7 @@ import java.util.regex.Pattern;
  * @author Erich Duda <dudaerich@gmail.com>
  */
 @Entity
-public class SerieDAO {
+public class SerieDAO implements VersionedData, Serializable {
     
     private static final Pattern SPACE_REPLACE = Pattern.compile("(\\d) (\\d)");
     
@@ -19,6 +22,9 @@ public class SerieDAO {
     private String grid;
     
     private String thumbnailUrl;
+
+    @Id
+    private long version;
 
     public String getName() {
         return name;
@@ -46,6 +52,16 @@ public class SerieDAO {
 
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
+    }
+    
+    @Override
+    public long getVersion() {
+        return version;
+    }
+
+    @Override
+    public void setVersion(long version) {
+        this.version = version;
     }
 
     @Override

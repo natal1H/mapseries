@@ -2,13 +2,15 @@ package cz.mzk.mapseries.dao;
 
 import cz.mzk.mapseries.Constants;
 import javax.persistence.*;
+
+import cz.mzk.mapseries.dao.interfaces.VersionedData;
 import org.jboss.logging.Logger;
 
 /**
  * @author Erich Duda <dudaerich@gmail.com>
  */
 @Entity
-public class SheetDAO {
+public class SheetDAO implements VersionedData {
 
     @SequenceGenerator(name="sheetdao_seq",
             sequenceName="sheetdao_seq",
@@ -18,9 +20,7 @@ public class SheetDAO {
     @Id
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "serie_id")
-    private SerieDAO serie;
+    private String serie;
 
     private String sheetId;
     
@@ -46,6 +46,8 @@ public class SheetDAO {
 
     private String signature;
 
+    private long version;
+
     public Long getId() {
         return id;
     }
@@ -54,11 +56,11 @@ public class SheetDAO {
         this.id = id;
     }
 
-    public SerieDAO getSerie() {
+    public String getSerie() {
         return serie;
     }
 
-    public void setSerie(SerieDAO serie) {
+    public void setSerie(String serie) {
         this.serie = serie;
     }
 
@@ -166,5 +168,15 @@ public class SheetDAO {
         Logger log = Logger.getLogger(SheetDAO.class);
         boolean result = Constants.THUMBNAIL_COPYRIGHTED.equals(thumbnailUrl);
         return result;
+    }
+
+    @Override
+    public long getVersion() {
+        return version;
+    }
+
+    @Override
+    public void setVersion(long version) {
+        this.version = version;
     }
 }

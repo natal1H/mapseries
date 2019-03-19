@@ -1,4 +1,6 @@
-package cz.mzk.mapseries.dao;
+package cz.mzk.mapseries.managers;
+
+import cz.mzk.mapseries.dao.AdminDAO;
 
 import java.util.List;
 import javax.ejb.Stateless;

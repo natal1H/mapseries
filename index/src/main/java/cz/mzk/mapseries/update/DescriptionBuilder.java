@@ -32,7 +32,7 @@ public class DescriptionBuilder {
     
     private DescriptionDAO createDescription(String lang, String text) {
         DescriptionDAO description = new DescriptionDAO();
-        description.setSerie(serie);
+        description.setSerie(serie.getName());
         description.setLang(lang);
         if (text != null) {
             description.setText(text);

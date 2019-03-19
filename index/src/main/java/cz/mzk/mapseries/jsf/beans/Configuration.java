@@ -33,6 +33,8 @@ public class Configuration {
     
     private Long updateTaskId;
     
+    private Long currentVersion;
+    
     @Inject
     private ContentDefinitionManager contentDefinitionManager;
     
@@ -86,7 +88,20 @@ public class Configuration {
     }
     
     public List<UpdateTaskDAO> getUpdateTasks() {
-        return updateTaskManager.getTasks(10);
+        return updateTaskManager.getTasks();
+    }
+    
+    public boolean isTaskActive(UpdateTaskDAO task) {
+        LOG.infof("Comparing %d = %d", task.getId(), getCurrentVersion());
+        return task.getId() == getCurrentVersion();
+    }
+    
+    private long getCurrentVersion() {
+        if (currentVersion == null) {
+            currentVersion = updateTaskManager.getCurrentVersion();
+        }
+        
+        return currentVersion;
     }
     
     public String computeDuration(UpdateTaskDAO task) {

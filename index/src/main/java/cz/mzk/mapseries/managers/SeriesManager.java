@@ -29,15 +29,18 @@ public class SeriesManager {
     }
     
     public List<SerieDAO> getSeries() {
-        return em.createQuery("SELECT s FROM SerieDAO s", SerieDAO.class).getResultList();
+        return em.createQuery("SELECT s FROM SerieDAO s WHERE s.version = (SELECT value FROM CurrentVersionDAO)", SerieDAO.class).getResultList();
     }
     
     public SerieDAO getSerie(String id) {
-        return em.find(SerieDAO.class, id);
+        TypedQuery<SerieDAO> query = em.createQuery("SELECT s FROM SerieDAO s WHERE s.name = :id AND s.version = (SELECT value FROM CurrentVersionDAO)", SerieDAO.class);
+        query.setParameter("id", id);
+
+        return query.getSingleResult();
     }
     
     public Optional<String> getSerieDescription(String serieName, String lang) {
-        TypedQuery<String> query = em.createQuery("SELECT d.text FROM DescriptionDAO d WHERE d.serie.name = :serieName AND d.lang = :lang", String.class);
+        TypedQuery<String> query = em.createQuery("SELECT d.text FROM DescriptionDAO d WHERE d.serie = :serieName AND d.lang = :lang AND d.version = (SELECT value FROM CurrentVersionDAO)", String.class);
         query.setParameter("serieName", serieName);
         query.setParameter("lang", lang);
         List<String> result = query.getResultList();
@@ -50,7 +53,7 @@ public class SeriesManager {
     }
 
     public List<SheetDAO> getSheets(String serieName, String sheetId) {
-        TypedQuery<SheetDAO> query = em.createQuery("SELECT sheet FROM SheetDAO sheet WHERE sheet.serie.name = :serieName AND sheet.sheetId = :sheetId", SheetDAO.class);
+        TypedQuery<SheetDAO> query = em.createQuery("SELECT sheet FROM SheetDAO sheet WHERE sheet.serie = :serieName AND sheet.sheetId = :sheetId AND sheet.version = (SELECT value FROM CurrentVersionDAO)", SheetDAO.class);
         query.setParameter("serieName", serieName);
         query.setParameter("sheetId", sheetId);
 
@@ -70,7 +73,7 @@ public class SeriesManager {
     }
 
     public List<String> getSheetIds(String serieName) {
-        TypedQuery<String> query = em.createQuery("SELECT DISTINCT sheet.sheetId FROM SheetDAO sheet WHERE sheet.serie.name = :serieName", String.class);
+        TypedQuery<String> query = em.createQuery("SELECT DISTINCT sheet.sheetId FROM SheetDAO sheet WHERE sheet.serie = :serieName AND sheet.version = (SELECT value FROM CurrentVersionDAO)", String.class);
         query.setParameter("serieName", serieName);
         return query.getResultList();
     }

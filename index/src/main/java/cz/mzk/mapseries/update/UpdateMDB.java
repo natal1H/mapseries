@@ -1,5 +1,7 @@
 package cz.mzk.mapseries.update;
 
+import cz.mzk.mapseries.dao.CurrentVersionDAO;
+import cz.mzk.mapseries.dao.interfaces.VersionedData;
 import cz.mzk.mapseries.managers.UpdateTaskManager;
 import cz.mzk.mapseries.dao.UpdateTaskDAO;
 import java.io.FileReader;
@@ -7,6 +9,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.sql.Clob;
 import java.time.ZonedDateTime;
+import java.util.Collections;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.EJB;
@@ -32,6 +36,7 @@ import org.jboss.logging.Logger;
 public class UpdateMDB implements MessageListener {
     
     private static final Logger LOG = Logger.getLogger(UpdateMDB.class);
+    private static final int HISTORY = 10;
     
     @EJB
     private UpdateTaskManager updateTaskManager;
@@ -59,11 +64,20 @@ public class UpdateMDB implements MessageListener {
             
             // Only if the task passed, persist the series
             if (result.getData().isPresent()) {
+
+                clearOldData();
+
                 updateTaskDAO.setResult(true);
-                em.createQuery("DELETE FROM SheetDAO").executeUpdate();
-                em.createQuery("DELETE FROM DescriptionDAO").executeUpdate();
-                em.createQuery("DELETE FROM SerieDAO").executeUpdate();
-                result.getData().get().forEach(d -> em.merge(d));
+
+                for (VersionedData d : result.getData().get()) {
+                    d.setVersion(taskId);
+                    em.persist(d);
+                }
+
+                CurrentVersionDAO currentVersionDAO = new CurrentVersionDAO();
+                currentVersionDAO.setValue(taskId);
+                em.merge(currentVersionDAO);
+
             } else {
                 updateTaskDAO.setResult(false);
             }
@@ -86,6 +100,32 @@ public class UpdateMDB implements MessageListener {
             
         } catch (JMSException e) {
             LOG.error(e.getMessage(), e);
+        }
+    }
+
+    private void clearOldData() {
+
+        for (Long taskToDelete : getIdsOfTasksToDelete()) {
+
+            em.createQuery("DELETE FROM SheetDAO s WHERE s.version = :task").setParameter("task", taskToDelete).executeUpdate();
+            em.createQuery("DELETE FROM SerieDAO s WHERE s.version = :task").setParameter("task", taskToDelete).executeUpdate();
+            em.createQuery("DELETE FROM DescriptionDAO d WHERE d.version = :task").setParameter("task", taskToDelete).executeUpdate();
+            em.createQuery("DELETE FROM UpdateTaskDAO t WHERE t.id = :task").setParameter("task", taskToDelete).executeUpdate();
+        }
+
+    }
+
+    private List<Long> getIdsOfTasksToDelete() {
+        List<Long> ids = em.createQuery(
+                "SELECT t.id FROM UpdateTaskDAO t WHERE t.id <> (SELECT value FROM CurrentVersionDAO) ORDER BY t.id ASC", Long.class)
+                .getResultList();
+
+        int numberOfTasksToDelete = ids.size() - HISTORY;
+
+        if (numberOfTasksToDelete > 0) {
+            return ids.subList(0, numberOfTasksToDelete);
+        } else {
+            return Collections.emptyList();
         }
     }
     

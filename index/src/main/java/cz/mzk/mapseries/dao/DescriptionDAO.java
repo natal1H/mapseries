@@ -1,20 +1,14 @@
 package cz.mzk.mapseries.dao;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import cz.mzk.mapseries.dao.interfaces.VersionedData;
+
+import javax.persistence.*;
 
 /**
  * @author Erich Duda <dudaerich@gmail.com>
  */
 @Entity
-public class DescriptionDAO {
+public class DescriptionDAO implements VersionedData {
     
     @SequenceGenerator(name="descriptiondao_seq",
             sequenceName="descriptiondao_seq",
@@ -24,14 +18,14 @@ public class DescriptionDAO {
     @Id
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "serie_id")
-    private SerieDAO serie;
+    private String serie;
     
     private String lang;
     
     @Column(columnDefinition="text")
     private String text;
+
+    private long version;
 
     public Long getId() {
         return id;
@@ -41,11 +35,11 @@ public class DescriptionDAO {
         this.id = id;
     }
 
-    public SerieDAO getSerie() {
+    public String getSerie() {
         return serie;
     }
 
-    public void setSerie(SerieDAO serie) {
+    public void setSerie(String serie) {
         this.serie = serie;
     }
 
@@ -64,7 +58,15 @@ public class DescriptionDAO {
     public void setText(String text) {
         this.text = text;
     }
-    
-    
-    
+
+
+    @Override
+    public long getVersion() {
+        return version;
+    }
+
+    @Override
+    public void setVersion(long version) {
+        this.version = version;
+    }
 }

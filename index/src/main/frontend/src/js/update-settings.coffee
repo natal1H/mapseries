@@ -31,4 +31,20 @@ export default {
         loading.hide()
         showError "Server returned code #{err.status} with message: #{err.responseText}"
     }
+
+  onRestoreVersionClick: (version) ->
+    loading.show()
+    $.ajax {
+      url: "#{window.contextPath}/rest/ajax/updateSettings/restoreVersion?version=#{version}"
+      dataType: "json"
+      success: (resp) ->
+        loading.hide()
+        if resp.success
+          window.location.reload()
+        else
+          showError "Server returned error message #{resp.message}"
+      error: (err) ->
+        loading.hide()
+        showError "Server returned code #{err.status} with message: #{err.responseText}"
+    }
 }

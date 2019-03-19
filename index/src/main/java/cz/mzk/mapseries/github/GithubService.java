@@ -2,7 +2,7 @@ package cz.mzk.mapseries.github;
 
 import cz.mzk.mapseries.Constants;
 import cz.mzk.mapseries.Pair;
-import cz.mzk.mapseries.dao.AdminManager;
+import cz.mzk.mapseries.managers.AdminManager;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
@@ -237,7 +237,7 @@ public class GithubService implements Serializable {
         
         String githubToken = getGithubToken();
         if (githubToken != null) {
-            gitHubClient.setOAuth2Token(getGithubToken());
+            gitHubClient.setOAuth2Token(githubToken);
         }
        
         return gitHubClient;
@@ -245,7 +245,6 @@ public class GithubService implements Serializable {
     
     private String getGithubToken() {
         if (token == null) {
-            // throw new IllegalStateException("Github token does not exist.");
             return null; 
         } else {
             return token;

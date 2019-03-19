@@ -33,14 +33,21 @@
                             <th>#{msg['startDate']}</th>
                             <th>#{msg['endDate']}</th>
                             <th>#{msg['duration']}</th>
+                            <th>#{msg['rollback']}</th>
                         </tr>
                         <ui:repeat var="task" value="#{configuration.updateTasks}">
-                            <tr>
+                            <tr class="#{configuration.isTaskActive(task) ? 'table-success' : ''}">
                                 <td><a href="#{application.contextPath}/admin/update-log.xhtml?task=#{task.id}">#{task.id}</a></td>
                                 <td>#{msg[configuration.printStatusOfTask(task)]}</td>
                                 <td>#{configuration.formatDate(task.startDate)}</td>
                                 <td>#{configuration.formatDate(task.endDate)}</td>
                                 <td>#{configuration.computeDuration(task)}</td>
+                                <ui:fragment rendered="#{configuration.isTaskActive(task)}">
+                                    <td></td>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{not configuration.isTaskActive(task)}">
+                                    <td><button type="button" class="btn btn-link" onclick="window.updateSettings.onRestoreVersionClick(#{task.id})"><i class="fas fa-undo"></i></button></td>
+                                </ui:fragment>
                             </tr>
                         </ui:repeat>
                     </table>

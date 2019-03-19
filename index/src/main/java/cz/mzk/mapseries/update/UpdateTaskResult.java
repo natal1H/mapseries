@@ -1,5 +1,7 @@
 package cz.mzk.mapseries.update;
 
+import cz.mzk.mapseries.dao.interfaces.VersionedData;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,31 +12,31 @@ import java.util.Optional;
 /**
  * @author Erich Duda <dudaerich@gmail.com>
  */
-public class UpdateTaskResult {
+class UpdateTaskResult {
     
-    private final Optional<List<Object>> data;
+    private final Optional<List<VersionedData>> data;
     
     private final File logFile;
     
-    public UpdateTaskResult(File logFile, List<Object> data) {
+    UpdateTaskResult(File logFile, List<VersionedData> data) {
         this.logFile = logFile;
         this.data = Optional.of(data);
     }
     
-    public UpdateTaskResult(File logFile) {
+    UpdateTaskResult(File logFile) {
         this.logFile = logFile;
         this.data = Optional.empty();
     }
 
-    public Optional<List<Object>> getData() {
+    Optional<List<VersionedData>> getData() {
         return data;
     }
 
-    public File getLogFile() {
+    File getLogFile() {
         return logFile;
     }
     
-    public long getLogSize() {
+    long getLogSize() {
         try (Reader reader = new FileReader(logFile)) {
             
             long count = 0;
