@@ -4,8 +4,8 @@ services:
     build: .
     restart: always
     environment:
-      GITHUB_CLIENT_ID: be39fea131a1ca0521d8
-      GITHUB_CLIENT_SECRET: cef0f1d3e97f257ae5e3ae811b44a9bf0aaf010c
+      GITHUB_CLIENT_ID: ...
+      GITHUB_CLIENT_SECRET: ...
     ports:
       - 8080:8080
       - 8787:8787
@@ -15,4 +15,4 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
     volumes:
-      - /home/eduda/tmp/postgres-data:/var/lib/postgresql/data:z
+      - ...:/var/lib/postgresql/data:z
