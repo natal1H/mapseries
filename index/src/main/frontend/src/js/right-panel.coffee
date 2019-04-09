@@ -13,6 +13,7 @@ updateTabSize = () ->
   # reset heights before doing any calculations
   padding.css('height', '0px')
   tab.css('height', 'auto');
+  tab.css('overflow-y', 'visible')
   tabPosition = tab.position()
   tabHeight = tab.height() + footer.outerHeight()
 
