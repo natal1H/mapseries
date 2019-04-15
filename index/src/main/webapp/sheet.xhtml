@@ -51,7 +51,7 @@
                                     </c:choose>
                                 </h:outputLink>
                             </div>
-                            <div class="mt-1" style="width: 100px;">#{sheet.title}</div>
+                            <div class="mt-1" style="width: 100px;">#{stringUtils.shortenWords(sheet.title, 10)}</div>
                             <div style="width: 100px;">#{sheet.year}</div>
                         </div><br/>
                     </c:forEach>
