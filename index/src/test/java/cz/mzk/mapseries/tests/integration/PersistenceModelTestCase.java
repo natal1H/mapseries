@@ -1,12 +1,10 @@
 package cz.mzk.mapseries.tests.integration;
 
-import cz.mzk.mapseries.update.SeriesManager;
-import cz.mzk.mapseries.update.dao.SerieDAO;
-import cz.mzk.mapseries.update.dao.SheetDAO;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import cz.mzk.mapseries.dao.CurrentVersionDAO;
+import cz.mzk.mapseries.dao.SerieDAO;
+import cz.mzk.mapseries.dao.SheetDAO;
+import cz.mzk.mapseries.managers.SeriesManager;
+import org.junit.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -14,18 +12,18 @@ import javax.persistence.Persistence;
 
 public class PersistenceModelTestCase {
 
-    private static EntityManager em;
+    private EntityManager em;
 
-    private static EntityTransaction tx;
+    private EntityTransaction tx;
 
-    @BeforeClass
-    public static void setup() {
+    @Before
+    public void setup() {
         em = Persistence.createEntityManagerFactory("integration-test").createEntityManager();
         tx = em.getTransaction();
     }
 
-    @AfterClass
-    public static void tearDown() {
+    @After
+    public void tearDown() {
         em.clear();
         em.close();
     }
@@ -33,35 +31,43 @@ public class PersistenceModelTestCase {
     @Test
     public void sheetsWithSameIdTest() {
 
+        CurrentVersionDAO currentVersion = new CurrentVersionDAO();
+        currentVersion.setValue(1);
+
         SerieDAO serie1 = new SerieDAO();
         serie1.setName("Serie 1");
+        serie1.setVersion(1);
 
         SerieDAO serie2 = new SerieDAO();
         serie2.setName("Serie 2");
+        serie2.setVersion(1);
 
         SheetDAO sheet1 = new SheetDAO();
-        sheet1.setSerie(serie1);
+        sheet1.setSerie(serie1.getName());
         sheet1.setSheetId("1");
         sheet1.setTitle("Sheet 1");
         sheet1.setYear("2018");
         sheet1.setThumbnailUrl("http://thumbnail");
         sheet1.setDigitalLibraryUrl("http://digitalLibrary");
         sheet1.setVufindUrl("http://vufind");
+        sheet1.setVersion(1);
 
         SheetDAO sheet2 = new SheetDAO();
-        sheet2.setSerie(serie2);
+        sheet2.setSerie(serie2.getName());
         sheet2.setSheetId("1");
         sheet2.setTitle("Sheet 2");
         sheet2.setYear("2018");
         sheet2.setThumbnailUrl("http://thumbnail");
         sheet2.setDigitalLibraryUrl("http://digitalLibrary");
         sheet2.setVufindUrl("http://vufind");
+        sheet2.setVersion(1);
 
         tx.begin();
-        em.merge(serie1);
-        em.merge(serie2);
-        em.merge(sheet1);
-        em.merge(sheet2);
+        em.persist(currentVersion);
+        em.persist(serie1);
+        em.persist(serie2);
+        em.persist(sheet1);
+        em.persist(sheet2);
         tx.commit();
 
         SeriesManager seriesManager = new SeriesManager();
@@ -77,31 +83,38 @@ public class PersistenceModelTestCase {
 
     @Test
     public void sheetsWithSameIdInOneSerieTest() {
+        CurrentVersionDAO currentVersion = new CurrentVersionDAO();
+        currentVersion.setValue(1);
+
         SerieDAO serie = new SerieDAO();
         serie.setName("Serie");
+        serie.setVersion(1);
 
         SheetDAO sheet1 = new SheetDAO();
-        sheet1.setSerie(serie);
+        sheet1.setSerie(serie.getName());
         sheet1.setSheetId("1");
         sheet1.setTitle("Sheet 1");
         sheet1.setYear("2018");
         sheet1.setThumbnailUrl("http://thumbnail");
         sheet1.setDigitalLibraryUrl("http://digitalLibrary");
         sheet1.setVufindUrl("http://vufind");
+        sheet1.setVersion(1);
 
         SheetDAO sheet2 = new SheetDAO();
-        sheet2.setSerie(serie);
+        sheet2.setSerie(serie.getName());
         sheet2.setSheetId("1");
         sheet2.setTitle("Sheet 2");
         sheet2.setYear("2018");
         sheet2.setThumbnailUrl("http://thumbnail");
         sheet2.setDigitalLibraryUrl("http://digitalLibrary");
         sheet2.setVufindUrl("http://vufind");
+        sheet2.setVersion(1);
 
         tx.begin();
-        em.merge(serie);
-        em.merge(sheet1);
-        em.merge(sheet2);
+        em.persist(currentVersion);
+        em.persist(serie);
+        em.persist(sheet1);
+        em.persist(sheet2);
         tx.commit();
 
         SeriesManager seriesManager = new SeriesManager();
