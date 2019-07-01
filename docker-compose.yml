@@ -1,0 +1,18 @@
+version: "2"
+services:
+  mapseries:
+    build: .
+    restart: always
+    environment:
+      GITHUB_CLIENT_ID: e403a9e3857a3792b9e1
+      GITHUB_CLIENT_SECRET: 904cf23ca73f7370c7159f4f4e43cd2cef7a842f
+    ports:
+      - 8080:8080
+      - 8787:8787
+  postgres:
+    image: postgres:10
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ...:/var/lib/postgresql/data:z
