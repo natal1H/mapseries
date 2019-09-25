@@ -121,6 +121,7 @@ public class GithubService implements Serializable {
     }
     
     public String getUserName() {
+        System.out.println("Function: getUs");
         if (userName == null) {
             UserService service = new UserService(getGithubClient());
             try {
@@ -135,7 +136,7 @@ public class GithubService implements Serializable {
     }
     
     public String getLogin() {
-        
+        System.out.println("FUNCTION: getLogin");
         if (login == null) {
             UserService service = new UserService(getGithubClient());
             try {
@@ -151,6 +152,7 @@ public class GithubService implements Serializable {
     }
     
     public void saveFile(String commitMessage, String path, String content) throws Exception {
+        System.out.println("Function: saveFile");
         GitHubClient githubClient = getGithubClient();
         DataService dataService = new DataService(githubClient);
         RepositoryService repositoryService = new RepositoryService(githubClient);

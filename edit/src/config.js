@@ -14,8 +14,10 @@ module.exports = function(hostname) {
     };
   } else {
       return {
-        client_id: 'bb7bbe70bd1f707125bc',
-        gatekeeper_url: 'https://localhostauth.herokuapp.com'
+        //client_id: 'bb7bbe70bd1f707125bc',
+        //gatekeeper_url: 'https://localhostauth.herokuapp.com'
+        client_id: 'd1b597879ae8454e12a1',
+        gatekeeper_url: 'http://localhost:8080'
       };
     }
 };

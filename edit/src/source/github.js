@@ -4,7 +4,8 @@ var GitHub = require('github-api'),
 module.exports = function(context, config) {
 
   config = config || {};
-  var username = config.username || 'moravianlibrary';
+  //var username = config.username || 'moravianlibrary';
+  var username = config.username || 'natal1H';
   var reponame = config.reponame || 'mapseries-data';
   var workBranch = config.workBranch || 'work';
 
@@ -336,6 +337,7 @@ module.exports = function(context, config) {
 
   function pullRequest(title) {
     log.debug('Calling pullRequest()')
+    console.log('Function: PullRequest()');
 
     return createPullBranch()
     .then((branch) => {
